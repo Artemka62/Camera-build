@@ -149,7 +149,7 @@ function BasketPage ({title}: BasketProps) {
                     <p className="basket-item__title">Орлёнок</p>
                     <ul className="basket-item__list">
                       <li className="basket-item__list-item">
-                        <span className="basket-item__article">Артикул:</span>{" "}
+                        <span className="basket-item__article">Артикул:</span>{' '}
                         <span className="basket-item__number">O78DFGSD832</span>
                       </li>
                       <li className="basket-item__list-item">
@@ -223,7 +223,7 @@ function BasketPage ({title}: BasketProps) {
                     <p className="basket-item__title">Ретрокамера «Das Auge IV»</p>
                     <ul className="basket-item__list">
                       <li className="basket-item__list-item">
-                        <span className="basket-item__article">Артикул:</span>{" "}
+                        <span className="basket-item__article">Артикул:</span>{' '}
                         <span className="basket-item__number">DA4IU67AD5</span>
                       </li>
                       <li className="basket-item__list-item">
@@ -240,7 +240,7 @@ function BasketPage ({title}: BasketProps) {
                   <div className="quantity">
                     <button
                       className="btn-icon btn-icon--prev"
-                      disabled=""
+                      disabled
                       aria-label="уменьшить количество товара"
                     >
                       <svg width={7} height={12} aria-hidden="true">
