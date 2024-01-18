@@ -6,11 +6,13 @@ import { BasketPage } from '../../pages/basket-page/basket-page';
 import { ErrorPage } from '../../pages/error-page/error-page';
 import { useAppDispatch } from '../../hooks/use-store';
 import { fetchOffersAction } from '../../services/thunk/fetch-offers';
+import { fetchPromoOffersAction } from '../../services/thunk/fetch-promo-offers';
 
 function App () {
   const dispatch = useAppDispatch();
 
   dispatch(fetchOffersAction());
+  dispatch(fetchPromoOffersAction());
 
   return (
     <BrowserRouter>

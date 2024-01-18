@@ -1,3 +1,4 @@
+import { BannerComponent } from '../../components/banner/banner';
 import { CardsListComponent } from '../../components/cards-list/cards-list';
 import { FilterListCardsComponent } from '../../components/filter-list-cards/filter-list-cards';
 import { FooterComponent } from '../../components/footer/footer';
@@ -19,33 +20,9 @@ function MainPage ({title}: MainPageProps): JSX.Element {
       <HeaderComponent/>
 
       <main>
-        <div className="banner">
-          <picture>
-            <source
-              type="image/webp"
-              srcSet="img/content/banner-bg.webp, img/content/banner-bg@2x.webp 2x"
-            />
-            <img
-              src="img/content/banner-bg.jpg"
-              srcSet="img/content/banner-bg@2x.jpg 2x"
-              width={1280}
-              height={280}
-              alt="баннер"
-            />
-          </picture>
-          <p className="banner__info">
-            <span className="banner__message">Новинка!</span>
-            <span className="title title--h1">
-              Cannonball&nbsp;Pro&nbsp;MX&nbsp;8i
-            </span>
-            <span className="banner__text">
-              Профессиональная камера от&nbsp;известного производителя
-            </span>
-            <a className="btn" href="#">
-              Подробнее
-            </a>
-          </p>
-        </div>
+
+        <BannerComponent/>
+
         <div className="page-content">
           <div className="breadcrumbs">
             <div className="container">

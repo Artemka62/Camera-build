@@ -5,7 +5,7 @@ import { fetchOffersAction } from '../../services/thunk/fetch-offers';
 
 
 type StateOffers = {
-  offers: OfferCard[] | null;
+  offers: OfferCard[];
 }
 
 const initialState: StateOffers = {
@@ -20,8 +20,6 @@ const offersSlice = createSlice({
       state.offers = action.payload;
     },
   },
-
-
   extraReducers(builder) {
     builder
       .addCase(fetchOffersAction.fulfilled, (state, action) => {

@@ -10,7 +10,7 @@ enum AppRoute {
 
 enum ApiRoute {
   Offers = '/cameras',
- // OffersFavorite = '/favorite',
+  OffersPromo = '/promo',
   //Comments = '/comments',
   //Login = '/login',
  // Logout = '/logout'

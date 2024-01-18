@@ -30,7 +30,7 @@ function FilterListCardsComponent () {
                 <input
                   type="checkbox"
                   name="photocamera"
-                  defaultChecked
+
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -55,7 +55,6 @@ function FilterListCardsComponent () {
                 <input
                   type="checkbox"
                   name="digital"
-                  defaultChecked
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">Цифровая</span>
@@ -84,7 +83,6 @@ function FilterListCardsComponent () {
                 <input
                   type="checkbox"
                   name="collection"
-                  defaultChecked
                   disabled
                 />
                 <span className="custom-checkbox__icon" />
@@ -98,7 +96,10 @@ function FilterListCardsComponent () {
             <legend className="title title--h5">Уровень</legend>
             <div className="custom-checkbox catalog-filter__item">
               <label>
-                <input type="checkbox" name="zero" defaultChecked />
+                <input
+                  type="checkbox"
+                  name="zero"
+                />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">Нулевой</span>
               </label>

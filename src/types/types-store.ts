@@ -20,4 +20,13 @@ type OfferCard = {
   previewImgWebp2x: string;
 };
 
-export type {State, AppDispatch, OfferCard};
+type OfferPromo = {
+  id: number;
+  name: string;
+  previewImg: string;
+  previewImg2x: string;
+  previewImgWebp: string;
+  previewImgWebp2x: string;
+}
+
+export type {State, AppDispatch, OfferCard, OfferPromo};
