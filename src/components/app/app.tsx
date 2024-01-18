@@ -24,7 +24,7 @@ function App () {
           }
         />
         <Route
-          path={`${AppRoute.Product}`}
+          path={`${AppRoute.Product}/:id`}
           element ={
             <ProductPage title = {TitleDescription.ProductPage}/>
           }
