@@ -4,8 +4,15 @@ import { MainPage } from '../../pages/main-page/main-page';
 import { ProductPage } from '../../pages/product-page/product-page';
 import { BasketPage } from '../../pages/basket-page/basket-page';
 import { ErrorPage } from '../../pages/error-page/error-page';
+import { useAppDispatch } from '../../hooks/use-store';
+import { fetchOffersAction } from '../../services/thunk/fetch-offers';
 
 function App () {
+
+  const dispatch = useAppDispatch();
+
+  dispatch(fetchOffersAction());
+
   return (
     <BrowserRouter>
       <Routes>
