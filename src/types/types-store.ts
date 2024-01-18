@@ -29,4 +29,17 @@ type OfferPromo = {
   previewImgWebp2x: string;
 }
 
-export type {State, AppDispatch, OfferCard, OfferPromo};
+type StateOffer = {
+  offer: OfferCard | null;
+}
+
+type StateOffers = {
+  offers: OfferCard[];
+}
+
+type StateOffersPromo = {
+  offers: OfferPromo[];
+}
+
+
+export type {State, AppDispatch, OfferCard, OfferPromo, StateOffer, StateOffers, StateOffersPromo};
