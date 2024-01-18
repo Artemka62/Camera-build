@@ -1,17 +1,22 @@
+import { OfferCard } from '../../types/types-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 
-function CardComponent () {
+type CardComponentProps = {
+  offer: OfferCard;
+}
+
+function CardComponent ({offer}: CardComponentProps) {
   return (
     <div className="product-card">
       <div className="product-card__img">
         <picture>
           <source
             type="image/webp"
-            srcSet="img/content/das-auge.webp, img/content/das-auge@2x.webp 2x"
+            srcSet={`${offer.previewImgWebp}, ${offer.previewImgWebp} 2x`}
           />
           <img
-            src="img/content/das-auge.jpg"
-            srcSet="img/content/das-auge@2x.jpg 2x"
+            src={offer.previewImg}
+            srcSet={`${offer.previewImgWebp} 2x`}
             width={280}
             height={240}
             alt="Ретрокамера «Das Auge IV»"
@@ -20,13 +25,13 @@ function CardComponent () {
       </div>
       <div className="product-card__info">
 
-        <StarsRatingComponent/>
+        <StarsRatingComponent offer={offer}/>
 
         <p className="product-card__title">
-          Ретрокамера Das Auge IV
+          {offer.name}
         </p>
         <p className="product-card__price">
-          <span className="visually-hidden">Цена:</span>73 450 ₽
+          <span className="visually-hidden">Цена:</span>{offer.price} ₽
         </p>
       </div>
       <div className="product-card__buttons">

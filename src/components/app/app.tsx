@@ -8,7 +8,6 @@ import { useAppDispatch } from '../../hooks/use-store';
 import { fetchOffersAction } from '../../services/thunk/fetch-offers';
 
 function App () {
-
   const dispatch = useAppDispatch();
 
   dispatch(fetchOffersAction());
