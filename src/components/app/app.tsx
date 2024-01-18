@@ -18,7 +18,7 @@ function App () {
     <BrowserRouter>
       <Routes>
         <Route
-          path={`${AppRoute.Main}`}
+          path={`${AppRoute.Main}/`}
           element ={
             <MainPage title = {TitleDescription.MainPage}/>
           }

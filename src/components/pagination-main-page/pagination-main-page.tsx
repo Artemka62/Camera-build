@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 type PaginationMainPageComponentProps ={
   offersPerPages: number;
   totalOffers: number;
@@ -8,10 +10,11 @@ type PaginationMainPageComponentProps ={
 
 function PaginationMainPageComponent ({offersPerPages, totalOffers, callbackPaginate, currentPage}: PaginationMainPageComponentProps) {
   const pageNumbers = [];
+  const navigate = useNavigate();
 
   function handleClick (numberPage: number) {
     callbackPaginate(numberPage);
-
+    navigate(`/?page=${numberPage}`);
   }
 
 
@@ -20,7 +23,7 @@ function PaginationMainPageComponent ({offersPerPages, totalOffers, callbackPagi
   }
 
   if(totalOffers <= 9){
-    return '';
+    return <> </>;
   }
 
   return (

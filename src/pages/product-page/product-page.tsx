@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { FooterComponent } from '../../components/footer/footer';
 import { HeaderComponent } from '../../components/header/header';
 import { useDocumentTitle } from '../../hooks/use-document-title';
-import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
+import { useAppDispatch} from '../../hooks/use-store';
 import { fetchOfferAction } from '../../services/thunk/fetch-offer';
 import { useEffect } from 'react';
 
@@ -14,7 +14,7 @@ function ProductPage ({title}: ProductProps) {
 
   const {id} = useParams<string>();
   const dispatch = useAppDispatch();
-  const stateOffer = useAppSelector((state) => state.offer.offer);
+  //const stateOffer = useAppSelector((state) => state.offer.offer);
 
   useEffect(() => {
 

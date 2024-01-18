@@ -32,7 +32,6 @@ function BannerOfferComponent ({offer}: BannerOfferProps) {
         </span>
         <Link to={`${AppRoute.Product}/${offer.id}`}
           className="btn"
-          onClick={() => console.log(offer)}
         >
           Подробнее
         </Link>

@@ -69,12 +69,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
 
                   <CardsListComponent offers={currentOffers}/>
 
-                  <PaginationMainPageComponent
-                    offersPerPages={offersPerPages}
-                    totalOffers={stateOffers.length}
-                    callbackPaginate={paginate}
-                    currentPage={currentPage}
-                  />
+                  <PaginationMainPageComponent offersPerPages={offersPerPages} totalOffers={stateOffers.length} callbackPaginate={paginate} currentPage={currentPage}/>
 
                 </div>
               </div>
