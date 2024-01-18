@@ -1,16 +1,33 @@
+import { useState } from 'react';
 import { BannerComponent } from '../../components/banner/banner';
 import { CardsListComponent } from '../../components/cards-list/cards-list';
 import { FilterListCardsComponent } from '../../components/filter-list-cards/filter-list-cards';
 import { FooterComponent } from '../../components/footer/footer';
 import { HeaderComponent } from '../../components/header/header';
+import { PaginationMainPageComponent } from '../../components/pagination-main-page/pagination-main-page';
 import { SortListCardsComponent } from '../../components/sort-list-cards/sort-list-cards';
 import { useDocumentTitle } from '../../hooks/use-document-title';
+import { useAppSelector } from '../../hooks/use-store';
 
 type MainPageProps = {
   title: string;
 }
 
 function MainPage ({title}: MainPageProps): JSX.Element {
+  const stateOffers = useAppSelector((state) => state.offers.offers);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [offersPerPages] = useState(9);
+
+
+  const lastOfferIndex = currentPage * offersPerPages;
+  const firstOfferIndex = lastOfferIndex - offersPerPages;
+  const currentOffers = stateOffers.slice(firstOfferIndex, lastOfferIndex);
+
+
+  function paginate (pageNumber: number): void {
+    setCurrentPage(pageNumber);
+  }
+
 
   useDocumentTitle(title);
 
@@ -52,41 +69,16 @@ function MainPage ({title}: MainPageProps): JSX.Element {
 
                 <div className="catalog__content">
 
-
                   <SortListCardsComponent/>
 
-                  <CardsListComponent/>
+                  <CardsListComponent offers={currentOffers}/>
 
-                  <div className="pagination">
-                    <ul className="pagination__list">
-                      <li className="pagination__item">
-                        <a
-                          className="pagination__link pagination__link--active"
-                          href={1}
-                        >
-                          1
-                        </a>
-                      </li>
-                      <li className="pagination__item">
-                        <a className="pagination__link" href={2}>
-                          2
-                        </a>
-                      </li>
-                      <li className="pagination__item">
-                        <a className="pagination__link" href={3}>
-                          3
-                        </a>
-                      </li>
-                      <li className="pagination__item">
-                        <a
-                          className="pagination__link pagination__link--text"
-                          href={2}
-                        >
-                          Далее
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                  <PaginationMainPageComponent
+                    offersPerPages={offersPerPages}
+                    totalOffers={stateOffers.length}
+                    callbackPaginate={paginate}
+                  />
+
                 </div>
               </div>
             </div>

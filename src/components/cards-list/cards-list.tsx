@@ -1,14 +1,17 @@
 import { useAppSelector } from '../../hooks/use-store';
+import { OfferCard } from '../../types/types-store';
 import { CardComponent } from '../card/card';
 
-function CardsListComponent () {
+type CardsListComponentProps ={
+  offers: OfferCard[];
+}
 
-  const stateOffers = useAppSelector((state) => state.offers.offers);
+function CardsListComponent ({offers}: CardsListComponentProps) {
 
   return (
     <div className="cards catalog__cards">
 
-      {stateOffers?.map((offer) => <CardComponent key={offer.id} offer={offer}/>)}
+      {offers?.map((offer) => <CardComponent key={offer.id} offer={offer}/>)}
 
     </div>
   );
