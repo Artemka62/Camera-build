@@ -17,17 +17,13 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const stateOffers = useAppSelector((state) => state.offers.offers);
   const [currentPage, setCurrentPage] = useState(1);
   const [offersPerPages] = useState(9);
-
-
   const lastOfferIndex = currentPage * offersPerPages;
   const firstOfferIndex = lastOfferIndex - offersPerPages;
   const currentOffers = stateOffers.slice(firstOfferIndex, lastOfferIndex);
 
-
-  function paginate (pageNumber: number): void {
+  function paginate (pageNumber: number) {
     setCurrentPage(pageNumber);
   }
-
 
   useDocumentTitle(title);
 
@@ -77,6 +73,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
                     offersPerPages={offersPerPages}
                     totalOffers={stateOffers.length}
                     callbackPaginate={paginate}
+                    currentPage={currentPage}
                   />
 
                 </div>
