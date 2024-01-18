@@ -1,37 +1,34 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { useAppSelector } from '../../hooks/use-store';
+import { BannerOfferComponent } from '../banner-offer/banner-offer';
+import { Autoplay, Pagination } from 'swiper/modules';
+import SwiperCore from 'swiper';
+import 'swiper/swiper-bundle.css';
+import './banner.css';
 
-function BannerComponent () {
+function BannerComponent() {
   const stateOffersPromo = useAppSelector((state) => state.offersPromo.offers);
+
+  SwiperCore.use([Autoplay, Pagination]);
 
   return (
     <div className="banner">
-      <picture>
-        <source
-          type="image/webp"
-          srcSet="img/content/banner-bg.webp, img/content/banner-bg@2x.webp 2x"
-        />
-        <img
-          src="img/content/banner-bg.jpg"
-          srcSet="img/content/banner-bg@2x.jpg 2x"
-          width={1280}
-          height={280}
-          alt="баннер"
-        />
-      </picture>
-      <p className="banner__info">
-        <span className="banner__message">Новинка!</span>
-        <span className="title title--h1">
-          Cannonball&nbsp;Pro&nbsp;MX&nbsp;8i
-        </span>
-        <span className="banner__text">
-          Профессиональная камера от&nbsp;известного производителя
-        </span>
-        <a className="btn" href="#">
-          Подробнее
-        </a>
-      </p>
+      <Swiper
+        className="my-swiper"
+        spaceBetween={0}
+        slidesPerView={1}
+        autoplay={{ delay: 3000 }}
+        pagination={{ clickable: true }}
+        style={{ height: 280 }}
+      >
+        {stateOffersPromo.map((offer) => (
+          <SwiperSlide key={offer.id}>
+            <BannerOfferComponent offer={offer} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 }
 
-export {BannerComponent};
+export { BannerComponent };
