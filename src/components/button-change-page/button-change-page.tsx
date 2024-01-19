@@ -15,12 +15,12 @@ function ButtonChangePage ({callbackPaginate, currentPage, nameButton}: ButtonCh
   function handleClickButton () {
     if(nameButton === 'next') {
       callbackPaginate(currentPage + 1);
-      navigate(`/?page=${currentPage + 1}`);
+      navigate(`/?page=${currentPage}`);
     }
 
     if(nameButton === 'back') {
       callbackPaginate(currentPage - 1);
-      navigate(`/?page=${currentPage - 1}`);
+      navigate(`/?page=${currentPage}`);
     }
   }
 

@@ -17,7 +17,7 @@ type MainPageProps = {
 function MainPage ({title}: MainPageProps): JSX.Element {
   const stateOffers = useAppSelector((state) => state.offers.offers);
   const [currentPage, setCurrentPage] = useState(1);
-  const [offersPerPages] = useState(9);
+  const [offersPerPages] = useState(3);
   const lastOfferIndex = currentPage * offersPerPages;
   const firstOfferIndex = lastOfferIndex - offersPerPages;
   const currentOffers = stateOffers.slice(firstOfferIndex, lastOfferIndex);
