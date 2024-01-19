@@ -35,7 +35,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   },[]);
 
 
-  function paginate (pageNumber: number) {
+  function setPage (pageNumber: number) {
     setCurrentPage(pageNumber);
   }
 
@@ -83,7 +83,12 @@ function MainPage ({title}: MainPageProps): JSX.Element {
 
                   <CardsListComponent offers={currentOffers}/>
 
-                  <PaginationMainPageComponent offersPerPages={offersPerPages} totalOffers={stateOffers.length} callbackPaginate={paginate} currentPage={currentPage}/>
+                  <PaginationMainPageComponent
+                    offersPerPages={offersPerPages}
+                    totalOffers={stateOffers.length}
+                    callbackPaginate={setPage}
+                    currentPage={currentPage}
+                  />
 
                 </div>
               </div>

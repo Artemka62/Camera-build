@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { ButtonChangePage } from '../button-change-page/button-change-page';
 
 type PaginationMainPageComponentProps ={
   offersPerPages: number;
@@ -10,13 +11,14 @@ type PaginationMainPageComponentProps ={
 function PaginationMainPageComponent ({offersPerPages, totalOffers, callbackPaginate, currentPage}: PaginationMainPageComponentProps) {
   const pageNumbers = [];
   const navigate = useNavigate();
+  const quantityPage = Math.ceil(totalOffers / offersPerPages);
 
-  function handleClick (numberPage: number) {
+  function handleClickButton (numberPage: number) {
     callbackPaginate(numberPage);
     navigate(`/?page=${numberPage}`);
   }
 
-  for (let page = 1; page <= Math.ceil(totalOffers / offersPerPages); page++) {
+  for (let page = 1; page <= quantityPage; page++) {
     pageNumbers.push(page);
   }
 
@@ -28,8 +30,11 @@ function PaginationMainPageComponent ({offersPerPages, totalOffers, callbackPagi
     <div className="pagination">
       <ul className="pagination__list">
         {
+          currentPage >= 2 ? <ButtonChangePage callbackPaginate={callbackPaginate} currentPage={currentPage} nameButton={'back'} /> : ''
+        }
+        {
           pageNumbers.map((number) => (
-            <li className="pagination__item" key={number} onClick={() => handleClick(number)}>
+            <li className="pagination__item" key={number} onClick={() => handleClickButton(number)}>
               <a
                 className={`pagination__link ${currentPage === number ? 'pagination__link--active' : ''}`}
               >
@@ -37,6 +42,9 @@ function PaginationMainPageComponent ({offersPerPages, totalOffers, callbackPagi
               </a>
             </li>
           ))
+        }
+        {
+          currentPage !== quantityPage ? <ButtonChangePage callbackPaginate={callbackPaginate} currentPage={currentPage} nameButton={'next'}/> : ''
         }
       </ul>
     </div>
