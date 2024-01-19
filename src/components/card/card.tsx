@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/use-store';
 import { fetchOfferAction } from '../../services/thunk/fetch-offer';
 import { OfferCard } from '../../types/types-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
+import { AppRoute } from '../../const';
 
 type CardComponentProps = {
   offer: OfferCard;
@@ -53,9 +55,9 @@ function CardComponent ({offer, getStatusModalWindow}: CardComponentProps) {
         >
           Купить
         </button>
-        <a className="btn btn--transparent" href="#">
+        <Link to={`${AppRoute.Product}/${offer.id}`} className="btn btn--transparent" >
           Подробнее
-        </a>
+        </Link>
       </div>
     </div>
   );
