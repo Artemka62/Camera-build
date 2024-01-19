@@ -9,7 +9,6 @@ import { SortListCardsComponent } from '../../components/sort-list-cards/sort-li
 import { useDocumentTitle } from '../../hooks/use-document-title';
 import { useAppSelector } from '../../hooks/use-store';
 
-
 type MainPageProps = {
   title: string;
 }
@@ -22,9 +21,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const firstOfferIndex = lastOfferIndex - offersPerPages;
   const currentOffers = stateOffers.slice(firstOfferIndex, lastOfferIndex);
   const searchParams = new URLSearchParams(window.location.search);
-
   const pageParam = searchParams.get('page');
-
 
   useEffect(() => {
     if (pageParam) {
@@ -89,6 +86,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
                     callbackPaginate={setPage}
                     currentPage={currentPage}
                   />
+
 
                 </div>
               </div>

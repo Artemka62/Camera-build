@@ -41,5 +41,9 @@ type StateOffersPromo = {
   offers: OfferPromo[];
 }
 
+type StateWindow = {
+  isWindowOpen: boolean;
+};
 
-export type {State, AppDispatch, OfferCard, OfferPromo, StateOffer, StateOffers, StateOffersPromo};
+
+export type {State, AppDispatch, OfferCard, OfferPromo, StateOffer, StateOffers, StateOffersPromo, StateWindow};

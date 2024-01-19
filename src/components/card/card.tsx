@@ -3,9 +3,16 @@ import { StarsRatingComponent } from '../stars-rating/stars-rating';
 
 type CardComponentProps = {
   offer: OfferCard;
+  getStatusModalWindow: (status: boolean) => void;
 }
 
-function CardComponent ({offer}: CardComponentProps) {
+function CardComponent ({offer, getStatusModalWindow}: CardComponentProps) {
+
+  function handleClickButton () {
+    getStatusModalWindow(true);
+  }
+
+
   return (
     <div className="product-card">
       <div className="product-card__img">
@@ -38,6 +45,7 @@ function CardComponent ({offer}: CardComponentProps) {
         <button
           className="btn btn--purple product-card__btn"
           type="button"
+          onClick={handleClickButton}
         >
           Купить
         </button>
