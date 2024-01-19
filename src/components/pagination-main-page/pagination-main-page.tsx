@@ -7,7 +7,6 @@ type PaginationMainPageComponentProps ={
   currentPage: number;
 }
 
-
 function PaginationMainPageComponent ({offersPerPages, totalOffers, callbackPaginate, currentPage}: PaginationMainPageComponentProps) {
   const pageNumbers = [];
   const navigate = useNavigate();
@@ -16,7 +15,6 @@ function PaginationMainPageComponent ({offersPerPages, totalOffers, callbackPagi
     callbackPaginate(numberPage);
     navigate(`/?page=${numberPage}`);
   }
-
 
   for (let page = 1; page <= Math.ceil(totalOffers / offersPerPages); page++) {
     pageNumbers.push(page);

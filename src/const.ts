@@ -11,17 +11,14 @@ enum AppRoute {
 enum ApiRoute {
   Offers = '/cameras',
   OffersPromo = '/promo',
-  //Comments = '/comments',
-  //Login = '/login',
- // Logout = '/logout'
  }
 
 
 enum TitleDescription {
-  MainPage = 'Camera Shop',
-  ProductPage = 'Camera Shop: product',
-  BasketPage = 'Camera Shop: basket',
-  ErrorPage = '6 cities: error'
+  MainPage = 'Каталог - Фотошоп',
+  ProductPage = 'Продукт - Фотошоп',
+  BasketPage = 'Корзина - Фотошоп',
+  ErrorPage = 'Camera Shop: error'
 }
 
 export{URL_SERVER, REQUEST_TIMEOUT, AppRoute, ApiRoute, TitleDescription};

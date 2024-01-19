@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BannerComponent } from '../../components/banner/banner';
 import { CardsListComponent } from '../../components/cards-list/cards-list';
 import { FilterListCardsComponent } from '../../components/filter-list-cards/filter-list-cards';
@@ -8,6 +8,7 @@ import { PaginationMainPageComponent } from '../../components/pagination-main-pa
 import { SortListCardsComponent } from '../../components/sort-list-cards/sort-list-cards';
 import { useDocumentTitle } from '../../hooks/use-document-title';
 import { useAppSelector } from '../../hooks/use-store';
+
 
 type MainPageProps = {
   title: string;
@@ -20,6 +21,19 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const lastOfferIndex = currentPage * offersPerPages;
   const firstOfferIndex = lastOfferIndex - offersPerPages;
   const currentOffers = stateOffers.slice(firstOfferIndex, lastOfferIndex);
+  const searchParams = new URLSearchParams(window.location.search);
+
+  const pageParam = searchParams.get('page');
+
+
+  useEffect(() => {
+    if (pageParam) {
+      const lastDigit = pageParam.slice(-1);
+
+      setCurrentPage(+lastDigit);
+    }
+  },[]);
+
 
   function paginate (pageNumber: number) {
     setCurrentPage(pageNumber);
