@@ -8,6 +8,7 @@ import { PaginationMainPageComponent } from '../../components/pagination-main-pa
 import { SortListCardsComponent } from '../../components/sort-list-cards/sort-list-cards';
 import { useDocumentTitle } from '../../hooks/use-document-title';
 import { useAppSelector } from '../../hooks/use-store';
+import { NavigationInPageComponent } from '../../components/navigatiot-in-page/navigation-in-page';
 
 type MainPageProps = {
   title: string;
@@ -16,7 +17,7 @@ type MainPageProps = {
 function MainPage ({title}: MainPageProps): JSX.Element {
   const stateOffers = useAppSelector((state) => state.offers.offers);
   const [currentPage, setCurrentPage] = useState(1);
-  const [offersPerPages] = useState(3);
+  const [offersPerPages] = useState(9);
   const lastOfferIndex = currentPage * offersPerPages;
   const firstOfferIndex = lastOfferIndex - offersPerPages;
   const currentOffers = stateOffers.slice(firstOfferIndex, lastOfferIndex);
@@ -48,25 +49,9 @@ function MainPage ({title}: MainPageProps): JSX.Element {
         <BannerComponent/>
 
         <div className="page-content">
-          <div className="breadcrumbs">
-            <div className="container">
-              <ul className="breadcrumbs__list">
-                <li className="breadcrumbs__item">
-                  <a className="breadcrumbs__link" href="index.html">
-                    Главная
-                    <svg width={5} height={8} aria-hidden="true">
-                      <use xlinkHref="#icon-arrow-mini" />
-                    </svg>
-                  </a>
-                </li>
-                <li className="breadcrumbs__item">
-                  <span className="breadcrumbs__link breadcrumbs__link--active">
-                    Каталог
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
+
+          <NavigationInPageComponent/>
+
           <section className="catalog">
             <div className="container">
               <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
