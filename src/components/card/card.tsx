@@ -1,3 +1,5 @@
+import { useAppDispatch } from '../../hooks/use-store';
+import { fetchOfferAction } from '../../services/thunk/fetch-offer';
 import { OfferCard } from '../../types/types-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 
@@ -7,9 +9,11 @@ type CardComponentProps = {
 }
 
 function CardComponent ({offer, getStatusModalWindow}: CardComponentProps) {
+  const dispatch = useAppDispatch();
 
-  function handleClickButton () {
+  function handleClickButtonBuy () {
     getStatusModalWindow(true);
+    dispatch(fetchOfferAction(offer.id));
   }
 
 
@@ -45,7 +49,7 @@ function CardComponent ({offer, getStatusModalWindow}: CardComponentProps) {
         <button
           className="btn btn--purple product-card__btn"
           type="button"
-          onClick={handleClickButton}
+          onClick={handleClickButtonBuy}
         >
           Купить
         </button>

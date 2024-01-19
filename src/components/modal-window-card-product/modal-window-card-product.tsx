@@ -1,14 +1,17 @@
+import { useAppSelector } from '../../hooks/use-store';
+
 type ModalWindowCardProductComponentProps = {
   getStatusModalWindow: (status: boolean) => void;
 }
 
-
 function ModalWindowCardProductComponent ({getStatusModalWindow}: ModalWindowCardProductComponentProps) {
+
+  const stateCard = useAppSelector((state) => state.offer.offer);
 
   function handleClickButton () {
     getStatusModalWindow(false);
-
   }
+
   return (
     <div className="modal__content">
       <p className="title title--h4">Добавить товар в корзину</p>
@@ -17,29 +20,29 @@ function ModalWindowCardProductComponent ({getStatusModalWindow}: ModalWindowCar
           <picture>
             <source
               type="image/webp"
-              srcSet="img/content/orlenok.webp, img/content/orlenok@2x.webp 2x"
+              srcSet={stateCard?.previewImgWebp}
             />
             <img
-              src="img/content/orlenok.jpg"
-              srcSet="img/content/orlenok@2x.jpg 2x"
+              src={stateCard?.previewImg}
+              srcSet={stateCard?.previewImgWebp}
               width={140}
               height={120}
-              alt="Фотоаппарат «Орлёнок»"
+              alt={stateCard?.name}
             />
           </picture>
         </div>
         <div className="basket-item__description">
-          <p className="basket-item__title">Орлёнок</p>
+          <p className="basket-item__title">{stateCard?.name}</p>
           <ul className="basket-item__list">
             <li className="basket-item__list-item">
               <span className="basket-item__article">Артикул:</span>{' '}
-              <span className="basket-item__number">O78DFGSD832</span>
+              <span className="basket-item__number">{stateCard?.vendorCode}</span>
             </li>
-            <li className="basket-item__list-item">Плёночная фотокамера</li>
-            <li className="basket-item__list-item">Любительский уровень</li>
+            <li className="basket-item__list-item">{stateCard?.category}</li>
+            <li className="basket-item__list-item">{stateCard?.level} уровень</li>
           </ul>
           <p className="basket-item__price">
-            <span className="visually-hidden">Цена:</span>18 970 ₽
+            <span className="visually-hidden">Цена:</span>{stateCard?.price} ₽
           </p>
         </div>
       </div>
