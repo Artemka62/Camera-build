@@ -32,11 +32,11 @@ function CardComponent ({offer}: CardComponentProps) {
         <picture>
           <source
             type="/image/webp"
-            srcSet={`/${offer.previewImgWebp}, /${offer.previewImgWebp} 2x`}
+            srcSet={`/${offer.previewImgWebp}, /${offer.previewImgWebp2x} 2x`}
           />
           <img
             src={`/${offer.previewImg}`}
-            srcSet={`/${offer.previewImgWebp} 2x`}
+            srcSet={`/${offer.previewImgWebp} /${offer.previewImgWebp2x} 2x`}
             width={280}
             height={240}
             alt={offer.name}
