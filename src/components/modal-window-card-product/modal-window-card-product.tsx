@@ -16,12 +16,12 @@ function ModalWindowCardProductComponent () {
         <div className="basket-item__img">
           <picture>
             <source
-              type="image/webp"
-              srcSet={stateCard?.previewImgWebp}
+              type="/image/webp"
+              srcSet={`/${stateCard?.previewImgWebp || ''}`}
             />
             <img
-              src={stateCard?.previewImg}
-              srcSet={stateCard?.previewImgWebp}
+              src={`/${stateCard?.previewImg || ''}`}
+              srcSet={`/${stateCard?.previewImgWebp || ''}`}
               width={140}
               height={120}
               alt={stateCard?.name}

@@ -1,3 +1,5 @@
+import { useAppSelector } from '../../hooks/use-store';
+import { ModalWindowComponent } from '../../modal-window/modal-window';
 import { OfferCard } from '../../types/types-store';
 import { CardComponent } from '../card/card';
 
@@ -6,7 +8,7 @@ type SimilarCardsListComponentProps = {
 }
 
 function SimilarCardsListComponent ({offers}: SimilarCardsListComponentProps) {
-
+  const isWindowModalOpen = useAppSelector((state) => state.window.isWindowOpen);
 
   return(
     <div className="product-similar__slider">
@@ -14,6 +16,7 @@ function SimilarCardsListComponent ({offers}: SimilarCardsListComponentProps) {
 
         {offers.map((offer) => <CardComponent key={offer.id} offer={offer}/>).slice(0,3)}
 
+        <ModalWindowComponent modalStatus={isWindowModalOpen}/>
 
       </div>
       <button
