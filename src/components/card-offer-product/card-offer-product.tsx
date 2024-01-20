@@ -1,8 +1,20 @@
+import { useState } from 'react';
 import { useAppSelector } from '../../hooks/use-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 
 function CardOfferProductComponent () {
   const stateOffer = useAppSelector((state) => state.offer.offer);
+  const [activeWindow, setActiveWindow] = useState(true);
+  const isActiveForCharacteristic = (activeWindow === true) ? '' : 'is-active';
+  const isActiveForDescription = (activeWindow === true) ? 'is-active' : '';
+
+  function handleClickCharacteristic () {
+    setActiveWindow(false);
+  }
+
+  function handleClickDescription () {
+    setActiveWindow(true);
+  }
 
   return (
     <section className="product">
@@ -36,35 +48,43 @@ function CardOfferProductComponent () {
           </button>
           <div className="tabs product__tabs">
             <div className="tabs__controls product__tabs-controls">
-              <button className="tabs__control" type="button">
+              <button
+                onClick={handleClickCharacteristic}
+                className={`tabs__control ${isActiveForCharacteristic}`}
+                type="button"
+              >
                 Характеристики
               </button>
-              <button className="tabs__control is-active" type="button">
+              <button
+                onClick={handleClickDescription}
+                className={`tabs__control ${isActiveForDescription}`}
+                type="button"
+              >
                 Описание
               </button>
             </div>
             <div className="tabs__content">
-              <div className="tabs__element">
+              <div className={`tabs__element ${isActiveForCharacteristic}`}>
                 <ul className="product__tabs-list">
                   <li className="item-list">
                     <span className="item-list__title">Артикул:</span>
-                    <p className="item-list__text"> DA4IU67AD5</p>
+                    <p className="item-list__text">{stateOffer?.vendorCode}</p>
                   </li>
                   <li className="item-list">
                     <span className="item-list__title">Категория:</span>
-                    <p className="item-list__text">Видеокамера</p>
+                    <p className="item-list__text">{stateOffer?.category}</p>
                   </li>
                   <li className="item-list">
                     <span className="item-list__title">Тип камеры:</span>
-                    <p className="item-list__text">Коллекционная</p>
+                    <p className="item-list__text">{stateOffer?.type}</p>
                   </li>
                   <li className="item-list">
                     <span className="item-list__title">Уровень:</span>
-                    <p className="item-list__text">Любительский</p>
+                    <p className="item-list__text">{stateOffer?.level}</p>
                   </li>
                 </ul>
               </div>
-              <div className="tabs__element is-active">
+              <div className={`tabs__element ${isActiveForDescription}`}>
                 <div className="product__tabs-text">
                   <p>
                     {stateOffer?.description}

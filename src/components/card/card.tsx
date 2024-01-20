@@ -4,6 +4,7 @@ import { fetchOfferAction } from '../../services/thunk/fetch-offer';
 import { OfferCard } from '../../types/types-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { AppRoute } from '../../const';
+import { windowSlice } from '../../store/slice/modalWindow';
 
 type CardComponentProps = {
   offer: OfferCard;
@@ -16,6 +17,7 @@ function CardComponent ({offer, getStatusModalWindow}: CardComponentProps) {
   function handleClickButtonBuy () {
     getStatusModalWindow(true);
     dispatch(fetchOfferAction(offer.id));
+    dispatch(windowSlice.actions.isWindow(true));
   }
 
 

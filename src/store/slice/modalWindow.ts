@@ -12,7 +12,7 @@ const windowSlice = createSlice({
   name: 'window',
   initialState,
   reducers: {
-    questionList(state, action: PayloadAction<boolean>) {
+    isWindow(state, action: PayloadAction<boolean>) {
       state.isWindowOpen = action.payload;
     },
   }

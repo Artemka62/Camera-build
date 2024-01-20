@@ -5,7 +5,6 @@ type ModalWindowCardProductComponentProps = {
 }
 
 function ModalWindowCardProductComponent ({getStatusModalWindow}: ModalWindowCardProductComponentProps) {
-
   const stateCard = useAppSelector((state) => state.offer.offer);
 
   function handleClickButton () {

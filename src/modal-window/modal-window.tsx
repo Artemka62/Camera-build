@@ -8,6 +8,7 @@ type ModalWindowComponent = {
 function ModalWindowComponent ({modalStatus, getStatusModalWindow}: ModalWindowComponent) {
   const isActive = modalStatus ? 'modal is-active' : 'modal modal--narrow';
 
+
   return (
     <div className={isActive}>
       <div className="modal__wrapper " >
