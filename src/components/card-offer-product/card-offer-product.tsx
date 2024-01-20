@@ -1,19 +1,23 @@
-import { useState } from 'react';
 import { useAppSelector } from '../../hooks/use-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function CardOfferProductComponent () {
   const stateOffer = useAppSelector((state) => state.offer.offer);
-  const [activeWindow, setActiveWindow] = useState(true);
-  const isActiveForCharacteristic = (activeWindow === true) ? '' : 'is-active';
-  const isActiveForDescription = (activeWindow === true) ? 'is-active' : '';
+
+  const navigate = useNavigate();
+  const {tab} = useParams();
+  const isActiveForCharacteristic = (tab === 'characteristic') ? 'is-active' : '';
+  const isActiveForDescription = (tab === 'description') ? 'is-active' : '';
 
   function handleClickCharacteristic () {
-    setActiveWindow(false);
+
+    navigate(`/product/${stateOffer?.id || ''}/characteristic`);
   }
 
   function handleClickDescription () {
-    setActiveWindow(true);
+
+    navigate(`/product/${stateOffer?.id || ''}/description`);
   }
 
   return (

@@ -57,7 +57,7 @@ function CardComponent ({offer, getStatusModalWindow}: CardComponentProps) {
         >
           Купить
         </button>
-        <Link to={`${AppRoute.Product}/${offer.id}`} className="btn btn--transparent" >
+        <Link to={`${AppRoute.Product}/${offer.id}/description`} className="btn btn--transparent" >
           Подробнее
         </Link>
       </div>
