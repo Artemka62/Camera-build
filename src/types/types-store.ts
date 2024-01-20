@@ -34,7 +34,7 @@ type StateOffer = {
 }
 
 type StateOffers = {
-  offers: OfferCard[];
+  similarOffers: OfferCard[];
 }
 
 type StateOffersPromo = {

@@ -8,33 +8,38 @@ import { windowSlice } from '../../store/slice/modalWindow';
 
 type CardComponentProps = {
   offer: OfferCard;
-  getStatusModalWindow: (status: boolean) => void;
 }
 
-function CardComponent ({offer, getStatusModalWindow}: CardComponentProps) {
+function CardComponent ({offer}: CardComponentProps) {
   const dispatch = useAppDispatch();
 
   function handleClickButtonBuy () {
-    getStatusModalWindow(true);
     dispatch(fetchOfferAction(offer.id));
     dispatch(windowSlice.actions.isWindow(true));
   }
 
+  function handleClickButtonDetails () {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
 
   return (
-    <div className="product-card">
+    <div className="product-card is-active">
       <div className="product-card__img">
         <picture>
           <source
-            type="image/webp"
-            srcSet={`${offer.previewImgWebp}, ${offer.previewImgWebp} 2x`}
+            type="/image/webp"
+            srcSet={`/${offer.previewImgWebp}, /${offer.previewImgWebp} 2x`}
           />
           <img
-            src={offer.previewImg}
-            srcSet={`${offer.previewImgWebp} 2x`}
+            src={`/${offer.previewImg}`}
+            srcSet={`/${offer.previewImgWebp} 2x`}
             width={280}
             height={240}
-            alt="Ретрокамера «Das Auge IV»"
+            alt={offer.name}
           />
         </picture>
       </div>
@@ -57,7 +62,7 @@ function CardComponent ({offer, getStatusModalWindow}: CardComponentProps) {
         >
           Купить
         </button>
-        <Link to={`${AppRoute.Product}/${offer.id}/description`} className="btn btn--transparent" >
+        <Link to={`${AppRoute.Product}/${offer.id}/description`} className="btn btn--transparent" onClick={handleClickButtonDetails}>
           Подробнее
         </Link>
       </div>

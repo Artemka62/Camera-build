@@ -1,14 +1,12 @@
-import { useAppSelector } from '../../hooks/use-store';
+import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
+import { windowSlice } from '../../store/slice/modalWindow';
 
-type ModalWindowCardProductComponentProps = {
-  getStatusModalWindow: (status: boolean) => void;
-}
-
-function ModalWindowCardProductComponent ({getStatusModalWindow}: ModalWindowCardProductComponentProps) {
+function ModalWindowCardProductComponent () {
   const stateCard = useAppSelector((state) => state.offer.offer);
+  const dispatch = useAppDispatch();
 
   function handleClickButton () {
-    getStatusModalWindow(false);
+    dispatch(windowSlice.actions.isWindow(false));
   }
 
   return (

@@ -2,10 +2,9 @@ import { ModalWindowCardProductComponent } from '../components/modal-window-card
 
 type ModalWindowComponent = {
   modalStatus: boolean;
-  getStatusModalWindow: (status: boolean) => void;
 }
 
-function ModalWindowComponent ({modalStatus, getStatusModalWindow}: ModalWindowComponent) {
+function ModalWindowComponent ({modalStatus}: ModalWindowComponent) {
   const isActive = modalStatus ? 'modal is-active' : 'modal modal--narrow';
 
 
@@ -13,7 +12,7 @@ function ModalWindowComponent ({modalStatus, getStatusModalWindow}: ModalWindowC
     <div className={isActive}>
       <div className="modal__wrapper " >
         <div className="modal__overlay" />
-        <ModalWindowCardProductComponent getStatusModalWindow={getStatusModalWindow}/>
+        <ModalWindowCardProductComponent/>
       </div>
     </div>
   );

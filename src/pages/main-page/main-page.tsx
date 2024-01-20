@@ -16,7 +16,7 @@ type MainPageProps = {
 }
 
 function MainPage ({title}: MainPageProps): JSX.Element {
-  const stateOffers = useAppSelector((state) => state.offers.offers);
+  const stateOffers = useAppSelector((state) => state.offers.similarOffers);
   const [currentPage, setCurrentPage] = useState(DEFAULT_UNIT);
   const [offersPerPages] = useState(MAX_LENGTH_CARDS);
   const lastOfferIndex = currentPage * offersPerPages;
