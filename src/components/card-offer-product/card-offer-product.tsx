@@ -4,19 +4,16 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 function CardOfferProductComponent () {
   const stateOffer = useAppSelector((state) => state.offer.offer);
-
   const navigate = useNavigate();
   const {tab} = useParams();
   const isActiveForCharacteristic = (tab === 'characteristic') ? 'is-active' : '';
   const isActiveForDescription = (tab === 'description') ? 'is-active' : '';
 
   function handleClickCharacteristic () {
-
     navigate(`/product/${stateOffer?.id || ''}/characteristic`);
   }
 
   function handleClickDescription () {
-
     navigate(`/product/${stateOffer?.id || ''}/description`);
   }
 

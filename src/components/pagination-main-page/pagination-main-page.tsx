@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { ButtonChangePage } from '../button-change-page/button-change-page';
 import { useEffect } from 'react';
+import { DEFAULT_UNIT, MAX_LENGTH_CARDS, PAGES_PER_SET } from '../../const';
 
 type PaginationMainPageComponentProps = {
   offersPerPages: number;
@@ -12,10 +13,10 @@ type PaginationMainPageComponentProps = {
 function PaginationMainPageComponent({offersPerPages, totalOffers, callbackPaginate, currentPage}: PaginationMainPageComponentProps) {
   const navigate = useNavigate();
   const quantityPages = Math.ceil(totalOffers / offersPerPages);
-  const pageNumbers = Array.from({ length: quantityPages }, (_, i) => i + 1);
-  const pagesPerSet = 3;
+  const pageNumbers = Array.from({ length: quantityPages }, (_, i) => i + DEFAULT_UNIT);
+  const pagesPerSet = PAGES_PER_SET;
   const currentPageSet = Math.ceil(currentPage / pagesPerSet);
-  const startPage = (currentPageSet - 1) * pagesPerSet + 1;
+  const startPage = (currentPageSet - DEFAULT_UNIT) * pagesPerSet + DEFAULT_UNIT;
   const endPage = Math.min(currentPageSet * pagesPerSet, quantityPages);
 
   useEffect(() => {
@@ -24,24 +25,23 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, callbackPagin
 
   function handleClickButton(numberPage: number) {
     callbackPaginate(numberPage);
-    //navigate(`/?page=${numberPage}`);
   }
 
-  if (totalOffers <= 9) {
+  if (totalOffers <= MAX_LENGTH_CARDS) {
     return <> </>;
   }
 
   return (
     <div className="pagination">
       <ul className="pagination__list">
-        {currentPageSet > 1 && (
+        {currentPageSet > DEFAULT_UNIT && (
           <ButtonChangePage
-            callbackPaginate={() => handleClickButton(startPage - 1)}
+            callbackPaginate={() => handleClickButton(startPage - DEFAULT_UNIT)}
             currentPage={currentPage}
             nameButton={'back'}
           />
         )}
-        {pageNumbers.slice(startPage - 1, endPage).map((number) => (
+        {pageNumbers.slice(startPage - DEFAULT_UNIT, endPage).map((number) => (
           <li key={number} className="pagination__item" onClick={() => handleClickButton(number)}>
             <a className={`pagination__link ${currentPage === number ? 'pagination__link--active' : ''}`}>
               {number}
@@ -50,7 +50,7 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, callbackPagin
         ))}
         {currentPageSet * pagesPerSet < quantityPages && (
           <ButtonChangePage
-            callbackPaginate={() => handleClickButton(endPage + 1)}
+            callbackPaginate={() => handleClickButton(endPage + DEFAULT_UNIT)}
             currentPage={currentPage}
             nameButton={'next'}
           />

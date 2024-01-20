@@ -5,6 +5,7 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/swiper-bundle.css';
 import './banner.css';
+import { DEFAULT_NULL, DEFAULT_UNIT, DELAY_FOR_BANNER } from '../../const';
 
 function BannerComponent() {
   const stateOffersPromo = useAppSelector((state) => state.offersPromo.offers);
@@ -15,9 +16,9 @@ function BannerComponent() {
     <div className="banner">
       <Swiper
         className="my-swiper"
-        spaceBetween={0}
-        slidesPerView={1}
-        autoplay={{ delay: 3000 }}
+        spaceBetween={DEFAULT_NULL}
+        slidesPerView={DEFAULT_UNIT}
+        autoplay={{ delay: DELAY_FOR_BANNER }}
         pagination={{ clickable: true }}
         style={{ height: 280 }}
       >

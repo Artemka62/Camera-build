@@ -9,6 +9,7 @@ import { SortListCardsComponent } from '../../components/sort-list-cards/sort-li
 import { useDocumentTitle } from '../../hooks/use-document-title';
 import { useAppSelector } from '../../hooks/use-store';
 import { NavigationInPageComponent } from '../../components/navigatiot-in-page/navigation-in-page';
+import { DEFAULT_UNIT, MAX_LENGTH_CARDS } from '../../const';
 
 type MainPageProps = {
   title: string;
@@ -16,8 +17,8 @@ type MainPageProps = {
 
 function MainPage ({title}: MainPageProps): JSX.Element {
   const stateOffers = useAppSelector((state) => state.offers.offers);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [offersPerPages] = useState(9);
+  const [currentPage, setCurrentPage] = useState(DEFAULT_UNIT);
+  const [offersPerPages] = useState(MAX_LENGTH_CARDS);
   const lastOfferIndex = currentPage * offersPerPages;
   const firstOfferIndex = lastOfferIndex - offersPerPages;
   const currentOffers = stateOffers.slice(firstOfferIndex, lastOfferIndex);
@@ -26,7 +27,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
 
   useEffect(() => {
     if (pageParam) {
-      const lastDigit = pageParam.slice(-1);
+      const lastDigit = pageParam.slice(-DEFAULT_UNIT);
 
       setCurrentPage(+lastDigit);
     }

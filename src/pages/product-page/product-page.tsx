@@ -13,10 +13,8 @@ type ProductProps = {
 }
 
 function ProductPage ({title}: ProductProps) {
-
   const {id} = useParams<string>();
   const dispatch = useAppDispatch();
-  //const stateOffer = useAppSelector((state) => state.offer.offer);
 
   useEffect(() => {
 

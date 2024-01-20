@@ -30,7 +30,7 @@ function BannerOfferComponent ({offer}: BannerOfferProps) {
         <span className="banner__text">
           Профессиональная камера от&nbsp;известного производителя
         </span>
-        <Link to={`${AppRoute.Product}/${offer.id}`}
+        <Link to={`${AppRoute.Product}/${offer.id}/description`}
           className="btn"
         >
           Подробнее
