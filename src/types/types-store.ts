@@ -45,7 +45,7 @@ type StateWindow = {
   isWindowOpen: boolean;
 };
 
-type Reviews = {
+type Review = {
   id: string;
   createAt: string;
   cameraId: number;
@@ -57,7 +57,7 @@ type Reviews = {
 }
 
 type StateReviews = {
-  reviews: Reviews[];
+  reviews: Review[];
 }
 
 
@@ -70,6 +70,6 @@ export type {
   StateOffers,
   StateOffersPromo,
   StateWindow,
-  Reviews,
+  Review,
   StateReviews
 };

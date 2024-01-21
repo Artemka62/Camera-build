@@ -1,7 +1,7 @@
 
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import { Reviews, StateReviews } from '../../types/types-store';
+import { Review, StateReviews } from '../../types/types-store';
 
 import { fetchReviewsAction } from '../../services/thunk/fetch-rewiews';
 
@@ -13,7 +13,7 @@ const reviewsSlice = createSlice({
   name: 'reviews',
   initialState,
   reducers: {
-    reviewList(state, action: PayloadAction<Reviews[]>) {
+    reviewList(state, action: PayloadAction<Review[]>) {
       state.reviews = action.payload;
     },
   },

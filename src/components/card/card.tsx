@@ -48,7 +48,7 @@ function CardComponent ({offer}: CardComponentProps) {
       </div>
       <div className="product-card__info">
 
-        <StarsRatingComponent offer={offer}/>
+        <StarsRatingComponent rating={offer.rating} reviewCount={offer.reviewCount}/>
 
         <p className="product-card__title">
           {offer.name}

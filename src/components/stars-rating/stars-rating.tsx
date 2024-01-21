@@ -1,11 +1,9 @@
-import { OfferCard } from '../../types/types-store';
-
 type StarsRatingComponentProps = {
-  offer: OfferCard
-  ;
+  rating: number;
+  reviewCount?: number;
 }
 
-function StarsRatingComponent({offer}: StarsRatingComponentProps) {
+function StarsRatingComponent({rating, reviewCount}: StarsRatingComponentProps) {
 
   return (
     <div className="rate product-card__rate">
@@ -16,12 +14,12 @@ function StarsRatingComponent({offer}: StarsRatingComponentProps) {
           height={16}
           aria-hidden="true"
         >
-          <use xlinkHref={index <= offer.rating ? '#icon-full-star' : '#icon-star'} />
+          <use xlinkHref={index <= rating ? '#icon-full-star' : '#icon-star'} />
         </svg>
       ))}
-      <p className="visually-hidden">Рейтинг: {offer.rating}</p>
+      <p className="visually-hidden">Рейтинг: {rating}</p>
       <p className="rate__count">
-        <span className="visually-hidden">Всего оценок:</span>{offer.reviewCount}
+        <span className="visually-hidden">Всего оценок:</span>{reviewCount}
       </p>
     </div>
   );

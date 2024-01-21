@@ -15,7 +15,7 @@ function ReviewListComponent () {
         </div>
         <ul className="review-block__list">
 
-          {stateReviews.map((review) => <CardReviewComponent key={review.id}/>)}
+          {stateReviews.map((review) => <CardReviewComponent key={review.id} review={review} />)}
 
         </ul>
         <div className="review-block__buttons">
