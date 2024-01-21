@@ -1,18 +1,21 @@
 import { Review } from '../../types/types-store';
+import { formatData } from '../../utils/format-data';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
+
 
 type CardReviewProps = {
   review: Review;
 }
 
 function CardReviewComponent ({review}: CardReviewProps) {
-
   return (
     <li className="review-card">
       <div className="review-card__head">
         <p className="title title--h4">{review.userName}</p>
         <time className="review-card__data" dateTime="2022-04-13">
-          13 апреля
+
+          {formatData(review.createAt)}
+
         </time>
       </div>
 

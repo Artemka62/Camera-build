@@ -5,6 +5,7 @@ const DEFAULT_NULL = 0;
 const PAGES_PER_SET = 3;
 const MAX_LENGTH_CARDS = 9;
 const DELAY_FOR_BANNER = 3000;
+const START_NUMBER_REVIEWS = 3;
 
 enum AppRoute {
   Main = '/',
@@ -34,6 +35,7 @@ export{
   PAGES_PER_SET,
   MAX_LENGTH_CARDS,
   DELAY_FOR_BANNER,
+  START_NUMBER_REVIEWS,
   AppRoute,
   ApiRoute,
   TitleDescription

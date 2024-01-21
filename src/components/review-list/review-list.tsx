@@ -1,8 +1,27 @@
+import { useEffect, useState } from 'react';
+import { DEFAULT_NULL, START_NUMBER_REVIEWS } from '../../const';
 import { useAppSelector } from '../../hooks/use-store';
 import { CardReviewComponent } from '../card-review/card-review';
 
 function ReviewListComponent () {
   const stateReviews = useAppSelector((state) => state.reviews.reviews);
+  const [countReviews, setCountReviews] = useState(START_NUMBER_REVIEWS);
+
+  const sortReviewsToData = [...stateReviews].sort((a, b) => {
+    const timeA = new Date(a.createAt).getTime();
+    const timeB = new Date(b.createAt).getTime();
+
+    return timeB - timeA;
+  });
+
+
+  useEffect(() => {
+    setCountReviews(START_NUMBER_REVIEWS);
+  },[stateReviews]);
+
+  function handleClickButtonAdd () {
+    setCountReviews(countReviews + START_NUMBER_REVIEWS);
+  }
 
   return (
     <section className="review-block">
@@ -15,14 +34,18 @@ function ReviewListComponent () {
         </div>
         <ul className="review-block__list">
 
-          {stateReviews.map((review) => <CardReviewComponent key={review.id} review={review} />)}
+          {sortReviewsToData.slice(DEFAULT_NULL, countReviews).map((review) => <CardReviewComponent key={review.id} review={review} />)}
 
         </ul>
-        <div className="review-block__buttons">
-          <button className="btn btn--purple" type="button">
-            Показать больше отзывов
-          </button>
-        </div>
+        {
+          stateReviews.length - START_NUMBER_REVIEWS >= countReviews ?
+            <div className="review-block__buttons">
+              <button onClick={handleClickButtonAdd} className="btn btn--purple" type="button">
+                Показать больше отзывов
+              </button>
+            </div>
+            : ''
+        }
       </div>
     </section>
   );
