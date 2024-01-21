@@ -7,6 +7,7 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './similar-cards-list.css';
+import { DEFAULT_NULL } from '../../const';
 
 
 type SimilarCardsListComponentProps = {
@@ -15,11 +16,16 @@ type SimilarCardsListComponentProps = {
 
 function SimilarCardsListComponent({ offers }: SimilarCardsListComponentProps) {
   const isWindowModalOpen = useAppSelector((state) => state.window.isWindowOpen);
+  const stateOffer = useAppSelector((state) => state.offer.offer);
+
+  const getSimilarOffers = offers.filter((product) => (
+    stateOffer?.level === product.level && stateOffer.type === product.type && stateOffer.category === product.category
+  ));
 
   return (
     <section className="product-similar">
       <div className="container">
-        <h2 className="title title--h3">Похожие товары</h2>
+        {getSimilarOffers.length !== DEFAULT_NULL ? <h2 className="title title--h3">Похожие товары</h2> : ''}
         <div className="product-similar__slider">
           <Swiper
             navigation={{
@@ -36,7 +42,7 @@ function SimilarCardsListComponent({ offers }: SimilarCardsListComponentProps) {
             className="product-similar__slider-list"
           >
 
-            {offers.map((offer) => (
+            {getSimilarOffers.map((offer) => (
               <SwiperSlide key={offer.id}>
                 <CardComponent offer={offer} />
               </SwiperSlide>
