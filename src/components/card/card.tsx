@@ -5,6 +5,7 @@ import { OfferCard } from '../../types/types-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { AppRoute } from '../../const';
 import { windowSlice } from '../../store/slice/modalWindow';
+import { fetchReviewsAction } from '../../services/thunk/fetch-rewiews';
 
 type CardComponentProps = {
   offer: OfferCard;
@@ -19,6 +20,8 @@ function CardComponent ({offer}: CardComponentProps) {
   }
 
   function handleClickButtonDetails () {
+    dispatch(fetchReviewsAction(offer.id));
+
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
