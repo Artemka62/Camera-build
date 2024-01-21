@@ -16,7 +16,7 @@ type SimilarCardsListComponentProps = {
 
 function SimilarCardsListComponent({ offers }: SimilarCardsListComponentProps) {
   const isWindowModalOpen = useAppSelector((state) => state.window.isWindowOpen);
-  const stateOffer = useAppSelector((state) => state.offer.offer);
+  const stateOffer = useAppSelector((state) => state.offer.reviews);
 
   const getSimilarOffers = offers.filter((product) => (
     stateOffer?.level === product.level && stateOffer.type === product.type && stateOffer.category === product.category

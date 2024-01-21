@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
 import { windowSlice } from '../../store/slice/modalWindow';
 
 function ModalWindowCardProductComponent () {
-  const stateCard = useAppSelector((state) => state.offer.offer);
+  const stateCard = useAppSelector((state) => state.offer.reviews);
   const dispatch = useAppDispatch();
 
   function handleClickButton () {

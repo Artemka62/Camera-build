@@ -5,13 +5,15 @@ import { offersPromoSlice } from './slice/offersPromo';
 import { offerSlice } from './slice/offer';
 import { windowSlice } from './slice/modalWindow';
 import { similarOffersSlice } from './slice/similar-offers';
+import { reviewsSlice } from './slice/reviews';
 
 const reducer = combineReducers({
   [offersSlice.name]: offersSlice.reducer,
   [offersPromoSlice.name]: offersPromoSlice.reducer,
   [offerSlice.name]: offerSlice.reducer,
   [windowSlice.name]: windowSlice.reducer,
-  [similarOffersSlice.name]: similarOffersSlice.reducer
+  [similarOffersSlice.name]: similarOffersSlice.reducer,
+  [reviewsSlice.name]: reviewsSlice.reducer
 });
 
 

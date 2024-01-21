@@ -3,7 +3,7 @@ import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function CardOfferProductComponent () {
-  const stateOffer = useAppSelector((state) => state.offer.offer);
+  const stateOffer = useAppSelector((state) => state.offer.reviews);
   const navigate = useNavigate();
   const {tab} = useParams();
   const isActiveForCharacteristic = (tab === 'characteristic') ? 'is-active' : '';

@@ -8,7 +8,7 @@ function NavigationInPageComponent () {
   const pathParts = currentPath.split('/');
   const pageName = pathParts[1];
   const isActive = (pageName === '') ? 'breadcrumbs__link breadcrumbs__link--active' : 'breadcrumbs__link';
-  const stateOfferProduct = useAppSelector((state) => state.offer.offer);
+  const stateOfferProduct = useAppSelector((state) => state.offer.reviews);
 
   return (
     <div className="breadcrumbs">

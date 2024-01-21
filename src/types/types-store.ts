@@ -30,7 +30,7 @@ type OfferPromo = {
 }
 
 type StateOffer = {
-  offer: OfferCard | null;
+  reviews: OfferCard | null;
 }
 
 type StateOffers = {
@@ -45,5 +45,31 @@ type StateWindow = {
   isWindowOpen: boolean;
 };
 
+type Reviews = {
+  id: string;
+  createAt: string;
+  cameraId: number;
+  userName: string;
+  advantage: string;
+  disadvantage: string;
+  review: string;
+  rating: number;
+}
 
-export type {State, AppDispatch, OfferCard, OfferPromo, StateOffer, StateOffers, StateOffersPromo, StateWindow};
+type StateReviews = {
+  reviews: Reviews[];
+}
+
+
+export type {
+  State,
+  AppDispatch,
+  OfferCard,
+  OfferPromo,
+  StateOffer,
+  StateOffers,
+  StateOffersPromo,
+  StateWindow,
+  Reviews,
+  StateReviews
+};
