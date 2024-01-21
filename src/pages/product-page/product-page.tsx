@@ -36,7 +36,18 @@ function ProductPage ({title}: ProductProps) {
     }
   },[id]);
 
+
+
   useDocumentTitle(title);
+
+
+  function handleClickButtonUp () {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
 
   return(
     <div className="wrapper">
@@ -61,7 +72,7 @@ function ProductPage ({title}: ProductProps) {
           </div>
         </div>
       </main>
-      <a className="up-btn" href="#header">
+      <a onClick={handleClickButtonUp} className="up-btn">
         <svg width={12} height={18} aria-hidden="true">
           <use xlinkHref="#icon-arrow2" />
         </svg>
