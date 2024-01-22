@@ -1,21 +1,63 @@
 import { useAppDispatch } from '../../hooks/use-store';
 import { windowsSlice } from '../../store/slice/modalWindows';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import './modal-window-rewiew-product.css';
+import { Fragment, useEffect} from 'react';
+import { OPTIONS } from '../../const';
+
+type FormInputs = {
+  userName: string;
+  userPlus: string;
+  userMinus: string;
+  UserComment: string;
+  rating: string;
+};
 
 function ModalWindowReviewProductComponent () {
   const dispatch = useAppDispatch();
+
+  const {
+    register,
+    formState: {
+      errors,
+      isValid,
+    },
+    setFocus,
+    handleSubmit,
+    reset,
+    watch,
+  } = useForm<FormInputs>({
+    mode: 'all'
+
+  });
+
+
+  // useEffect(() => {
+
+
+  //   setFocus('userName');
+  // }, [setFocus]);
+
+
+  const ratingFieldValue = watch('rating');
 
   function handleButtonClose () {
     dispatch(windowsSlice.actions.windowReview(false));
     dispatch(windowsSlice.actions.isModalWindow(false));
   }
 
+  const handleFormSubmit: SubmitHandler<FormInputs> = (data) => {
+    console.log(data);
+    reset();
+  };
+
   return (
     <div className="modal__content">
       <p className="title title--h4">Оставить отзыв</p>
       <div className="form-review">
-        <form method="post">
+        <form onSubmit={(event) => void handleSubmit(handleFormSubmit)(event)} method="post">
           <div className="form-review__rate">
-            <fieldset className="rate form-review__item">
+            <fieldset className={`${ errors.rating ? 'rate form-review__item ' : 'rate form-review__item is-invalid'}`}>
               <legend className="rate__caption">
                 Рейтинг
                 <svg width={9} height={9} aria-hidden="true">
@@ -24,75 +66,41 @@ function ModalWindowReviewProductComponent () {
               </legend>
               <div className="rate__bar">
                 <div className="rate__group">
-                  <input
-                    className="visually-hidden"
-                    id="star-5"
-                    name="rate"
-                    type="radio"
-                    defaultValue={5}
-                  />
-                  <label
-                    className="rate__label"
-                    htmlFor="star-5"
-                    title="Отлично"
-                  />
-                  <input
-                    className="visually-hidden"
-                    id="star-4"
-                    name="rate"
-                    type="radio"
-                    defaultValue={4}
-                  />
-                  <label
-                    className="rate__label"
-                    htmlFor="star-4"
-                    title="Хорошо"
-                  />
-                  <input
-                    className="visually-hidden"
-                    id="star-3"
-                    name="rate"
-                    type="radio"
-                    defaultValue={3}
-                  />
-                  <label
-                    className="rate__label"
-                    htmlFor="star-3"
-                    title="Нормально"
-                  />
-                  <input
-                    className="visually-hidden"
-                    id="star-2"
-                    name="rate"
-                    type="radio"
-                    defaultValue={2}
-                  />
-                  <label
-                    className="rate__label"
-                    htmlFor="star-2"
-                    title="Плохо"
-                  />
-                  <input
-                    className="visually-hidden"
-                    id="star-1"
-                    name="rate"
-                    type="radio"
-                    defaultValue={1}
-                  />
-                  <label
-                    className="rate__label"
-                    htmlFor="star-1"
-                    title="Ужасно"
-                  />
+                  {OPTIONS.map((option) => (
+                    <Fragment key={option.value}>
+                      <input
+                        className="visually-hidden"
+                        id={`star-${option.value}`}
+                        type="radio"
+                        value={option.value}
+                        {...register('rating', {
+                          required: 'Нужно оценить товар',
+                          validate: (ratingValue) =>
+                            (Number(ratingValue) >= 1 &&
+                              Number(ratingValue) <= 5) ||
+                            'Минимальное значение 1, максимальное 5',
+                        })}
+                      />
+                      <label
+                        className="rate__label"
+                        htmlFor={`star-${option.value}`}
+                        title={option.label}
+                      />
+                    </Fragment>
+                  ))}
                 </div>
                 <div className="rate__progress">
-                  <span className="rate__stars">0</span> <span>/</span>{" "}
-                  <span className="rate__all-stars">5</span>
+                  <span className="rate__stars">{ratingFieldValue || 0}</span>{' '}
+                  <span>/</span> <span className="rate__all-stars">5</span>
                 </div>
               </div>
-              <p className="rate__message">Нужно оценить товар</p>
+              {errors.rating && (
+                <p className="rate__message">
+                  {errors.rating.message || 'Ошибка'}
+                </p>
+              )}
             </fieldset>
-            <div className="custom-input form-review__item">
+            <div className= {`${ !errors.userName ? 'custom-input form-review__item ' : 'custom-input form-review__item is-invalid'}`}>
               <label>
                 <span className="custom-input__label">
                   Ваше имя
@@ -102,14 +110,29 @@ function ModalWindowReviewProductComponent () {
                 </span>
                 <input
                   type="text"
-                  name="user-name"
                   placeholder="Введите ваше имя"
-                  required=""
+
+
+                  {...register('userName', {
+                    required: 'Нужно указать имя',
+                    minLength: {
+                      value: 2,
+                      message: 'От 2 до 15 символов',
+                    },
+                    maxLength: {
+                      value: 15,
+                      message: 'От 1 до 15 символов',
+                    }
+                  })}
                 />
               </label>
-              <p className="custom-input__error">Нужно указать имя</p>
+              {errors.userName && (
+                <p className="custom-input__error">
+                  {errors.userName.message || 'Ошибка'}
+                </p>
+              )}
             </div>
-            <div className="custom-input form-review__item">
+            <div className= {`${ !errors.userPlus ? 'custom-input form-review__item ' : 'custom-input form-review__item is-invalid'}`}>
               <label>
                 <span className="custom-input__label">
                   Достоинства
@@ -119,14 +142,27 @@ function ModalWindowReviewProductComponent () {
                 </span>
                 <input
                   type="text"
-                  name="user-plus"
                   placeholder="Основные преимущества товара"
-                  required=""
+                  {...register('userPlus', {
+                    required: 'Нужно указать достоинства',
+                    minLength: {
+                      value: 10,
+                      message: 'От 10 до 160 символов',
+                    },
+                    maxLength: {
+                      value: 160,
+                      message: 'От 10 до 160 символов',
+                    }
+                  })}
                 />
               </label>
-              <p className="custom-input__error">Нужно указать достоинства</p>
+              {errors.userPlus && (
+                <p className="custom-input__error">
+                  {errors.userPlus.message || 'Ошибка'}
+                </p>
+              )}
             </div>
-            <div className="custom-input form-review__item">
+            <div className={`${ !errors.userMinus ? 'custom-input form-review__item ' : 'custom-input form-review__item is-invalid'}`}>
               <label>
                 <span className="custom-input__label">
                   Недостатки
@@ -136,14 +172,28 @@ function ModalWindowReviewProductComponent () {
                 </span>
                 <input
                   type="text"
-                  name="user-minus"
                   placeholder="Главные недостатки товара"
-                  required=""
+                  {...register('userMinus', {
+                    required: 'Нужно указать недостатки',
+                    minLength: {
+                      value: 10,
+                      message: 'От 10 до 160 символов',
+                    },
+                    maxLength: {
+                      value: 160,
+                      message: 'От 10 до 160 символов',
+                    }
+                  })}
                 />
               </label>
-              <p className="custom-input__error">Нужно указать недостатки</p>
+              {errors.userMinus && (
+                <p className="custom-input__error">
+                  {errors.userMinus.message || 'Ошибка'}
+                </p>
+              )}
             </div>
-            <div className="custom-textarea form-review__item">
+
+            <div className={`${ !errors.UserComment ? 'custom-textarea form-review__item' : 'custom-textarea form-review__item is-invalid'}`}>
               <label>
                 <span className="custom-textarea__label">
                   Комментарий
@@ -152,15 +202,25 @@ function ModalWindowReviewProductComponent () {
                   </svg>
                 </span>
                 <textarea
-                  name="user-comment"
-                  minLength={5}
                   placeholder="Поделитесь своим опытом покупки"
-                  defaultValue={""}
+                  {...register('UserComment', {
+                    required: 'Нужно добавить комментарий',
+                    minLength: {
+                      value: 10,
+                      message: 'От 10 до 160 символов',
+                    },
+                    maxLength: {
+                      value: 160,
+                      message: 'От 10 до 160 символов',
+                    }
+                  })}
                 />
               </label>
-              <div className="custom-textarea__error">
-                Нужно добавить комментарий
-              </div>
+              {errors.UserComment && (
+                <div className="custom-textarea__error">
+                  {errors.UserComment.message || 'Ошибка'}
+                </div>
+              )}
             </div>
           </div>
           <button className="btn btn--purple form-review__btn" type="submit">

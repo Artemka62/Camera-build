@@ -6,6 +6,14 @@ const PAGES_PER_SET = 3;
 const MAX_LENGTH_CARDS = 9;
 const DELAY_FOR_BANNER = 3000;
 const START_NUMBER_REVIEWS = 3;
+const OPTIONS = [
+  {label: 'Отлично', value: 5},
+  {label: 'Хорошо', value: 4},
+  {label: 'Нормально', value: 3},
+  {label: 'Плохо', value: 2},
+  {label: 'Ужасно', value: 1},
+];
+
 
 enum AppRoute {
   Main = '/',
@@ -36,6 +44,7 @@ export{
   MAX_LENGTH_CARDS,
   DELAY_FOR_BANNER,
   START_NUMBER_REVIEWS,
+  OPTIONS,
   AppRoute,
   ApiRoute,
   TitleDescription
