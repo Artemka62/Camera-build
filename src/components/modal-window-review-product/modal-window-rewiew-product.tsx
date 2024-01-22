@@ -1,13 +1,13 @@
 import { useAppDispatch} from '../../hooks/use-store';
 import { windowsSlice } from '../../store/slice/modalWindows';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import './modal-window-rewiew-product.css';
 import { Fragment, useEffect} from 'react';
-import { OPTIONS } from '../../const';
+import { DELAY_FOCUS, OPTIONS } from '../../const';
 import { postReview } from '../../services/thunk/post-review';
 import { PostReview } from '../../types/types-service';
 import { useParams } from 'react-router-dom';
 import { fetchReviewsAction } from '../../services/thunk/fetch-rewiews';
+import './modal-window-rewiew-product.css';
 
 type FormInputs = {
   userName: string;
@@ -45,7 +45,10 @@ function ModalWindowReviewProductComponent () {
   }, []);
 
   useEffect(() => {
-    setFocus('userName');
+    setTimeout(() => {
+      setFocus('userName');
+    }, DELAY_FOCUS);
+
   }, [setFocus]);
 
   function handleButtonClose () {
@@ -123,7 +126,7 @@ function ModalWindowReviewProductComponent () {
                 </p>
               )}
             </fieldset>
-            <div className= {`${ !errors.userName ? 'custom-input form-review__item ' : 'custom-input form-review__item is-invalid'}`}>
+            <div className= {`${!errors.userName ? 'custom-input form-review__item ' : 'custom-input form-review__item is-invalid'}`}>
               <label>
                 <span className="custom-input__label">
                   Ваше имя
