@@ -1,5 +1,4 @@
 import { useAppSelector } from '../../hooks/use-store';
-import { ModalWindowComponent } from '../../modal-window-list/modal-window-list';
 import { OfferCard } from '../../types/types-store';
 import { CardComponent } from '../card/card';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -47,9 +46,6 @@ function SimilarCardsListComponent({ offers }: SimilarCardsListComponentProps) {
                 <CardComponent offer={offer} />
               </SwiperSlide>
             ))}
-
-            <ModalWindowComponent/>
-
           </Swiper>
           <button
             className="slider-controls slider-controls--prev"

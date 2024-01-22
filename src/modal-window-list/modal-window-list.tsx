@@ -1,19 +1,53 @@
+import { useEffect } from 'react';
 import { ModalWindowCardProductComponent } from '../components/modal-window-card-product/modal-window-card-product';
+import { ModalWindowBasketSuccess } from '../components/modal-window-product-basket-success/modal-window-product-basket-success';
 import { ModalWindowReviewProductComponent } from '../components/modal-window-review-product/modal-window-rewiew-product';
-import { useAppSelector } from '../hooks/use-store';
+import { useAppDispatch, useAppSelector } from '../hooks/use-store';
+import { windowsSlice } from '../store/slice/modalWindows';
 
 function ModalWindowComponent () {
   const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowModalOpen);
   const isCardProductOpen = useAppSelector((state) => state.windows.isWindowProductOpen);
   const isFormReviewOpen = useAppSelector((state) => state.windows.isWindowReviewOpen);
+  const isBasketSuccessOpen = useAppSelector((state) => state.windows.isWindowBasketSuccessOpen);
+  const dispatch = useAppDispatch();
+
   const isActive = isWindowModalOpen ? 'modal is-active' : 'modal modal--narrow';
+
+  useEffect(() => {
+    const handleKeyDownEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        dispatch(windowsSlice.actions.isModalWindow(false));
+        dispatch(windowsSlice.actions.windowBasketSuccess(false));
+        dispatch(windowsSlice.actions.windowBasketSuccess(false));
+        dispatch(windowsSlice.actions.windowProduct(false));
+        dispatch(windowsSlice.actions.windowReview(false));
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDownEscape);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDownEscape);
+    };
+  }, []);
+
+
+  function handleClickOverlay () {
+    dispatch(windowsSlice.actions.isModalWindow(false));
+    dispatch(windowsSlice.actions.windowBasketSuccess(false));
+    dispatch(windowsSlice.actions.windowBasketSuccess(false));
+    dispatch(windowsSlice.actions.windowProduct(false));
+    dispatch(windowsSlice.actions.windowReview(false));
+  }
 
   return (
     <div className={isActive}>
       <div className="modal__wrapper " >
-        <div className="modal__overlay" />
+        <div className="modal__overlay" onClick={handleClickOverlay}/>
         {isCardProductOpen ? <ModalWindowCardProductComponent/> : ''}
         {isFormReviewOpen ? <ModalWindowReviewProductComponent/> : ''}
+        {isBasketSuccessOpen ? <ModalWindowBasketSuccess/> : ''}
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ import { fetchSimilarOffersAction } from '../../services/thunk/fetch-similar-off
 import { SimilarCardsListComponent } from '../../components/similar-cards-list/similar-cards-list';
 import { ReviewListComponent } from '../../components/review-list/review-list';
 import { fetchReviewsAction } from '../../services/thunk/fetch-rewiews';
+import { ModalWindowComponent } from '../../modal-window-list/modal-window-list';
 
 type ProductProps = {
   title: string;
@@ -66,7 +67,7 @@ function ProductPage ({title}: ProductProps) {
           <div className="page-content__section">
             <ReviewListComponent/>
           </div>
-
+          <ModalWindowComponent/>
         </div>
       </main>
       <a onClick={handleClickButtonUp} className="up-btn">

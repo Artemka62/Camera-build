@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
+import { useAppDispatch} from '../../hooks/use-store';
 import { windowsSlice } from '../../store/slice/modalWindows';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import './modal-window-rewiew-product.css';
@@ -20,9 +20,6 @@ function ModalWindowReviewProductComponent () {
   const dispatch = useAppDispatch();
   const {id} = useParams();
 
-
-
-
   const {
     register,
     formState: {
@@ -38,6 +35,7 @@ function ModalWindowReviewProductComponent () {
 
   });
 
+  const ratingFieldValue = watch('rating');
 
   useEffect(() => {
     document.body.classList.add('scroll-lock');
@@ -45,14 +43,9 @@ function ModalWindowReviewProductComponent () {
     return () => document.body.classList.remove('scroll-lock');
   }, []);
 
-  // useEffect(() => {
-
-
-  //   setFocus('userName');
-  // }, [setFocus]);
-
-
-  const ratingFieldValue = watch('rating');
+  useEffect(() => {
+    setFocus('userName');
+  }, [setFocus]);
 
   function handleButtonClose () {
     dispatch(windowsSlice.actions.windowReview(false));
@@ -70,8 +63,10 @@ function ModalWindowReviewProductComponent () {
     };
 
     dispatch(postReview({dataForm})).unwrap().then(() => {
-
       reset();
+      dispatch(windowsSlice.actions.windowReview(false));
+      dispatch(windowsSlice.actions.windowBasketSuccess(false));
+      dispatch(windowsSlice.actions.windowBasketSuccess(true));
     });
   };
 
@@ -135,8 +130,7 @@ function ModalWindowReviewProductComponent () {
                 <input
                   type="text"
                   placeholder="Введите ваше имя"
-
-
+                  autoFocus
                   {...register('userName', {
                     required: 'Нужно указать имя',
                     minLength: {
