@@ -7,6 +7,7 @@ import { OPTIONS } from '../../const';
 import { postReview } from '../../services/thunk/post-review';
 import { PostReview } from '../../types/types-service';
 import { useParams } from 'react-router-dom';
+import { fetchReviewsAction } from '../../services/thunk/fetch-rewiews';
 
 type FormInputs = {
   userName: string;
@@ -65,8 +66,11 @@ function ModalWindowReviewProductComponent () {
     dispatch(postReview({dataForm})).unwrap().then(() => {
       reset();
       dispatch(windowsSlice.actions.windowReview(false));
-      dispatch(windowsSlice.actions.windowBasketSuccess(false));
       dispatch(windowsSlice.actions.windowBasketSuccess(true));
+
+      if(id){
+        dispatch(fetchReviewsAction(+id));
+      }
     });
   };
 

@@ -25,7 +25,6 @@ function ProductPage ({title}: ProductProps) {
   useDocumentTitle(title);
 
   useEffect(() => {
-
     if (id) {
       dispatch(fetchOfferAction(+id));
       dispatch(fetchSimilarOffersAction(+id));

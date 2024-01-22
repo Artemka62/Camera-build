@@ -1,13 +1,25 @@
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/use-store';
 import { windowsSlice } from '../../store/slice/modalWindows';
+import { AppRoute } from '../../const';
 
 function ModalWindowBasketSuccess () {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
 
   function handleClickButtonClose () {
     dispatch(windowsSlice.actions.isModalWindow(false));
     dispatch(windowsSlice.actions.windowBasketSuccess(false));
   }
+
+  function handleClickButtonCardsProduct () {
+    dispatch(windowsSlice.actions.isModalWindow(false));
+    dispatch(windowsSlice.actions.windowBasketSuccess(false));
+    navigate(AppRoute.Main);
+  }
+
+
   return (
     <div className="modal__content">
       <p className="title title--h4">Спасибо за покупку</p>
@@ -15,7 +27,7 @@ function ModalWindowBasketSuccess () {
         <use xlinkHref="#icon-review-success" />
       </svg>
       <div className="modal__buttons">
-        <button
+        <button onClick={handleClickButtonCardsProduct}
           className="btn btn--purple modal__btn modal__btn--fit-width"
           type="button"
         >

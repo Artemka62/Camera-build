@@ -2,12 +2,12 @@ import { Review } from '../../types/types-store';
 import { formatData } from '../../utils/format-data';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 
-
 type CardReviewProps = {
   review: Review;
 }
 
 function CardReviewComponent ({review}: CardReviewProps) {
+
   return (
     <li className="review-card">
       <div className="review-card__head">
