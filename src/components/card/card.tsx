@@ -4,7 +4,7 @@ import { fetchOfferAction } from '../../services/thunk/fetch-offer';
 import { OfferCard } from '../../types/types-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { AppRoute } from '../../const';
-import { windowSlice } from '../../store/slice/modalWindow';
+import { windowsSlice } from '../../store/slice/modalWindows';
 import { fetchReviewsAction } from '../../services/thunk/fetch-rewiews';
 
 type CardComponentProps = {
@@ -16,7 +16,7 @@ function CardComponent ({offer}: CardComponentProps) {
 
   function handleClickButtonBuy () {
     dispatch(fetchOfferAction(offer.id));
-    dispatch(windowSlice.actions.isWindow(true));
+    dispatch(windowsSlice.actions.windowProduct(true));
   }
 
   function handleClickButtonDetails () {

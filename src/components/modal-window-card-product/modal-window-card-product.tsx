@@ -1,12 +1,12 @@
 import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
-import { windowSlice } from '../../store/slice/modalWindow';
+import { windowsSlice } from '../../store/slice/modalWindows';
 
 function ModalWindowCardProductComponent () {
   const stateCard = useAppSelector((state) => state.offer.reviews);
   const dispatch = useAppDispatch();
 
   function handleClickButton () {
-    dispatch(windowSlice.actions.isWindow(false));
+    dispatch(windowsSlice.actions.windowProduct(false));
   }
 
   return (

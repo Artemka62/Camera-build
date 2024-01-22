@@ -11,6 +11,7 @@ import { fetchSimilarOffersAction } from '../../services/thunk/fetch-similar-off
 import { SimilarCardsListComponent } from '../../components/similar-cards-list/similar-cards-list';
 import { ReviewListComponent } from '../../components/review-list/review-list';
 import { fetchReviewsAction } from '../../services/thunk/fetch-rewiews';
+import { ModalWindowCardProductComponent } from '../../components/modal-window-card-product/modal-window-card-product';
 
 type ProductProps = {
   title: string;
@@ -20,6 +21,8 @@ function ProductPage ({title}: ProductProps) {
   const {id} = useParams<string>();
   const dispatch = useAppDispatch();
   const stateSimilarOffers = useAppSelector((state) => state.similarOffers.similarOffers);
+
+  useDocumentTitle(title);
 
   useEffect(() => {
 
@@ -36,18 +39,12 @@ function ProductPage ({title}: ProductProps) {
     }
   },[id]);
 
-
-
-  useDocumentTitle(title);
-
-
   function handleClickButtonUp () {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
   }
-
 
   return(
     <div className="wrapper">
@@ -70,14 +67,18 @@ function ProductPage ({title}: ProductProps) {
           <div className="page-content__section">
             <ReviewListComponent/>
           </div>
+
         </div>
       </main>
       <a onClick={handleClickButtonUp} className="up-btn">
         <svg width={12} height={18} aria-hidden="true">
           <use xlinkHref="#icon-arrow2" />
         </svg>
+
       </a>
+
       <FooterComponent/>
+
     </div>
 
   );

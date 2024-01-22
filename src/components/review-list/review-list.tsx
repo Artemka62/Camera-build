@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { DEFAULT_NULL, START_NUMBER_REVIEWS } from '../../const';
 import { useAppSelector } from '../../hooks/use-store';
 import { CardReviewComponent } from '../card-review/card-review';
+import { ModalWindowCardProductComponent } from '../modal-window-card-product/modal-window-card-product';
 
 function ReviewListComponent () {
   const stateReviews = useAppSelector((state) => state.reviews.reviews);
@@ -25,6 +26,7 @@ function ReviewListComponent () {
 
   return (
     <section className="review-block">
+
       <div className="container">
         <div className="page-content__headed">
           <h2 className="title title--h3">Отзывы</h2>
@@ -47,6 +49,7 @@ function ReviewListComponent () {
             : ''
         }
       </div>
+
     </section>
   );
 }
