@@ -10,6 +10,7 @@ import { useDocumentTitle } from '../../hooks/use-document-title';
 import { useAppSelector } from '../../hooks/use-store';
 import { NavigationInPageComponent } from '../../components/navigatiot-in-page/navigation-in-page';
 import { DEFAULT_UNIT, MAX_LENGTH_CARDS } from '../../const';
+import { ModalWindowComponent } from '../../modal-window-list/modal-window-list';
 
 type MainPageProps = {
   title: string;
@@ -80,6 +81,9 @@ function MainPage ({title}: MainPageProps): JSX.Element {
           </section>
         </div>
       </main>
+
+
+      <ModalWindowComponent/>
 
       <FooterComponent/>
 

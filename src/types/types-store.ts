@@ -44,6 +44,7 @@ type StateOffersPromo = {
 type StateWindow = {
   isWindowProductOpen: boolean;
   isWindowReviewOpen: boolean;
+  isWindowModalOpen: boolean;
 };
 
 type Review = {

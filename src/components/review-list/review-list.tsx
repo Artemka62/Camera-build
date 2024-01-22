@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { DEFAULT_NULL, START_NUMBER_REVIEWS } from '../../const';
-import { useAppSelector } from '../../hooks/use-store';
+import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
 import { CardReviewComponent } from '../card-review/card-review';
-import { ModalWindowCardProductComponent } from '../modal-window-card-product/modal-window-card-product';
+import { windowsSlice } from '../../store/slice/modalWindows';
 
 function ReviewListComponent () {
+  const dispatch = useAppDispatch();
   const stateReviews = useAppSelector((state) => state.reviews.reviews);
   const [countReviews, setCountReviews] = useState(START_NUMBER_REVIEWS);
 
@@ -20,6 +21,12 @@ function ReviewListComponent () {
     setCountReviews(START_NUMBER_REVIEWS);
   },[stateReviews]);
 
+
+  function handleClickButtonReview () {
+    dispatch(windowsSlice.actions.windowReview(true));
+    dispatch(windowsSlice.actions.isModalWindow(true));
+  }
+
   function handleClickButtonAdd () {
     setCountReviews(countReviews + START_NUMBER_REVIEWS);
   }
@@ -30,7 +37,7 @@ function ReviewListComponent () {
       <div className="container">
         <div className="page-content__headed">
           <h2 className="title title--h3">Отзывы</h2>
-          <button className="btn" type="button">
+          <button onClick={handleClickButtonReview} className="btn" type="button">
             Оставить свой отзыв
           </button>
         </div>

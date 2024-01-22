@@ -17,6 +17,7 @@ function CardComponent ({offer}: CardComponentProps) {
   function handleClickButtonBuy () {
     dispatch(fetchOfferAction(offer.id));
     dispatch(windowsSlice.actions.windowProduct(true));
+    dispatch(windowsSlice.actions.isModalWindow(true));
   }
 
   function handleClickButtonDetails () {

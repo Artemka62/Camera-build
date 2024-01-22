@@ -7,6 +7,7 @@ function ModalWindowCardProductComponent () {
 
   function handleClickButton () {
     dispatch(windowsSlice.actions.windowProduct(false));
+    dispatch(windowsSlice.actions.isModalWindow(false));
   }
 
   return (

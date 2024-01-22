@@ -11,7 +11,6 @@ import { fetchSimilarOffersAction } from '../../services/thunk/fetch-similar-off
 import { SimilarCardsListComponent } from '../../components/similar-cards-list/similar-cards-list';
 import { ReviewListComponent } from '../../components/review-list/review-list';
 import { fetchReviewsAction } from '../../services/thunk/fetch-rewiews';
-import { ModalWindowCardProductComponent } from '../../components/modal-window-card-product/modal-window-card-product';
 
 type ProductProps = {
   title: string;

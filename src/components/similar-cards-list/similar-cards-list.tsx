@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../hooks/use-store';
-import { ModalWindowComponent } from '../../modal-window-card-product/modal-window-card-product';
+import { ModalWindowComponent } from '../../modal-window-list/modal-window-list';
 import { OfferCard } from '../../types/types-store';
 import { CardComponent } from '../card/card';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,7 +15,7 @@ type SimilarCardsListComponentProps = {
 }
 
 function SimilarCardsListComponent({ offers }: SimilarCardsListComponentProps) {
-  const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowProductOpen);
+
   const stateOffer = useAppSelector((state) => state.offer.reviews);
 
   const getSimilarOffers = offers.filter((product) => (
@@ -48,7 +48,7 @@ function SimilarCardsListComponent({ offers }: SimilarCardsListComponentProps) {
               </SwiperSlide>
             ))}
 
-            <ModalWindowComponent modalStatus={isWindowModalOpen} />
+            <ModalWindowComponent/>
 
           </Swiper>
           <button
