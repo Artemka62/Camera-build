@@ -7,4 +7,13 @@ type Thunk = {
   extra: AxiosInstance;
 }
 
-export type {Thunk};
+type PostReview = {
+  cameraId: number;
+  userName: string;
+  advantage: string;
+  disadvantage: string;
+  review: string;
+  rating: number;
+}
+
+export type {Thunk, PostReview};

@@ -1,20 +1,27 @@
-import { useAppDispatch } from '../../hooks/use-store';
+import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
 import { windowsSlice } from '../../store/slice/modalWindows';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import './modal-window-rewiew-product.css';
 import { Fragment, useEffect} from 'react';
 import { OPTIONS } from '../../const';
+import { postReview } from '../../services/thunk/post-review';
+import { PostReview } from '../../types/types-service';
+import { useParams } from 'react-router-dom';
 
 type FormInputs = {
   userName: string;
   userPlus: string;
   userMinus: string;
-  UserComment: string;
+  userComment: string;
   rating: string;
 };
 
 function ModalWindowReviewProductComponent () {
   const dispatch = useAppDispatch();
+  const {id} = useParams();
+
+
+
 
   const {
     register,
@@ -53,8 +60,19 @@ function ModalWindowReviewProductComponent () {
   }
 
   const handleFormSubmit: SubmitHandler<FormInputs> = (data) => {
-    console.log(data);
-    reset();
+    const dataForm: PostReview = {
+      cameraId: parseFloat(id || ''),
+      userName: data.userName,
+      advantage: data.userPlus,
+      disadvantage: data.userMinus,
+      review: data.userComment,
+      rating: +data.rating
+    };
+
+    dispatch(postReview({dataForm})).unwrap().then(() => {
+
+      reset();
+    });
   };
 
   return (
@@ -199,7 +217,7 @@ function ModalWindowReviewProductComponent () {
               )}
             </div>
 
-            <div className={`${ !errors.UserComment ? 'custom-textarea form-review__item' : 'custom-textarea form-review__item is-invalid'}`}>
+            <div className={`${ !errors.userComment ? 'custom-textarea form-review__item' : 'custom-textarea form-review__item is-invalid'}`}>
               <label>
                 <span className="custom-textarea__label">
                   Комментарий
@@ -209,7 +227,7 @@ function ModalWindowReviewProductComponent () {
                 </span>
                 <textarea
                   placeholder="Поделитесь своим опытом покупки"
-                  {...register('UserComment', {
+                  {...register('userComment', {
                     required: 'Нужно добавить комментарий',
                     minLength: {
                       value: 10,
@@ -222,9 +240,9 @@ function ModalWindowReviewProductComponent () {
                   })}
                 />
               </label>
-              {errors.UserComment && (
+              {errors.userComment && (
                 <div className="custom-textarea__error">
-                  {errors.UserComment.message || 'Ошибка'}
+                  {errors.userComment.message || 'Ошибка'}
                 </div>
               )}
             </div>

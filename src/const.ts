@@ -25,6 +25,7 @@ enum AppRoute {
 enum ApiRoute {
   Offers = '/cameras',
   OffersPromo = '/promo',
+  ReviewsProduct = '/reviews'
  }
 
 
