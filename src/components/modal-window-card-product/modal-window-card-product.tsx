@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
 import { windowsSlice } from '../../store/slice/modalWindows';
 
@@ -9,6 +10,13 @@ function ModalWindowCardProductComponent () {
     dispatch(windowsSlice.actions.windowProduct(false));
     dispatch(windowsSlice.actions.isModalWindow(false));
   }
+
+  useEffect(() => {
+
+    document.body.classList.add('scroll-lock');
+
+    return () => document.body.classList.remove('scroll-lock');
+  }, []);
 
   return (
     <div className="modal__content">
