@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useRef} from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
 import { windowsSlice } from '../../store/slice/modalWindows';
+import { DELAY_FOCUS } from '../../const';
 
 function ModalWindowCardProductComponent () {
   const stateCard = useAppSelector((state) => state.offer.reviews);
   const dispatch = useAppDispatch();
+  const addBasketButtonRef = useRef<HTMLButtonElement>(null);
 
   function handleClickButton () {
     dispatch(windowsSlice.actions.windowProduct(false));
@@ -12,6 +14,11 @@ function ModalWindowCardProductComponent () {
   }
 
   useEffect(() => {
+    if (addBasketButtonRef.current) {
+      setTimeout(() => {
+        addBasketButtonRef.current?.focus();
+      }, DELAY_FOCUS);
+    }
 
     document.body.classList.add('scroll-lock');
 
@@ -54,6 +61,7 @@ function ModalWindowCardProductComponent () {
       </div>
       <div className="modal__buttons">
         <button
+          ref={addBasketButtonRef}
           className="btn btn--purple modal__btn modal__btn--fit-width"
           type="button"
         >
@@ -63,7 +71,7 @@ function ModalWindowCardProductComponent () {
           Добавить в корзину
         </button>
       </div>
-      <button onClick={handleClickButton} className="cross-btn" type="button" aria-label="Закрыть попап">
+      <button onClick={handleClickButton} className="cross-btn" type="button" aria-label="Закрыть попап" >
         <svg width={10} height={10} aria-hidden="true">
           <use xlinkHref="#icon-close" />
         </svg>

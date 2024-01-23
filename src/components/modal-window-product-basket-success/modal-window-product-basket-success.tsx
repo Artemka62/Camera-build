@@ -1,11 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/use-store';
 import { windowsSlice } from '../../store/slice/modalWindows';
-import { AppRoute } from '../../const';
+import { AppRoute, DELAY_FOCUS } from '../../const';
+import { useEffect, useRef } from 'react';
 
 function ModalWindowBasketSuccess () {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+
+  const successBuyButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (successBuyButtonRef.current) {
+      setTimeout(() => {
+        successBuyButtonRef.current?.focus();
+      }, DELAY_FOCUS);
+    }
+  }, []);
 
 
   function handleClickButtonClose () {
@@ -27,7 +39,9 @@ function ModalWindowBasketSuccess () {
         <use xlinkHref="#icon-review-success" />
       </svg>
       <div className="modal__buttons">
-        <button onClick={handleClickButtonCardsProduct}
+        <button
+          ref={successBuyButtonRef}
+          onClick={handleClickButtonCardsProduct}
           className="btn btn--purple modal__btn modal__btn--fit-width"
           type="button"
         >
