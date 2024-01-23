@@ -37,6 +37,8 @@ type StateOffer = {
 
 type StateOffers = {
   similarOffers: OfferCard[];
+  error: boolean;
+  loading: boolean;
 }
 
 type StateOffersPromo = {

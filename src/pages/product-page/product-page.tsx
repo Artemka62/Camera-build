@@ -24,7 +24,7 @@ function ProductPage ({title}: ProductProps) {
   const {id, tab} = useParams<string>();
   const dispatch = useAppDispatch();
   const stateSimilarOffers = useAppSelector((state) => state.similarOffers.similarOffers);
-  const stateErrorLoadOffer = useAppSelector((state) => state.offer.error);
+  const isErrorLoadOffer = useAppSelector((state) => state.offer.error);
   const isLoadingOffer = useAppSelector((state) => state.offer.loading);
 
   useDocumentTitle(title);
@@ -54,7 +54,7 @@ function ProductPage ({title}: ProductProps) {
     return <LoadingComponent/>;
   }
 
-  if(tab !== 'description' && tab !== 'characteristic' || stateErrorLoadOffer) {
+  if(tab !== 'description' && tab !== 'characteristic' || isErrorLoadOffer) {
     return <ErrorPage title ={AppRoute.Error}/>;
   }
 

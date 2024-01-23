@@ -9,8 +9,10 @@ import { SortListCardsComponent } from '../../components/sort-list-cards/sort-li
 import { useDocumentTitle } from '../../hooks/use-document-title';
 import { useAppSelector } from '../../hooks/use-store';
 import { NavigationInPageComponent } from '../../components/navigatiot-in-page/navigation-in-page';
-import { DEFAULT_UNIT, MAX_LENGTH_CARDS } from '../../const';
+import { AppRoute, DEFAULT_UNIT, MAX_LENGTH_CARDS } from '../../const';
 import { ModalWindowComponent } from '../../modal-window-list/modal-window-list';
+import { LoadingComponent } from '../../components/loading-component/loading-component';
+import { ErrorPage } from '../error-page/error-page';
 
 type MainPageProps = {
   title: string;
@@ -25,8 +27,15 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const currentOffers = stateOffers.slice(firstOfferIndex, lastOfferIndex);
   const searchParams = new URLSearchParams(window.location.search);
   const pageParam = searchParams.get('page');
+  const isLoadingOffers = useAppSelector((state) => state.offers.loading);
+  const isErrorLoadOffers = useAppSelector((state) => state.offers.error);
+
+
+  useDocumentTitle(title);
 
   useEffect(() => {
+
+
     if (pageParam) {
       const lastDigit = pageParam.slice(-DEFAULT_UNIT);
 
@@ -39,7 +48,13 @@ function MainPage ({title}: MainPageProps): JSX.Element {
     setCurrentPage(pageNumber);
   }
 
-  useDocumentTitle(title);
+  if(isLoadingOffers){
+    return <LoadingComponent/>;
+  }
+
+  if(isErrorLoadOffers) {
+    return <ErrorPage title ={AppRoute.Error}/>;
+  }
 
   return (
     <div className="wrapper">

@@ -5,6 +5,8 @@ import { fetchOffersAction } from '../../services/thunk/fetch-offers';
 
 const initialState: StateOffers = {
   similarOffers: [],
+  error: false,
+  loading: false
 };
 
 const offersSlice = createSlice({
@@ -19,6 +21,16 @@ const offersSlice = createSlice({
     builder
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.similarOffers = action.payload;
+        state.error = false;
+        state.loading = false;
+      })
+      .addCase(fetchOffersAction.rejected, (state) => {
+        state.error = true;
+        state.loading = false;
+      })
+      .addCase(fetchOffersAction.pending, (state) => {
+        state.loading = true;
+        state.error = false;
       });
   }
 });
