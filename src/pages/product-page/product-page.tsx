@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector} from '../../hooks/use-store';
 import { fetchOfferAction } from '../../services/thunk/fetch-offer';
 import { useEffect } from 'react';
 import { CardOfferProductComponent } from '../../components/card-offer-product/card-offer-product';
-import { NavigationInPageComponent } from '../../components/navigatiot-in-page/navigation-in-page';
+import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
 import { fetchSimilarOffersAction } from '../../services/thunk/fetch-similar-offers';
 import { SimilarCardsListComponent } from '../../components/similar-cards-list/similar-cards-list';
 import { ReviewListComponent } from '../../components/review-list/review-list';

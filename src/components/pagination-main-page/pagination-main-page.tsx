@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { ButtonChangePage } from '../button-change-page/button-change-page';
 import { useEffect } from 'react';
-import { DEFAULT_UNIT, MAX_LENGTH_CARDS, PAGES_PER_SET } from '../../const';
+import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, MAX_LENGTH_CARDS, PAGES_PER_SET } from '../../const';
+import { useAppSelector } from '../../hooks/use-store';
+
 
 type PaginationMainPageComponentProps = {
   offersPerPages: number;
@@ -18,18 +20,27 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, callbackPagin
   const currentPageSet = Math.ceil(currentPage / pagesPerSet);
   const startPage = (currentPageSet - DEFAULT_UNIT) * pagesPerSet + DEFAULT_UNIT;
   const endPage = Math.min(currentPageSet * pagesPerSet, quantityPages);
+  const stateOffers = useAppSelector((state) => state.offers.similarOffers);
+
+  const isPageReel = currentPage > DEFAULT_NULL && currentPage <= Math.ceil(stateOffers.length / MAX_LENGTH_CARDS);
 
   useEffect(() => {
     navigate(`/?page=${currentPage}`);
+
+    if(!isPageReel) {
+      navigate(AppRoute.Error);
+    }
   },[currentPage]);
 
   function handleClickButton(numberPage: number) {
     callbackPaginate(numberPage);
   }
 
-  if (totalOffers <= MAX_LENGTH_CARDS) {
-    return <> </>;
-  }
+
+
+  // if (totalOffers <= MAX_LENGTH_CARDS) {
+  //   return <> </>;
+  // }
 
   return (
     <div className="pagination">

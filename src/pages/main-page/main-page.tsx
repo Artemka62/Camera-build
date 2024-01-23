@@ -8,7 +8,7 @@ import { PaginationMainPageComponent } from '../../components/pagination-main-pa
 import { SortListCardsComponent } from '../../components/sort-list-cards/sort-list-cards';
 import { useDocumentTitle } from '../../hooks/use-document-title';
 import { useAppSelector } from '../../hooks/use-store';
-import { NavigationInPageComponent } from '../../components/navigatiot-in-page/navigation-in-page';
+import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
 import { AppRoute, DEFAULT_UNIT, MAX_LENGTH_CARDS } from '../../const';
 import { ModalWindowComponent } from '../../modal-window-list/modal-window-list';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
@@ -30,12 +30,9 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const isLoadingOffers = useAppSelector((state) => state.offers.loading);
   const isErrorLoadOffers = useAppSelector((state) => state.offers.error);
 
-
   useDocumentTitle(title);
 
   useEffect(() => {
-
-
     if (pageParam) {
       const lastDigit = pageParam.slice(-DEFAULT_UNIT);
 

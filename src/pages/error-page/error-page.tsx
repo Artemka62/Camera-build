@@ -10,7 +10,6 @@ type ErrorPageProps = {
 
 function ErrorPage ({title} : ErrorPageProps) {
   const dispatch = useAppDispatch();
-
   useDocumentTitle(title);
 
   function handleClickButton () {

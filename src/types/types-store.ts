@@ -41,6 +41,10 @@ type StateOffers = {
   loading: boolean;
 }
 
+type StateOffersSimilar = {
+  similarOffers: OfferCard[];
+}
+
 type StateOffersPromo = {
   offers: OfferPromo[];
 }
@@ -75,6 +79,7 @@ export type {
   OfferPromo,
   StateOffer,
   StateOffers,
+  StateOffersSimilar,
   StateOffersPromo,
   StateWindow,
   Review,
