@@ -12,15 +12,20 @@ import { SimilarCardsListComponent } from '../../components/similar-cards-list/s
 import { ReviewListComponent } from '../../components/review-list/review-list';
 import { fetchReviewsAction } from '../../services/thunk/fetch-rewiews';
 import { ModalWindowComponent } from '../../modal-window-list/modal-window-list';
+import { AppRoute } from '../../const';
+import { LoadingComponent } from '../../components/loading-component/loading-component';
+import { ErrorPage } from '../error-page/error-page';
 
 type ProductProps = {
   title: string;
 }
 
 function ProductPage ({title}: ProductProps) {
-  const {id} = useParams<string>();
+  const {id, tab} = useParams<string>();
   const dispatch = useAppDispatch();
   const stateSimilarOffers = useAppSelector((state) => state.similarOffers.similarOffers);
+  const stateErrorLoadOffer = useAppSelector((state) => state.offer.error);
+  const isLoadingOffer = useAppSelector((state) => state.offer.loading);
 
   useDocumentTitle(title);
 
@@ -43,6 +48,14 @@ function ProductPage ({title}: ProductProps) {
       top: 0,
       behavior: 'smooth'
     });
+  }
+
+  if(isLoadingOffer){
+    return <LoadingComponent/>;
+  }
+
+  if(tab !== 'description' && tab !== 'characteristic' || stateErrorLoadOffer) {
+    return <ErrorPage title ={AppRoute.Error}/>;
   }
 
   return(

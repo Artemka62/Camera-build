@@ -7,8 +7,6 @@ import { useEffect, useRef } from 'react';
 function ModalWindowBasketSuccess () {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-
   const successBuyButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -19,15 +17,17 @@ function ModalWindowBasketSuccess () {
     }
   }, []);
 
-
-  function handleClickButtonClose () {
+  function pushDispatch () {
     dispatch(windowsSlice.actions.isModalWindow(false));
     dispatch(windowsSlice.actions.windowBasketSuccess(false));
   }
 
+  function handleClickButtonClose () {
+    pushDispatch();
+  }
+
   function handleClickButtonCardsProduct () {
-    dispatch(windowsSlice.actions.isModalWindow(false));
-    dispatch(windowsSlice.actions.windowBasketSuccess(false));
+    pushDispatch();
     navigate(AppRoute.Main);
   }
 

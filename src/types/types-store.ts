@@ -31,6 +31,8 @@ type OfferPromo = {
 
 type StateOffer = {
   reviews: OfferCard | null;
+  error: boolean;
+  loading: boolean;
 }
 
 type StateOffers = {
