@@ -3,7 +3,7 @@ import { ModalWindowCardProductComponent } from '../components/modal-window-card
 import { ModalWindowBasketSuccess } from '../components/modal-window-product-basket-success/modal-window-product-basket-success';
 import { ModalWindowReviewProductComponent } from '../components/modal-window-reviev-product/modal-window-rewiev-product';
 import { useAppDispatch, useAppSelector } from '../hooks/use-store';
-import { windowsSlice } from '../store/slice/modalWindows';
+import { windowsSlice } from '../store/slice/modal-windows';
 
 function ModalWindowComponent () {
   const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowModalOpen);

@@ -9,7 +9,6 @@ const initialState: StateWindow = {
   isWindowProductOpen: false,
   isWindowReviewOpen: false,
   isWindowBasketSuccessOpen: false
-
 };
 
 const windowsSlice = createSlice({

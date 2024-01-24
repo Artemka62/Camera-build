@@ -5,17 +5,17 @@ import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { ApiRoute } from '../../const';
-import { fetchOffersAction } from '../thunk/fetch-offers';
+import { fetchOffersAction } from './fetch-offers';
 import { mockOffer } from '../../mock-test/mock-offer/mock-offer';
 import { State } from '../../types/types-store';
-import { fetchOfferAction } from '../thunk/fetch-offer';
+import { fetchOfferAction } from './fetch-offer';
 import { mockPromo } from '../../mock-test/mock-promo/mock-promo';
-import { fetchPromoOffersAction } from '../thunk/fetch-promo-offers';
-import { fetchReviewsAction } from '../thunk/fetch-rewiews';
+import { fetchPromoOffersAction } from './fetch-promo-offers';
+import { fetchReviewsAction } from './fetch-rewiews';
 import { mockReview, mockReviewPost} from '../../mock-test/mock-review/mock-review';
 import { mockSimilar } from '../../mock-test/mock-similar/mock-similar';
-import { fetchSimilarOffersAction } from '../thunk/fetch-similar-offers';
-import { postReview } from '../thunk/post-review';
+import { fetchSimilarOffersAction } from './fetch-similar-offers';
+import { postReview } from './post-review';
 
 type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createApi>, Action>
 

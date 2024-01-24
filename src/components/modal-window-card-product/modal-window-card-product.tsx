@@ -1,6 +1,6 @@
 import { useEffect, useRef} from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
-import { windowsSlice } from '../../store/slice/modalWindows';
+import { windowsSlice } from '../../store/slice/modal-windows';
 import { DELAY_FOCUS } from '../../const';
 
 function ModalWindowCardProductComponent () {

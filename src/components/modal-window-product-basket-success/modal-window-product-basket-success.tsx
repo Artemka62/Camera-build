@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/use-store';
-import { windowsSlice } from '../../store/slice/modalWindows';
+import { windowsSlice } from '../../store/slice/modal-windows';
 import { AppRoute, DELAY_FOCUS } from '../../const';
 import { useEffect, useRef } from 'react';
 

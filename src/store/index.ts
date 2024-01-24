@@ -1,9 +1,9 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import { offersSlice } from './slice/offers';
 import { createApi } from '../services/api';
-import { offersPromoSlice } from './slice/offersPromo';
+import { offersPromoSlice } from './slice/offers-promo';
 import { offerSlice } from './slice/offer';
-import { windowsSlice } from './slice/modalWindows';
+import { windowsSlice } from './slice/modal-windows';
 import { similarOffersSlice } from './slice/similar-offers';
 import { reviewsSlice } from './slice/reviews';
 
