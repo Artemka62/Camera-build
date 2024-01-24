@@ -36,7 +36,7 @@ type StateOffer = {
 }
 
 type StateOffers = {
-  similarOffers: OfferCard[];
+  offers: OfferCard[];
   error: boolean;
   loading: boolean;
 }

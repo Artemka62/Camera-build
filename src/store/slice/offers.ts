@@ -4,7 +4,7 @@ import type {PayloadAction} from '@reduxjs/toolkit';
 import { fetchOffersAction } from '../../services/thunk/fetch-offers';
 
 const initialState: StateOffers = {
-  similarOffers: [],
+  offers: [],
   error: false,
   loading: false
 };
@@ -14,13 +14,13 @@ const offersSlice = createSlice({
   initialState,
   reducers: {
     addOfferList(state, action: PayloadAction<OfferCard[]>) {
-      state.similarOffers = action.payload;
+      state.offers = action.payload;
     },
   },
   extraReducers(builder) {
     builder
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
-        state.similarOffers = action.payload;
+        state.offers = action.payload;
         state.error = false;
         state.loading = false;
       })

@@ -2,7 +2,7 @@ import { offersSlice } from './offers';
 
 describe('Offers slice', () => {
   const expectedState = {
-    similarOffers: [],
+    offers: [],
     error: false,
     loading: false
   };

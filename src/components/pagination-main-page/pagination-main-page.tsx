@@ -19,7 +19,7 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, callbackPagin
   const currentPageSet = Math.ceil(currentPage / pagesPerSet);
   const startPage = (currentPageSet - DEFAULT_UNIT) * pagesPerSet + DEFAULT_UNIT;
   const endPage = Math.min(currentPageSet * pagesPerSet, quantityPages);
-  const stateOffers = useAppSelector((state) => state.offers.similarOffers);
+  const stateOffers = useAppSelector((state) => state.offers.offers);
   const isPageReel = currentPage > DEFAULT_NULL && currentPage <= Math.ceil(stateOffers.length / MAX_LENGTH_CARDS);
 
   useEffect(() => {

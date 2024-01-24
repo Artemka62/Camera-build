@@ -25,7 +25,7 @@ function ModalWindowReviewProductComponent () {
     register,
     formState: {
       errors,
-      isValid,
+      //isValid,
     },
     setFocus,
     handleSubmit,

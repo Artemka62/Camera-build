@@ -19,7 +19,7 @@ type MainPageProps = {
 }
 
 function MainPage ({title}: MainPageProps): JSX.Element {
-  const stateOffers = useAppSelector((state) => state.offers.similarOffers);
+  const stateOffers = useAppSelector((state) => state.offers.offers);
   const [currentPage, setCurrentPage] = useState(DEFAULT_UNIT);
   const [offersPerPages] = useState(MAX_LENGTH_CARDS);
   const lastOfferIndex = currentPage * offersPerPages;
@@ -54,11 +54,11 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   }
 
   return (
-    <div className="wrapper">
+    <div className="wrapper" >
 
       <HeaderComponent/>
 
-      <main>
+      <main data-testid ='main-page'>
 
         <BannerComponent/>
 
