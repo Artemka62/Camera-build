@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, MAX_LENGTH_CARDS, PAGES_PER_SET } from '../../const';
 import { useAppSelector } from '../../hooks/use-store';
 
-
 type PaginationMainPageComponentProps = {
   offersPerPages: number;
   totalOffers: number;
@@ -21,7 +20,6 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, callbackPagin
   const startPage = (currentPageSet - DEFAULT_UNIT) * pagesPerSet + DEFAULT_UNIT;
   const endPage = Math.min(currentPageSet * pagesPerSet, quantityPages);
   const stateOffers = useAppSelector((state) => state.offers.similarOffers);
-
   const isPageReel = currentPage > DEFAULT_NULL && currentPage <= Math.ceil(stateOffers.length / MAX_LENGTH_CARDS);
 
   useEffect(() => {
@@ -35,8 +33,6 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, callbackPagin
   function handleClickButton(numberPage: number) {
     callbackPaginate(numberPage);
   }
-
-
 
   // if (totalOffers <= MAX_LENGTH_CARDS) {
   //   return <> </>;
