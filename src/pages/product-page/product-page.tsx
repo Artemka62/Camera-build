@@ -59,9 +59,9 @@ function ProductPage ({title}: ProductProps) {
   }
 
   return(
-    <div className="wrapper">
+    <div className="wrapper" data-testid ='product-page' >
       <HeaderComponent/>
-      <main>
+      <main >
         <div className="page-content">
 
           <NavigationInPageComponent/>

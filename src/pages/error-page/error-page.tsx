@@ -18,7 +18,7 @@ function ErrorPage ({title} : ErrorPageProps) {
 
   return(
     <div>
-      <h1>404 Not Found</h1>
+      <h1 data-testid ='error-page'>404 Not Found</h1>
       <Link to={AppRoute.Main} onClick={handleClickButton}><p> Перейти на главную страницу</p></Link>
     </div>
   );

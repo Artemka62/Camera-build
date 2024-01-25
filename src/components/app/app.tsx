@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AppRoute, TitleDescription } from '../../const';
 import { MainPage } from '../../pages/main-page/main-page';
 import { ProductPage } from '../../pages/product-page/product-page';
@@ -15,36 +15,34 @@ function App () {
   dispatch(fetchPromoOffersAction());
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={`${AppRoute.Main}/`}
-          element ={
-            <MainPage title = {TitleDescription.MainPage}/>
-          }
-        />
-        <Route
-          path={`${AppRoute.Product}/:id/:tab`}
-          element ={
-            <ProductPage title = {TitleDescription.ProductPage}/>
-          }
-        />
-        <Route
-          path={`${AppRoute.Basket}`}
-          element ={
-            <BasketPage title = {TitleDescription.BasketPage}/>
-          }
-        />
-        <Route
-          path={AppRoute.Error}
-          element ={<ErrorPage title = {TitleDescription.ErrorPage}/>}
-        />
-        <Route
-          path="*"
-          element={<ErrorPage title = {TitleDescription.ErrorPage}/>}
-        />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route
+        path={`${AppRoute.Main}/`}
+        element ={
+          <MainPage title = {TitleDescription.MainPage}/>
+        }
+      />
+      <Route
+        path={`${AppRoute.Product}/:id/:tab`}
+        element ={
+          <ProductPage title = {TitleDescription.ProductPage}/>
+        }
+      />
+      <Route
+        path={`${AppRoute.Basket}`}
+        element ={
+          <BasketPage title = {TitleDescription.BasketPage}/>
+        }
+      />
+      <Route
+        path={AppRoute.Error}
+        element ={<ErrorPage title = {TitleDescription.ErrorPage}/>}
+      />
+      <Route
+        path="*"
+        element={<ErrorPage title = {TitleDescription.ErrorPage}/>}
+      />
+    </Routes>
   );
 }
 

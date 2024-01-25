@@ -11,7 +11,7 @@ function BasketPage ({title}: BasketProps) {
   useDocumentTitle(title);
 
   return (
-    <div className="wrapper">
+    <div className="wrapper" data-testid ='basket-page'>
       <HeaderComponent/>
       <main>
         <div className="page-content">
