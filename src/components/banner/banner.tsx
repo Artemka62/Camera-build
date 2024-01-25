@@ -13,7 +13,7 @@ function BannerComponent() {
   SwiperCore.use([Autoplay, Pagination]);
 
   return (
-    <div className="banner">
+    <div className="banner" data-testid ='banner'>
       <Swiper
         className="my-swiper"
         spaceBetween={DEFAULT_NULL}

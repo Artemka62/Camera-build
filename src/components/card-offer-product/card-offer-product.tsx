@@ -18,7 +18,7 @@ function CardOfferProductComponent () {
   }
 
   return (
-    <section className="product">
+    <section className="product" data-testId={'card-offer-product'}>
       <div className="container">
         <div className="product__img">
           <picture>

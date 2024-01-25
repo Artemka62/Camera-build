@@ -22,7 +22,7 @@ function BannerOfferComponent ({offer}: BannerOfferProps) {
           alt="баннер"
         />
       </picture>
-      <p className="banner__info">
+      <p className="banner__info" data-testid ='banner-offer'>
         <span className="banner__message">Новинка!</span>
         <span className="title title--h1">
           {offer.name}

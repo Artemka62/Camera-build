@@ -4,7 +4,7 @@ import { AppRoute } from '../../const';
 function ButtonBasketComponent () {
 
   return (
-    <Link to={AppRoute.Basket} className="header__basket-link">
+    <Link to={AppRoute.Basket} className="header__basket-link" data-testId={'button-basket'}>
       <svg width={16} height={16} aria-hidden="true">
         <use xlinkHref="#icon-basket" />
       </svg>
