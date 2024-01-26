@@ -17,7 +17,7 @@ function CardOfferProductComponent () {
   }
 
   function handleClickDescription () {
-    navigate(`/product/${stateOffer?.id || ''}${AppRoute.Description}`);
+    navigate(`${AppRoute.Product}/${stateOffer?.id || ''}${AppRoute.Description}`);
   }
 
   function handleClickAddBasket () {

@@ -4,7 +4,6 @@ import { withHistory } from '../mock-component/mock-component';
 import { render, screen } from '@testing-library/react';
 import { FooterComponent } from './footer';
 
-
 describe('component: Footer', () => {
   it('should render correctly', () => {
     const expectedText = 'Интернет-магазин фото- и видеотехники';

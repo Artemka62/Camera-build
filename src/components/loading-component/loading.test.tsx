@@ -4,7 +4,6 @@ import { withHistory } from '../mock-component/mock-component';
 import { render, screen } from '@testing-library/react';
 import { LoadingComponent } from './loading-component';
 
-
 describe('component: Loading', () => {
   it('should render correctly', () => {
     const expectedText = 'Loading...';

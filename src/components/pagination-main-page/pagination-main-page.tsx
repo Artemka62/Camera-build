@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { ButtonChangePage } from '../button-change-page/button-change-page';
 import { useEffect } from 'react';
-import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, MAX_LENGTH_CARDS, PAGES_PER_SET } from '../../src-const';
+import { AppRoute, ButtonName, DEFAULT_NULL, DEFAULT_UNIT, MAX_LENGTH_CARDS, PAGES_PER_SET } from '../../src-const';
 import { useAppSelector } from '../../hooks/hook-use-store';
 
 type PaginationMainPageComponentProps = {
@@ -24,7 +24,10 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, callbackPagin
 
   useEffect(() => {
     let isMounted = true;
-    navigate(`${AppRoute.Page}${currentPage}`);
+
+    if(isMounted) {
+      navigate(`${AppRoute.Page}${currentPage}`);
+    }
 
     if(!isPageReel && isMounted) {
       navigate(AppRoute.Error);
@@ -46,7 +49,7 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, callbackPagin
           <ButtonChangePage
             callbackPaginate={() => handleClickButton(startPage - DEFAULT_UNIT)}
             currentPage={currentPage}
-            nameButton={'back'}
+            nameButton={ButtonName.BackEn}
           />
         )}
         {pageNumbers.slice(startPage - DEFAULT_UNIT, endPage).map((number) => (
@@ -60,7 +63,7 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, callbackPagin
           <ButtonChangePage
             callbackPaginate={() => handleClickButton(endPage + DEFAULT_UNIT)}
             currentPage={currentPage}
-            nameButton={'next'}
+            nameButton={ButtonName.NextEn}
           />
         )}
       </ul>

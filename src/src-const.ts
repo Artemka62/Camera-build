@@ -17,7 +17,6 @@ const OPTIONS = [
   {label: 'Ужасно', value: 1},
 ];
 
-
 enum AppRoute {
   Main = '/',
   Product = '/product',
@@ -32,8 +31,8 @@ enum ApiRoute {
   Offers = '/cameras',
   OffersPromo = '/promo',
   ReviewsProduct = '/reviews',
+  Similar = '/similar'
  }
-
 
 enum TitleDescription {
   MainPage = 'Каталог - Фотошоп',
@@ -64,6 +63,19 @@ const SettingValidation = {
   ErrorMessage: 'Ошибка'
 } as const;
 
+const ServerAnswer = {
+  Error: 400,
+  Created: 201,
+  Ok: 200
+} as const;
+
+const ButtonName = {
+  NextEn: 'next',
+  NextRu: 'Далее',
+  BackEn:'back',
+  BackRu:'Назад'
+} as const;
+
 export{
   URL_SERVER,
   REQUEST_TIMEOUT,
@@ -80,5 +92,7 @@ export{
   ApiRoute,
   TitleDescription,
   SettingTab,
-  SettingValidation
+  SettingValidation,
+  ServerAnswer,
+  ButtonName
 };

@@ -3,7 +3,6 @@ import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import { StateWindow } from '../../types/types-store';
 
-
 const initialState: StateWindow = {
   isWindowModalOpen: false,
   isWindowProductOpen: false,

@@ -16,7 +16,6 @@ function ReviewListComponent () {
     return timeB - timeA;
   });
 
-
   useEffect(() => {
     let isMounted = true;
 
@@ -28,7 +27,6 @@ function ReviewListComponent () {
       isMounted = false;
     };
   },[stateReviews]);
-
 
   function handleClickButtonReview () {
     dispatch(windowsSlice.actions.windowReview(true));

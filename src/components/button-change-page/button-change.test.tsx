@@ -11,7 +11,14 @@ function handleClickButton(numberPage: number) {
 describe('component: ButtonChange', () => {
   it('should render correctly', () => {
     const expectedText = 'button-change-page';
-    const preparedComponent = withHistory(<ButtonChangePage callbackPaginate={() => handleClickButton(DEFAULT_UNIT - DEFAULT_NULL)} currentPage={DEFAULT_UNIT} nameButton={'back'}/>);
+    const preparedComponent = withHistory(
+      <ButtonChangePage
+        callbackPaginate={
+          () => handleClickButton(DEFAULT_UNIT - DEFAULT_NULL)
+        }
+        currentPage={DEFAULT_UNIT}
+        nameButton={'back'}
+      />);
 
     render(preparedComponent);
 

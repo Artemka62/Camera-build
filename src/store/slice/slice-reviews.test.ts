@@ -8,8 +8,6 @@ describe('Reviews slice', () => {
   };
 
   it('should return initial state with empty action', () => {
-
-
     const result = similarOffersSlice.reducer(expectedState, emptyAction);
 
     expect(result).toEqual(expectedState);

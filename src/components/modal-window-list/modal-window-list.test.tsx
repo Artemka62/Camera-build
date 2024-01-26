@@ -2,19 +2,20 @@ import { Provider } from 'react-redux';
 import { store } from '../../store/store-index';
 import { withHistory } from '../mock-component/mock-component';
 import { render, screen } from '@testing-library/react';
-import { ModalWindowReviewProductComponent } from './modal-window-rewiev-product';
+import { ModalWindowComponent } from './modal-window-list';
 
-describe('component: ModalWindowReviewProduct', () => {
+
+describe('component: ModalWindow', () => {
   it('should render correctly', () => {
-    const expectedText = 'Оставить отзыв';
+    const expectedData = 'modal-window';
     const preparedComponent = withHistory(
       <Provider store={store}>
-        <ModalWindowReviewProductComponent/>
+        <ModalWindowComponent/>
       </Provider>
     );
 
     render(preparedComponent);
 
-    expect(screen.getByText(expectedText)).toBeInTheDocument();
+    expect(screen.getByTestId(expectedData)).toBeInTheDocument();
   });
 });

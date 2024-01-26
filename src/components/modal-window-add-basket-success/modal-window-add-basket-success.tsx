@@ -9,7 +9,6 @@ function ModalWindowAddBasketSuccessComponent () {
   const navigate = useNavigate();
   const goToBasket = useRef<HTMLButtonElement>(null);
 
-
   useEffect(() => {
     let isMounted = true;
 

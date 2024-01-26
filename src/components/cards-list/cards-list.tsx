@@ -1,7 +1,6 @@
 import { OfferCard } from '../../types/types-store';
 import { CardComponent } from '../card/card';
 
-
 type CardsListComponentProps ={
   offers: OfferCard[];
 }

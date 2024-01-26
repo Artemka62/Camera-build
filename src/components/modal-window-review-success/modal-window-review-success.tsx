@@ -37,7 +37,6 @@ function ModalWindowReviewSuccess () {
     navigate(AppRoute.Main);
   }
 
-
   return (
     <div className="modal__content">
       <p className="title title--h4">Спасибо за отзыв</p>

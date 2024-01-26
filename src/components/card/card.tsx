@@ -3,7 +3,7 @@ import { useAppDispatch } from '../../hooks/hook-use-store';
 import { fetchOfferAction } from '../../services/thunk/thunk-fetch-offer';
 import { OfferCard } from '../../types/types-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
-import { AppRoute } from '../../src-const';
+import { AppRoute, DEFAULT_NULL } from '../../src-const';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-rewiews';
 
@@ -24,11 +24,10 @@ function CardComponent ({offer}: CardComponentProps) {
     dispatch(fetchReviewsAction(offer.id));
 
     window.scrollTo({
-      top: 0,
+      top: DEFAULT_NULL,
       behavior: 'smooth'
     });
   }
-
 
   return (
     <div className="product-card is-active" data-testid='card'>
@@ -48,9 +47,7 @@ function CardComponent ({offer}: CardComponentProps) {
         </picture>
       </div>
       <div className="product-card__info">
-
         <StarsRatingComponent rating={offer.rating} reviewCount={offer.reviewCount}/>
-
         <p className="product-card__title">
           {offer.name}
         </p>
@@ -66,7 +63,7 @@ function CardComponent ({offer}: CardComponentProps) {
         >
           Купить
         </button>
-        <Link to={`${AppRoute.Product}/${offer.id}/description`} className="btn btn--transparent" onClick={handleClickButtonDetails}>
+        <Link to={`${AppRoute.Product}/${offer.id}${AppRoute.Description}`} className="btn btn--transparent" onClick={handleClickButtonDetails}>
           Подробнее
         </Link>
       </div>

@@ -4,7 +4,6 @@ import { withHistory } from '../mock-component/mock-component';
 import { render, screen } from '@testing-library/react';
 import { ModalWindowCardProductComponent } from './modal-window-card-product';
 
-
 describe('component: ModalWindowCardProduct', () => {
   it('should render correctly', () => {
     const expectedText = 'Добавить товар в корзину';

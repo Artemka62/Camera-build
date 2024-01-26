@@ -1,6 +1,4 @@
-import { useNavigate } from 'react-router-dom';
-import { DEFAULT_UNIT } from '../../src-const';
-
+import { ButtonName, DEFAULT_UNIT } from '../../src-const';
 
 type ButtonChangePageProps = {
   callbackPaginate: (number: number) => void;
@@ -8,20 +6,15 @@ type ButtonChangePageProps = {
   nameButton: string;
 }
 
-
 function ButtonChangePage ({callbackPaginate, currentPage, nameButton}: ButtonChangePageProps) {
 
-  const navigate = useNavigate();
-
   function handleClickButton () {
-    if(nameButton === 'next') {
+    if(nameButton === ButtonName.NextEn) {
       callbackPaginate(currentPage + DEFAULT_UNIT);
-      navigate(`/?page=${currentPage}`);
     }
 
-    if(nameButton === 'back') {
+    if(nameButton === ButtonName.BackEn) {
       callbackPaginate(currentPage - DEFAULT_UNIT);
-      navigate(`/?page=${currentPage}`);
     }
   }
 
@@ -30,7 +23,7 @@ function ButtonChangePage ({callbackPaginate, currentPage, nameButton}: ButtonCh
       <a
         className="pagination__link pagination__link--text"
       >
-        {(nameButton === 'next') ? 'Далее' : 'Назад'}
+        {(nameButton === ButtonName.NextEn) ? ButtonName.NextRu : ButtonName.BackRu}
       </a>
     </li>
   );

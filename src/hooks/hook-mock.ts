@@ -5,7 +5,6 @@ import { mockSimilar } from '../mock-test/mock-similar/mock-similar';
 import { State } from '../types/types-store';
 
 const makeFakeStore = (initialState?: Partial<State>): State => ({
-
   offers: {
     offers: [mockOffer],
     error: false,
@@ -25,7 +24,6 @@ const makeFakeStore = (initialState?: Partial<State>): State => ({
     isWindowReviewOpen: false,
     isWindowReviewSuccessOpen: false,
     isWindowAddBasketSuccessOpen: false
-
   },
   similarOffers: {
     similarOffers:[mockSimilar]
@@ -33,7 +31,6 @@ const makeFakeStore = (initialState?: Partial<State>): State => ({
   reviews:{reviews:
     [mockReview]
   } ,
-
   ...(initialState ?? {}),
 });
 

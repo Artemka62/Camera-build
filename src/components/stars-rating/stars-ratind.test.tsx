@@ -5,7 +5,6 @@ import { render, screen } from '@testing-library/react';
 import { StarsRatingComponent } from './stars-rating';
 import { DEFAULT_UNIT } from '../../src-const';
 
-
 describe('component: StarsRatingComponent', () => {
   it('should render correctly', () => {
     const expectedData = 'stars-rating';

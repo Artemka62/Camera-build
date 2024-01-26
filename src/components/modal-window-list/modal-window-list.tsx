@@ -15,7 +15,6 @@ function ModalWindowComponent () {
   const dispatch = useAppDispatch();
   const isActive = isWindowModalOpen ? 'modal is-active' : 'modal modal--narrow';
 
-
   function pushDispatch () {
     dispatch(windowsSlice.actions.isModalWindow(false));
     dispatch(windowsSlice.actions.windowReviewSuccess(false));
@@ -48,7 +47,7 @@ function ModalWindowComponent () {
   }, []);
 
   return (
-    <div className={isActive}>
+    <div className={isActive} data-testid= 'modal-window'>
       <div className="modal__wrapper " >
         <div className="modal__overlay" onClick={handleClickOverlay}/>
         {isCardProductOpen ? <ModalWindowCardProductComponent/> : ''}

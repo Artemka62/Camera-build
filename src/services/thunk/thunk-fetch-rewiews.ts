@@ -6,7 +6,7 @@ import { Review } from '../../types/types-store';
 const fetchReviewsAction = createAsyncThunk<Review[], number, Thunk>(
   'data/fetchReviews',
   async (id, {extra: api}) => {
-    const {data} = await api.get<Review[]>(`${ApiRoute.Offers}/${id}/reviews`);
+    const {data} = await api.get<Review[]>(`${ApiRoute.Offers}/${id}${ApiRoute.ReviewsProduct}`);
 
     return data;
   },

@@ -8,7 +8,6 @@ import 'swiper/css/navigation';
 import './similar-cards-list.css';
 import { DEFAULT_NULL, SLIDE_COUNT } from '../../src-const';
 
-
 type SimilarCardsListComponentProps = {
   offers: OfferCard[];
 }
@@ -36,10 +35,8 @@ function SimilarCardsListComponent({ offers }: SimilarCardsListComponentProps) {
             watchSlidesProgress
             allowTouchMove={false}
             slidesPerGroup={SLIDE_COUNT}
-
             className="product-similar__slider-list"
           >
-
             {getSimilarOffers.map((offer) => (
               <SwiperSlide key={offer.id}>
                 <CardComponent offer={offer} />

@@ -1,5 +1,4 @@
 import { render, screen} from '@testing-library/react';
-
 import { withHistory } from '../mock-component/mock-component';
 import { BannerOfferComponent } from './banner-offer';
 import { mockOffer } from '../../mock-test/mock-offer/mock-offer';

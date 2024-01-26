@@ -75,18 +75,12 @@ function ProductPage ({title}: ProductProps) {
       <HeaderComponent/>
       <main >
         <div className="page-content">
-
           <NavigationInPageComponent/>
-
           <div className="page-content__section">
-
             <CardOfferProductComponent/>
-
           </div>
           <div className="page-content__section">
-
             <SimilarCardsListComponent offers={stateSimilarOffers}/>
-
           </div>
           <div className="page-content__section">
             <ReviewListComponent/>
@@ -98,13 +92,9 @@ function ProductPage ({title}: ProductProps) {
         <svg width={12} height={18} aria-hidden="true">
           <use xlinkHref="#icon-arrow2" />
         </svg>
-
       </a>
-
       <FooterComponent/>
-
     </div>
-
   );
 }
 
