@@ -1,6 +1,6 @@
 import { AppRoute, SettingTab } from '../../src-const';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
-import { windowsSlice } from '../../store/slice/modal-windows';
+import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { useNavigate, useParams } from 'react-router-dom';
 

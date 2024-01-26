@@ -1,4 +1,4 @@
-import { reviewsSlice } from './reviews';
+import { reviewsSlice } from './slice-reviews';
 
 describe('Similar offers slice', () => {
   const emptyAction = { type: '' };

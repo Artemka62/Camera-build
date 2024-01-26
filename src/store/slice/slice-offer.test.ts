@@ -1,22 +1,22 @@
-import { similarOffersSlice } from './similar-offers';
+import { offerSlice } from './slice-offer';
 
-describe('Reviews slice', () => {
+describe('Offer slice', () => {
   const emptyAction = { type: '' };
 
   const expectedState = {
-    similarOffers: []
+    reviews: null,
+    error: false,
+    loading : false
   };
 
   it('should return initial state with empty action', () => {
-
-
-    const result = similarOffersSlice.reducer(expectedState, emptyAction);
+    const result = offerSlice.reducer(expectedState, emptyAction);
 
     expect(result).toEqual(expectedState);
   });
 
   it('should return initial state with empty action and undefined', () => {
-    const result = similarOffersSlice.reducer(undefined, emptyAction);
+    const result = offerSlice.reducer(undefined, emptyAction);
 
     expect(result).toEqual(expectedState);
   });

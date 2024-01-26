@@ -4,7 +4,7 @@ import { fetchOfferAction } from '../../services/thunk/thunk-fetch-offer';
 import { OfferCard } from '../../types/types-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { AppRoute } from '../../src-const';
-import { windowsSlice } from '../../store/slice/modal-windows';
+import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-rewiews';
 
 type CardComponentProps = {

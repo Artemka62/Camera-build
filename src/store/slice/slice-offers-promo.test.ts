@@ -1,4 +1,4 @@
-import { offersPromoSlice } from './offers-promo';
+import { offersPromoSlice } from './slice-offers-promo';
 
 describe('Offers promo slice', () => {
   const expectedState = {

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { AppRoute, DELAY_FOCUS } from '../../src-const';
 import { useAppDispatch } from '../../hooks/hook-use-store';
-import { windowsSlice } from '../../store/slice/modal-windows';
+import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { useEffect, useRef } from 'react';
 
 function ModalWindowAddBasketSuccessComponent () {

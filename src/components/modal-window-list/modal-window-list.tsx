@@ -3,7 +3,7 @@ import { ModalWindowCardProductComponent } from '../modal-window-card-product/mo
 import { ModalWindowReviewSuccess } from '../modal-window-review-success/modal-window-review-success';
 import { ModalWindowReviewProductComponent } from '../modal-window-reviev-product/modal-window-rewiev-product';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
-import { windowsSlice } from '../../store/slice/modal-windows';
+import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { ModalWindowAddBasketSuccessComponent } from '../modal-window-add-basket-success/modal-window-add-basket-success';
 
 function ModalWindowComponent () {

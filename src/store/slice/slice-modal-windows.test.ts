@@ -1,4 +1,4 @@
-import { windowsSlice } from './modal-windows';
+import { windowsSlice } from './slice-modal-windows';
 
 describe('Modal windows slice', () => {
   const emptyAction = { type: '' };
