@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { ModalWindowCardProductComponent } from '../components/modal-window-card-product/modal-window-card-product';
-import { ModalWindowReviewSuccess } from '../components/modal-window-review-success/modal-window-review-success';
-import { ModalWindowReviewProductComponent } from '../components/modal-window-reviev-product/modal-window-rewiev-product';
-import { useAppDispatch, useAppSelector } from '../hooks/use-store';
-import { windowsSlice } from '../store/slice/modal-windows';
-import { ModalWindowAddCatalogSuccessComponent } from '../components/modal-window-add-catalog-success/modal-window-add-catalog-success';
+import { ModalWindowCardProductComponent } from '../modal-window-card-product/modal-window-card-product';
+import { ModalWindowReviewSuccess } from '../modal-window-review-success/modal-window-review-success';
+import { ModalWindowReviewProductComponent } from '../modal-window-reviev-product/modal-window-rewiev-product';
+import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
+import { windowsSlice } from '../../store/slice/modal-windows';
+import { ModalWindowAddCatalogSuccessComponent } from '../modal-window-add-catalog-success/modal-window-add-catalog-success';
 
 function ModalWindowComponent () {
   const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowModalOpen);

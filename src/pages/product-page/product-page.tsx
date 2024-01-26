@@ -11,7 +11,7 @@ import { fetchSimilarOffersAction } from '../../services/thunk/fetch-similar-off
 import { SimilarCardsListComponent } from '../../components/similar-cards-list/similar-cards-list';
 import { ReviewListComponent } from '../../components/review-list/review-list';
 import { fetchReviewsAction } from '../../services/thunk/fetch-rewiews';
-import { ModalWindowComponent } from '../../modal-window-list/modal-window-list';
+import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
 import { AppRoute } from '../../const';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
 import { ErrorPage } from '../error-page/error-page';

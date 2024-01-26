@@ -8,9 +8,16 @@ function ModalWindowCardProductComponent () {
   const dispatch = useAppDispatch();
   const addBasketButtonRef = useRef<HTMLButtonElement>(null);
 
-  function handleClickButton () {
+  function handleClickButtonClose () {
     dispatch(windowsSlice.actions.windowProduct(false));
     dispatch(windowsSlice.actions.isModalWindow(false));
+    dispatch(windowsSlice.actions.windowAddBasketSuccess(false));
+  }
+
+  function handleClickAddBasket () {
+    dispatch(windowsSlice.actions.windowProduct(false));
+    dispatch(windowsSlice.actions.windowAddBasketSuccess(true));
+
   }
 
   useEffect(() => {
@@ -61,6 +68,7 @@ function ModalWindowCardProductComponent () {
       </div>
       <div className="modal__buttons">
         <button
+          onClick={handleClickAddBasket}
           ref={addBasketButtonRef}
           className="btn btn--purple modal__btn modal__btn--fit-width"
           type="button"
@@ -71,7 +79,7 @@ function ModalWindowCardProductComponent () {
           Добавить в корзину
         </button>
       </div>
-      <button onClick={handleClickButton} className="cross-btn" type="button" aria-label="Закрыть попап" >
+      <button onClick={handleClickButtonClose} className="cross-btn" type="button" aria-label="Закрыть попап" >
         <svg width={10} height={10} aria-hidden="true">
           <use xlinkHref="#icon-close" />
         </svg>

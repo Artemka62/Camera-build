@@ -10,7 +10,7 @@ import { useDocumentTitle } from '../../hooks/use-document-title';
 import { useAppSelector } from '../../hooks/use-store';
 import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
 import { AppRoute, DEFAULT_UNIT, MAX_LENGTH_CARDS } from '../../const';
-import { ModalWindowComponent } from '../../modal-window-list/modal-window-list';
+import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
 import { ErrorPage } from '../error-page/error-page';
 
