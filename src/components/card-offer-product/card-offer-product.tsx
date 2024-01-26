@@ -1,3 +1,4 @@
+import { AppRoute, SettingTab } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
 import { windowsSlice } from '../../store/slice/modal-windows';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
@@ -5,18 +6,18 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 function CardOfferProductComponent () {
   const dispatch = useAppDispatch();
-  const stateOffer = useAppSelector((state) => state.offer.reviews);
+  const stateOffer = useAppSelector((state) => state['offer/getState'].reviews);
   const navigate = useNavigate();
   const {tab} = useParams();
-  const isActiveForCharacteristic = (tab === 'characteristic') ? 'is-active' : '';
-  const isActiveForDescription = (tab === 'description') ? 'is-active' : '';
+  const isActiveForCharacteristic = (tab === SettingTab.Characteristic) ? 'is-active' : '';
+  const isActiveForDescription = (tab === SettingTab.Description) ? 'is-active' : '';
 
   function handleClickCharacteristic () {
-    navigate(`/product/${stateOffer?.id || ''}/characteristic`);
+    navigate(`${AppRoute.Product}/${stateOffer?.id || ''}${AppRoute.Characteristic}`);
   }
 
   function handleClickDescription () {
-    navigate(`/product/${stateOffer?.id || ''}/description`);
+    navigate(`/product/${stateOffer?.id || ''}${AppRoute.Description}`);
   }
 
   function handleClickAddBasket () {

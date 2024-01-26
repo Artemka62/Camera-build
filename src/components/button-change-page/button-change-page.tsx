@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { DEFAULT_UNIT } from '../../const';
 
 
 type ButtonChangePageProps = {
@@ -14,12 +15,12 @@ function ButtonChangePage ({callbackPaginate, currentPage, nameButton}: ButtonCh
 
   function handleClickButton () {
     if(nameButton === 'next') {
-      callbackPaginate(currentPage + 1);
+      callbackPaginate(currentPage + DEFAULT_UNIT);
       navigate(`/?page=${currentPage}`);
     }
 
     if(nameButton === 'back') {
-      callbackPaginate(currentPage - 1);
+      callbackPaginate(currentPage - DEFAULT_UNIT);
       navigate(`/?page=${currentPage}`);
     }
   }

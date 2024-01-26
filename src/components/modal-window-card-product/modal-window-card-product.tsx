@@ -4,7 +4,7 @@ import { windowsSlice } from '../../store/slice/modal-windows';
 import { DELAY_FOCUS } from '../../const';
 
 function ModalWindowCardProductComponent () {
-  const stateCard = useAppSelector((state) => state.offer.reviews);
+  const stateCard = useAppSelector((state) => state['offer/getState'].reviews);
   const dispatch = useAppDispatch();
   const addBasketButtonRef = useRef<HTMLButtonElement>(null);
 

@@ -24,8 +24,8 @@ function ProductPage ({title}: ProductProps) {
   const {id, tab} = useParams<string>();
   const dispatch = useAppDispatch();
   const stateSimilarOffers = useAppSelector((state) => state.similarOffers.similarOffers);
-  const isErrorLoadOffer = useAppSelector((state) => state.offer.error);
-  const isLoadingOffer = useAppSelector((state) => state.offer.loading);
+  const isErrorLoadOffer = useAppSelector((state) => state['offer/getState'].error);
+  const isLoadingOffer = useAppSelector((state) => state['offer/getState'].loading);
 
   useDocumentTitle(title);
 

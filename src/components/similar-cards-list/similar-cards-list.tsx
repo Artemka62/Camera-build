@@ -6,7 +6,7 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './similar-cards-list.css';
-import { DEFAULT_NULL } from '../../const';
+import { DEFAULT_NULL, SLIDE_COUNT } from '../../const';
 
 
 type SimilarCardsListComponentProps = {
@@ -15,7 +15,7 @@ type SimilarCardsListComponentProps = {
 
 function SimilarCardsListComponent({ offers }: SimilarCardsListComponentProps) {
 
-  const stateOffer = useAppSelector((state) => state.offer.reviews);
+  const stateOffer = useAppSelector((state) => state['offer/getState'].reviews);
 
   const getSimilarOffers = offers.filter((product) => (
     stateOffer?.level === product.level && stateOffer.type === product.type && stateOffer.category === product.category
@@ -33,10 +33,10 @@ function SimilarCardsListComponent({ offers }: SimilarCardsListComponentProps) {
               nextEl: '.slider-controls--next',
             }}
             modules={[Navigation]}
-            slidesPerView={3}
+            slidesPerView={SLIDE_COUNT}
             watchSlidesProgress
             allowTouchMove={false}
-            slidesPerGroup={3}
+            slidesPerGroup={SLIDE_COUNT}
 
             className="product-similar__slider-list"
           >

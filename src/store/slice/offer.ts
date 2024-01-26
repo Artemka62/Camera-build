@@ -11,7 +11,7 @@ const initialState: StateOffer = {
 };
 
 const offerSlice = createSlice({
-  name: 'offer',
+  name: 'offer/getState',
   initialState,
   reducers: {
     questionList(state, action: PayloadAction<OfferCard>) {

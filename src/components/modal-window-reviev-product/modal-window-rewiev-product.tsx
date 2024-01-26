@@ -2,7 +2,7 @@ import { useAppDispatch} from '../../hooks/use-store';
 import { windowsSlice } from '../../store/slice/modal-windows';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Fragment, useEffect} from 'react';
-import { DELAY_FOCUS, OPTIONS } from '../../const';
+import { DEFAULT_NULL, DELAY_FOCUS, OPTIONS, SettingValidation } from '../../const';
 import { postReview } from '../../services/thunk/post-review';
 import { PostReview } from '../../types/types-service';
 import { useParams } from 'react-router-dom';
@@ -102,9 +102,9 @@ function ModalWindowReviewProductComponent () {
                         {...register('rating', {
                           required: 'Нужно оценить товар',
                           validate: (ratingValue) =>
-                            (Number(ratingValue) >= 1 &&
-                              Number(ratingValue) <= 5) ||
-                            'Минимальное значение 1, максимальное 5',
+                            (Number(ratingValue) >= SettingValidation.RatingMin &&
+                              Number(ratingValue) <= SettingValidation.RatingMax) ||
+                              SettingValidation.RatingMessage,
                         })}
                       />
                       <label
@@ -116,13 +116,13 @@ function ModalWindowReviewProductComponent () {
                   ))}
                 </div>
                 <div className="rate__progress">
-                  <span className="rate__stars">{ratingFieldValue || 0}</span>{' '}
+                  <span className="rate__stars">{ratingFieldValue || DEFAULT_NULL}</span>{' '}
                   <span>/</span> <span className="rate__all-stars">5</span>
                 </div>
               </div>
               {errors.rating && (
                 <p className="rate__message">
-                  {errors.rating.message || 'Ошибка'}
+                  {errors.rating.message || SettingValidation.ErrorMessage}
                 </p>
               )}
             </fieldset>
@@ -139,21 +139,21 @@ function ModalWindowReviewProductComponent () {
                   placeholder="Введите ваше имя"
                   autoFocus
                   {...register('userName', {
-                    required: 'Нужно указать имя',
+                    required: SettingValidation.UserMessageRequired,
                     minLength: {
-                      value: 2,
-                      message: 'От 2 до 15 символов',
+                      value: SettingValidation.UserNameMin,
+                      message: SettingValidation.UserMessageValidation,
                     },
                     maxLength: {
-                      value: 15,
-                      message: 'От 1 до 15 символов',
+                      value: SettingValidation.UserNameMax,
+                      message: SettingValidation.UserMessageValidation,
                     }
                   })}
                 />
               </label>
               {errors.userName && (
                 <p className="custom-input__error">
-                  {errors.userName.message || 'Ошибка'}
+                  {errors.userName.message || SettingValidation.ErrorMessage}
                 </p>
               )}
             </div>
@@ -169,21 +169,21 @@ function ModalWindowReviewProductComponent () {
                   type="text"
                   placeholder="Основные преимущества товара"
                   {...register('userPlus', {
-                    required: 'Нужно указать достоинства',
+                    required: SettingValidation.UserTextPlus,
                     minLength: {
-                      value: 10,
-                      message: 'От 10 до 160 символов',
+                      value: SettingValidation.UserTextMin,
+                      message: SettingValidation.UserTextMessage,
                     },
                     maxLength: {
-                      value: 160,
-                      message: 'От 10 до 160 символов',
+                      value: SettingValidation.UserTextMax,
+                      message: SettingValidation.UserTextMessage,
                     }
                   })}
                 />
               </label>
               {errors.userPlus && (
                 <p className="custom-input__error">
-                  {errors.userPlus.message || 'Ошибка'}
+                  {errors.userPlus.message || SettingValidation.ErrorMessage}
                 </p>
               )}
             </div>
@@ -199,21 +199,21 @@ function ModalWindowReviewProductComponent () {
                   type="text"
                   placeholder="Главные недостатки товара"
                   {...register('userMinus', {
-                    required: 'Нужно указать недостатки',
+                    required: SettingValidation.UserTextMinus,
                     minLength: {
-                      value: 10,
-                      message: 'От 10 до 160 символов',
+                      value: SettingValidation.UserTextMin,
+                      message: SettingValidation.UserTextMessage,
                     },
                     maxLength: {
-                      value: 160,
-                      message: 'От 10 до 160 символов',
+                      value: SettingValidation.UserTextMax,
+                      message: SettingValidation.UserTextMessage,
                     }
                   })}
                 />
               </label>
               {errors.userMinus && (
                 <p className="custom-input__error">
-                  {errors.userMinus.message || 'Ошибка'}
+                  {errors.userMinus.message || SettingValidation.ErrorMessage}
                 </p>
               )}
             </div>
@@ -229,21 +229,21 @@ function ModalWindowReviewProductComponent () {
                 <textarea
                   placeholder="Поделитесь своим опытом покупки"
                   {...register('userComment', {
-                    required: 'Нужно добавить комментарий',
+                    required: SettingValidation.UserComment,
                     minLength: {
-                      value: 10,
-                      message: 'От 10 до 160 символов',
+                      value: SettingValidation.UserTextMin,
+                      message: SettingValidation.UserTextMessage,
                     },
                     maxLength: {
-                      value: 160,
-                      message: 'От 10 до 160 символов',
+                      value: SettingValidation.UserTextMax,
+                      message: SettingValidation.UserTextMessage,
                     }
                   })}
                 />
               </label>
               {errors.userComment && (
                 <div className="custom-textarea__error">
-                  {errors.userComment.message || 'Ошибка'}
+                  {errors.userComment.message || SettingValidation.ErrorMessage}
                 </div>
               )}
             </div>

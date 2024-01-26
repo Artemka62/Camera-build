@@ -13,7 +13,7 @@ const initialState: StateWindow = {
 };
 
 const windowsSlice = createSlice({
-  name: 'windows',
+  name: 'window/isOpen',
   initialState,
   reducers: {
     isModalWindow(state, action: PayloadAction<boolean>) {

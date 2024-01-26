@@ -1,9 +1,4 @@
-.my-swiper .swiper-pagination {
-  position: absolute;
-  bottom: 20px;
-  display: flex;
-  flex-direction: row-reverse;
-}
+
 .my-swiper .swiper-pagination-bullet {
   width: 10px;
   height: 10px;
@@ -12,7 +7,13 @@
   margin: 0 5px;
 
 }
-
+.my-swiper .swiper-pagination {
+  position: absolute;
+  bottom: 20px;
+  left: -40px;
+  display: flex;
+  flex-direction: row-reverse;
+}
 .my-swiper .swiper-pagination-bullet-active {
   background-color: rgba(117, 117, 226, 1);
   opacity: 1;
