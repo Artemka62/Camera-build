@@ -13,6 +13,7 @@ import { AppRoute, DEFAULT_UNIT, MAX_LENGTH_CARDS } from '../../src-const';
 import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
 import { ErrorPage } from '../page-error/page-error';
+import { useLocation } from 'react-router-dom';
 
 type MainPageProps = {
   title: string;
@@ -25,19 +26,17 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const lastOfferIndex = currentPage * offersPerPages;
   const firstOfferIndex = lastOfferIndex - offersPerPages;
   const currentOffers = stateOffers.slice(firstOfferIndex, lastOfferIndex);
-  const searchParams = new URLSearchParams(window.location.search);
-  const pageParam = searchParams.get('page');
   const isLoadingOffers = useAppSelector((state) => state.offers.loading);
   const isErrorLoadOffers = useAppSelector((state) => state.offers.error);
+  const location = useLocation();
 
   useDocumentTitle(title);
 
   useEffect(() => {
-    if (pageParam) {
-      const lastDigit = pageParam.slice(-DEFAULT_UNIT);
+    const lastDigit = +location.search.slice(-DEFAULT_UNIT);
 
-      setCurrentPage(+lastDigit);
-    }
+    setCurrentPage(+lastDigit);
+
   },[]);
 
 
