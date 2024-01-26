@@ -1,5 +1,5 @@
 import { Review } from '../../types/types-store';
-import { formatData } from '../../utils/format-data';
+import { formatData } from '../../utils/utils-format-data';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 
 type CardReviewProps = {

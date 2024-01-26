@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ButtonBasketComponent } from '../button-basket/button-basket';
 import { LogotypeComponent } from '../logotype/logotype';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../src-const';
 
 function HeaderComponent () {
   return (

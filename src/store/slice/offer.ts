@@ -2,7 +2,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import { OfferCard, StateOffer } from '../../types/types-store';
-import { fetchOfferAction } from '../../services/thunk/fetch-offer';
+import { fetchOfferAction } from '../../services/thunk/thunk-fetch-offer';
 
 const initialState: StateOffer = {
   reviews: null,
@@ -11,7 +11,7 @@ const initialState: StateOffer = {
 };
 
 const offerSlice = createSlice({
-  name: 'offer/getState',
+  name: 'offer',
   initialState,
   reducers: {
     questionList(state, action: PayloadAction<OfferCard>) {

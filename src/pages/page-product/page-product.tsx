@@ -1,20 +1,20 @@
 import { useParams } from 'react-router-dom';
 import { FooterComponent } from '../../components/footer/footer';
 import { HeaderComponent } from '../../components/header/header';
-import { useDocumentTitle } from '../../hooks/use-document-title';
-import { useAppDispatch, useAppSelector} from '../../hooks/use-store';
-import { fetchOfferAction } from '../../services/thunk/fetch-offer';
+import { useDocumentTitle } from '../../hooks/hook-use-document-title';
+import { useAppDispatch, useAppSelector} from '../../hooks/hook-use-store';
+import { fetchOfferAction } from '../../services/thunk/thunk-fetch-offer';
 import { useEffect } from 'react';
 import { CardOfferProductComponent } from '../../components/card-offer-product/card-offer-product';
 import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
-import { fetchSimilarOffersAction } from '../../services/thunk/fetch-similar-offers';
+import { fetchSimilarOffersAction } from '../../services/thunk/thunk-fetch-similar-offers';
 import { SimilarCardsListComponent } from '../../components/similar-cards-list/similar-cards-list';
 import { ReviewListComponent } from '../../components/review-list/review-list';
-import { fetchReviewsAction } from '../../services/thunk/fetch-rewiews';
+import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-rewiews';
 import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../src-const';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
-import { ErrorPage } from '../error-page/error-page';
+import { ErrorPage } from '../page-error/page-error';
 
 type ProductProps = {
   title: string;
@@ -24,8 +24,8 @@ function ProductPage ({title}: ProductProps) {
   const {id, tab} = useParams<string>();
   const dispatch = useAppDispatch();
   const stateSimilarOffers = useAppSelector((state) => state.similarOffers.similarOffers);
-  const isErrorLoadOffer = useAppSelector((state) => state['offer/getState'].error);
-  const isLoadingOffer = useAppSelector((state) => state['offer/getState'].loading);
+  const isErrorLoadOffer = useAppSelector((state) => state.offer.error);
+  const isLoadingOffer = useAppSelector((state) => state.offer.loading);
 
   useDocumentTitle(title);
 

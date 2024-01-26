@@ -1,21 +1,21 @@
-import { createApi } from '../api';
+import { createApi } from '../services-api';
 import MockAdapter from 'axios-mock-adapter';
 import thunk from 'redux-thunk';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import { ApiRoute } from '../../const';
-import { fetchOffersAction } from './fetch-offers';
+import { ApiRoute } from '../../src-const';
+import { fetchOffersAction } from './thunk-fetch-offers';
 import { mockOffer } from '../../mock-test/mock-offer/mock-offer';
 import { State } from '../../types/types-store';
-import { fetchOfferAction } from './fetch-offer';
+import { fetchOfferAction } from './thunk-fetch-offer';
 import { mockPromo } from '../../mock-test/mock-promo/mock-promo';
-import { fetchPromoOffersAction } from './fetch-promo-offers';
-import { fetchReviewsAction } from './fetch-rewiews';
+import { fetchPromoOffersAction } from './thunk-fetch-promo-offers';
+import { fetchReviewsAction } from './thunk-fetch-rewiews';
 import { mockReview, mockReviewPost} from '../../mock-test/mock-review/mock-review';
 import { mockSimilar } from '../../mock-test/mock-similar/mock-similar';
-import { fetchSimilarOffersAction } from './fetch-similar-offers';
-import { postReview } from './post-review';
+import { fetchSimilarOffersAction } from './thunk-fetch-similar-offers';
+import { postReview } from './thunk-post-review';
 
 type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createApi>, Action>
 

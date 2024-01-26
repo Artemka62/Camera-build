@@ -1,7 +1,7 @@
 import type {OfferCard, StateOffersSimilar} from '../../types/types-store';
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import { fetchSimilarOffersAction } from '../../services/thunk/fetch-similar-offers';
+import { fetchSimilarOffersAction } from '../../services/thunk/thunk-fetch-similar-offers';
 
 const initialState: StateOffersSimilar = {
   similarOffers: [],

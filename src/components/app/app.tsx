@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute, TitleDescription } from '../../const';
-import { MainPage } from '../../pages/main-page/main-page';
-import { ProductPage } from '../../pages/product-page/product-page';
-import { BasketPage } from '../../pages/basket-page/basket-page';
-import { ErrorPage } from '../../pages/error-page/error-page';
-import { useAppDispatch } from '../../hooks/use-store';
-import { fetchOffersAction } from '../../services/thunk/fetch-offers';
-import { fetchPromoOffersAction } from '../../services/thunk/fetch-promo-offers';
+import { AppRoute, TitleDescription } from '../../src-const';
+import { MainPage } from '../../pages/page-main/page-main';
+import { ProductPage } from '../../pages/page-product/page-product';
+import { BasketPage } from '../../pages/page-basket/page-basket';
+import { ErrorPage } from '../../pages/page-error/page-error';
+import { useAppDispatch } from '../../hooks/hook-use-store';
+import { fetchOffersAction } from '../../services/thunk/thunk-fetch-offers';
+import { fetchPromoOffersAction } from '../../services/thunk/thunk-fetch-promo-offers';
 
 function App () {
   const dispatch = useAppDispatch();

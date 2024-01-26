@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import { store } from '../../store';
+import { store } from '../../store/store-index';
 import { withHistory } from '../mock-component/mock-component';
 import { CardsListComponent } from './cards-list';
 import { mockOffer } from '../../mock-test/mock-offer/mock-offer';

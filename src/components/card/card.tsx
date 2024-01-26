@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/use-store';
-import { fetchOfferAction } from '../../services/thunk/fetch-offer';
+import { useAppDispatch } from '../../hooks/hook-use-store';
+import { fetchOfferAction } from '../../services/thunk/thunk-fetch-offer';
 import { OfferCard } from '../../types/types-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../src-const';
 import { windowsSlice } from '../../store/slice/modal-windows';
-import { fetchReviewsAction } from '../../services/thunk/fetch-rewiews';
+import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-rewiews';
 
 type CardComponentProps = {
   offer: OfferCard;

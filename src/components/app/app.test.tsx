@@ -1,9 +1,9 @@
 import {render, screen} from '@testing-library/react';
 import { MemoryHistory, createMemoryHistory } from 'history';
-import { AppRoute} from '../../const';
+import { AppRoute} from '../../src-const';
 import { App } from './app';
 import { withHistory, withStore } from '../mock-component/mock-component';
-import { makeFakeStore } from '../../hooks/mock';
+import { makeFakeStore } from '../../hooks/hook-mock';
 
 describe('Application Routing', () => {
   let mockHistory: MemoryHistory;

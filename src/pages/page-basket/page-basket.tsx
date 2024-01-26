@@ -1,7 +1,7 @@
 import { FooterComponent } from '../../components/footer/footer';
 import { HeaderComponent } from '../../components/header/header';
 import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
-import { useDocumentTitle } from '../../hooks/use-document-title';
+import { useDocumentTitle } from '../../hooks/hook-use-document-title';
 
 type BasketProps = {
   title: string;

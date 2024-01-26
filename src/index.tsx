@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './components/app/app';
 import { Provider } from 'react-redux';
-import { store } from './store';
+import { store } from './store/store-index';
 import { HistoryRouter } from './components/history-router/history-router';
-import { browserHistory } from './browser-history';
+import { browserHistory } from './src-browser-history';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

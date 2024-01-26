@@ -1,9 +1,9 @@
 import { Provider } from 'react-redux';
-import { store } from '../../store';
+import { store } from '../../store/store-index';
 import { withHistory } from '../mock-component/mock-component';
 import { render, screen } from '@testing-library/react';
 import { PaginationMainPageComponent } from './pagination-main-page';
-import { DEFAULT_NULL, DEFAULT_UNIT } from '../../const';
+import { DEFAULT_NULL, DEFAULT_UNIT } from '../../src-const';
 
 function handleClickButton(numberPage: number) {
   return numberPage;

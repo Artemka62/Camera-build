@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../hooks/use-store';
+import { useAppSelector } from '../../hooks/hook-use-store';
 import { OfferCard } from '../../types/types-store';
 import { CardComponent } from '../card/card';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -6,7 +6,7 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './similar-cards-list.css';
-import { DEFAULT_NULL, SLIDE_COUNT } from '../../const';
+import { DEFAULT_NULL, SLIDE_COUNT } from '../../src-const';
 
 
 type SimilarCardsListComponentProps = {
@@ -15,7 +15,7 @@ type SimilarCardsListComponentProps = {
 
 function SimilarCardsListComponent({ offers }: SimilarCardsListComponentProps) {
 
-  const stateOffer = useAppSelector((state) => state['offer/getState'].reviews);
+  const stateOffer = useAppSelector((state) => state.offer.reviews);
 
   const getSimilarOffers = offers.filter((product) => (
     stateOffer?.level === product.level && stateOffer.type === product.type && stateOffer.category === product.category

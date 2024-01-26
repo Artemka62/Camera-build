@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { DEFAULT_NULL, START_NUMBER_REVIEWS } from '../../const';
-import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
+import { DEFAULT_NULL, START_NUMBER_REVIEWS } from '../../src-const';
+import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
 import { CardReviewComponent } from '../card-review/card-review';
 import { windowsSlice } from '../../store/slice/modal-windows';
 

@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
-import {useDocumentTitle} from '../../hooks/use-document-title';
-import { useAppDispatch } from '../../hooks/use-store';
-import { fetchOffersAction } from '../../services/thunk/fetch-offers';
+import {AppRoute} from '../../src-const';
+import {useDocumentTitle} from '../../hooks/hook-use-document-title';
+import { useAppDispatch } from '../../hooks/hook-use-store';
+import { fetchOffersAction } from '../../services/thunk/thunk-fetch-offers';
 
 type ErrorPageProps = {
   title: string;

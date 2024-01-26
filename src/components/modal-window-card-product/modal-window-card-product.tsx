@@ -1,10 +1,10 @@
 import { useEffect, useRef} from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
+import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
 import { windowsSlice } from '../../store/slice/modal-windows';
-import { DELAY_FOCUS } from '../../const';
+import { DELAY_FOCUS } from '../../src-const';
 
 function ModalWindowCardProductComponent () {
-  const stateCard = useAppSelector((state) => state['offer/getState'].reviews);
+  const stateCard = useAppSelector((state) => state.offer.reviews);
   const dispatch = useAppDispatch();
   const addBasketButtonRef = useRef<HTMLButtonElement>(null);
 

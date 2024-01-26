@@ -1,4 +1,4 @@
-import { OPTIONS } from '../../const';
+import { OPTIONS } from '../../src-const';
 
 type StarsRatingComponentProps = {
   rating: number;

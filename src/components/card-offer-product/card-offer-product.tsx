@@ -1,12 +1,12 @@
-import { AppRoute, SettingTab } from '../../const';
-import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
+import { AppRoute, SettingTab } from '../../src-const';
+import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
 import { windowsSlice } from '../../store/slice/modal-windows';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function CardOfferProductComponent () {
   const dispatch = useAppDispatch();
-  const stateOffer = useAppSelector((state) => state['offer/getState'].reviews);
+  const stateOffer = useAppSelector((state) => state.offer.reviews);
   const navigate = useNavigate();
   const {tab} = useParams();
   const isActiveForCharacteristic = (tab === SettingTab.Characteristic) ? 'is-active' : '';

@@ -1,6 +1,6 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import { offersSlice } from './slice/offers';
-import { createApi } from '../services/api';
+import { createApi } from '../services/services-api';
 import { offersPromoSlice } from './slice/offers-promo';
 import { offerSlice } from './slice/offer';
 import { windowsSlice } from './slice/modal-windows';

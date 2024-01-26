@@ -2,7 +2,7 @@
 import { render, screen} from '@testing-library/react';
 import { withHistory } from '../mock-component/mock-component';
 import { ButtonChangePage } from './button-change-page';
-import { DEFAULT_NULL, DEFAULT_UNIT } from '../../const';
+import { DEFAULT_NULL, DEFAULT_UNIT } from '../../src-const';
 
 function handleClickButton(numberPage: number) {
   return numberPage;

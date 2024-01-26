@@ -1,4 +1,4 @@
-import { store } from '../store';
+import { store } from '../store/store-index';
 
 type State = ReturnType<typeof store.getState>;
 type AppDispatch = typeof store.dispatch;

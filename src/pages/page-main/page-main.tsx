@@ -6,13 +6,13 @@ import { FooterComponent } from '../../components/footer/footer';
 import { HeaderComponent } from '../../components/header/header';
 import { PaginationMainPageComponent } from '../../components/pagination-main-page/pagination-main-page';
 import { SortListCardsComponent } from '../../components/sort-list-cards/sort-list-cards';
-import { useDocumentTitle } from '../../hooks/use-document-title';
-import { useAppSelector } from '../../hooks/use-store';
+import { useDocumentTitle } from '../../hooks/hook-use-document-title';
+import { useAppSelector } from '../../hooks/hook-use-store';
 import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
-import { AppRoute, DEFAULT_UNIT, MAX_LENGTH_CARDS } from '../../const';
+import { AppRoute, DEFAULT_UNIT, MAX_LENGTH_CARDS } from '../../src-const';
 import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
-import { ErrorPage } from '../error-page/error-page';
+import { ErrorPage } from '../page-error/page-error';
 
 type MainPageProps = {
   title: string;

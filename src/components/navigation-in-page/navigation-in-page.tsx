@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/use-store';
-import { AppRoute } from '../../const';
+import { useAppSelector } from '../../hooks/hook-use-store';
+import { AppRoute } from '../../src-const';
 
 function NavigationInPageComponent () {
   const location = useLocation();
@@ -8,7 +8,7 @@ function NavigationInPageComponent () {
   const pathParts = currentPath.split('/');
   const pageName = pathParts[1];
   const isActive = (pageName === '') ? 'breadcrumbs__link breadcrumbs__link--active' : 'breadcrumbs__link';
-  const stateOfferProduct = useAppSelector((state) => state['offer/getState'].reviews);
+  const stateOfferProduct = useAppSelector((state) => state.offer.reviews);
 
   return (
     <div className="breadcrumbs" data-testid='navigation-in-page'>

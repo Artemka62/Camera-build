@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../src-const';
 import { OfferPromo } from '../../types/types-store';
 
 type BannerOfferProps = {

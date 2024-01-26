@@ -1,9 +1,9 @@
 import { Provider } from 'react-redux';
-import { store } from '../../store';
+import { store } from '../../store/store-index';
 import { withHistory } from '../mock-component/mock-component';
 import { render, screen } from '@testing-library/react';
 import { StarsRatingComponent } from './stars-rating';
-import { DEFAULT_UNIT } from '../../const';
+import { DEFAULT_UNIT } from '../../src-const';
 
 
 describe('component: StarsRatingComponent', () => {

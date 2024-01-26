@@ -1,12 +1,12 @@
-import { useAppDispatch} from '../../hooks/use-store';
+import { useAppDispatch} from '../../hooks/hook-use-store';
 import { windowsSlice } from '../../store/slice/modal-windows';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Fragment, useEffect} from 'react';
-import { DEFAULT_NULL, DELAY_FOCUS, OPTIONS, SettingValidation } from '../../const';
-import { postReview } from '../../services/thunk/post-review';
+import { DEFAULT_NULL, DELAY_FOCUS, OPTIONS, SettingValidation } from '../../src-const';
+import { postReview } from '../../services/thunk/thunk-post-review';
 import { PostReview } from '../../types/types-service';
 import { useParams } from 'react-router-dom';
-import { fetchReviewsAction } from '../../services/thunk/fetch-rewiews';
+import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-rewiews';
 import './modal-window-rewiew-product.css';
 
 type FormInputs = {

@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { ButtonChangePage } from '../button-change-page/button-change-page';
 import { useEffect } from 'react';
-import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, MAX_LENGTH_CARDS, PAGES_PER_SET } from '../../const';
-import { useAppSelector } from '../../hooks/use-store';
+import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, MAX_LENGTH_CARDS, PAGES_PER_SET } from '../../src-const';
+import { useAppSelector } from '../../hooks/hook-use-store';
 
 type PaginationMainPageComponentProps = {
   offersPerPages: number;

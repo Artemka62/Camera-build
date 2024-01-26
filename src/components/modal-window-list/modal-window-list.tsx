@@ -2,16 +2,16 @@ import { useEffect } from 'react';
 import { ModalWindowCardProductComponent } from '../modal-window-card-product/modal-window-card-product';
 import { ModalWindowReviewSuccess } from '../modal-window-review-success/modal-window-review-success';
 import { ModalWindowReviewProductComponent } from '../modal-window-reviev-product/modal-window-rewiev-product';
-import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
+import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
 import { windowsSlice } from '../../store/slice/modal-windows';
 import { ModalWindowAddBasketSuccessComponent } from '../modal-window-add-basket-success/modal-window-add-basket-success';
 
 function ModalWindowComponent () {
-  const isWindowModalOpen = useAppSelector((state) => state['window/isOpen'].isWindowModalOpen);
-  const isCardProductOpen = useAppSelector((state) => state['window/isOpen'].isWindowProductOpen);
-  const isFormReviewOpen = useAppSelector((state) => state['window/isOpen'].isWindowReviewOpen);
-  const isBasketSuccessOpen = useAppSelector((state) => state['window/isOpen'].isWindowReviewSuccessOpen);
-  const isBasketAddSuccessOpen = useAppSelector((state) => state['window/isOpen'].isWindowAddBasketSuccessOpen);
+  const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowModalOpen);
+  const isCardProductOpen = useAppSelector((state) => state.windows.isWindowProductOpen);
+  const isFormReviewOpen = useAppSelector((state) => state.windows.isWindowReviewOpen);
+  const isBasketSuccessOpen = useAppSelector((state) => state.windows.isWindowReviewSuccessOpen);
+  const isBasketAddSuccessOpen = useAppSelector((state) => state.windows.isWindowAddBasketSuccessOpen);
   const dispatch = useAppDispatch();
   const isActive = isWindowModalOpen ? 'modal is-active' : 'modal modal--narrow';
 

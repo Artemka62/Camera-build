@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import { ApiRoute } from '../../const';
+import { ApiRoute } from '../../src-const';
 import { Thunk } from '../../types/types-service';
 import { OfferPromo } from '../../types/types-store';
 
