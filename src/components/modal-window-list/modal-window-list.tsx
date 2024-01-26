@@ -4,7 +4,7 @@ import { ModalWindowReviewSuccess } from '../modal-window-review-success/modal-w
 import { ModalWindowReviewProductComponent } from '../modal-window-reviev-product/modal-window-rewiev-product';
 import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
 import { windowsSlice } from '../../store/slice/modal-windows';
-import { ModalWindowAddCatalogSuccessComponent } from '../modal-window-add-catalog-success/modal-window-add-catalog-success';
+import { ModalWindowAddBasketSuccessComponent } from '../modal-window-add-basket-success/modal-window-add-basket-success';
 
 function ModalWindowComponent () {
   const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowModalOpen);
@@ -49,7 +49,7 @@ function ModalWindowComponent () {
         {isCardProductOpen ? <ModalWindowCardProductComponent/> : ''}
         {isFormReviewOpen ? <ModalWindowReviewProductComponent/> : ''}
         {isBasketSuccessOpen ? <ModalWindowReviewSuccess/> : ''}
-        {isBasketAddSuccessOpen ? <ModalWindowAddCatalogSuccessComponent/> : ''}
+        {isBasketAddSuccessOpen ? <ModalWindowAddBasketSuccessComponent/> : ''}
       </div>
     </div>
   );

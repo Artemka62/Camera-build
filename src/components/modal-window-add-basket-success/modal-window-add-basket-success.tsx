@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../hooks/use-store';
 import { windowsSlice } from '../../store/slice/modal-windows';
 import { useEffect, useRef } from 'react';
 
-function ModalWindowAddCatalogSuccessComponent () {
+function ModalWindowAddBasketSuccessComponent () {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const goToBasket = useRef<HTMLButtonElement>(null);
@@ -63,4 +63,4 @@ function ModalWindowAddCatalogSuccessComponent () {
   );
 }
 
-export {ModalWindowAddCatalogSuccessComponent};
+export {ModalWindowAddBasketSuccessComponent};
