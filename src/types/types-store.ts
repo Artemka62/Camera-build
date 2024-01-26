@@ -53,7 +53,7 @@ type StateWindow = {
   isWindowProductOpen: boolean;
   isWindowReviewOpen: boolean;
   isWindowModalOpen: boolean;
-  isWindowBasketSuccessOpen: boolean;
+  isWindowReviewSuccessOpen: boolean;
   isWindowAddBasketSuccessOpen: boolean;
 };
 

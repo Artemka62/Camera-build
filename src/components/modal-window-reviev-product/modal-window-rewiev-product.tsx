@@ -69,7 +69,7 @@ function ModalWindowReviewProductComponent () {
     dispatch(postReview({dataForm})).unwrap().then(() => {
       reset();
       dispatch(windowsSlice.actions.windowReview(false));
-      dispatch(windowsSlice.actions.windowBasketSuccess(true));
+      dispatch(windowsSlice.actions.windowReviewSuccess(true));
 
       if(id){
         dispatch(fetchReviewsAction(+id));

@@ -2,14 +2,14 @@ import { Provider } from 'react-redux';
 import { store } from '../../store';
 import { withHistory } from '../mock-component/mock-component';
 import { render, screen } from '@testing-library/react';
-import { ModalWindowBasketSuccess } from './modal-window-product-basket-success';
+import { ModalWindowReviewSuccess } from './modal-window-review-success';
 
 describe('component: ModalWindowBasketSuccess', () => {
   it('should render correctly', () => {
-    const expectedText = 'Спасибо за покупку';
+    const expectedText = 'Спасибо за отзыв';
     const preparedComponent = withHistory(
       <Provider store={store}>
-        <ModalWindowBasketSuccess/>
+        <ModalWindowReviewSuccess/>
       </Provider>
     );
 

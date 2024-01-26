@@ -7,7 +7,7 @@ describe('Modal windows slice', () => {
     isWindowModalOpen: false,
     isWindowProductOpen: false,
     isWindowReviewOpen: false,
-    isWindowBasketSuccessOpen: false,
+    isWindowReviewSuccessOpen: false,
     isWindowAddBasketSuccessOpen: false
   };
 

@@ -4,7 +4,7 @@ import { windowsSlice } from '../../store/slice/modal-windows';
 import { AppRoute, DELAY_FOCUS } from '../../const';
 import { useEffect, useRef } from 'react';
 
-function ModalWindowBasketSuccess () {
+function ModalWindowReviewSuccess () {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const successBuyButtonRef = useRef<HTMLButtonElement>(null);
@@ -19,7 +19,7 @@ function ModalWindowBasketSuccess () {
 
   function pushDispatch () {
     dispatch(windowsSlice.actions.isModalWindow(false));
-    dispatch(windowsSlice.actions.windowBasketSuccess(false));
+    dispatch(windowsSlice.actions.windowReviewSuccess(false));
   }
 
   function handleClickButtonClose () {
@@ -57,4 +57,4 @@ function ModalWindowBasketSuccess () {
   );
 }
 
-export {ModalWindowBasketSuccess};
+export {ModalWindowReviewSuccess};
