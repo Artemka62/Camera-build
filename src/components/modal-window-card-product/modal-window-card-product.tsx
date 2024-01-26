@@ -21,15 +21,22 @@ function ModalWindowCardProductComponent () {
   }
 
   useEffect(() => {
-    if (addBasketButtonRef.current) {
+    let isMounted = true;
+
+    if (addBasketButtonRef.current && isMounted) {
       setTimeout(() => {
         addBasketButtonRef.current?.focus();
       }, DELAY_FOCUS);
     }
 
-    document.body.classList.add('scroll-lock');
+    if (isMounted) {
+      document.body.classList.add('scroll-lock');
+    }
 
-    return () => document.body.classList.remove('scroll-lock');
+    return () => {
+      document.body.classList.remove('scroll-lock');
+      isMounted = false;
+    };
   }, []);
 
   return (
@@ -40,11 +47,11 @@ function ModalWindowCardProductComponent () {
           <picture>
             <source
               type="/image/webp"
-              srcSet={`/${stateCard?.previewImgWebp || ''}`}
+              srcSet={`/${stateCard?.previewImgWebp || ''}, /${stateCard?.previewImgWebp2x || ''} 2x`}
             />
             <img
               src={`/${stateCard?.previewImg || ''}`}
-              srcSet={`/${stateCard?.previewImgWebp || ''}`}
+              srcSet={`/${stateCard?.previewImgWebp2x || ''} 2x`}
               width={140}
               height={120}
               alt={stateCard?.name}

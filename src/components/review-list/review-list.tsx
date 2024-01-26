@@ -18,7 +18,15 @@ function ReviewListComponent () {
 
 
   useEffect(() => {
-    setCountReviews(START_NUMBER_REVIEWS);
+    let isMounted = true;
+
+    if(isMounted) {
+      setCountReviews(START_NUMBER_REVIEWS);
+    }
+
+    return () => {
+      isMounted = false;
+    };
   },[stateReviews]);
 
 

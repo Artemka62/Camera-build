@@ -30,17 +30,29 @@ function ProductPage ({title}: ProductProps) {
   useDocumentTitle(title);
 
   useEffect(() => {
-    if (id) {
+    let isMounted = true;
+
+    if (id && isMounted) {
       dispatch(fetchOfferAction(+id));
       dispatch(fetchSimilarOffersAction(+id));
       dispatch(fetchReviewsAction(+id));
     }
+
+    return () => {
+      isMounted = false;
+    };
   },[]);
 
   useEffect(() => {
-    if (id) {
+    let isMounted = true;
+
+    if (id && isMounted) {
       dispatch(fetchOfferAction(+id));
     }
+
+    return () => {
+      isMounted = false;
+    };
   },[id]);
 
   function handleClickButtonUp () {

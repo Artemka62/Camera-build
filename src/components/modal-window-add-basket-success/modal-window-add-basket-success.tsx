@@ -11,10 +11,16 @@ function ModalWindowAddBasketSuccessComponent () {
 
 
   useEffect(() => {
-    if (goToBasket.current) {
+    let isMounted = true;
+
+    if (goToBasket.current && isMounted) {
       setTimeout(() => {
         goToBasket.current?.focus();
       }, DELAY_FOCUS);
+
+      return () => {
+        isMounted = false;
+      };
     }
 
     document.body.classList.add('scroll-lock');

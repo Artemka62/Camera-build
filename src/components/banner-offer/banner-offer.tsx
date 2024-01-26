@@ -12,11 +12,11 @@ function BannerOfferComponent ({offer}: BannerOfferProps) {
       <picture>
         <source
           type="image/webp"
-          srcSet={`${offer.previewImgWebp}`}
+          srcSet={`/${offer.previewImgWebp}, /${offer.previewImgWebp2x} 2x`}
         />
         <img
           src={offer.previewImg}
-          srcSet={`${offer.previewImgWebp}`}
+          srcSet={`/${offer.previewImg2x} 2x`}
           width={1280}
           height={280}
           alt="баннер"

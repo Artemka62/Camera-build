@@ -23,20 +23,21 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, callbackPagin
   const isPageReel = currentPage > DEFAULT_NULL && currentPage <= Math.ceil(stateOffers.length / MAX_LENGTH_CARDS);
 
   useEffect(() => {
-    navigate(`/?page=${currentPage}`);
+    let isMounted = true;
+    navigate(`${AppRoute.Page}${currentPage}`);
 
-    if(!isPageReel) {
+    if(!isPageReel && isMounted) {
       navigate(AppRoute.Error);
     }
+
+    return () => {
+      isMounted = false;
+    };
   },[currentPage]);
 
   function handleClickButton(numberPage: number) {
     callbackPaginate(numberPage);
   }
-
-  // if (totalOffers <= MAX_LENGTH_CARDS) {
-  //   return <> </>;
-  // }
 
   return (
     <div className="pagination" data-testid='pagination-main-page'>

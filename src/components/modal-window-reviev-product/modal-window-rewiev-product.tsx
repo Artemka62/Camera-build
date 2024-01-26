@@ -39,16 +39,30 @@ function ModalWindowReviewProductComponent () {
   const ratingFieldValue = watch('rating');
 
   useEffect(() => {
-    document.body.classList.add('scroll-lock');
+    let isMounted = true;
 
-    return () => document.body.classList.remove('scroll-lock');
+    if(isMounted){
+      document.body.classList.add('scroll-lock');
+    }
+
+    return () => {
+      document.body.classList.remove('scroll-lock');
+      isMounted = false;
+    };
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      setFocus('userName');
-    }, DELAY_FOCUS);
+    let isMounted = true;
 
+    if(isMounted) {
+      setTimeout(() => {
+        setFocus('userName');
+      }, DELAY_FOCUS);
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [setFocus]);
 
   function handleButtonClose () {

@@ -24,7 +24,8 @@ enum AppRoute {
   Basket = '/basket',
   Error = '/error',
   Characteristic = '/characteristic',
-  Description = '/description'
+  Description = '/description',
+  Page = '/?page='
 }
 
 enum ApiRoute {

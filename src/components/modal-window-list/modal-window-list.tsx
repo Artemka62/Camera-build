@@ -29,16 +29,21 @@ function ModalWindowComponent () {
   }
 
   useEffect(() => {
+    let isMounted = true;
+
     const handleKeyDownEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key === 'Escape' && isMounted) {
         pushDispatch();
       }
     };
 
-    document.addEventListener('keydown', handleKeyDownEscape);
+    if(isMounted){
+      document.addEventListener('keydown', handleKeyDownEscape);
+    }
 
     return () => {
       document.removeEventListener('keydown', handleKeyDownEscape);
+      isMounted = false;
     };
   }, []);
 

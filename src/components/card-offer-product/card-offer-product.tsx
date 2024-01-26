@@ -32,11 +32,11 @@ function CardOfferProductComponent () {
           <picture>
             <source
               type="/image/webp"
-              srcSet={`/${stateOffer?.previewImg || ''}`}
+              srcSet={`/${stateOffer?.previewImgWebp || ''}, /${stateOffer?.previewImgWebp2x || ''} 2x`}
             />
             <img
               src={`/${stateOffer?.previewImg || ''}`}
-              srcSet={`/${stateOffer?.previewImg || ''}`}
+              srcSet={`/${stateOffer?.previewImg2x || ''} 2x`}
               width={560}
               height={480}
               alt={stateOffer?.name}

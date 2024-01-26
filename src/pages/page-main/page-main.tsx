@@ -9,7 +9,7 @@ import { SortListCardsComponent } from '../../components/sort-list-cards/sort-li
 import { useDocumentTitle } from '../../hooks/hook-use-document-title';
 import { useAppSelector } from '../../hooks/hook-use-store';
 import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
-import { AppRoute, DEFAULT_UNIT, MAX_LENGTH_CARDS } from '../../src-const';
+import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, MAX_LENGTH_CARDS } from '../../src-const';
 import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
 import { ErrorPage } from '../page-error/page-error';
@@ -29,14 +29,19 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const isLoadingOffers = useAppSelector((state) => state.offers.loading);
   const isErrorLoadOffers = useAppSelector((state) => state.offers.error);
   const location = useLocation();
-
+  const lastDigit = +location.search.slice(-DEFAULT_UNIT);
   useDocumentTitle(title);
 
   useEffect(() => {
-    const lastDigit = +location.search.slice(-DEFAULT_UNIT);
+    let isMounted = true;
 
-    setCurrentPage(+lastDigit);
+    if(lastDigit !== DEFAULT_NULL && isMounted){
+      setCurrentPage(+lastDigit);
+    }
 
+    return () => {
+      isMounted = false;
+    };
   },[]);
 
 
@@ -54,50 +59,33 @@ function MainPage ({title}: MainPageProps): JSX.Element {
 
   return (
     <div className="wrapper" >
-
       <HeaderComponent/>
-
       <main data-testid ='main-page'>
-
         <BannerComponent/>
-
         <div className="page-content">
-
           <NavigationInPageComponent/>
-
           <section className="catalog">
             <div className="container">
               <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
               <div className="page-content__columns">
-
                 <FilterListCardsComponent/>
-
                 <div className="catalog__content">
-
                   <SortListCardsComponent/>
-
                   <CardsListComponent offers={currentOffers}/>
-
                   <PaginationMainPageComponent
                     offersPerPages={offersPerPages}
                     totalOffers={stateOffers.length}
                     callbackPaginate={setPage}
                     currentPage={currentPage}
                   />
-
-
                 </div>
               </div>
             </div>
           </section>
         </div>
       </main>
-
-
       <ModalWindowComponent/>
-
       <FooterComponent/>
-
     </div>
   );
 }

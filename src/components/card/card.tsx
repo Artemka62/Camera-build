@@ -40,7 +40,7 @@ function CardComponent ({offer}: CardComponentProps) {
           />
           <img
             src={`/${offer.previewImg}`}
-            srcSet={`/${offer.previewImgWebp} /${offer.previewImgWebp2x} 2x`}
+            srcSet={`/${offer.previewImg2x} 2x`}
             width={280}
             height={240}
             alt={offer.name}

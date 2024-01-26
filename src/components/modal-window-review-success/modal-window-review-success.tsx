@@ -10,11 +10,17 @@ function ModalWindowReviewSuccess () {
   const successBuyButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (successBuyButtonRef.current) {
+    let isMounted = true;
+
+    if (successBuyButtonRef.current && isMounted) {
       setTimeout(() => {
         successBuyButtonRef.current?.focus();
       }, DELAY_FOCUS);
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   function pushDispatch () {
