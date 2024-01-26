@@ -54,6 +54,7 @@ type StateWindow = {
   isWindowReviewOpen: boolean;
   isWindowModalOpen: boolean;
   isWindowBasketSuccessOpen: boolean;
+  isWindowAddBasketSuccessOpen: boolean;
 };
 
 type Review = {

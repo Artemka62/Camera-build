@@ -25,7 +25,7 @@ function ButtonChangePage ({callbackPaginate, currentPage, nameButton}: ButtonCh
   }
 
   return (
-    <li className="pagination__item" onClick={handleClickButton} data-testId={'button-change-page'}>
+    <li className="pagination__item" onClick={handleClickButton} data-testid='button-change-page'>
       <a
         className="pagination__link pagination__link--text"
       >

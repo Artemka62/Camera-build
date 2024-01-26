@@ -8,7 +8,8 @@ const initialState: StateWindow = {
   isWindowModalOpen: false,
   isWindowProductOpen: false,
   isWindowReviewOpen: false,
-  isWindowBasketSuccessOpen: false
+  isWindowBasketSuccessOpen: false,
+  isWindowAddBasketSuccessOpen: false
 };
 
 const windowsSlice = createSlice({
@@ -26,6 +27,9 @@ const windowsSlice = createSlice({
     },
     windowBasketSuccess(state, action: PayloadAction<boolean>) {
       state.isWindowBasketSuccessOpen = action.payload;
+    },
+    windowAddBasketSuccess(state, action: PayloadAction<boolean>) {
+      state.isWindowAddBasketSuccessOpen = action.payload;
     }
   }
 });

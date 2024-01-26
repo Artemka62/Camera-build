@@ -22,7 +22,7 @@ function SimilarCardsListComponent({ offers }: SimilarCardsListComponentProps) {
   ));
 
   return (
-    <section className="product-similar" data-testId={'similar-cards'}>
+    <section className="product-similar" data-testid='similar-cards'>
       <div className="container">
         {getSimilarOffers.length !== DEFAULT_NULL ? <h2 className="title title--h3">Похожие товары</h2> : ''}
         <div className="product-similar__slider">

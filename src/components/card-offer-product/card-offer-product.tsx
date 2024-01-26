@@ -1,8 +1,10 @@
-import { useAppSelector } from '../../hooks/use-store';
+import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
+import { windowsSlice } from '../../store/slice/modal-windows';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function CardOfferProductComponent () {
+  const dispatch = useAppDispatch();
   const stateOffer = useAppSelector((state) => state.offer.reviews);
   const navigate = useNavigate();
   const {tab} = useParams();
@@ -17,8 +19,13 @@ function CardOfferProductComponent () {
     navigate(`/product/${stateOffer?.id || ''}/description`);
   }
 
+  function handleClickAddBasket () {
+    dispatch(windowsSlice.actions.isModalWindow(true));
+    dispatch(windowsSlice.actions.windowAddBasketSuccess(true));
+  }
+
   return (
-    <section className="product" data-testId={'card-offer-product'}>
+    <section className="product" data-testid='card-offer-product'>
       <div className="container">
         <div className="product__img">
           <picture>
@@ -41,7 +48,7 @@ function CardOfferProductComponent () {
           <p className="product__price">
             <span className="visually-hidden">Цена:</span>{stateOffer?.price} ₽
           </p>
-          <button className="btn btn--purple" type="button">
+          <button onClick={handleClickAddBasket}className="btn btn--purple" type="button">
             <svg width={24} height={16} aria-hidden="true">
               <use xlinkHref="#icon-add-basket" />
             </svg>

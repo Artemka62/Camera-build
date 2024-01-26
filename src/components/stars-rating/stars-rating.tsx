@@ -6,7 +6,7 @@ type StarsRatingComponentProps = {
 function StarsRatingComponent({rating, reviewCount}: StarsRatingComponentProps) {
 
   return (
-    <div className="rate product-card__rate" data-testId={'stars-rating'}>
+    <div className="rate product-card__rate" data-testid='stars-rating'>
       {[1, 2, 3, 4, 5].map((index) => (
         <svg
           key={index}

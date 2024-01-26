@@ -39,7 +39,7 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, callbackPagin
   // }
 
   return (
-    <div className="pagination" data-testId={'pagination-main-page'}>
+    <div className="pagination" data-testid='pagination-main-page'>
       <ul className="pagination__list">
         {currentPageSet > DEFAULT_UNIT && (
           <ButtonChangePage

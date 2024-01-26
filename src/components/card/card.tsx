@@ -31,7 +31,7 @@ function CardComponent ({offer}: CardComponentProps) {
 
 
   return (
-    <div className="product-card is-active" data-testId={'card'}>
+    <div className="product-card is-active" data-testid='card'>
       <div className="product-card__img">
         <picture>
           <source

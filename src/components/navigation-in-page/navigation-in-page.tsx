@@ -11,7 +11,7 @@ function NavigationInPageComponent () {
   const stateOfferProduct = useAppSelector((state) => state.offer.reviews);
 
   return (
-    <div className="breadcrumbs" data-testId={'navigation-in-page'}>
+    <div className="breadcrumbs" data-testid='navigation-in-page'>
       <div className="container">
         <ul className="breadcrumbs__list">
           <li className="breadcrumbs__item">

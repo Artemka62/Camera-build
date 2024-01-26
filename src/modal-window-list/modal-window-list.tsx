@@ -4,12 +4,14 @@ import { ModalWindowBasketSuccess } from '../components/modal-window-product-bas
 import { ModalWindowReviewProductComponent } from '../components/modal-window-reviev-product/modal-window-rewiev-product';
 import { useAppDispatch, useAppSelector } from '../hooks/use-store';
 import { windowsSlice } from '../store/slice/modal-windows';
+import { ModalWindowAddCatalogSuccessComponent } from '../components/modal-window-add-catalog-success/modal-window-add-catalog-success';
 
 function ModalWindowComponent () {
   const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowModalOpen);
   const isCardProductOpen = useAppSelector((state) => state.windows.isWindowProductOpen);
   const isFormReviewOpen = useAppSelector((state) => state.windows.isWindowReviewOpen);
   const isBasketSuccessOpen = useAppSelector((state) => state.windows.isWindowBasketSuccessOpen);
+  const isBasketAddSuccessOpen = useAppSelector((state) => state.windows.isWindowAddBasketSuccessOpen);
   const dispatch = useAppDispatch();
   const isActive = isWindowModalOpen ? 'modal is-active' : 'modal modal--narrow';
 
@@ -20,6 +22,7 @@ function ModalWindowComponent () {
     dispatch(windowsSlice.actions.windowBasketSuccess(false));
     dispatch(windowsSlice.actions.windowProduct(false));
     dispatch(windowsSlice.actions.windowReview(false));
+    dispatch(windowsSlice.actions.windowAddBasketSuccess(false));
   }
 
   function handleClickOverlay () {
@@ -47,6 +50,7 @@ function ModalWindowComponent () {
         {isCardProductOpen ? <ModalWindowCardProductComponent/> : ''}
         {isFormReviewOpen ? <ModalWindowReviewProductComponent/> : ''}
         {isBasketSuccessOpen ? <ModalWindowBasketSuccess/> : ''}
+        {isBasketAddSuccessOpen ? <ModalWindowAddCatalogSuccessComponent/> : ''}
       </div>
     </div>
   );
