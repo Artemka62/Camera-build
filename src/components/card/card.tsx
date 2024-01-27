@@ -5,7 +5,7 @@ import { OfferCard } from '../../types/types-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { AppRoute, DEFAULT_NULL } from '../../src-const';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
-import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-rewiews';
+import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';
 
 type CardComponentProps = {
   offer: OfferCard;

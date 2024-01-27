@@ -3,7 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import { Review, StateReviews } from '../../types/types-store';
 
-import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-rewiews';
+import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';
 
 const initialState: StateReviews = {
   reviews: []

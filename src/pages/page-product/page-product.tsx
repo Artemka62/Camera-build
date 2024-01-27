@@ -10,7 +10,7 @@ import { NavigationInPageComponent } from '../../components/navigation-in-page/n
 import { fetchSimilarOffersAction } from '../../services/thunk/thunk-fetch-similar-offers';
 import { SimilarCardsListComponent } from '../../components/similar-cards-list/similar-cards-list';
 import { ReviewListComponent } from '../../components/review-list/review-list';
-import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-rewiews';
+import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';
 import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
 import { AppRoute } from '../../src-const';
 import { LoadingComponent } from '../../components/loading-component/loading-component';

@@ -4,7 +4,7 @@ import { mockReview } from '../mock-test/mock-review/mock-review';
 import { mockSimilar } from '../mock-test/mock-similar/mock-similar';
 import { State } from '../types/types-store';
 
-const makeFakeStore = (initialState?: Partial<State>): State => ({
+const useMakeFakeStore = (initialState?: Partial<State>): State => ({
   offers: {
     offers: [mockOffer],
     error: false,
@@ -34,4 +34,4 @@ const makeFakeStore = (initialState?: Partial<State>): State => ({
   ...(initialState ?? {}),
 });
 
-export {makeFakeStore};
+export {useMakeFakeStore};

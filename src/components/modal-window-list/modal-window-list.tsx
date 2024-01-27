@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
 import { ModalWindowCardProductComponent } from '../modal-window-card-product/modal-window-card-product';
 import { ModalWindowReviewSuccess } from '../modal-window-review-success/modal-window-review-success';
-import { ModalWindowReviewProductComponent } from '../modal-window-reviev-product/modal-window-rewiev-product';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { ModalWindowAddBasketSuccessComponent } from '../modal-window-add-basket-success/modal-window-add-basket-success';
+import { ModalWindowReviewProductComponent } from '../modal-window-review-product/modal-window-review-product';
+import { useEffect } from 'react';
+import { DELAY_FOCUS } from '../../src-const';
 
 function ModalWindowComponent () {
   const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowModalOpen);
@@ -23,33 +24,39 @@ function ModalWindowComponent () {
     dispatch(windowsSlice.actions.windowAddBasketSuccess(false));
   }
 
-  function handleClickOverlay () {
+  const handleHistoryChange = () => {
     pushDispatch();
-  }
+  };
 
   useEffect(() => {
     let isMounted = true;
 
-    const handleKeyDownEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isMounted) {
-        pushDispatch();
-      }
-    };
-
-    if(isMounted){
-      document.addEventListener('keydown', handleKeyDownEscape);
+    if (isMounted) {
+      setTimeout(() => {
+        window.addEventListener('popstate', handleHistoryChange);
+      }, DELAY_FOCUS);
     }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDownEscape);
+      window.removeEventListener('popstate', handleHistoryChange);
       isMounted = false;
     };
   }, []);
 
+  function handleClickOverlay () {
+    pushDispatch();
+  }
+
+  function handleKeyDownEscape (event: React.KeyboardEvent) {
+    if (event.key === 'Escape') {
+      pushDispatch();
+    }
+  }
+
   return (
-    <div className={isActive} data-testid= 'modal-window'>
+    <div className={isActive} data-testid= 'modal-window' onKeyDown={handleKeyDownEscape}>
       <div className="modal__wrapper " >
-        <div className="modal__overlay" onClick={handleClickOverlay}/>
+        <div className="modal__overlay" onClick={handleClickOverlay} />
         {isCardProductOpen ? <ModalWindowCardProductComponent/> : ''}
         {isFormReviewOpen ? <ModalWindowReviewProductComponent/> : ''}
         {isBasketSuccessOpen ? <ModalWindowReviewSuccess/> : ''}

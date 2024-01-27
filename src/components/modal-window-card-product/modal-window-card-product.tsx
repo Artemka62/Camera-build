@@ -17,7 +17,12 @@ function ModalWindowCardProductComponent () {
   function handleClickAddBasket () {
     dispatch(windowsSlice.actions.windowProduct(false));
     dispatch(windowsSlice.actions.windowAddBasketSuccess(true));
+  }
 
+  function handlePressKeyAddBasket (event:React.KeyboardEvent) {
+    if(event.key === ' '){
+      event.preventDefault();
+    }
   }
 
   useEffect(() => {
@@ -76,6 +81,7 @@ function ModalWindowCardProductComponent () {
       <div className="modal__buttons">
         <button
           onClick={handleClickAddBasket}
+          onKeyDown={handlePressKeyAddBasket}
           ref={addBasketButtonRef}
           className="btn btn--purple modal__btn modal__btn--fit-width"
           type="button"

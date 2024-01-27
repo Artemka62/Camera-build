@@ -36,6 +36,12 @@ function ModalWindowAddBasketSuccessComponent () {
     dispatchStateWindows();
   }
 
+  function handleKeyPressGoToBuy (event:React.KeyboardEvent) {
+    if(event.key === ' '){
+      event.preventDefault();
+    }
+  }
+
   function handleClickGoToBuy () {
     dispatchStateWindows();
     navigate(AppRoute.Basket);
@@ -51,11 +57,11 @@ function ModalWindowAddBasketSuccessComponent () {
       <svg className="modal__icon" width={86} height={80} aria-hidden="true">
         <use xlinkHref="#icon-success" />
       </svg>
-      <div className="modal__buttons">
-        <Link to={`${AppRoute.Main}`} onClick={handleClickReturnBuy}className="btn btn--transparent modal__btn">
+      <div className="modal__buttons" >
+        <Link to={`${AppRoute.Main}`} onClick={handleClickReturnBuy} className="btn btn--transparent modal__btn">
           Продолжить покупки
         </Link>
-        <button onClick={handleClickGoToBuy} ref={goToBasket} className="btn btn--purple modal__btn modal__btn--fit-width">
+        <button onClick={handleClickGoToBuy} ref={goToBasket} onKeyDown={handleKeyPressGoToBuy} className="btn btn--purple modal__btn modal__btn--fit-width">
           Перейти в корзину
         </button>
       </div>

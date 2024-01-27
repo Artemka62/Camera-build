@@ -37,6 +37,12 @@ function ModalWindowReviewSuccess () {
     navigate(AppRoute.Main);
   }
 
+  function handlePressKeyCardsProduct (event:React.KeyboardEvent) {
+    if(event.key === ' '){
+      event.preventDefault();
+    }
+  }
+
   return (
     <div className="modal__content">
       <p className="title title--h4">Спасибо за отзыв</p>
@@ -47,6 +53,7 @@ function ModalWindowReviewSuccess () {
         <button
           ref={successBuyButtonRef}
           onClick={handleClickButtonCardsProduct}
+          onKeyDown={handlePressKeyCardsProduct}
           className="btn btn--purple modal__btn modal__btn--fit-width"
           type="button"
         >

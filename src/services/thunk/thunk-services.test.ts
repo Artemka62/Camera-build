@@ -11,7 +11,7 @@ import { State } from '../../types/types-store';
 import { fetchOfferAction } from './thunk-fetch-offer';
 import { mockPromo } from '../../mock-test/mock-promo/mock-promo';
 import { fetchPromoOffersAction } from './thunk-fetch-promo-offers';
-import { fetchReviewsAction } from './thunk-fetch-rewiews';
+import { fetchReviewsAction } from './thunk-fetch-reviews';
 import { mockReview, mockReviewPost} from '../../mock-test/mock-review/mock-review';
 import { mockSimilar } from '../../mock-test/mock-similar/mock-similar';
 import { fetchSimilarOffersAction } from './thunk-fetch-similar-offers';

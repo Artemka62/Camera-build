@@ -6,8 +6,8 @@ import { DEFAULT_NULL, DELAY_FOCUS, OPTIONS, SettingValidation } from '../../src
 import { postReview } from '../../services/thunk/thunk-post-review';
 import { PostReview } from '../../types/types-service';
 import { useParams } from 'react-router-dom';
-import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-rewiews';
-import './modal-window-rewiew-product.css';
+import './modal-window-review-product.css';
+import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';
 
 type FormInputs = {
   userName: string;
@@ -25,7 +25,6 @@ function ModalWindowReviewProductComponent () {
     register,
     formState: {
       errors,
-      //isValid,
     },
     setFocus,
     handleSubmit,
@@ -65,7 +64,7 @@ function ModalWindowReviewProductComponent () {
     };
   }, [setFocus]);
 
-  function handleButtonClose () {
+  function handleClickButtonClose () {
     dispatch(windowsSlice.actions.windowReview(false));
     dispatch(windowsSlice.actions.isModalWindow(false));
   }
@@ -267,7 +266,7 @@ function ModalWindowReviewProductComponent () {
           </button>
         </form>
       </div>
-      <button onClick={handleButtonClose} className="cross-btn" type="button" aria-label="Закрыть попап">
+      <button onClick={handleClickButtonClose} className="cross-btn" type="button" aria-label="Закрыть попап">
         <svg width={10} height={10} aria-hidden="true">
           <use xlinkHref="#icon-close" />
         </svg>
