@@ -5,7 +5,8 @@ import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { ModalWindowAddBasketSuccessComponent } from '../modal-window-add-basket-success/modal-window-add-basket-success';
 import { ModalWindowReviewProductComponent } from '../modal-window-review-product/modal-window-review-product';
 import { useEffect } from 'react';
-import { DELAY_FOCUS } from '../../src-const';
+import { useNavigationType } from 'react-router-dom';
+import { browserHistory } from '../../src-browser-history';
 
 function ModalWindowComponent () {
   const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowModalOpen);
@@ -15,6 +16,8 @@ function ModalWindowComponent () {
   const isBasketAddSuccessOpen = useAppSelector((state) => state.windows.isWindowAddBasketSuccessOpen);
   const dispatch = useAppDispatch();
   const isActive = isWindowModalOpen ? 'modal is-active' : 'modal modal--narrow';
+  const browserLocation = browserHistory.location.key;
+  const buttonNextBackBrowser = useNavigationType();
 
   function pushDispatch () {
     dispatch(windowsSlice.actions.isModalWindow(false));
@@ -24,24 +27,17 @@ function ModalWindowComponent () {
     dispatch(windowsSlice.actions.windowAddBasketSuccess(false));
   }
 
-  const handleHistoryChange = () => {
-    pushDispatch();
-  };
-
   useEffect(() => {
     let isMounted = true;
 
-    if (isMounted) {
-      setTimeout(() => {
-        window.addEventListener('popstate', handleHistoryChange);
-      }, DELAY_FOCUS);
+    if (isMounted && buttonNextBackBrowser === 'POP') {
+      pushDispatch();
     }
 
     return () => {
-      window.removeEventListener('popstate', handleHistoryChange);
       isMounted = false;
     };
-  }, []);
+  }, [browserLocation]);
 
   function handleClickOverlay () {
     pushDispatch();
