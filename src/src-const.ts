@@ -8,6 +8,7 @@ const DELAY_FOR_BANNER = 3000;
 const START_NUMBER_REVIEWS = 3;
 const DELAY_FOCUS = 300;
 const SLIDE_COUNT = 3;
+const CHANGE_PAGE = 'POP';
 
 const OPTIONS = [
   {label: 'Отлично', value: 5},
@@ -88,6 +89,7 @@ export{
   OPTIONS,
   DELAY_FOCUS,
   SLIDE_COUNT,
+  CHANGE_PAGE,
   AppRoute,
   ApiRoute,
   TitleDescription,

@@ -7,6 +7,7 @@ import { ModalWindowReviewProductComponent } from '../modal-window-review-produc
 import { useEffect } from 'react';
 import { useNavigationType } from 'react-router-dom';
 import { browserHistory } from '../../src-browser-history';
+import { CHANGE_PAGE } from '../../src-const';
 
 function ModalWindowComponent () {
   const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowModalOpen);
@@ -30,7 +31,7 @@ function ModalWindowComponent () {
   useEffect(() => {
     let isMounted = true;
 
-    if (isMounted && buttonNextBackBrowser === 'POP') {
+    if (isMounted && buttonNextBackBrowser === CHANGE_PAGE) {
       pushDispatch();
     }
 
