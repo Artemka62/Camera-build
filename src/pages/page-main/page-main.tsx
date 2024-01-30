@@ -30,6 +30,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const isErrorLoadOffers = useAppSelector((state) => state.offers.error);
   const location = useLocation();
   const lastDigit = +location.search.slice(-DEFAULT_UNIT);
+
   useDocumentTitle(title);
 
   useEffect(() => {

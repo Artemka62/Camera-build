@@ -7,7 +7,6 @@ type CardReviewProps = {
 }
 
 function CardReviewComponent ({review}: CardReviewProps) {
-
   return (
     <li className="review-card" data-testid='card-review'>
       <div className="review-card__head">
@@ -18,9 +17,7 @@ function CardReviewComponent ({review}: CardReviewProps) {
 
         </time>
       </div>
-
       <StarsRatingComponent rating={review.rating}/>
-
       <ul className="review-card__list">
         <li className="item-list">
           <span className="item-list__title">Достоинства:</span>

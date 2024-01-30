@@ -5,10 +5,12 @@ import { render, screen } from '@testing-library/react';
 import { PaginationMainPageComponent } from './pagination-main-page';
 import { DEFAULT_NULL, DEFAULT_UNIT } from '../../src-const';
 
-function handleClickButton(numberPage: number) {
-  return numberPage;
-}
+
 describe('component: PaginationMainPage', () => {
+  function handleClickButton(numberPage: number) {
+    return numberPage;
+  }
+
   it('should render correctly', () => {
     const expectedData = 'pagination-main-page';
     const preparedComponent = withHistory(

@@ -1,4 +1,4 @@
-import {combineReducers, configureStore} from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { offersSlice } from './slice/slice-offers';
 import { createApi } from '../services/services-api';
 import { offersPromoSlice } from './slice/slice-offers-promo';
@@ -15,7 +15,6 @@ const reducer = combineReducers({
   [similarOffersSlice.name]: similarOffersSlice.reducer,
   [reviewsSlice.name]: reviewsSlice.reducer
 });
-
 
 const api = createApi();
 

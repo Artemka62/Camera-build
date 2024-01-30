@@ -30,7 +30,6 @@ function FilterListCardsComponent () {
                 <input
                   type="checkbox"
                   name="photocamera"
-
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">

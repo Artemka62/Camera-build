@@ -39,7 +39,6 @@ function ReviewListComponent () {
 
   return (
     <section className="review-block">
-
       <div className="container">
         <div className="page-content__headed">
           <h2 className="title title--h3">Отзывы</h2>
@@ -48,9 +47,7 @@ function ReviewListComponent () {
           </button>
         </div>
         <ul className="review-block__list">
-
           {sortReviewsToData.slice(DEFAULT_NULL, countReviews).map((review) => <CardReviewComponent key={review.id} review={review} />)}
-
         </ul>
         {
           stateReviews.length - START_NUMBER_REVIEWS >= countReviews ?
@@ -62,7 +59,6 @@ function ReviewListComponent () {
             : ''
         }
       </div>
-
     </section>
   );
 }

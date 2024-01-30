@@ -8,7 +8,6 @@ type BasketProps = {
 }
 
 function BasketPage ({title}: BasketProps) {
-
   useDocumentTitle(title);
 
   return (

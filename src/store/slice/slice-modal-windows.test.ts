@@ -12,8 +12,6 @@ describe('Modal windows slice', () => {
   };
 
   it('should return initial state with empty action', () => {
-
-
     const result = windowsSlice.reducer(expectedState, emptyAction);
 
     expect(result).toEqual(expectedState);

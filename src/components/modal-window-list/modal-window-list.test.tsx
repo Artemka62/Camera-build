@@ -4,7 +4,6 @@ import { withHistory } from '../mock-component/mock-component';
 import { render, screen } from '@testing-library/react';
 import { ModalWindowComponent } from './modal-window-list';
 
-
 describe('component: ModalWindow', () => {
   it('should render correctly', () => {
     const expectedData = 'modal-window';

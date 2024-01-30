@@ -27,7 +27,6 @@ function NavigationInPageComponent () {
               Каталог
             </span>
           </li>
-
           {pageName === 'product' ?
             <li className="breadcrumbs__item">
               <span className="breadcrumbs__link breadcrumbs__link--active">
@@ -42,7 +41,6 @@ function NavigationInPageComponent () {
               </span>
             </li>
             : ''}
-
         </ul>
       </div>
     </div>

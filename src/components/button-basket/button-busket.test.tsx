@@ -1,7 +1,5 @@
 import { render, screen} from '@testing-library/react';
-
 import { withHistory } from '../mock-component/mock-component';
-
 import { ButtonBasketComponent } from './button-basket';
 
 describe('component: ButtonBasket', () => {

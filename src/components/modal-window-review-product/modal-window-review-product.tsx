@@ -230,7 +230,6 @@ function ModalWindowReviewProductComponent () {
                 </p>
               )}
             </div>
-
             <div className={`${ !errors.userComment ? 'custom-textarea form-review__item' : 'custom-textarea form-review__item is-invalid'}`}>
               <label>
                 <span className="custom-textarea__label">

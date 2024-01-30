@@ -6,7 +6,6 @@ type StarsRatingComponentProps = {
 }
 
 function StarsRatingComponent({rating, reviewCount}: StarsRatingComponentProps) {
-
   return (
     <div className="rate product-card__rate" data-testid='stars-rating'>
       {OPTIONS.slice().reverse().map((value) => (
