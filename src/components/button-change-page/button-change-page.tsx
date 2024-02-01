@@ -1,20 +1,20 @@
 import { ButtonName, DEFAULT_UNIT } from '../../src-const';
 
 type ButtonChangePageProps = {
-  onCallbackPaginate: (number: number) => void;
+  onPaginationButtonClick: (number: number) => void;
   currentPage: number;
   nameButton: string;
 }
 
-function ButtonChangePage ({onCallbackPaginate, currentPage, nameButton}: ButtonChangePageProps) {
+function ButtonChangePage ({onPaginationButtonClick, currentPage, nameButton}: ButtonChangePageProps) {
 
   function handleClickButton () {
     if(nameButton === ButtonName.NextEn) {
-      onCallbackPaginate(currentPage + DEFAULT_UNIT);
+      onPaginationButtonClick(currentPage + DEFAULT_UNIT);
     }
 
     if(nameButton === ButtonName.BackEn) {
-      onCallbackPaginate(currentPage - DEFAULT_UNIT);
+      onPaginationButtonClick(currentPage - DEFAULT_UNIT);
     }
   }
 

@@ -18,7 +18,7 @@ describe('component: PaginationMainPage', () => {
         <PaginationMainPageComponent
           offersPerPages={DEFAULT_UNIT}
           totalOffers={DEFAULT_UNIT}
-          onCallbackPaginate={() => handleClickButton(DEFAULT_UNIT - DEFAULT_NULL)}
+          onPaginationButtonClick={() => handleClickButton(DEFAULT_UNIT - DEFAULT_NULL)}
           currentPage={DEFAULT_NULL}
         />
       </Provider>

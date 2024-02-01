@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { AppRoute, DELAY_FOCUS } from '../../src-const';
+import { AppRoute, DEFAULT_NULL, DELAY_FOCUS } from '../../src-const';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { useEffect, useRef } from 'react';
@@ -35,6 +35,11 @@ function ModalWindowAddBasketSuccessComponent () {
 
   function handleClickReturnBuy () {
     dispatchStateWindows();
+
+    window.scrollTo({
+      top: DEFAULT_NULL,
+      behavior: 'smooth'
+    });
   }
 
   function handleKeyPressGoToBuy (event:React.KeyboardEvent) {

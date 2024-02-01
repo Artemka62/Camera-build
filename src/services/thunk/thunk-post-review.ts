@@ -4,7 +4,7 @@ import {ApiRoute} from '../../src-const';
 import { PostReview, Thunk } from '../../types/types-service';
 
 const postReview = createAsyncThunk<void, {dataForm: PostReview} , Thunk>(
-  'data/postReview',
+  'review/post',
   async ({dataForm}, {extra: api}) => {
     await api.post(`${ApiRoute.ReviewsProduct}`, dataForm);
   },

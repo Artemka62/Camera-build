@@ -4,7 +4,7 @@ import { Thunk } from '../../types/types-service';
 import { OfferCard } from '../../types/types-store';
 
 const fetchOffersAction = createAsyncThunk<OfferCard[], undefined, Thunk>(
-  'data/fetchOffers',
+  'offers/fetch',
   async (_arg, { extra: api}) => {
     const {data} = await api.get<OfferCard[]>(ApiRoute.Offers);
 

@@ -7,11 +7,11 @@ import { useAppSelector } from '../../hooks/hook-use-store';
 type PaginationMainPageComponentProps = {
   offersPerPages: number;
   totalOffers: number;
-  onCallbackPaginate: (number: number) => void;
+  onPaginationButtonClick: (number: number) => void;
   currentPage: number;
 };
 
-function PaginationMainPageComponent({offersPerPages, totalOffers, onCallbackPaginate, currentPage}: PaginationMainPageComponentProps) {
+function PaginationMainPageComponent({offersPerPages, totalOffers, onPaginationButtonClick, currentPage}: PaginationMainPageComponentProps) {
   const navigate = useNavigate();
   const quantityPages = Math.ceil(totalOffers / offersPerPages);
   const pageNumbers = Array.from({ length: quantityPages }, (_, i) => i + DEFAULT_UNIT);
@@ -39,7 +39,7 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, onCallbackPag
   },[currentPage]);
 
   function handleClickButton(numberPage: number) {
-    onCallbackPaginate(numberPage);
+    onPaginationButtonClick(numberPage);
   }
 
   return (
@@ -47,7 +47,7 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, onCallbackPag
       <ul className="pagination__list">
         {currentPageSet > DEFAULT_UNIT && (
           <ButtonChangePage
-            onCallbackPaginate={() => handleClickButton(startPage - DEFAULT_UNIT)}
+            onPaginationButtonClick={() => handleClickButton(startPage - DEFAULT_UNIT)}
             currentPage={currentPage}
             nameButton={ButtonName.BackEn}
           />
@@ -61,7 +61,7 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, onCallbackPag
         ))}
         {currentPageSet * pagesPerSet < quantityPages && (
           <ButtonChangePage
-            onCallbackPaginate={() => handleClickButton(endPage + DEFAULT_UNIT)}
+            onPaginationButtonClick={() => handleClickButton(endPage + DEFAULT_UNIT)}
             currentPage={currentPage}
             nameButton={ButtonName.NextEn}
           />
