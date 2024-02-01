@@ -13,7 +13,7 @@ describe('component: ButtonChange', () => {
     const expectedText = 'button-change-page';
     const preparedComponent = withHistory(
       <ButtonChangePage
-        callbackPaginate={
+        onCallbackPaginate={
           () => handleClickButton(DEFAULT_UNIT - DEFAULT_NULL)
         }
         currentPage={DEFAULT_UNIT}

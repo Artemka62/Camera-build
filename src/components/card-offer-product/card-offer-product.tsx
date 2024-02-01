@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 function CardOfferProductComponent () {
   const dispatch = useAppDispatch();
-  const stateOffer = useAppSelector((state) => state.offer.reviews);
+  const stateOffer = useAppSelector((state) => state.offer.offer);
   const navigate = useNavigate();
   const {tab} = useParams();
   const isActiveForCharacteristic = (tab === SettingTab.Characteristic) ? 'is-active' : '';

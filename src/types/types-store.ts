@@ -30,7 +30,7 @@ type OfferPromo = {
 }
 
 type StateOffer = {
-  reviews: OfferCard | null;
+  offer: OfferCard | null;
   error: boolean;
   loading: boolean;
 }

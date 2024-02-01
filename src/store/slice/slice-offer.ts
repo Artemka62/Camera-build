@@ -5,7 +5,7 @@ import { OfferCard, StateOffer } from '../../types/types-store';
 import { fetchOfferAction } from '../../services/thunk/thunk-fetch-offer';
 
 const initialState: StateOffer = {
-  reviews: null,
+  offer: null,
   error: false,
   loading : false
 };
@@ -15,13 +15,13 @@ const offerSlice = createSlice({
   initialState,
   reducers: {
     questionList(state, action: PayloadAction<OfferCard>) {
-      state.reviews = action.payload;
+      state.offer = action.payload;
     },
   },
   extraReducers(builder) {
     builder
       .addCase(fetchOfferAction.fulfilled, (state, action) => {
-        state.reviews = action.payload;
+        state.offer = action.payload;
         state.error = false;
         state.loading = false;
       })

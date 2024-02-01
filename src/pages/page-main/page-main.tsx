@@ -76,7 +76,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
                   <PaginationMainPageComponent
                     offersPerPages={offersPerPages}
                     totalOffers={stateOffers.length}
-                    callbackPaginate={setPage}
+                    onCallbackPaginate={setPage}
                     currentPage={currentPage}
                   />
                 </div>

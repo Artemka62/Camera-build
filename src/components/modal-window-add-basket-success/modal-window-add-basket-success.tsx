@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { AppRoute, DELAY_FOCUS } from '../../src-const';
-import { useAppDispatch } from '../../hooks/hook-use-store';
+import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { useEffect, useRef } from 'react';
 
@@ -8,6 +8,7 @@ function ModalWindowAddBasketSuccessComponent () {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const goToBasket = useRef<HTMLButtonElement>(null);
+  const stateOfferProduct = useAppSelector((state) => state.offer.offer);
 
   useEffect(() => {
     let isMounted = true;
@@ -58,7 +59,7 @@ function ModalWindowAddBasketSuccessComponent () {
         <use xlinkHref="#icon-success" />
       </svg>
       <div className="modal__buttons" >
-        <Link to={`${AppRoute.Main}`} onClick={handleClickReturnBuy} className="btn btn--transparent modal__btn">
+        <Link to={`${AppRoute.Product}/${stateOfferProduct?.id || ''}${AppRoute.Description}`} onClick={handleClickReturnBuy} className="btn btn--transparent modal__btn">
           Продолжить покупки
         </Link>
         <button onClick={handleClickGoToBuy} ref={goToBasket} onKeyDown={handleKeyPressGoToBuy} className="btn btn--purple modal__btn modal__btn--fit-width">

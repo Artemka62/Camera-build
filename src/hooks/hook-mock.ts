@@ -14,7 +14,7 @@ const useMakeFakeStore = (initialState?: Partial<State>): State => ({
     offers: [mockPromo]
   } ,
   offer:{
-    reviews:mockOffer,
+    offer:mockOffer,
     error: false,
     loading: false,
   } ,

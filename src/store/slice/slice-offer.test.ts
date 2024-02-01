@@ -4,7 +4,7 @@ describe('Offer slice', () => {
   const emptyAction = { type: '' };
 
   const expectedState = {
-    reviews: null,
+    offer: null,
     error: false,
     loading : false
   };

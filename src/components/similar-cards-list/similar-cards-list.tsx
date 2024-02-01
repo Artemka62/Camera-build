@@ -13,7 +13,7 @@ type SimilarCardsListComponentProps = {
 }
 
 function SimilarCardsListComponent({ offers }: SimilarCardsListComponentProps) {
-  const stateOffer = useAppSelector((state) => state.offer.reviews);
+  const stateOffer = useAppSelector((state) => state.offer.offer);
 
   const getSimilarOffers = offers.filter((product) => (
     stateOffer?.level === product.level && stateOffer.type === product.type && stateOffer.category === product.category
