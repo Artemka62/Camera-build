@@ -45,7 +45,9 @@ function CardOfferProductComponent () {
         </div>
         <div className="product__content">
           <h1 className="title title--h3">{stateOffer?.name}</h1>
-          {stateOffer ? <StarsRatingComponent rating={stateOffer.rating} reviewCount={stateOffer.reviewCount}/> : ''}
+          {stateOffer ?
+            <StarsRatingComponent rating={stateOffer.rating} reviewCount={stateOffer.reviewCount}/>
+            : ''}
           <p className="product__price">
             <span className="visually-hidden">Цена:</span>{stateOffer?.price} ₽
           </p>
