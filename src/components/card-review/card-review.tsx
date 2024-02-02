@@ -17,7 +17,7 @@ function CardReviewComponent ({review}: CardReviewProps) {
 
         </time>
       </div>
-      <StarsRatingComponent rating={review.rating}/>
+      <StarsRatingComponent rating={review.rating} />
       <ul className="review-card__list">
         <li className="item-list">
           <span className="item-list__title">Достоинства:</span>
