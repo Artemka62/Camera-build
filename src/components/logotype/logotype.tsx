@@ -3,7 +3,7 @@ import { AppRoute } from '../../src-const';
 
 function LogotypeComponent () {
   return (
-    <Link data-testid ='logotype'
+    <Link data-testid='logotype'
       to={AppRoute.Main}
       className="header__logo"
       aria-label="Переход на главную"
