@@ -6,6 +6,7 @@ import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { AppRoute, DEFAULT_NULL } from '../../src-const';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';
+import { formatNumberWithSpaces } from '../../utils/utils-format-price';
 
 type CardComponentProps = {
   offer: OfferCard;
@@ -52,7 +53,7 @@ function CardComponent ({offer}: CardComponentProps) {
           {offer.name}
         </p>
         <p className="product-card__price">
-          <span className="visually-hidden">Цена:</span>{offer.price} ₽
+          <span className="visually-hidden">Цена:</span>{formatNumberWithSpaces(offer.price)} ₽
         </p>
       </div>
       <div className="product-card__buttons">

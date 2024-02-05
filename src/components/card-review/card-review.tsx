@@ -12,9 +12,7 @@ function CardReviewComponent ({review}: CardReviewProps) {
       <div className="review-card__head">
         <p className="title title--h4">{review.userName}</p>
         <time className="review-card__data" dateTime="2022-04-13">
-
           {formatData(review.createAt)}
-
         </time>
       </div>
       <StarsRatingComponent rating={review.rating} />

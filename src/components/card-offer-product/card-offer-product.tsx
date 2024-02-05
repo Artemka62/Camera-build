@@ -1,8 +1,9 @@
-import { AppRoute, SettingTab } from '../../src-const';
+import { AppRoute, DEFAULT_NULL, SettingTab } from '../../src-const';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { useNavigate, useParams } from 'react-router-dom';
+import { formatNumberWithSpaces } from '../../utils/utils-format-price';
 
 function CardOfferProductComponent () {
   const dispatch = useAppDispatch();
@@ -49,7 +50,7 @@ function CardOfferProductComponent () {
             <StarsRatingComponent rating={stateOffer.rating} reviewCount={stateOffer.reviewCount}/>
             : ''}
           <p className="product__price">
-            <span className="visually-hidden">Цена:</span>{stateOffer?.price} ₽
+            <span className="visually-hidden">Цена:</span>{formatNumberWithSpaces(stateOffer?.price || DEFAULT_NULL)} ₽
           </p>
           <button onClick={handleClickAddBasket}className="btn btn--purple" type="button">
             <svg width={24} height={16} aria-hidden="true">
