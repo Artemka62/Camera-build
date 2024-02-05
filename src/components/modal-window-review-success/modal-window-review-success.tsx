@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/hook-use-store';
+import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
-import { AppRoute, DELAY_FOCUS } from '../../src-const';
+import { AppRoute, DEFAULT_NULL, DELAY_FOCUS } from '../../src-const';
 import { useEffect, useRef } from 'react';
 
 function ModalWindowReviewSuccess () {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const successBuyButtonRef = useRef<HTMLButtonElement>(null);
+  const stateOfferProduct = useAppSelector((state) => state.offer.offer);
 
   useEffect(() => {
     let isMounted = true;
@@ -32,9 +33,15 @@ function ModalWindowReviewSuccess () {
     pushDispatch();
   }
 
-  function handleClickButtonCardsProduct () {
+  function handleClickButtonCardProduct () {
     pushDispatch();
-    navigate(AppRoute.Main);
+
+    navigate(`${AppRoute.Product}/${stateOfferProduct?.id || ''}${AppRoute.Description}`);
+
+    window.scrollTo({
+      top: DEFAULT_NULL,
+      behavior: 'smooth'
+    });
   }
 
   function handlePressKeyCardsProduct (event:React.KeyboardEvent) {
@@ -52,7 +59,7 @@ function ModalWindowReviewSuccess () {
       <div className="modal__buttons">
         <button
           ref={successBuyButtonRef}
-          onClick={handleClickButtonCardsProduct}
+          onClick={handleClickButtonCardProduct}
           onKeyDown={handlePressKeyCardsProduct}
           className="btn btn--purple modal__btn modal__btn--fit-width"
           type="button"
