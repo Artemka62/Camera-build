@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/hook-use-store';
 import { AppRoute, DEFAULT_UNIT } from '../../src-const';
 
@@ -23,9 +23,13 @@ function NavigationInPageComponent () {
             </Link>
           </li>
           <li className="breadcrumbs__item">
-            <span className={isActive}>
+            <Link to={AppRoute.Main} className={isActive}>
               Каталог
-            </span>
+              {pageName === 'product' || pageName === 'basket' ?
+                <svg width={5} height={8} aria-hidden="true">
+                  <use xlinkHref="#icon-arrow-mini" />
+                </svg> : ''}
+            </Link>
           </li>
           {pageName === 'product' ?
             <li className="breadcrumbs__item">
