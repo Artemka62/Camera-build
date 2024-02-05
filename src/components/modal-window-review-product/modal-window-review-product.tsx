@@ -1,7 +1,7 @@
 import { useAppDispatch} from '../../hooks/hook-use-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Fragment, useEffect} from 'react';
+import { Fragment, useEffect, useRef} from 'react';
 import { DEFAULT_NULL, DELAY_FOCUS, OPTIONS, SettingValidation } from '../../src-const';
 import { postReview } from '../../services/thunk/thunk-post-review';
 import { PostReview } from '../../types/types-service';
@@ -20,13 +20,19 @@ type FormInputs = {
 function ModalWindowReviewProductComponent () {
   const dispatch = useAppDispatch();
   const {id} = useParams();
+  const focusSubmitButton = useRef<HTMLButtonElement>(null);
+
+  function banSubmitButton (event: React.KeyboardEvent) {
+    if(event.key === ' ') {
+      event.preventDefault();
+    }
+  }
 
   const {
     register,
     formState: {
       errors,
     },
-    setFocus,
     handleSubmit,
     reset,
     watch,
@@ -55,14 +61,14 @@ function ModalWindowReviewProductComponent () {
 
     if(isMounted) {
       setTimeout(() => {
-        setFocus('userName');
+        focusSubmitButton.current?.focus();
       }, DELAY_FOCUS);
     }
 
     return () => {
       isMounted = false;
     };
-  }, [setFocus]);
+  }, []);
 
   function handleClickButtonClose () {
     dispatch(windowsSlice.actions.windowReview(false));
@@ -150,7 +156,6 @@ function ModalWindowReviewProductComponent () {
                 <input
                   type="text"
                   placeholder="Введите ваше имя"
-                  autoFocus
                   {...register('userName', {
                     required: SettingValidation.UserMessageRequired,
                     minLength: {
@@ -260,7 +265,7 @@ function ModalWindowReviewProductComponent () {
               )}
             </div>
           </div>
-          <button className="btn btn--purple form-review__btn" type="submit">
+          <button className="btn btn--purple form-review__btn" type="submit" ref={focusSubmitButton} onKeyDown={banSubmitButton}>
             Отправить отзыв
           </button>
         </form>

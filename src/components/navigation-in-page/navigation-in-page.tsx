@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/hook-use-store';
 import { AppRoute, DEFAULT_UNIT } from '../../src-const';
 
