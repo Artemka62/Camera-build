@@ -1,7 +1,8 @@
 import { useEffect, useRef} from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
-import { DELAY_FOCUS } from '../../src-const';
+import { DEFAULT_NULL, DELAY_FOCUS } from '../../src-const';
+import { formatNumberWithSpaces } from '../../utils/utils-format-price';
 
 function ModalWindowCardProductComponent () {
   const stateCard = useAppSelector((state) => state.offer.offer);
@@ -74,7 +75,7 @@ function ModalWindowCardProductComponent () {
             <li className="basket-item__list-item">{stateCard?.level} уровень</li>
           </ul>
           <p className="basket-item__price">
-            <span className="visually-hidden">Цена:</span>{stateCard?.price} ₽
+            <span className="visually-hidden">Цена:</span>{formatNumberWithSpaces(stateCard?.price || DEFAULT_NULL)} ₽
           </p>
         </div>
       </div>
