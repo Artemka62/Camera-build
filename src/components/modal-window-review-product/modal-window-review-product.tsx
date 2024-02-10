@@ -38,7 +38,6 @@ function ModalWindowReviewProductComponent () {
     watch,
   } = useForm<FormInputs>({
     mode: 'all'
-
   });
 
   const ratingFieldValue = watch('rating');
