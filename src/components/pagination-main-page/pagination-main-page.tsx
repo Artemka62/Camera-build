@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ButtonChangePage } from '../button-change-page/button-change-page';
 import { useEffect } from 'react';
 import { AppRoute, ButtonName, DEFAULT_NULL, DEFAULT_UNIT, MAX_LENGTH_CARDS, PAGES_PER_SET } from '../../src-const';
@@ -54,9 +54,9 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, onPaginationB
         )}
         {pageNumbers.slice(startPage - DEFAULT_UNIT, endPage).map((number) => (
           <li key={number} className="pagination__item" onClick={() => handleClickButton(number)}>
-            <a className={`pagination__link ${currentPage === number ? 'pagination__link--active' : ''}`}>
+            <Link to={AppRoute.Main} className={`pagination__link ${currentPage === number ? 'pagination__link--active' : ''}`} >
               {number}
-            </a>
+            </Link >
           </li>
         ))}
         {currentPageSet * pagesPerSet < quantityPages && (

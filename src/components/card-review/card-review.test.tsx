@@ -5,7 +5,6 @@ import { store } from '../../store/store-index';
 import { CardReviewComponent } from './card-review';
 import { mockReview } from '../../mock-test/mock-review/mock-review';
 
-
 describe('component: CardReviewProduct', () => {
   it('should render correctly', () => {
     const expectData = 'card-review';

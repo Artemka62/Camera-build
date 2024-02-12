@@ -1,4 +1,5 @@
-import { ButtonName, DEFAULT_UNIT } from '../../src-const';
+import { Link } from 'react-router-dom';
+import { AppRoute, ButtonName, DEFAULT_UNIT } from '../../src-const';
 
 type ButtonChangePageProps = {
   onPaginationButtonClick: (number: number) => void;
@@ -20,11 +21,12 @@ function ButtonChangePage ({onPaginationButtonClick, currentPage, nameButton}: B
 
   return (
     <li className="pagination__item" onClick={handleClickButton} data-testid='button-change-page'>
-      <a
+      <Link
+        to={AppRoute.Main}
         className="pagination__link pagination__link--text"
       >
         {(nameButton === ButtonName.NextEn) ? ButtonName.NextRu : ButtonName.BackRu}
-      </a>
+      </Link>
     </li>
   );
 }
