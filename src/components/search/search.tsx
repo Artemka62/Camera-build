@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useAppSelector } from '../../hooks/hook-use-store';
 import { OfferCard } from '../../types/types-store';
 import { DEFAULT_NULL } from '../../src-const';
@@ -7,9 +7,9 @@ function SearchComponent () {
   const stateOffersProduct = useAppSelector((state) => state.offers.offers);
   const [searchTerm, setSearchTerm] = useState('');
   const [offerList, setOfferList] = useState<OfferCard[]>([]);
-  const isShowButtonReset = searchTerm.length > 0 ? 'form-search list-opened' : 'form-search';
-  const isShowListOffers = searchTerm.length >= 3 && offerList.length > 0;
-  console.log(isShowListOffers)
+  const isShowButtonReset = searchTerm.length > DEFAULT_NULL ? 'form-search list-opened' : 'form-search';
+  const isShowListOffers = searchTerm.length >= 3 && offerList.length > DEFAULT_NULL;
+  const formRef = useRef<HTMLFormElement>(null);
 
   function findProduct(searchText: string, listOffersProduct: OfferCard[]): OfferCard[] {
     if (!searchText) {
@@ -31,9 +31,18 @@ function SearchComponent () {
     setSearchTerm(event.target.value);
   }
 
+  function handleReset() {
+    setSearchTerm('');
+    setOfferList([]);
+
+    if (formRef.current) {
+      formRef.current.reset();
+    }
+  }
+
   return (
     <div className={isShowButtonReset}>
-      <form>
+      <form ref={formRef}>
         <label>
           <svg
             className="form-search__icon"
@@ -53,15 +62,15 @@ function SearchComponent () {
         </label>
         {isShowListOffers ?
           <ul className="form-search__select-list">
-            {offerList.map((offer, index) => (
-              <li key={offer.name} className="form-search__select-item" tabIndex={index}>
+            {offerList.map((offer) => (
+              <li key={offer.name} className="form-search__select-item" tabIndex={0}>
                 {offer.name}
               </li>
             ))}
           </ul>
           : ''}
       </form>
-      <button className="form-search__reset" type="reset">
+      <button className="form-search__reset" type="reset" onClick={handleReset}>
         <svg width={10} height={10} aria-hidden="true">
           <use xlinkHref="#icon-close" />
         </svg>
