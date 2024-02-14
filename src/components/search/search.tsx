@@ -1,4 +1,32 @@
+import React, { useEffect, useState } from 'react';
+import { useAppSelector } from '../../hooks/hook-use-store';
+import { OfferCard } from '../../types/types-store';
+
 function SearchComponent () {
+  const stateOffersProduct = useAppSelector((state) => state.offers.offers);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [offerList, setOfferList] = useState<OfferCard[]>([]);
+
+  function findProduct(searchText: string, listOffersProduct: OfferCard[]): OfferCard[] {
+    if (!searchText) {
+      return [];
+    }
+    return listOffersProduct.filter(({ name }) => name.toLowerCase().includes(searchText.toLowerCase()));
+  }
+
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      const filteredOffers = findProduct(searchTerm, stateOffersProduct);
+      setOfferList(filteredOffers);
+    }, 0);
+
+    return () => clearTimeout(debounce);
+  }, [searchTerm, stateOffersProduct]);
+
+  function handleSearchProduct(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearchTerm(event.target.value);
+  }
+
   return (
     <div className="form-search list-opened">
       <form>
@@ -16,24 +44,15 @@ function SearchComponent () {
             type="text"
             autoComplete="off"
             placeholder="Поиск по сайту"
+            onChange={handleSearchProduct}
           />
         </label>
         <ul className="form-search__select-list">
-          <li className="form-search__select-item" tabIndex={0}>
-            Cannonball Pro MX 8i
-          </li>
-          <li className="form-search__select-item" tabIndex={0}>
-            Cannonball Pro MX 7i
-          </li>
-          <li className="form-search__select-item" tabIndex={0}>
-            Cannonball Pro MX 6i
-          </li>
-          <li className="form-search__select-item" tabIndex={0}>
-            Cannonball Pro MX 5i
-          </li>
-          <li className="form-search__select-item" tabIndex={0}>
-            Cannonball Pro MX 4i
-          </li>
+          {offerList.map((offer, index) => (
+            <li key={offer.name} className="form-search__select-item" tabIndex={index}>
+              {offer.name}
+            </li>
+          ))}
         </ul>
       </form>
       <button className="form-search__reset" type="reset">
@@ -46,4 +65,4 @@ function SearchComponent () {
   );
 }
 
-export {SearchComponent};
+export { SearchComponent };
