@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../hooks/hook-use-store';
 import { OfferCard } from '../../types/types-store';
+import { DEFAULT_NULL } from '../../src-const';
 
 function SearchComponent () {
   const stateOffersProduct = useAppSelector((state) => state.offers.offers);
   const [searchTerm, setSearchTerm] = useState('');
   const [offerList, setOfferList] = useState<OfferCard[]>([]);
+  const isShowButtonReset = searchTerm.length > 0 ? 'form-search list-opened' : 'form-search';
+  const isShowListOffers = searchTerm.length >= 3 && offerList.length > 0;
+  console.log(isShowListOffers)
 
   function findProduct(searchText: string, listOffersProduct: OfferCard[]): OfferCard[] {
     if (!searchText) {
@@ -18,7 +22,7 @@ function SearchComponent () {
     const debounce = setTimeout(() => {
       const filteredOffers = findProduct(searchTerm, stateOffersProduct);
       setOfferList(filteredOffers);
-    }, 0);
+    }, DEFAULT_NULL);
 
     return () => clearTimeout(debounce);
   }, [searchTerm, stateOffersProduct]);
@@ -28,7 +32,7 @@ function SearchComponent () {
   }
 
   return (
-    <div className="form-search list-opened">
+    <div className={isShowButtonReset}>
       <form>
         <label>
           <svg
@@ -47,13 +51,15 @@ function SearchComponent () {
             onChange={handleSearchProduct}
           />
         </label>
-        <ul className="form-search__select-list">
-          {offerList.map((offer, index) => (
-            <li key={offer.name} className="form-search__select-item" tabIndex={index}>
-              {offer.name}
-            </li>
-          ))}
-        </ul>
+        {isShowListOffers ?
+          <ul className="form-search__select-list">
+            {offerList.map((offer, index) => (
+              <li key={offer.name} className="form-search__select-item" tabIndex={index}>
+                {offer.name}
+              </li>
+            ))}
+          </ul>
+          : ''}
       </form>
       <button className="form-search__reset" type="reset">
         <svg width={10} height={10} aria-hidden="true">
