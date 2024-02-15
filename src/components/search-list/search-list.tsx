@@ -1,26 +1,40 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { OfferCard } from '../../types/types-store';
 import { AppRoute } from '../../src-const';
+import { useEffect, useRef } from 'react';
 
 type SearchListProps = {
-  offers: OfferCard[];
+  offer: OfferCard;
+  id: number;
+  inFocus: boolean;
+  onFocus: (idx: number) => void;
+  index: number;
 }
 
-function SearchListComponent ({offers}: SearchListProps) {
-  const navigate = useNavigate();
+function SearchListComponent ({offer, inFocus, onFocus, index}: SearchListProps) {
+  const linkRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+
+    if (inFocus && linkRef.current) {
+
+      linkRef.current.focus();
+
+    }
+
+  }, [inFocus]);
   return(
-    <ul className="form-search__select-list scroller">
-      {offers.map((offer) => (
-        <li
-          key={offer.name}
-          onClick={() => navigate(`${AppRoute.Product}/${offer?.id}${AppRoute.Description}`)}
-          className="form-search__select-item"
-          tabIndex={0}
-        >
-          {offer.name}
-        </li>
-      ))}
-    </ul>
+    <li>
+      <Link
+        to={`${AppRoute.Product}/${offer?.id}${AppRoute.Description}`}
+        ref={linkRef}
+        className="form-search__select-item"
+        style={{ display: 'block' }}
+        onFocus={() => onFocus(index)}
+      >
+        {offer.name}
+      </Link>
+    </li>
   );
 }
 

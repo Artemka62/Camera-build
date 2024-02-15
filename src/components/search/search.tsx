@@ -11,6 +11,29 @@ function SearchComponent () {
   const isShowButtonReset = searchTerm.length > DEFAULT_NULL ? 'form-search list-opened' : 'form-search';
   const isShowListOffers = searchTerm.length >= 3 && offerList.length > DEFAULT_NULL;
   const formRef = useRef<HTMLFormElement>(null);
+  const [cursor, setCursor] = useState(-1);
+  const cursorRef = useRef(cursor);
+
+
+  const onFocus = (index: number) => {
+    setCursor(index);
+  };
+
+  useEffect(() => {
+    cursorRef.current = cursor;
+  }, [cursor]);
+
+  // useEffect(() => {
+  //   if (arrowUpPressed && cursorRef.current > 0) {
+  //     setCursor(cursorRef.current - 1);
+  //   }
+  // }, [arrowUpPressed]);
+
+  // useEffect(() => {
+  //   if (arrowDownPressed && cursorRef.current < offerList.length - 1) {
+  //     setCursor(cursorRef.current + 1);
+  //   }
+  // }, [arrowDownPressed, offerList.length]);
 
 
   function findProduct(searchText: string, listOffersProduct: OfferCard[]): OfferCard[] {
@@ -42,6 +65,7 @@ function SearchComponent () {
     }
   }
 
+
   return (
     <div className={isShowButtonReset}>
       <form ref={formRef}>
@@ -63,7 +87,18 @@ function SearchComponent () {
           />
         </label>
         {isShowListOffers ?
-          <SearchListComponent offers={offerList}/>
+          <ul className="form-search__select-list scroller" >
+            {offerList.map((offer, index) => (
+              <SearchListComponent
+                key={offer.id}
+                id={offer.id}
+                offer={offer}
+                inFocus={cursor === index}
+                onFocus={onFocus}
+                index={index}
+              />
+            ))}
+          </ul>
           : ''}
       </form>
       <button className="form-search__reset" type="reset" onClick={handleReset}>
