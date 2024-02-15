@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { OfferCard } from '../../types/types-store';
 import { AppRoute } from '../../src-const';
 import { useEffect, useRef } from 'react';
+import './search-list.css';
 
 type SearchListProps = {
   offer: OfferCard;
@@ -15,14 +16,11 @@ function SearchListComponent ({offer, inFocus, onFocus, index}: SearchListProps)
   const linkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-
     if (inFocus && linkRef.current) {
-
       linkRef.current.focus();
-
     }
-
   }, [inFocus]);
+
   return(
     <li>
       <Link

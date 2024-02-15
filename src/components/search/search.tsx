@@ -3,6 +3,8 @@ import { useAppSelector } from '../../hooks/hook-use-store';
 import { OfferCard } from '../../types/types-store';
 import { DEFAULT_NULL } from '../../src-const';
 import { SearchListComponent } from '../search-list/search-list';
+import { useKeyPress } from '../../hooks/use-key-press';
+import { useClickOutside } from '../../hooks/use-click-outside';
 
 function SearchComponent () {
   const stateOffersProduct = useAppSelector((state) => state.offers.offers);
@@ -13,6 +15,9 @@ function SearchComponent () {
   const formRef = useRef<HTMLFormElement>(null);
   const [cursor, setCursor] = useState(-1);
   const cursorRef = useRef(cursor);
+  const arrowUpPressed = useKeyPress('ArrowUp');
+  const arrowDownPressed = useKeyPress('ArrowDown');
+  const refList = useClickOutside<HTMLUListElement>(() => setCursor(-1));
 
 
   const onFocus = (index: number) => {
@@ -21,23 +26,25 @@ function SearchComponent () {
 
   useEffect(() => {
     cursorRef.current = cursor;
+
   }, [cursor]);
 
-  // useEffect(() => {
-  //   if (arrowUpPressed && cursorRef.current > 0) {
-  //     setCursor(cursorRef.current - 1);
-  //   }
-  // }, [arrowUpPressed]);
+  useEffect(() => {
+    if (arrowUpPressed && cursorRef.current > 0) {
+      setCursor(cursorRef.current - 1);
+    }
+  }, [arrowUpPressed]);
 
-  // useEffect(() => {
-  //   if (arrowDownPressed && cursorRef.current < offerList.length - 1) {
-  //     setCursor(cursorRef.current + 1);
-  //   }
-  // }, [arrowDownPressed, offerList.length]);
+  useEffect(() => {
+    if (arrowDownPressed && cursorRef.current < offerList.length - 1) {
+      setCursor(cursorRef.current + 1);
+    }
+  }, [arrowDownPressed, offerList.length]);
 
 
   function findProduct(searchText: string, listOffersProduct: OfferCard[]): OfferCard[] {
     if (!searchText) {
+
       return [];
     }
     return listOffersProduct.filter(({ name }) => name.toLowerCase().includes(searchText.toLowerCase()));
@@ -54,6 +61,7 @@ function SearchComponent () {
 
   function handleSearchProduct(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(event.target.value);
+
   }
 
   function handleReset() {
@@ -64,7 +72,6 @@ function SearchComponent () {
       formRef.current.reset();
     }
   }
-
 
   return (
     <div className={isShowButtonReset}>
@@ -87,7 +94,7 @@ function SearchComponent () {
           />
         </label>
         {isShowListOffers ?
-          <ul className="form-search__select-list scroller" >
+          <ul ref={refList} className="form-search__select-list scroller" >
             {offerList.map((offer, index) => (
               <SearchListComponent
                 key={offer.id}
