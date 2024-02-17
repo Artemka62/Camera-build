@@ -2,8 +2,8 @@ import { Link, createSearchParams, useNavigate, useSearchParams } from 'react-ro
 import { ButtonChangePage } from '../button-change-page/button-change-page';
 import { useEffect } from 'react';
 import { AppRoute, ButtonName, DEFAULT_NULL, DEFAULT_UNIT, MAX_LENGTH_CARDS, PAGES_PER_SET} from '../../src-const';
-import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
-import { currentPageSlice } from '../../store/slice/slice-current-page';
+import { useAppSelector } from '../../hooks/hook-use-store';
+
 import { getUrlParams } from '../../utils/utils-grt-url';
 
 type PaginationMainPageComponentProps = {
@@ -21,7 +21,6 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, currentPage}:
   const startPage = (currentPageSet - DEFAULT_UNIT) * pagesPerSet + DEFAULT_UNIT;
   const endPage = Math.min(currentPageSet * pagesPerSet, quantityPages);
   const stateOffers = useAppSelector((state) => state.offers.offers);
-  const dispatch = useAppDispatch();
   const isPageReel = currentPage > DEFAULT_NULL && currentPage <= Math.ceil(stateOffers.length / MAX_LENGTH_CARDS);
   const [urlParam] = useSearchParams();
 
@@ -29,26 +28,6 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, currentPage}:
     let isMounted = true;
 
     if(isMounted) {
-
-      // if(sortType !== null && sortIcoType !== null) {
-
-      //   return navigate({
-      //     search: createSearchParams({
-      //       ...getUrlParams(urlParam),
-      //       ['page']: currentPage.toString(),
-      //     }).toString(),
-      //   });
-      // }
-
-
-      navigate({
-        search: createSearchParams({
-          ...getUrlParams(urlParam),
-          ['page']: currentPage.toString(),
-        }).toString(),
-      });
-
-      // navigate(`${AppRoute.Page}${currentPage}`);
 
 
       if(!isPageReel && isMounted) {
@@ -59,29 +38,24 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, currentPage}:
     return () => {
       isMounted = false;
     };
-  },[currentPage]);
-
-  function handleClickButton(numberPage: number) {
-    dispatch(currentPageSlice.actions.page(numberPage));
-  }
+  },[currentPage, endPage]);
 
   return (
     <div className="pagination" data-testid='pagination-main-page'>
       <ul className="pagination__list">
         {currentPageSet > DEFAULT_UNIT && (
           <ButtonChangePage
-            onPaginationButtonClick={() => handleClickButton(startPage - DEFAULT_UNIT)}
-            currentPage={currentPage}
             nameButton={ButtonName.BackEn}
+            lastPage={startPage}
           />
         )}
         {pageNumbers.slice(startPage - DEFAULT_UNIT, endPage).map((number) => (
-          <li key={number} className="pagination__item" onClick={() => handleClickButton(number)}>
+          <li key={number} className="pagination__item" >
             <Link
               to={{
                 search: createSearchParams({
                   ...getUrlParams(urlParam),
-                  ['page']: currentPage.toString(),
+                  ['page']: number.toString(),
                 }).toString(),
               }}
               className={`pagination__link ${currentPage === number ? 'pagination__link--active' : ''}`}
@@ -92,9 +66,8 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, currentPage}:
         ))}
         {currentPageSet * pagesPerSet < quantityPages && (
           <ButtonChangePage
-            onPaginationButtonClick={() => handleClickButton(endPage + DEFAULT_UNIT)}
-            currentPage={currentPage}
             nameButton={ButtonName.NextEn}
+            lastPage={endPage}
           />
         )}
       </ul>
