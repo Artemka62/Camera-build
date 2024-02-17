@@ -2,21 +2,14 @@
 import { render, screen} from '@testing-library/react';
 import { withHistory } from '../mock-component/mock-component';
 import { ButtonChangePage } from './button-change-page';
-import { DEFAULT_NULL, DEFAULT_UNIT } from '../../src-const';
-
-function handleClickButton(numberPage: number) {
-  return numberPage;
-}
+import { DEFAULT_UNIT } from '../../src-const';
 
 describe('component: ButtonChange', () => {
   it('should render correctly', () => {
     const expectedText = 'button-change-page';
     const preparedComponent = withHistory(
       <ButtonChangePage
-        onPaginationButtonClick={
-          () => handleClickButton(DEFAULT_UNIT - DEFAULT_NULL)
-        }
-        currentPage={DEFAULT_UNIT}
+        lastPage={DEFAULT_UNIT}
         nameButton={'back'}
       />);
 

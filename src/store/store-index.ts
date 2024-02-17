@@ -6,7 +6,6 @@ import { offerSlice } from './slice/slice-offer';
 import { windowsSlice } from './slice/slice-modal-windows';
 import { similarOffersSlice } from './slice/slice-similar-offers';
 import { reviewsSlice } from './slice/slice-reviews';
-import { currentPageSlice } from './slice/slice-current-page';
 
 const reducer = combineReducers({
   [offersSlice.name]: offersSlice.reducer,
@@ -14,8 +13,7 @@ const reducer = combineReducers({
   [offerSlice.name]: offerSlice.reducer,
   [windowsSlice.name]: windowsSlice.reducer,
   [similarOffersSlice.name]: similarOffersSlice.reducer,
-  [reviewsSlice.name]: reviewsSlice.reducer,
-  [currentPageSlice.name]: currentPageSlice.reducer
+  [reviewsSlice.name]: reviewsSlice.reducer
 });
 
 const api = createApi();
