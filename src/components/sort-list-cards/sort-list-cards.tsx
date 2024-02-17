@@ -1,5 +1,4 @@
 import { useSearchParams } from 'react-router-dom';
-
 import { ChangeEvent } from 'react';
 import { SortId, SortName } from '../../src-const';
 
@@ -10,9 +9,7 @@ function SortListCardsComponent () {
   const sortType = urlParam.get('sort');
   const sortIcoType = urlParam.get('rotation');
 
-
   function setUrlSort (name: string, value: string) {
-
     switch(name) {
       case (SortName.PriceRating): {
         return `page=${currentPage || 1}&sort=${value}&rotation=${sortIcoType || SortId.Up}`;
@@ -41,7 +38,7 @@ function SortListCardsComponent () {
                 type="radio"
                 id="sortPrice"
                 name="sort"
-                defaultChecked
+                checked={sortType === SortId.Price}
                 onChange={handleClickSort}
               />
               <label htmlFor="sortPrice">по цене</label>
@@ -50,6 +47,7 @@ function SortListCardsComponent () {
               <input
                 type="radio"
                 id="sortPopular"
+                checked={sortType === SortId.Popular}
                 name="sort"
                 onChange={handleClickSort}
               />
@@ -62,7 +60,7 @@ function SortListCardsComponent () {
                 type="radio"
                 id="up"
                 name="sort-icon"
-                defaultChecked
+                checked={sortIcoType === SortId.Up}
                 aria-label="По возрастанию"
                 onChange={handleClickSort}
               />
@@ -78,6 +76,7 @@ function SortListCardsComponent () {
                 id="down"
                 name="sort-icon"
                 aria-label="По убыванию"
+                checked={sortIcoType === SortId.Down}
                 onChange={handleClickSort}
               />
               <label htmlFor="down">
