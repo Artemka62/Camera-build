@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 
 import { ChangeEvent } from 'react';
+import { SortId, SortName } from '../../src-const';
 
 function SortListCardsComponent () {
 
@@ -10,25 +11,24 @@ function SortListCardsComponent () {
   const sortIcoType = urlParam.get('rotation');
 
 
-  function setUrl (name: string, value: string) {
+  function setUrlSort (name: string, value: string) {
 
     switch(name) {
-      case 'sort': return `page=${currentPage || 1}&sort=${value}&rotation=${sortIcoType || ''}`;
-      case 'sort-icon': return `page=${currentPage || 1}&sort=${sortType || ''}&rotation=${value}`;
+      case (SortName.PriceRating): {
+        return `page=${currentPage || 1}&sort=${value}&rotation=${sortIcoType || SortId.Up}`;
+      }
+      case (SortName.UpDown): {
+        return `page=${currentPage || 1}&sort=${sortType || SortId.Price}&rotation=${value}`;
+      }
     }
   }
 
   function handleClickSort (event: ChangeEvent<HTMLInputElement>) {
+    const name = event.target.name;
+    const id = event.target.id;
 
-    //console.log(event.target.id);
-
-
-    setUrlParam(setUrl(event.target.name, event.target.id));
-
-
-    //console.log(urlParam.get('page'));
+    setUrlParam(setUrlSort(name, id));
   }
-
 
   return (
     <div className="catalog-sort">

@@ -7,48 +7,46 @@ import { HeaderComponent } from '../../components/header/header';
 import { PaginationMainPageComponent } from '../../components/pagination-main-page/pagination-main-page';
 import { SortListCardsComponent } from '../../components/sort-list-cards/sort-list-cards';
 import { useDocumentTitle } from '../../hooks/hook-use-document-title';
-import { useAppSelector } from '../../hooks/hook-use-store';
+import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
 import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
-import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, MAX_LENGTH_CARDS } from '../../src-const';
+import { AppRoute, MAX_LENGTH_CARDS } from '../../src-const';
 import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
 import { ErrorPage } from '../page-error/page-error';
-import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import { currentPageSlice} from '../../store/slice/slice-current-page';
 
 type MainPageProps = {
   title: string;
 }
 
 function MainPage ({title}: MainPageProps): JSX.Element {
+
+  const stateCurrentPage = useAppSelector((state) => state.currentPage.page);
   const stateOffers = useAppSelector((state) => state.offers.offers);
-  const [currentPage, setCurrentPage] = useState(DEFAULT_UNIT);
   const [offersPerPages] = useState(MAX_LENGTH_CARDS);
-  const lastOfferIndex = currentPage * offersPerPages;
+  const lastOfferIndex = stateCurrentPage * offersPerPages;
   const firstOfferIndex = lastOfferIndex - offersPerPages;
   const currentOffers = stateOffers.slice(firstOfferIndex, lastOfferIndex);
   const isLoadingOffers = useAppSelector((state) => state.offers.loading);
   const isErrorLoadOffers = useAppSelector((state) => state.offers.error);
-  const location = useLocation();
-  const lastDigit = +location.search.slice(-DEFAULT_UNIT);
+  const dispatch = useAppDispatch();
+  const [urlParam] = useSearchParams();
+  const setCurrentPAge = urlParam.get('page');
 
   useDocumentTitle(title);
 
   useEffect(() => {
     let isMounted = true;
 
-    if(lastDigit !== DEFAULT_NULL && isMounted){
-      setCurrentPage(+lastDigit);
+    if(setCurrentPAge !== null && isMounted){
+      dispatch(currentPageSlice.actions.page(+setCurrentPAge));
     }
 
     return () => {
       isMounted = false;
     };
   },[]);
-
-
-  function setPage (pageNumber: number) {
-    setCurrentPage(pageNumber);
-  }
 
   if(isLoadingOffers){
     return <LoadingComponent/>;
@@ -76,8 +74,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
                   <PaginationMainPageComponent
                     offersPerPages={offersPerPages}
                     totalOffers={stateOffers.length}
-                    onPaginationButtonClick={setPage}
-                    currentPage={currentPage}
+                    currentPage={stateCurrentPage}
                   />
                 </div>
               </div>

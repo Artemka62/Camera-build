@@ -70,6 +70,19 @@ const ServerAnswer = {
   Ok: 200
 } as const;
 
+const SortName = {
+  PriceRating: 'sort',
+  UpDown: 'sort-icon'
+
+} as const;
+
+const SortId = {
+  Price: 'sortPrice',
+  Popular: 'sortPopular',
+  Up: 'up',
+  Down:'down'
+} as const;
+
 const ButtonName = {
   NextEn: 'next',
   NextRu: 'Далее',
@@ -96,5 +109,7 @@ export{
   SettingTab,
   SettingValidation,
   ServerAnswer,
+  SortName,
+  SortId,
   ButtonName
 };
