@@ -1,4 +1,82 @@
+import { ChangeEvent } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { getUrlParams } from '../../utils/utils-grt-url';
+
 function FilterListCardsComponent () {
+  const ParamFilter = {
+    PhotoCamera: 'photocamera',
+    VideoCamera: 'videocamera',
+    Digital: 'digital',
+    Film: 'film',
+    SnapShot: 'snapshot',
+    Collection: 'collection',
+    Zero :'zero',
+    NonProfessional :'non-professional',
+    Professional: 'professional'
+  } as const;
+
+  const [urlParam, setUrlParam] = useSearchParams();
+
+
+  function getValidFilter (filter: string) {
+    const isValidFilter = urlParam.get(filter);
+
+    return isValidFilter !== null;
+  }
+
+
+  function handleChangeCheckbox (event: ChangeEvent<HTMLInputElement>) {
+    const actualUrl = getUrlParams(urlParam);
+    const nameFilter = event.target.name;
+
+    switch (event.target.name) {
+      case(ParamFilter.PhotoCamera): {
+        actualUrl[nameFilter] = ParamFilter.PhotoCamera;
+        break;
+      }
+      case(ParamFilter.VideoCamera): {
+        actualUrl[nameFilter] = ParamFilter.VideoCamera;
+        break;
+      }
+      case(ParamFilter.Digital): {
+        actualUrl[nameFilter] = ParamFilter.Digital;
+        break;
+      }
+      case(ParamFilter.Film): {
+        actualUrl[nameFilter] = ParamFilter.Film;
+        break;
+      }
+      case(ParamFilter.SnapShot): {
+        actualUrl[nameFilter] = ParamFilter.SnapShot;
+        break;
+      }
+      case(ParamFilter.Collection): {
+        actualUrl[nameFilter] = ParamFilter.Collection;
+        break;
+      }
+      case(ParamFilter.Zero): {
+        actualUrl[nameFilter] = ParamFilter.Zero;
+        break;
+      }
+      case(ParamFilter.NonProfessional): {
+        actualUrl[nameFilter] = ParamFilter.NonProfessional;
+        break;
+      }
+      case(ParamFilter.Professional): {
+        actualUrl[nameFilter] = ParamFilter.Professional;
+        break;
+      }
+
+    }
+
+
+    if(urlParam.get(nameFilter) !== null){
+      delete actualUrl[nameFilter];
+    }
+
+    setUrlParam(actualUrl);
+  }
+
   return (
     <div className="catalog__aside">
       <div className="catalog-filter">
@@ -30,6 +108,9 @@ function FilterListCardsComponent () {
                 <input
                   type="checkbox"
                   name="photocamera"
+                  onChange={handleChangeCheckbox}
+                  checked={getValidFilter(ParamFilter.PhotoCamera)}
+
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -39,7 +120,12 @@ function FilterListCardsComponent () {
             </div>
             <div className="custom-checkbox catalog-filter__item">
               <label>
-                <input type="checkbox" name="videocamera" />
+                <input
+                  type="checkbox"
+                  name="videocamera"
+                  onChange={handleChangeCheckbox}
+                  checked={getValidFilter(ParamFilter.VideoCamera)}
+                />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
                   Видеокамера
@@ -54,6 +140,8 @@ function FilterListCardsComponent () {
                 <input
                   type="checkbox"
                   name="digital"
+                  onChange={handleChangeCheckbox}
+                  checked={getValidFilter(ParamFilter.Digital)}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">Цифровая</span>
@@ -61,7 +149,12 @@ function FilterListCardsComponent () {
             </div>
             <div className="custom-checkbox catalog-filter__item">
               <label>
-                <input type="checkbox" name="film" disabled />
+                <input
+                  type="checkbox"
+                  name="film"
+                  onChange={handleChangeCheckbox}
+                  checked={getValidFilter(ParamFilter.Film)}
+                />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
                   Плёночная
@@ -70,7 +163,12 @@ function FilterListCardsComponent () {
             </div>
             <div className="custom-checkbox catalog-filter__item">
               <label>
-                <input type="checkbox" name="snapshot" />
+                <input
+                  type="checkbox"
+                  name="snapshot"
+                  onChange={handleChangeCheckbox}
+                  checked={getValidFilter(ParamFilter.SnapShot)}
+                />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
                   Моментальная
@@ -82,7 +180,8 @@ function FilterListCardsComponent () {
                 <input
                   type="checkbox"
                   name="collection"
-                  disabled
+                  onChange={handleChangeCheckbox}
+                  checked={getValidFilter(ParamFilter.Collection)}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -98,6 +197,8 @@ function FilterListCardsComponent () {
                 <input
                   type="checkbox"
                   name="zero"
+                  onChange={handleChangeCheckbox}
+                  checked={getValidFilter(ParamFilter.Zero)}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">Нулевой</span>
@@ -105,7 +206,12 @@ function FilterListCardsComponent () {
             </div>
             <div className="custom-checkbox catalog-filter__item">
               <label>
-                <input type="checkbox" name="non-professional" />
+                <input
+                  type="checkbox"
+                  name="non-professional"
+                  onChange={handleChangeCheckbox}
+                  checked={getValidFilter(ParamFilter.NonProfessional)}
+                />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
                   Любительский
@@ -114,7 +220,13 @@ function FilterListCardsComponent () {
             </div>
             <div className="custom-checkbox catalog-filter__item">
               <label>
-                <input type="checkbox" name="professional" />
+                <input
+                  type="checkbox"
+                  name="professional"
+
+                  onChange={handleChangeCheckbox}
+                  checked={getValidFilter(ParamFilter.Professional)}
+                />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
                   Профессиональный
