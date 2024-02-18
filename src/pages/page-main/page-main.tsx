@@ -32,18 +32,6 @@ function MainPage ({title}: MainPageProps): JSX.Element {
 
   useDocumentTitle(title);
 
-  // useEffect(() => {
-  //   let isMounted = true;
-
-  //   if(setCurrentPage !== null && isMounted){
-  //     //dispatch(currentPageSlice.actions.page(+setCurrentPage));
-  //   }
-
-  //   return () => {
-  //     isMounted = false;
-  //   };
-  // },[setCurrentPage]);
-
   if(isLoadingOffers){
     return <LoadingComponent/>;
   }

@@ -83,6 +83,24 @@ const SortId = {
   Down:'down'
 } as const;
 
+const ParamFilter = {
+  PhotoCamera: 'photocamera',
+  VideoCamera: 'videocamera',
+  Digital: 'digital',
+  Film: 'film',
+  SnapShot: 'snapshot',
+  Collection: 'collection',
+  Zero :'zero',
+  NonProfessional :'non-professional',
+  Professional: 'professional'
+} as const;
+
+const ParamSort = {
+  Sort: 'sort',
+  Rotation: 'rotation'
+} as const;
+
+
 const ButtonName = {
   NextEn: 'next',
   NextRu: 'Далее',
@@ -111,5 +129,7 @@ export{
   ServerAnswer,
   SortName,
   SortId,
+  ParamFilter,
+  ParamSort,
   ButtonName
 };

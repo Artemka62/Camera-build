@@ -1,30 +1,34 @@
 import { useSearchParams } from 'react-router-dom';
 import { ChangeEvent } from 'react';
-import { SortId, SortName } from '../../src-const';
+import { ParamSort, SortId, SortName } from '../../src-const';
+import { getUrlParams } from '../../utils/utils-grt-url';
 
 function SortListCardsComponent () {
-
   const [urlParam, setUrlParam] = useSearchParams();
-  const currentPage = urlParam.get('page');
-  const sortType = urlParam.get('sort');
-  const sortIcoType = urlParam.get('rotation');
-
-  function setUrlSort (name: string, value: string) {
-    switch(name) {
-      case (SortName.PriceRating): {
-        return `page=${currentPage || 1}&sort=${value}&rotation=${sortIcoType || SortId.Up}`;
-      }
-      case (SortName.UpDown): {
-        return `page=${currentPage || 1}&sort=${sortType || SortId.Price}&rotation=${value}`;
-      }
-    }
-  }
+  const sortType = urlParam.get(ParamSort.Sort);
+  const sortIcoType = urlParam.get(ParamSort.Rotation);
 
   function handleClickSort (event: ChangeEvent<HTMLInputElement>) {
     const name = event.target.name;
     const id = event.target.id;
+    const actualUrl = getUrlParams(urlParam);
 
-    setUrlParam(setUrlSort(name, id));
+    switch(name) {
+      case (SortName.PriceRating): {
+        actualUrl[ParamSort.Sort] = id;
+        actualUrl[ParamSort.Rotation] = sortIcoType || SortId.Up;
+
+        break;
+      }
+      case (SortName.UpDown): {
+        actualUrl[ParamSort.Sort] = sortType || SortId.Price;
+        actualUrl[ParamSort.Rotation] = id;
+
+        break;
+      }
+    }
+
+    setUrlParam(actualUrl);
   }
 
   return (
