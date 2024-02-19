@@ -29,7 +29,6 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, currentPage}:
 
     if(isMounted) {
 
-
       if(!isPageReel && isMounted) {
         return navigate(AppRoute.Error);
       }

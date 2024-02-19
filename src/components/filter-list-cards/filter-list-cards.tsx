@@ -7,6 +7,7 @@ function FilterListCardsComponent () {
   const [urlParam, setUrlParam] = useSearchParams();
   const isDisabledFilter = urlParam.get(ParamFilter.VideoCamera) !== null;
 
+  const actualUrl = getUrlParams(urlParam);
 
   function getValidFilter (filter: string) {
     const isValidFilter = urlParam.get(filter);
@@ -15,7 +16,7 @@ function FilterListCardsComponent () {
   }
 
   function handleChangeCheckbox (event: ChangeEvent<HTMLInputElement>) {
-    const actualUrl = getUrlParams(urlParam);
+
     const nameFilter = event.target.name;
 
     switch (nameFilter) {
@@ -35,22 +36,18 @@ function FilterListCardsComponent () {
       }
       case(ParamFilter.Digital): {
         actualUrl[nameFilter] = ParamFilter.Digital;
-
         break;
       }
       case(ParamFilter.Film): {
         actualUrl[nameFilter] = ParamFilter.Film;
-
         break;
       }
       case(ParamFilter.SnapShot): {
         actualUrl[nameFilter] = ParamFilter.SnapShot;
-
         break;
       }
       case(ParamFilter.Collection): {
         actualUrl[nameFilter] = ParamFilter.Collection;
-
         break;
       }
       case(ParamFilter.Zero): {
@@ -60,12 +57,10 @@ function FilterListCardsComponent () {
       }
       case(ParamFilter.NonProfessional): {
         actualUrl[nameFilter] = ParamFilter.NonProfessional;
-
         break;
       }
       case(ParamFilter.Professional): {
         actualUrl[nameFilter] = ParamFilter.Professional;
-
         break;
       }
     }
@@ -73,6 +68,22 @@ function FilterListCardsComponent () {
     if(urlParam.get(nameFilter) !== null){
       delete actualUrl[nameFilter];
     }
+
+    actualUrl['page'] = '1';
+
+    setUrlParam(actualUrl);
+  }
+
+  function handleClickResetFilter () {
+    delete actualUrl[ParamFilter.VideoCamera];
+    delete actualUrl[ParamFilter.PhotoCamera];
+    delete actualUrl[ParamFilter.SnapShot];
+    delete actualUrl[ParamFilter.Film];
+    delete actualUrl[ParamFilter.Digital];
+    delete actualUrl[ParamFilter.NonProfessional];
+    delete actualUrl[ParamFilter.Professional];
+    delete actualUrl[ParamFilter.Zero];
+    delete actualUrl[ParamFilter.Collection];
 
     setUrlParam(actualUrl);
   }
@@ -238,7 +249,8 @@ function FilterListCardsComponent () {
           </fieldset>
           <button
             className="btn catalog-filter__reset-btn"
-            type="reset"
+            type="button"
+            onClick={handleClickResetFilter}
           >
             Сбросить фильтры
           </button>
