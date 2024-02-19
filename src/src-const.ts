@@ -95,6 +95,10 @@ const ParamFilter = {
   Professional: 'professional'
 } as const;
 
+const ParamFilterRu = {
+
+} as const;
+
 const ParamSort = {
   Sort: 'sort',
   Rotation: 'rotation'

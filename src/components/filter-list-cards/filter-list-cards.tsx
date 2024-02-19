@@ -5,6 +5,8 @@ import { ParamFilter } from '../../src-const';
 
 function FilterListCardsComponent () {
   const [urlParam, setUrlParam] = useSearchParams();
+  const isDisabledFilter = urlParam.get(ParamFilter.VideoCamera) !== null;
+
 
   function getValidFilter (filter: string) {
     const isValidFilter = urlParam.get(filter);
@@ -19,11 +21,15 @@ function FilterListCardsComponent () {
     switch (nameFilter) {
       case(ParamFilter.PhotoCamera): {
         actualUrl[nameFilter] = ParamFilter.PhotoCamera;
+        delete actualUrl[ParamFilter.VideoCamera];
 
         break;
       }
       case(ParamFilter.VideoCamera): {
         actualUrl[nameFilter] = ParamFilter.VideoCamera;
+        delete actualUrl[ParamFilter.PhotoCamera];
+        delete actualUrl[ParamFilter.SnapShot];
+        delete actualUrl[ParamFilter.Film];
 
         break;
       }
@@ -148,6 +154,7 @@ function FilterListCardsComponent () {
                   name="film"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.Film)}
+                  disabled={isDisabledFilter}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -162,6 +169,7 @@ function FilterListCardsComponent () {
                   name="snapshot"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.SnapShot)}
+                  disabled={isDisabledFilter}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">

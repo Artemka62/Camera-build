@@ -15,7 +15,6 @@ function CardsListComponent ({offers}: CardsListComponentProps) {
 
 
   function getSortOffers (type: string, maxMin: string) {
-
     if(type === SortId.Price && maxMin === SortId.Down) {
 
       return offers.sort((a, b) => b.price - a.price);
@@ -37,9 +36,7 @@ function CardsListComponent ({offers}: CardsListComponentProps) {
     }
   }
 
-
   const sortOffers = getSortOffers(sortType, sortMaxMin) || offers;
-
 
   return (
     <div className="cards catalog__cards" data-testid='card-list'>
