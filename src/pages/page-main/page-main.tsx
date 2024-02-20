@@ -9,7 +9,7 @@ import { SortListCardsComponent } from '../../components/sort-list-cards/sort-li
 import { useDocumentTitle } from '../../hooks/hook-use-document-title';
 import { useAppSelector } from '../../hooks/hook-use-store';
 import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
-import { AppRoute, MAX_LENGTH_CARDS, ParamFilter } from '../../src-const';
+import { AppRoute, MAX_LENGTH_CARDS, ParamFilter, SortId } from '../../src-const';
 import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
 import { ErrorPage } from '../page-error/page-error';
@@ -32,6 +32,9 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const isErrorLoadOffers = useAppSelector((state) => state.offers.error);
   const keyUrl = getUrlParams(urlParam);
   const arrayFilters = Object.keys(keyUrl);
+  const sortType = urlParam.get('sort') || '';
+  const sortMaxMin = urlParam.get('rotation') || '';
+
 
   function getOfferCategoryFilter () {
     const offers: OfferCard[] = [];
@@ -48,7 +51,6 @@ function MainPage ({title}: MainPageProps): JSX.Element {
         }
       }
     }
-
     const isOffers = offers.length !== 0 ? offers : stateOffers;
 
     return isOffers;
@@ -61,7 +63,6 @@ function MainPage ({title}: MainPageProps): JSX.Element {
 
     for (let i = 0; i <= arrayFilters.length - 1; i++) {
       switch (arrayFilters[i]) {
-
         case (ParamFilter.Digital): {
           offersFilterCategory.filter((offer) => (offer.type === 'Цифровая') ? offers.push(offer) : '');
           break;
@@ -80,7 +81,6 @@ function MainPage ({title}: MainPageProps): JSX.Element {
         }
       }
     }
-
     return offers.length === 0 ? offersFilterCategory : offers;
   }
 
@@ -109,7 +109,6 @@ function MainPage ({title}: MainPageProps): JSX.Element {
         }
       }
     }
-
     return isFiltersValid ? offers : offerType;
   }
 
@@ -121,15 +120,39 @@ function MainPage ({title}: MainPageProps): JSX.Element {
         return false;
       } else {
         uniqueIds.add(obj.id);
+
         return true;
       }
     });
-
     return uniqueObjects;
   };
 
-  const currentOffers = getOffersNotRepeatId().slice(firstOfferIndex, lastOfferIndex);
-  const lengthOffers = getOffersNotRepeatId().length;
+  const filteredOffers = getOffersNotRepeatId();
+
+
+  function getSortOffers (type: string, maxMin: string) {
+    const offersCopy = [...filteredOffers];
+
+    if(type === SortId.Price && maxMin === SortId.Down) {
+      return offersCopy.sort((a, b) => b.price - a.price);
+    }
+
+    if(type === SortId.Price && maxMin === SortId.Up) {
+      return offersCopy.sort((a, b) => a.price - b.price);
+    }
+
+    if(type === SortId.Popular && maxMin === SortId.Up) {
+      return offersCopy.sort((a, b) => a.rating - b.rating);
+    }
+
+    if(type === SortId.Popular && maxMin === SortId.Down) {
+      return offersCopy.sort((a, b) => b.rating - a.rating);
+    }
+  }
+
+  const offersSort = getSortOffers(sortType, sortMaxMin) || filteredOffers;
+  const currentOffers = offersSort.slice(firstOfferIndex, lastOfferIndex);
+  const lengthOffers = offersSort.length;
 
   useDocumentTitle(title);
 
