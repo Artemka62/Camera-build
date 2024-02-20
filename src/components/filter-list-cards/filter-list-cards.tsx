@@ -1,13 +1,20 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getUrlParams } from '../../utils/utils-grt-url';
 import { ParamFilter } from '../../src-const';
+import { OfferCard } from '../../types/types-store';
 
-function FilterListCardsComponent () {
+
+type FilterListCardsProps = {
+  offers: OfferCard[];
+}
+
+function FilterListCardsComponent ({offers}: FilterListCardsProps) {
   const [urlParam, setUrlParam] = useSearchParams();
   const isDisabledFilter = urlParam.get(ParamFilter.VideoCamera) !== null;
-
   const actualUrl = getUrlParams(urlParam);
+  const refInputMin = useRef<HTMLInputElement>(null);
+  const refInputMax = useRef<HTMLInputElement>(null);
 
   function getValidFilter (filter: string) {
     const isValidFilter = urlParam.get(filter);
@@ -16,7 +23,6 @@ function FilterListCardsComponent () {
   }
 
   function handleChangeCheckbox (event: ChangeEvent<HTMLInputElement>) {
-
     const nameFilter = event.target.name;
 
     switch (nameFilter) {
@@ -52,7 +58,6 @@ function FilterListCardsComponent () {
       }
       case(ParamFilter.Zero): {
         actualUrl[nameFilter] = ParamFilter.Zero;
-
         break;
       }
       case(ParamFilter.NonProfessional): {
@@ -67,6 +72,15 @@ function FilterListCardsComponent () {
 
     if(urlParam.get(nameFilter) !== null){
       delete actualUrl[nameFilter];
+    }
+
+
+    if(refInputMin.current && refInputMax.current){
+      refInputMin.current.value = '';
+      refInputMax.current.value = '';
+
+      delete actualUrl['priceMin'];
+      delete actualUrl['priceMax'];
     }
 
     actualUrl['page'] = '1';
@@ -88,6 +102,142 @@ function FilterListCardsComponent () {
     setUrlParam(actualUrl);
   }
 
+
+  const minPriceOffers = offers.reduce((min, offer) => offer.price < min ? offer.price : min, offers[0].price);
+  const maxPriceOffers = offers.reduce((max, offer) => offer.price > max ? offer.price : max, offers[0].price);
+  const [minPrice, setMinPrice] = useState(minPriceOffers);
+  const [maxPrice, setMaxPrice] = useState(maxPriceOffers);
+
+  useEffect(() => {
+    setMinPrice(minPriceOffers);
+    setMaxPrice(maxPriceOffers);
+  }, [offers]);
+
+  useEffect(() => {
+    if(refInputMin.current && refInputMax.current){
+      refInputMin.current.value = urlParam.get('priceMin') ?? '';
+      refInputMax.current.value = urlParam.get('priceMax') ?? '';
+    }
+  }, []);
+
+  function setUrlAndInput (price: string, name: string) {
+
+    if(refInputMin.current && refInputMax.current) {
+
+      if(name === 'priceMax' && price < refInputMin.current.value) {
+        actualUrl[name] = maxPrice.toString();
+        refInputMax.current.value = maxPrice.toString();
+        setUrlParam(actualUrl);
+        console.log(-1);
+        return;
+      }
+
+      if(name === 'priceMin' && price === ''){
+        delete actualUrl['priceMin'];
+        setUrlParam(actualUrl);
+
+        console.log(1);
+        return;
+      }
+
+      if(name === 'priceMin' && +price < 0) {
+        actualUrl[name] = minPrice.toString();
+        refInputMin.current.value = minPrice.toString();
+        setUrlParam(actualUrl);
+        console.log(2);
+        return;
+      }
+
+      if(name === 'priceMin' && +price < minPrice) {
+        actualUrl[name] = minPrice.toString();
+        refInputMin.current.value = minPrice.toString();
+        setUrlParam(actualUrl);
+        console.log(3);
+        return;
+      }
+
+      if(name === 'priceMin' && +price === 0) {
+        actualUrl[name] = minPrice.toString();
+        refInputMin.current.value = minPrice.toString();
+        setUrlParam(actualUrl);
+        console.log(4);
+        return;
+      }
+
+      if(name === 'priceMin' && +price > maxPrice) {
+        actualUrl[name] = minPrice.toString();
+        refInputMin.current.value = minPrice.toString();
+        setUrlParam(actualUrl);
+        console.log(5);
+        return;
+      }
+
+
+      if(name === 'priceMin' && +price <= maxPrice) {
+        actualUrl[name] = refInputMin.current.value;
+        setUrlParam(actualUrl);
+        console.log(6);
+        return;
+      }
+
+      if(name === 'priceMax' && price === ''){
+        delete actualUrl['priceMax'];
+        setUrlParam(actualUrl);
+
+        console.log(1);
+        return;
+      }
+
+      if(name === 'priceMax' && +price < 0) {
+        actualUrl[name] = maxPrice.toString();
+        refInputMax.current.value = maxPrice.toString();
+        setUrlParam(actualUrl);
+        console.log(2);
+        return;
+      }
+
+      if(name === 'priceMax' && +price > maxPrice) {
+        actualUrl[name] = maxPrice.toString();
+        refInputMax.current.value = maxPrice.toString();
+        setUrlParam(actualUrl);
+        console.log(3);
+        return;
+      }
+
+      if(name === 'priceMax' && +price === 0) {
+        actualUrl[name] = maxPrice.toString();
+        refInputMax.current.value = maxPrice.toString();
+        setUrlParam(actualUrl);
+        console.log(4);
+        return;
+      }
+
+      if(name === 'priceMax' && +price < minPrice) {
+        actualUrl[name] = minPrice.toString();
+        refInputMax.current.value = maxPrice.toString();
+        setUrlParam(actualUrl);
+        console.log(5);
+        return;
+      }
+
+
+      if(name === 'priceMax' && +price <= maxPrice) {
+        actualUrl[name] = refInputMax.current.value;
+        setUrlParam(actualUrl);
+        console.log(6.1);
+      }
+    }
+  }
+
+
+  function handleInputBlur (event: React.ChangeEvent<HTMLInputElement>) {
+    const nameInput = event.target.name;
+    const valueInput = event.target.value;
+
+    setUrlAndInput(valueInput, nameInput);
+  }
+
+
   return (
     <div className="catalog__aside">
       <div className="catalog-filter">
@@ -98,15 +248,23 @@ function FilterListCardsComponent () {
             <div className="catalog-filter__price-range">
               <div className="custom-input">
                 <label>
-                  <input type="number" name="price" placeholder="от" />
+                  <input
+                    ref={refInputMin}
+                    type="number"
+                    name="priceMin"
+                    placeholder={`${minPrice}`}
+                    onBlur={handleInputBlur}
+                  />
                 </label>
               </div>
               <div className="custom-input">
                 <label>
                   <input
+                    ref={refInputMax}
                     type="number"
-                    name="priceUp"
-                    placeholder="до"
+                    name="priceMax"
+                    placeholder={`${maxPrice}`}
+                    onBlur={handleInputBlur}
                   />
                 </label>
               </div>

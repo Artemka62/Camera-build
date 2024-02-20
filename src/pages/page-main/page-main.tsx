@@ -89,9 +89,9 @@ function MainPage ({title}: MainPageProps): JSX.Element {
     const offerType = getOffersTypeFilter();
     const offers: OfferCard[] = [];
     const isFilterZero = urlParam.get('zero');
-    const isFilterNonProfessional = urlParam.get('non-professional');
-    const isFilterProfessional = urlParam.get('professional');
-    const isFiltersValid = isFilterZero !== null || isFilterNonProfessional !== null || isFilterProfessional !== null;
+    const filterNonProfessional = urlParam.get('non-professional');
+    const filterProfessional = urlParam.get('professional');
+    const isFiltersValid = isFilterZero !== null || filterNonProfessional !== null || filterProfessional !== null;
 
     for (let i = 0; i <= arrayFilters.length - 1; i++) {
       switch (arrayFilters[i]) {
@@ -150,9 +150,9 @@ function MainPage ({title}: MainPageProps): JSX.Element {
     }
   }
 
-  const offersSort = getSortOffers(sortType, sortMaxMin) || filteredOffers;
-  const currentOffers = offersSort.slice(firstOfferIndex, lastOfferIndex);
-  const lengthOffers = offersSort.length;
+  const offersSortAndFilter = getSortOffers(sortType, sortMaxMin) || filteredOffers;
+  const currentOffers = offersSortAndFilter.slice(firstOfferIndex, lastOfferIndex);
+  const lengthOffers = offersSortAndFilter.length;
 
   useDocumentTitle(title);
 
@@ -175,7 +175,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
             <div className="container">
               <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
               <div className="page-content__columns">
-                <FilterListCardsComponent/>
+                <FilterListCardsComponent offers={offersSortAndFilter}/>
                 <div className="catalog__content">
                   <SortListCardsComponent/>
                   <CardsListComponent offers={currentOffers}/>
