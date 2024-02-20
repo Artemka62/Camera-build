@@ -98,6 +98,9 @@ function FilterListCardsComponent ({offers}: FilterListCardsProps) {
     delete actualUrl[ParamFilter.Professional];
     delete actualUrl[ParamFilter.Zero];
     delete actualUrl[ParamFilter.Collection];
+    delete actualUrl['priceMin'];
+    delete actualUrl['priceMax'];
+
 
     setUrlParam(actualUrl);
   }
@@ -127,6 +130,14 @@ function FilterListCardsComponent ({offers}: FilterListCardsProps) {
       if(name === 'priceMax' && price < refInputMin.current.value) {
         actualUrl[name] = maxPrice.toString();
         refInputMax.current.value = maxPrice.toString();
+        setUrlParam(actualUrl);
+        console.log(-1);
+        return;
+      }
+
+      if(name === 'priceMin' && price > refInputMax.current.value) {
+        actualUrl[name] = minPrice.toString();
+        refInputMin.current.value = minPrice.toString();
         setUrlParam(actualUrl);
         console.log(-1);
         return;
