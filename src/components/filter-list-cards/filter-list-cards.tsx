@@ -118,28 +118,45 @@ function FilterListCardsComponent ({offers}: FilterListCardsProps) {
 
   useEffect(() => {
     if(refInputMin.current && refInputMax.current){
-      refInputMin.current.value = urlParam.get('priceMin') ?? '';
-      refInputMax.current.value = urlParam.get('priceMax') ?? '';
+      refInputMin.current.value = urlParam.get('priceMin') || '';
+      refInputMax.current.value = urlParam.get('priceMax') || '';
     }
+
+
   }, []);
 
-  function setUrlAndInput (price: string, name: string) {
+
+  function setMaxPriceValidation (name: string) {
+    actualUrl[name] = maxPrice.toString();
+    if(refInputMin.current && refInputMax.current){
+      refInputMax.current.value = maxPrice.toString();
+      setUrlParam(actualUrl);
+    }
+  }
+
+
+  function setMinPriceValidation (name: string) {
+    actualUrl[name] = minPrice.toString();
 
     if(refInputMin.current && refInputMax.current) {
+      refInputMin.current.value = minPrice.toString();
+    }
 
-      if(name === 'priceMax' && price < refInputMin.current.value) {
-        actualUrl[name] = maxPrice.toString();
-        refInputMax.current.value = maxPrice.toString();
-        setUrlParam(actualUrl);
-        console.log(-1);
+    setUrlParam(actualUrl);
+  }
+
+  function setUrlAndInput (price: string, name: string) {
+    if(refInputMin.current && refInputMax.current) {
+
+      if(name === 'priceMax' && +price < +refInputMin.current.value && refInputMax.current.value !== '') {
+        setMaxPriceValidation(name);
+
         return;
       }
 
-      if(name === 'priceMin' && price > refInputMax.current.value) {
-        actualUrl[name] = minPrice.toString();
-        refInputMin.current.value = minPrice.toString();
-        setUrlParam(actualUrl);
-        console.log(-1);
+      if(name === 'priceMin' && +price > +refInputMax.current.value && refInputMax.current.value !== '') {
+        setMinPriceValidation(name);
+
         return;
       }
 
@@ -147,47 +164,37 @@ function FilterListCardsComponent ({offers}: FilterListCardsProps) {
         delete actualUrl['priceMin'];
         setUrlParam(actualUrl);
 
-        console.log(1);
         return;
       }
 
       if(name === 'priceMin' && +price < 0) {
-        actualUrl[name] = minPrice.toString();
-        refInputMin.current.value = minPrice.toString();
-        setUrlParam(actualUrl);
-        console.log(2);
+        setMinPriceValidation(name);
+
         return;
       }
 
       if(name === 'priceMin' && +price < minPrice) {
-        actualUrl[name] = minPrice.toString();
-        refInputMin.current.value = minPrice.toString();
-        setUrlParam(actualUrl);
-        console.log(3);
+        setMinPriceValidation(name);
+
         return;
       }
 
       if(name === 'priceMin' && +price === 0) {
-        actualUrl[name] = minPrice.toString();
-        refInputMin.current.value = minPrice.toString();
-        setUrlParam(actualUrl);
-        console.log(4);
+        setMinPriceValidation(name);
+
         return;
       }
 
       if(name === 'priceMin' && +price > maxPrice) {
-        actualUrl[name] = minPrice.toString();
-        refInputMin.current.value = minPrice.toString();
-        setUrlParam(actualUrl);
-        console.log(5);
+        setMinPriceValidation(name);
+
         return;
       }
-
 
       if(name === 'priceMin' && +price <= maxPrice) {
         actualUrl[name] = refInputMin.current.value;
         setUrlParam(actualUrl);
-        console.log(6);
+
         return;
       }
 
@@ -195,39 +202,30 @@ function FilterListCardsComponent ({offers}: FilterListCardsProps) {
         delete actualUrl['priceMax'];
         setUrlParam(actualUrl);
 
-        console.log(1);
         return;
       }
 
       if(name === 'priceMax' && +price < 0) {
-        actualUrl[name] = maxPrice.toString();
-        refInputMax.current.value = maxPrice.toString();
-        setUrlParam(actualUrl);
-        console.log(2);
+        setMaxPriceValidation(name);
+
         return;
       }
 
       if(name === 'priceMax' && +price > maxPrice) {
-        actualUrl[name] = maxPrice.toString();
-        refInputMax.current.value = maxPrice.toString();
-        setUrlParam(actualUrl);
-        console.log(3);
+        setMaxPriceValidation(name);
+
         return;
       }
 
       if(name === 'priceMax' && +price === 0) {
-        actualUrl[name] = maxPrice.toString();
-        refInputMax.current.value = maxPrice.toString();
-        setUrlParam(actualUrl);
-        console.log(4);
+        setMaxPriceValidation(name);
+
         return;
       }
 
       if(name === 'priceMax' && +price < minPrice) {
-        actualUrl[name] = minPrice.toString();
-        refInputMax.current.value = maxPrice.toString();
-        setUrlParam(actualUrl);
-        console.log(5);
+        setMaxPriceValidation(name);
+
         return;
       }
 
@@ -235,7 +233,6 @@ function FilterListCardsComponent ({offers}: FilterListCardsProps) {
       if(name === 'priceMax' && +price <= maxPrice) {
         actualUrl[name] = refInputMax.current.value;
         setUrlParam(actualUrl);
-        console.log(6.1);
       }
     }
   }
