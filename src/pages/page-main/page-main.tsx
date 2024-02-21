@@ -34,9 +34,12 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const arrayFilters = Object.keys(keyUrl);
   const sortType = urlParam.get('sort') || '';
   const sortMaxMin = urlParam.get('rotation') || '';
+  const isPriceMin = urlParam.get('priceMin');
+  const isPriceMax = urlParam.get('priceMax');
 
 
   function getOfferCategoryFilter () {
+
     const offers: OfferCard[] = [];
 
     for (let i = 0; i <= arrayFilters.length - 1; i++) {
@@ -81,9 +84,9 @@ function MainPage ({title}: MainPageProps): JSX.Element {
         }
       }
     }
+
     return offers.length === 0 ? offersFilterCategory : offers;
   }
-
 
   function getOffersLevelFilter () {
     const offerType = getOffersTypeFilter();
@@ -109,6 +112,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
         }
       }
     }
+
     return isFiltersValid ? offers : offerType;
   }
 
@@ -129,8 +133,8 @@ function MainPage ({title}: MainPageProps): JSX.Element {
 
   const filteredOffers = getOffersNotRepeatId();
 
-
   function getSortOffers (type: string, maxMin: string) {
+
     const offersCopy = [...filteredOffers];
 
     if(type === SortId.Price && maxMin === SortId.Down) {
@@ -148,9 +152,57 @@ function MainPage ({title}: MainPageProps): JSX.Element {
     if(type === SortId.Popular && maxMin === SortId.Down) {
       return offersCopy.sort((a, b) => b.rating - a.rating);
     }
+
+    return offersCopy;
   }
 
-  const offersSortAndFilter = getSortOffers(sortType, sortMaxMin) || filteredOffers;
+  const filteredAndSortedOffers = getSortOffers(sortType, sortMaxMin);
+
+  function getFilterOffersPrice () {
+    const minObjectPrice = filteredAndSortedOffers.reduce((min, offer) => offer.price < min.price ? offer : min, filteredAndSortedOffers[0]);
+    const maxObjectPrice = filteredAndSortedOffers.reduce((min, offer) => offer.price > min.price ? offer : min, filteredAndSortedOffers[0]);
+
+    if(isPriceMin !== null && isPriceMax !== null) {
+
+      const getFilterOfferPrice = filteredAndSortedOffers.filter((offer:OfferCard) => {
+        if(offer.price >= +isPriceMin && offer.price <= +isPriceMax) {
+
+          return offer;
+        }
+      });
+
+      return getFilterOfferPrice;
+    }
+
+    if(isPriceMax !== null && isPriceMin === null){
+
+      const getFilterOfferPrice = filteredAndSortedOffers.filter((offer:OfferCard) => {
+        if(offer.price >= +minObjectPrice.price && offer.price <= +isPriceMax) {
+
+          return offer;
+        }
+      });
+
+      return getFilterOfferPrice;
+    }
+
+    if(isPriceMax === null && isPriceMin !== null){
+
+      const getFilterOfferPrice = filteredAndSortedOffers.filter((offer:OfferCard) => {
+        if(offer.price >= +isPriceMin && offer.price <= +maxObjectPrice.price) {
+
+          return offer;
+        }
+      });
+
+      return getFilterOfferPrice;
+    }
+
+    return filteredAndSortedOffers;
+  }
+
+  const filterOfferPrice = getFilterOffersPrice();
+  const offersSortAndFilter = filterOfferPrice;
   const currentOffers = offersSortAndFilter.slice(firstOfferIndex, lastOfferIndex);
   const lengthOffers = offersSortAndFilter.length;
 
@@ -175,10 +227,10 @@ function MainPage ({title}: MainPageProps): JSX.Element {
             <div className="container">
               <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
               <div className="page-content__columns">
-                <FilterListCardsComponent offers={offersSortAndFilter}/>
+                <FilterListCardsComponent offers={offersSortAndFilter} dataPriceMinMax={filteredAndSortedOffers}/>
                 <div className="catalog__content">
                   <SortListCardsComponent/>
-                  <CardsListComponent offers={currentOffers}/>
+                  {filterOfferPrice.length !== 0 ? <CardsListComponent offers={currentOffers}/> : '«по вашему запросу ничего не найдено»'}
                   <PaginationMainPageComponent
                     offersPerPages={offersPerPages}
                     totalOffers={lengthOffers}

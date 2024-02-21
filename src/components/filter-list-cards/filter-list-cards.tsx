@@ -4,17 +4,45 @@ import { getUrlParams } from '../../utils/utils-grt-url';
 import { ParamFilter } from '../../src-const';
 import { OfferCard } from '../../types/types-store';
 
-
 type FilterListCardsProps = {
-  offers: OfferCard[];
+  offers: OfferCard[] | [];
+  dataPriceMinMax: OfferCard[];
 }
 
-function FilterListCardsComponent ({offers}: FilterListCardsProps) {
+function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsProps) {
   const [urlParam, setUrlParam] = useSearchParams();
   const isDisabledFilter = urlParam.get(ParamFilter.VideoCamera) !== null;
   const actualUrl = getUrlParams(urlParam);
   const refInputMin = useRef<HTMLInputElement>(null);
   const refInputMax = useRef<HTMLInputElement>(null);
+  const isMaxPrice = urlParam.get('priceMax') === null;
+  const isMinPrice = urlParam.get('priceMin') === null;
+  const urlMinPrice = urlParam.get('priceMin');
+  const urlMAxPrice = urlParam.get('priceMax');
+  const minPriceOffers = dataPriceMinMax.reduce((min, offer) => offer.price < min ? offer.price : min, dataPriceMinMax[0]?.price);
+  const maxPriceOffers = dataPriceMinMax.reduce((max, offer) => offer.price > max ? offer.price : max, dataPriceMinMax[0]?.price);
+  const [minPrice, setMinPrice] = useState(minPriceOffers);
+  const [maxPrice, setMaxPrice] = useState(maxPriceOffers);
+
+  useEffect(() => {
+    setMinPrice(minPriceOffers);
+    setMaxPrice(maxPriceOffers);
+  }, [offers]);
+
+  useEffect(() => {
+    if(refInputMin.current && refInputMax.current) {
+      refInputMin.current.value = urlMinPrice || '';
+      refInputMax.current.value = urlMAxPrice || '';
+    }
+  }, []);
+
+  useEffect(() => {
+    if(isMaxPrice && isMinPrice && refInputMin.current && refInputMax.current) {
+      refInputMin.current.value = '';
+      refInputMax.current.value = '';
+    }
+  },[isMaxPrice , isMinPrice]);
+
 
   function getValidFilter (filter: string) {
     const isValidFilter = urlParam.get(filter);
@@ -74,7 +102,6 @@ function FilterListCardsComponent ({offers}: FilterListCardsProps) {
       delete actualUrl[nameFilter];
     }
 
-
     if(refInputMin.current && refInputMax.current){
       refInputMin.current.value = '';
       refInputMax.current.value = '';
@@ -109,27 +136,6 @@ function FilterListCardsComponent ({offers}: FilterListCardsProps) {
     setUrlParam(actualUrl);
   }
 
-
-  const minPriceOffers = offers.reduce((min, offer) => offer.price < min ? offer.price : min, offers[0].price);
-  const maxPriceOffers = offers.reduce((max, offer) => offer.price > max ? offer.price : max, offers[0].price);
-  const [minPrice, setMinPrice] = useState(minPriceOffers);
-  const [maxPrice, setMaxPrice] = useState(maxPriceOffers);
-
-  useEffect(() => {
-    setMinPrice(minPriceOffers);
-    setMaxPrice(maxPriceOffers);
-  }, [offers]);
-
-  // useEffect(() => {
-  //   if(refInputMin.current && refInputMax.current){
-  //     refInputMin.current.value = urlParam.get('priceMin') || '';
-  //     refInputMax.current.value = urlParam.get('priceMax') || '';
-  //   }
-
-
-  // }, []);
-
-
   function setMaxPriceValidation (name: string) {
     actualUrl[name] = maxPrice.toString();
     if(refInputMin.current && refInputMax.current){
@@ -137,7 +143,6 @@ function FilterListCardsComponent ({offers}: FilterListCardsProps) {
       setUrlParam(actualUrl);
     }
   }
-
 
   function setMinPriceValidation (name: string) {
     actualUrl[name] = minPrice.toString();
@@ -241,26 +246,12 @@ function FilterListCardsComponent ({offers}: FilterListCardsProps) {
     }
   }
 
-
   function handleInputBlur (event: React.ChangeEvent<HTMLInputElement>) {
     const nameInput = event.target.name;
     const valueInput = event.target.value;
 
     setUrlAndInput(valueInput, nameInput);
   }
-
-  const isMaxPrice = urlParam.get('priceMax') === null;
-  const isMinPrice = urlParam.get('priceMin') === null;
-
-  useEffect(() => {
-
-
-    if(isMaxPrice && isMinPrice && refInputMin.current && refInputMax.current) {
-      refInputMin.current.value = '';
-      refInputMax.current.value = '';
-    }
-  },[isMaxPrice , isMinPrice]);
-
 
   return (
     <div className="catalog__aside">
