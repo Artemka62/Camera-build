@@ -2,7 +2,9 @@ import { offersPromoSlice } from './slice-offers-promo';
 
 describe('Offers promo slice', () => {
   const expectedState = {
-    offers: []
+    offers: [],
+    error: false,
+    loading: false
   };
 
   const emptyAction = { type: '' };

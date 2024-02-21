@@ -5,6 +5,8 @@ import { fetchPromoOffersAction } from '../../services/thunk/thunk-fetch-promo-o
 
 const initialState: StateOffersPromo = {
   offers: [],
+  error: false,
+  loading: false
 };
 
 const offersPromoSlice = createSlice({
@@ -19,6 +21,16 @@ const offersPromoSlice = createSlice({
     builder
       .addCase(fetchPromoOffersAction.fulfilled, (state, action) => {
         state.offers = action.payload;
+        state.error = false;
+        state.loading = false;
+      })
+      .addCase(fetchPromoOffersAction.rejected, (state) => {
+        state.error = true;
+        state.loading = false;
+      })
+      .addCase(fetchPromoOffersAction.pending, (state) => {
+        state.loading = true;
+        state.error = false;
       });
   }
 });

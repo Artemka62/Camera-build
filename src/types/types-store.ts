@@ -47,6 +47,8 @@ type StateOffersSimilar = {
 
 type StateOffersPromo = {
   offers: OfferPromo[];
+  error: boolean;
+  loading: boolean;
 }
 
 type StateWindow = {
