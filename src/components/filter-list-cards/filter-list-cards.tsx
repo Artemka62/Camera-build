@@ -101,6 +101,10 @@ function FilterListCardsComponent ({offers}: FilterListCardsProps) {
     delete actualUrl['priceMin'];
     delete actualUrl['priceMax'];
 
+    if(refInputMin.current && refInputMax.current){
+      refInputMin.current.value = '';
+      refInputMax.current.value = '';
+    }
 
     setUrlParam(actualUrl);
   }
@@ -116,14 +120,14 @@ function FilterListCardsComponent ({offers}: FilterListCardsProps) {
     setMaxPrice(maxPriceOffers);
   }, [offers]);
 
-  useEffect(() => {
-    if(refInputMin.current && refInputMax.current){
-      refInputMin.current.value = urlParam.get('priceMin') || '';
-      refInputMax.current.value = urlParam.get('priceMax') || '';
-    }
+  // useEffect(() => {
+  //   if(refInputMin.current && refInputMax.current){
+  //     refInputMin.current.value = urlParam.get('priceMin') || '';
+  //     refInputMax.current.value = urlParam.get('priceMax') || '';
+  //   }
 
 
-  }, []);
+  // }, []);
 
 
   function setMaxPriceValidation (name: string) {
@@ -244,6 +248,18 @@ function FilterListCardsComponent ({offers}: FilterListCardsProps) {
 
     setUrlAndInput(valueInput, nameInput);
   }
+
+  const isMaxPrice = urlParam.get('priceMax') === null;
+  const isMinPrice = urlParam.get('priceMin') === null;
+
+  useEffect(() => {
+
+
+    if(isMaxPrice && isMinPrice && refInputMin.current && refInputMax.current) {
+      refInputMin.current.value = '';
+      refInputMax.current.value = '';
+    }
+  },[isMaxPrice , isMinPrice]);
 
 
   return (
