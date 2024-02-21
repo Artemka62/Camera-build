@@ -208,9 +208,9 @@ function MainPage ({title}: MainPageProps): JSX.Element {
 
   useDocumentTitle(title);
 
-  if(isLoadingOffers){
-    return <LoadingComponent/>;
-  }
+  // if(isLoadingOffers){
+  //   return <LoadingComponent/>;
+  // }
 
   if(isErrorLoadOffers) {
     return <ErrorPage title ={AppRoute.Error}/>;
@@ -230,7 +230,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
                 <FilterListCardsComponent offers={offersSortAndFilter} dataPriceMinMax={filteredAndSortedOffers}/>
                 <div className="catalog__content">
                   <SortListCardsComponent/>
-                  {filterOfferPrice.length !== 0 ? <CardsListComponent offers={currentOffers}/> : '«по вашему запросу ничего не найдено»'}
+                  {!isLoadingOffers ? <CardsListComponent offers={currentOffers}/> : <LoadingComponent/>}
                   <PaginationMainPageComponent
                     offersPerPages={offersPerPages}
                     totalOffers={lengthOffers}

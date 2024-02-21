@@ -1,6 +1,10 @@
+import './loading-component.css';
 function LoadingComponent (): JSX.Element {
   return (
-    <h1>Loading...</h1>
+    <div className="loader-container">
+      <div className="loader"></div>
+      <p className="loading-text">Загрузка...</p>
+    </div>
   );
 }
 
