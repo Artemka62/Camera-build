@@ -19,8 +19,8 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
   const isMinPrice = urlParam.get('priceMin') === null;
   const urlMinPrice = urlParam.get('priceMin');
   const urlMAxPrice = urlParam.get('priceMax');
-  const minPriceOffers = dataPriceMinMax.reduce((min, offer) => offer.price < min ? offer.price : min, dataPriceMinMax[0]?.price);
-  const maxPriceOffers = dataPriceMinMax.reduce((max, offer) => offer.price > max ? offer.price : max, dataPriceMinMax[0]?.price);
+  const minPriceOffers = dataPriceMinMax.reduce((min, offer) => offer.price < min ? offer.price : min, dataPriceMinMax[0]?.price) || '';
+  const maxPriceOffers = dataPriceMinMax.reduce((max, offer) => offer.price > max ? offer.price : max, dataPriceMinMax[0]?.price) || '';
   const [minPrice, setMinPrice] = useState(minPriceOffers);
   const [maxPrice, setMaxPrice] = useState(maxPriceOffers);
 
@@ -182,7 +182,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
         return;
       }
 
-      if(name === 'priceMin' && +price < minPrice) {
+      if(name === 'priceMin' && +price < +minPrice) {
         setMinPriceValidation(name);
 
         return;
@@ -194,13 +194,13 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
         return;
       }
 
-      if(name === 'priceMin' && +price > maxPrice) {
+      if(name === 'priceMin' && +price > +maxPrice) {
         setMinPriceValidation(name);
 
         return;
       }
 
-      if(name === 'priceMin' && +price <= maxPrice) {
+      if(name === 'priceMin' && +price <= +maxPrice) {
         actualUrl[name] = refInputMin.current.value;
         setUrlParam(actualUrl);
 
@@ -220,7 +220,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
         return;
       }
 
-      if(name === 'priceMax' && +price > maxPrice) {
+      if(name === 'priceMax' && +price > +maxPrice) {
         setMaxPriceValidation(name);
 
         return;
@@ -232,14 +232,13 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
         return;
       }
 
-      if(name === 'priceMax' && +price < minPrice) {
+      if(name === 'priceMax' && +price < +minPrice) {
         setMaxPriceValidation(name);
 
         return;
       }
 
-
-      if(name === 'priceMax' && +price <= maxPrice) {
+      if(name === 'priceMax' && +price <= +maxPrice) {
         actualUrl[name] = refInputMax.current.value;
         setUrlParam(actualUrl);
       }
