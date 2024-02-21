@@ -29,6 +29,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const lastOfferIndex = +setCurrentPage * offersPerPages;
   const firstOfferIndex = lastOfferIndex - offersPerPages;
   const isLoadingOffers = useAppSelector((state) => state.offers.loading);
+  const isLoadingPromoOffers = useAppSelector((state) => state.offersPromo.loading);
   const isErrorLoadOffers = useAppSelector((state) => state.offers.error);
   const keyUrl = getUrlParams(urlParam);
   const arrayFilters = Object.keys(keyUrl);
@@ -208,10 +209,6 @@ function MainPage ({title}: MainPageProps): JSX.Element {
 
   useDocumentTitle(title);
 
-  // if(isLoadingOffers){
-  //   return <LoadingComponent/>;
-  // }
-
   if(isErrorLoadOffers) {
     return <ErrorPage title ={AppRoute.Error}/>;
   }
@@ -220,7 +217,7 @@ function MainPage ({title}: MainPageProps): JSX.Element {
     <div className="wrapper" >
       <HeaderComponent/>
       <main data-testid ='main-page'>
-        <BannerComponent/>
+        {!isLoadingPromoOffers ? <BannerComponent/> : <LoadingComponent/>}
         <div className="page-content">
           <NavigationInPageComponent/>
           <section className="catalog">
