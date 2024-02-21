@@ -50,8 +50,8 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
     return isValidFilter !== null;
   }
 
-  function handleChangeCheckbox (event: ChangeEvent<HTMLInputElement>) {
-    const nameFilter = event.target.name;
+
+  function setActualUrlAndCheckBox (nameFilter: string) {
 
     switch (nameFilter) {
       case(ParamFilter.PhotoCamera): {
@@ -113,6 +113,15 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
     actualUrl['page'] = '1';
 
     setUrlParam(actualUrl);
+
+
+  }
+
+  function handleChangeCheckbox (event: ChangeEvent<HTMLInputElement>) {
+    const nameFilter = event.target.name;
+
+    setActualUrlAndCheckBox(nameFilter);
+
   }
 
   function handleClickResetFilter () {
@@ -252,6 +261,25 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
     setUrlAndInput(valueInput, nameInput);
   }
 
+
+  function handleKeyDown (event: React.KeyboardEvent<HTMLInputElement>) {
+
+
+    if(event.key === 'Enter') {
+      event.preventDefault();
+
+      const nameInput = event.currentTarget.name;
+      const valueInput = event.currentTarget.value;
+
+      setUrlAndInput(valueInput, nameInput);
+    }
+
+
+    if(event.currentTarget.type === 'checkbox' && event.key === 'Enter'){
+      setActualUrlAndCheckBox(event.currentTarget.name);
+    }
+  }
+
   return (
     <div className="catalog__aside">
       <div className="catalog-filter">
@@ -268,6 +296,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                     name="priceMin"
                     placeholder={`${minPrice}`}
                     onBlur={handleInputBlur}
+                    onKeyDown={handleKeyDown}
                   />
                 </label>
               </div>
@@ -279,6 +308,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                     name="priceMax"
                     placeholder={`${maxPrice}`}
                     onBlur={handleInputBlur}
+                    onKeyDown={handleKeyDown}
                   />
                 </label>
               </div>
@@ -293,6 +323,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   name="photocamera"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.PhotoCamera)}
+                  onKeyDown={handleKeyDown}
 
                 />
                 <span className="custom-checkbox__icon" />
@@ -308,6 +339,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   name="videocamera"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.VideoCamera)}
+                  onKeyDown={handleKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -325,6 +357,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   name="digital"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.Digital)}
+                  onKeyDown={handleKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">Цифровая</span>
@@ -338,6 +371,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.Film)}
                   disabled={isDisabledFilter}
+                  onKeyDown={handleKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -353,6 +387,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.SnapShot)}
                   disabled={isDisabledFilter}
+                  onKeyDown={handleKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -367,6 +402,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   name="collection"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.Collection)}
+                  onKeyDown={handleKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -384,6 +420,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   name="zero"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.Zero)}
+                  onKeyDown={handleKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">Нулевой</span>
@@ -396,6 +433,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   name="non-professional"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.NonProfessional)}
+                  onKeyDown={handleKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -408,9 +446,9 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                 <input
                   type="checkbox"
                   name="professional"
-
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.Professional)}
+                  onKeyDown={handleKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
