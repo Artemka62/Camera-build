@@ -6,13 +6,16 @@ import { notify } from '../../utils/utils-toastify';
 function ToastifyComponent () {
   const isErrorLoadingPromoOffers = useAppSelector((state) => state.offersPromo.error);
   const isErrorLoadingOffers = useAppSelector((state) => state.offers.error);
+  const isErrorLoadingOffersSimilar = useAppSelector((state) => state.similarOffers.error);
+  const isErrorLoadingOffer = useAppSelector((state) => state.offer.error);
+  const isErrorLoadingReviews = useAppSelector((state) => state.reviews.error);
+  const isError = isErrorLoadingOffersSimilar || isErrorLoadingOffer || isErrorLoadingReviews || isErrorLoadingPromoOffers || isErrorLoadingOffers;
 
   useEffect(() => {
-    if(isErrorLoadingPromoOffers || isErrorLoadingOffers) {
+    if(isError) {
       notify();
     }
-  },[isErrorLoadingPromoOffers, isErrorLoadingOffers]);
-
+  },[isError]);
 
   return(
     <ToastContainer/>

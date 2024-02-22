@@ -39,7 +39,6 @@ function MainPage ({title}: MainPageProps): JSX.Element {
 
 
   function getOfferCategoryFilter () {
-
     const offers: OfferCard[] = [];
 
     for (let i = 0; i <= arrayFilters.length - 1; i++) {
@@ -119,11 +118,11 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const getOffersNotRepeatId = () => {
     const uniqueIds = new Set();
 
-    const uniqueObjects = getOffersLevelFilter().filter((obj) => {
-      if (uniqueIds.has(obj.id)) {
+    const uniqueObjects = getOffersLevelFilter().filter((offer) => {
+      if (uniqueIds.has(offer.id)) {
         return false;
       } else {
-        uniqueIds.add(obj.id);
+        uniqueIds.add(offer.id);
 
         return true;
       }

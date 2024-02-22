@@ -15,6 +15,7 @@ import { ModalWindowComponent } from '../../components/modal-window-list/modal-w
 import { AppRoute } from '../../src-const';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
 import { ErrorPage } from '../page-error/page-error';
+import { ToastifyComponent } from '../../components/toastify/toastify';
 
 type ProductProps = {
   title: string;
@@ -70,6 +71,7 @@ function ProductPage ({title}: ProductProps) {
 
   return(
     <div className="wrapper" data-testid ='product-page' >
+      <ToastifyComponent/>
       <HeaderComponent/>
       <main >
         <div className="page-content">
