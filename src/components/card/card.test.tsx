@@ -7,11 +7,13 @@ import { Provider } from 'react-redux';
 import { store } from '../../store/store-index';
 
 describe('component: Card', () => {
+  const isTrue = true;
+
   it('should render correctly', () => {
     const expectedText = 'card';
     const preparedComponent = withHistory(
       <Provider store={store}>
-        <CardComponent offer={mockOffer}/>
+        {isTrue ? <CardComponent offer={mockOffer}/> : ''}
       </Provider>
     );
 

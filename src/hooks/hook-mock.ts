@@ -11,7 +11,9 @@ const useMakeFakeStore = (initialState?: Partial<State>): State => ({
     loading: false
   },
   offersPromo:{
-    offers: [mockPromo]
+    offers: [mockPromo],
+    error: false,
+    loading: false
   } ,
   offer:{
     offer:mockOffer,
@@ -26,10 +28,14 @@ const useMakeFakeStore = (initialState?: Partial<State>): State => ({
     isWindowAddBasketSuccessOpen: false
   },
   similarOffers: {
-    similarOffers:[mockSimilar]
+    similarOffers:[mockSimilar],
+    error: false,
+    loading: false
   },
-  reviews:{reviews:
-    [mockReview]
+  reviews:{
+    reviews:[mockReview],
+    error: false,
+    loading: false
   } ,
   ...(initialState ?? {}),
 });

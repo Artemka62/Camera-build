@@ -4,13 +4,16 @@ import { withHistory } from '../mock-component/mock-component';
 import { CardsListComponent } from './cards-list';
 import { mockOffer } from '../../mock-test/mock-offer/mock-offer';
 import { render, screen } from '@testing-library/react';
+import { LoadingComponent } from '../loading-component/loading-component';
 
 describe('component: CardList', () => {
+  const isLoadingOffers = true;
+
   it('should render correctly', () => {
     const expectedData = 'card-list';
     const preparedComponent = withHistory(
       <Provider store={store}>
-        <CardsListComponent offers={[mockOffer]}/>
+        {isLoadingOffers ? <CardsListComponent offers={[mockOffer]}/> : <LoadingComponent/>}
       </Provider>
     );
 

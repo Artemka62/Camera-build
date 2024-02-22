@@ -43,6 +43,8 @@ type StateOffers = {
 
 type StateOffersSimilar = {
   similarOffers: OfferCard[];
+  error: boolean;
+  loading: boolean;
 }
 
 type StateOffersPromo = {
@@ -72,6 +74,8 @@ type Review = {
 
 type StateReviews = {
   reviews: Review[];
+  error: boolean;
+  loading: boolean;
 }
 
 

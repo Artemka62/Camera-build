@@ -24,7 +24,7 @@ function ProductPage ({title}: ProductProps) {
   const {id, tab} = useParams<string>();
   const dispatch = useAppDispatch();
   const stateSimilarOffers = useAppSelector((state) => state.similarOffers.similarOffers);
-  const isErrorLoadOffer = useAppSelector((state) => state.offer.error);
+  //const isErrorLoadOffer = useAppSelector((state) => state.offer.error);
   const isLoadingOffer = useAppSelector((state) => state.offer.loading);
 
   useDocumentTitle(title);
@@ -62,11 +62,11 @@ function ProductPage ({title}: ProductProps) {
     });
   }
 
-  if(isLoadingOffer){
-    return <LoadingComponent/>;
-  }
+  // if(isLoadingOffer){
+  //   return <LoadingComponent/>;
+  // }
 
-  if(tab !== 'description' && tab !== 'characteristic' || isErrorLoadOffer) {
+  if(tab !== 'description' && tab !== 'characteristic') {
     return <ErrorPage title ={AppRoute.Error}/>;
   }
 
@@ -77,7 +77,7 @@ function ProductPage ({title}: ProductProps) {
         <div className="page-content">
           <NavigationInPageComponent/>
           <div className="page-content__section">
-            <CardOfferProductComponent/>
+            {!isLoadingOffer ? <CardOfferProductComponent/> : <LoadingComponent/>}
           </div>
           <div className="page-content__section">
             <SimilarCardsListComponent offers={stateSimilarOffers}/>

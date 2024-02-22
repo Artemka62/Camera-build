@@ -5,6 +5,8 @@ import { fetchSimilarOffersAction } from '../../services/thunk/thunk-fetch-simil
 
 const initialState: StateOffersSimilar = {
   similarOffers: [],
+  error: false,
+  loading: false
 };
 
 const similarOffersSlice = createSlice({
@@ -19,6 +21,16 @@ const similarOffersSlice = createSlice({
     builder
       .addCase(fetchSimilarOffersAction.fulfilled, (state, action) => {
         state.similarOffers = action.payload;
+        state.error = false;
+        state.loading = false;
+      })
+      .addCase(fetchSimilarOffersAction.rejected, (state) => {
+        state.error = true;
+        state.loading = false;
+      })
+      .addCase(fetchSimilarOffersAction.pending, (state) => {
+        state.loading = true;
+        state.error = false;
       });
   }
 });

@@ -4,7 +4,9 @@ describe('Reviews slice', () => {
   const emptyAction = { type: '' };
 
   const expectedState = {
-    similarOffers: []
+    similarOffers: [],
+    error: false,
+    loading: false
   };
 
   it('should return initial state with empty action', () => {

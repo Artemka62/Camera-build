@@ -1,7 +1,7 @@
 import { ToastContainer } from 'react-toastify';
 import { useAppSelector } from '../../hooks/hook-use-store';
 import { useEffect } from 'react';
-import { notify } from '../../utils/toastify';
+import { notify } from '../../utils/utils-toastify';
 
 function ToastifyComponent () {
   const isErrorLoadingPromoOffers = useAppSelector((state) => state.offersPromo.error);
