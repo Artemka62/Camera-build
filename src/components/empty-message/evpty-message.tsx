@@ -1,6 +1,6 @@
 function EmptyMessageComponent () {
   return (
-    <div>по вашему запросу ничего не найдено</div>
+    <div>По вашему запросу ничего не найдено</div>
   );
 }
 
