@@ -2,7 +2,8 @@ import { ToastContainer } from 'react-toastify';
 import { useAppSelector } from '../../hooks/hook-use-store';
 import { useEffect } from 'react';
 import { notify } from '../../utils/utils-toastify';
-import { DEFAULT_UNIT } from '../../src-const';
+import { AppRoute, DEFAULT_UNIT } from '../../src-const';
+import { useLocation} from 'react-router-dom';
 
 function ToastifyComponent () {
   const isErrorLoadingPromoOffers = useAppSelector((state) => state.offersPromo.error);
@@ -12,14 +13,16 @@ function ToastifyComponent () {
   const isErrorLoadingReviews = useAppSelector((state) => state.reviews.error);
   const isErrorMainPage = isErrorLoadingOffers || isErrorLoadingPromoOffers;
   const isErrorProductPage = isErrorLoadingReviews || isErrorLoadingOffersSimilar || isErrorLoadingOffer;
+  const location = useLocation();
+  const pageLocation = location.pathname;
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
-    if (isErrorMainPage) {
+    if (isErrorMainPage && false === pageLocation.includes(AppRoute.Product)) {
       timeoutId = setTimeout(() => {
         notify();
-      }, 100);
+      }, 400);
     }
 
     return () => clearTimeout(timeoutId);
@@ -28,10 +31,10 @@ function ToastifyComponent () {
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
-    if (isErrorProductPage) {
+    if (isErrorProductPage && pageLocation.includes(AppRoute.Product)) {
       timeoutId = setTimeout(() => {
         notify();
-      }, 100);
+      }, 400);
     }
 
     return () => clearTimeout(timeoutId);
