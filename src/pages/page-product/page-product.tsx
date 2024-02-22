@@ -26,6 +26,8 @@ function ProductPage ({title}: ProductProps) {
   const stateSimilarOffers = useAppSelector((state) => state.similarOffers.similarOffers);
   //const isErrorLoadOffer = useAppSelector((state) => state.offer.error);
   const isLoadingOffer = useAppSelector((state) => state.offer.loading);
+  const isLoadingSimilarOffers = useAppSelector((state) => state.offer.loading);
+  const isLoadingReviews = useAppSelector((state) => state.offer.loading);
 
   useDocumentTitle(title);
 
@@ -62,10 +64,6 @@ function ProductPage ({title}: ProductProps) {
     });
   }
 
-  // if(isLoadingOffer){
-  //   return <LoadingComponent/>;
-  // }
-
   if(tab !== 'description' && tab !== 'characteristic') {
     return <ErrorPage title ={AppRoute.Error}/>;
   }
@@ -80,10 +78,10 @@ function ProductPage ({title}: ProductProps) {
             {!isLoadingOffer ? <CardOfferProductComponent/> : <LoadingComponent/>}
           </div>
           <div className="page-content__section">
-            <SimilarCardsListComponent offers={stateSimilarOffers}/>
+            {!isLoadingSimilarOffers ? <SimilarCardsListComponent offers={stateSimilarOffers}/> : <LoadingComponent/>}
           </div>
           <div className="page-content__section">
-            <ReviewListComponent/>
+            {!isLoadingReviews ? <ReviewListComponent/> : <LoadingComponent/>}
           </div>
           <ModalWindowComponent/>
         </div>
