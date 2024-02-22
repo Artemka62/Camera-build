@@ -2,6 +2,7 @@ import { ToastContainer } from 'react-toastify';
 import { useAppSelector } from '../../hooks/hook-use-store';
 import { useEffect } from 'react';
 import { notify } from '../../utils/utils-toastify';
+import { DEFAULT_UNIT } from '../../src-const';
 
 function ToastifyComponent () {
   const isErrorLoadingPromoOffers = useAppSelector((state) => state.offersPromo.error);
@@ -9,17 +10,36 @@ function ToastifyComponent () {
   const isErrorLoadingOffersSimilar = useAppSelector((state) => state.similarOffers.error);
   const isErrorLoadingOffer = useAppSelector((state) => state.offer.error);
   const isErrorLoadingReviews = useAppSelector((state) => state.reviews.error);
-  const isError = isErrorLoadingOffersSimilar || isErrorLoadingOffer || isErrorLoadingReviews || isErrorLoadingPromoOffers || isErrorLoadingOffers;
+  const isErrorMainPage = isErrorLoadingOffers || isErrorLoadingPromoOffers;
+  const isErrorProductPage = isErrorLoadingReviews || isErrorLoadingOffersSimilar || isErrorLoadingOffer;
 
   useEffect(() => {
-    if(isError) {
-      notify();
-    }
-  },[isError]);
+    let timeoutId: NodeJS.Timeout;
 
-  return(
-    <ToastContainer/>
+    if (isErrorMainPage) {
+      timeoutId = setTimeout(() => {
+        notify();
+      }, 100);
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [isErrorMainPage]);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    if (isErrorProductPage) {
+      timeoutId = setTimeout(() => {
+        notify();
+      }, 100);
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [isErrorProductPage]);
+
+  return (
+    <ToastContainer limit={DEFAULT_UNIT}/>
   );
 }
 
-export {ToastifyComponent};
+export { ToastifyComponent };
