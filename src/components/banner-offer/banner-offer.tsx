@@ -36,6 +36,8 @@ function BannerOfferComponent ({offer}: BannerOfferProps) {
           Подробнее
         </Link>
       </p>
+
+
     </>
   );
 }

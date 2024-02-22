@@ -9,13 +9,13 @@ import { SortListCardsComponent } from '../../components/sort-list-cards/sort-li
 import { useDocumentTitle } from '../../hooks/hook-use-document-title';
 import { useAppSelector } from '../../hooks/hook-use-store';
 import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
-import { AppRoute, MAX_LENGTH_CARDS, ParamFilter, SortId } from '../../src-const';
+import { MAX_LENGTH_CARDS, ParamFilter, SortId } from '../../src-const';
 import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
-import { ErrorPage } from '../page-error/page-error';
 import { useSearchParams } from 'react-router-dom';
 import { getUrlParams } from '../../utils/utils-grt-url';
 import { OfferCard } from '../../types/types-store';
+import { ToastifyComponent } from '../../components/toastify/toastify';
 
 type MainPageProps = {
   title: string;
@@ -30,7 +30,6 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const firstOfferIndex = lastOfferIndex - offersPerPages;
   const isLoadingOffers = useAppSelector((state) => state.offers.loading);
   const isLoadingPromoOffers = useAppSelector((state) => state.offersPromo.loading);
-  const isErrorLoadOffers = useAppSelector((state) => state.offers.error);
   const keyUrl = getUrlParams(urlParam);
   const arrayFilters = Object.keys(keyUrl);
   const sortType = urlParam.get('sort') || '';
@@ -209,13 +208,11 @@ function MainPage ({title}: MainPageProps): JSX.Element {
 
   useDocumentTitle(title);
 
-  if(isErrorLoadOffers) {
-    return <ErrorPage title ={AppRoute.Error}/>;
-  }
 
   return (
     <div className="wrapper" >
       <HeaderComponent/>
+      <ToastifyComponent/>
       <main data-testid ='main-page'>
         {!isLoadingPromoOffers ? <BannerComponent/> : <LoadingComponent/>}
         <div className="page-content">
