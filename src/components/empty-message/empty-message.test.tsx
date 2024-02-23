@@ -2,9 +2,9 @@ import { Provider } from 'react-redux';
 import { store } from '../../store/store-index';
 import { withHistory } from '../mock-component/mock-component';
 import { render, screen } from '@testing-library/react';
-import { EmptyMessageComponent } from './evpty-message';
+import { EmptyMessageComponent } from './empty-message';
 
-describe('component: CardList', () => {
+describe('component: EmptyMEssageComponent', () => {
 
   it('should render correctly', () => {
     const expectedText = 'По вашему запросу ничего не найдено';

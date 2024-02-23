@@ -4,7 +4,7 @@ import { withHistory } from '../mock-component/mock-component';
 import { render, screen } from '@testing-library/react';
 import { SearchComponent } from './search';
 
-describe('component: PaginationMainPage', () => {
+describe('component: SearchComponent', () => {
 
   it('should render correctly', () => {
     const expectedData = 'search-component';

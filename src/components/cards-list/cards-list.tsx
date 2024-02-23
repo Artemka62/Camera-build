@@ -1,7 +1,7 @@
 import { OfferCard } from '../../types/types-store';
 import { CardComponent } from '../card/card';
 import { useAppSelector } from '../../hooks/hook-use-store';
-import { EmptyMessageComponent } from '../empty-message/evpty-message';
+import { EmptyMessageComponent } from '../empty-message/empty-message';
 import { DEFAULT_NULL } from '../../src-const';
 
 type CardsListComponentProps ={

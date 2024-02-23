@@ -22,7 +22,7 @@ function SearchListComponent ({offer, inFocus, onFocus, index}: SearchListProps)
   }, [inFocus]);
 
   return(
-    <li>
+    <li data-testid='search-list-component'>
       <Link
         to={`${AppRoute.Product}/${offer?.id}${AppRoute.Description}`}
         ref={linkRef}
