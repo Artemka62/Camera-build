@@ -12,7 +12,7 @@ import { SimilarCardsListComponent } from '../../components/similar-cards-list/s
 import { ReviewListComponent } from '../../components/review-list/review-list';
 import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';
 import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
-import { AppRoute } from '../../src-const';
+import { AppRoute, DEFAULT_NULL } from '../../src-const';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
 import { ErrorPage } from '../page-error/page-error';
 import { ToastifyComponent } from '../../components/toastify/toastify';
@@ -60,7 +60,7 @@ function ProductPage ({title}: ProductProps) {
 
   function handleClickButtonUp () {
     window.scrollTo({
-      top: 0,
+      top: DEFAULT_NULL,
       behavior: 'smooth'
     });
   }

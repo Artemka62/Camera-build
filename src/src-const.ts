@@ -99,6 +99,18 @@ const ParamFilter = {
   PriceMax: 'priceMax'
 } as const;
 
+const ParamFilterRu = {
+  PhotoCamera: 'Фотоаппарат',
+  VideoCamera: 'Видеокамера',
+  Digital: 'Цифровая',
+  Film: 'Плёночная',
+  SnapShot: 'Моментальная',
+  Collection: 'Коллекционная',
+  Zero :'Нулевой',
+  NonProfessional :'Любительский',
+  Professional: 'Профессиональный',
+} as const;
+
 const ParamSort = {
   Sort: 'sort',
   Rotation: 'rotation'
@@ -136,6 +148,7 @@ export{
   SortName,
   SortId,
   ParamFilter,
+  ParamFilterRu,
   ParamSort,
   ButtonName
 };

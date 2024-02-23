@@ -9,7 +9,7 @@ import { SortListCardsComponent } from '../../components/sort-list-cards/sort-li
 import { useDocumentTitle } from '../../hooks/hook-use-document-title';
 import { useAppSelector } from '../../hooks/hook-use-store';
 import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
-import { MAX_LENGTH_CARDS, ParamFilter, SortId } from '../../src-const';
+import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, MAX_LENGTH_CARDS, ParamFilter, ParamFilterRu, ParamSort, SortId } from '../../src-const';
 import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
 import { useSearchParams } from 'react-router-dom';
@@ -23,7 +23,7 @@ type MainPageProps = {
 
 function MainPage ({title}: MainPageProps): JSX.Element {
   const [urlParam] = useSearchParams();
-  const setCurrentPage = urlParam.get('page') || 1;
+  const setCurrentPage = urlParam.get(AppRoute.Page) || DEFAULT_UNIT;
   const stateOffers = useAppSelector((state) => state.offers.offers);
   const [offersPerPages] = useState(MAX_LENGTH_CARDS);
   const lastOfferIndex = +setCurrentPage * offersPerPages;
@@ -32,28 +32,30 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const isLoadingPromoOffers = useAppSelector((state) => state.offersPromo.loading);
   const keyUrl = getUrlParams(urlParam);
   const arrayFilters = Object.keys(keyUrl);
-  const sortType = urlParam.get('sort') || '';
-  const sortMaxMin = urlParam.get('rotation') || '';
-  const isPriceMin = urlParam.get('priceMin');
-  const isPriceMax = urlParam.get('priceMax');
+  const sortType = urlParam.get(ParamSort.Sort) || '';
+  const sortMaxMin = urlParam.get(ParamSort.Rotation) || '';
+  const isPriceMin = urlParam.get(ParamFilter.PriceMin);
+  const isPriceMax = urlParam.get(ParamFilter.PriceMax);
 
 
   function getOfferCategoryFilter () {
     const offers: OfferCard[] = [];
 
-    for (let i = 0; i <= arrayFilters.length - 1; i++) {
+    for (let i = DEFAULT_NULL; i <= arrayFilters.length - DEFAULT_UNIT; i++) {
       switch (arrayFilters[i]) {
         case (ParamFilter.PhotoCamera): {
-          stateOffers.filter((offer) => (offer.category === 'Фотоаппарат') ? offers.push(offer) : '');
+          stateOffers.filter((offer) => (offer.category === ParamFilterRu.PhotoCamera) ? offers.push(offer) : '');
+
           break;
         }
         case (ParamFilter.VideoCamera): {
-          stateOffers.filter((offer) => (offer.category === 'Видеокамера') ? offers.push(offer) : '');
+          stateOffers.filter((offer) => (offer.category === ParamFilterRu.VideoCamera) ? offers.push(offer) : '');
+
           break;
         }
       }
     }
-    const isOffers = offers.length !== 0 ? offers : stateOffers;
+    const isOffers = offers.length !== DEFAULT_NULL ? offers : stateOffers;
 
     return isOffers;
   }
@@ -63,50 +65,57 @@ function MainPage ({title}: MainPageProps): JSX.Element {
     const offersFilterCategory: OfferCard[] = getOfferCategoryFilter();
     const offers: OfferCard[] = [];
 
-    for (let i = 0; i <= arrayFilters.length - 1; i++) {
+    for (let i = DEFAULT_NULL; i <= arrayFilters.length - DEFAULT_UNIT; i++) {
       switch (arrayFilters[i]) {
         case (ParamFilter.Digital): {
-          offersFilterCategory.filter((offer) => (offer.type === 'Цифровая') ? offers.push(offer) : '');
+          offersFilterCategory.filter((offer) => (offer.type === ParamFilterRu.Digital) ? offers.push(offer) : '');
+
           break;
         }
         case (ParamFilter.Film): {
-          offersFilterCategory.filter((offer) => (offer.type === 'Плёночная') ? offers.push(offer) : '');
+          offersFilterCategory.filter((offer) => (offer.type === ParamFilterRu.Film) ? offers.push(offer) : '');
+
           break;
         }
         case (ParamFilter.SnapShot): {
-          offersFilterCategory.filter((offer) => (offer.type === 'Моментальная') ? offers.push(offer) : '');
+          offersFilterCategory.filter((offer) => (offer.type === ParamFilterRu.SnapShot) ? offers.push(offer) : '');
+
           break;
         }
         case (ParamFilter.Collection): {
-          offersFilterCategory.filter((offer) => (offer.type === 'Коллекционная') ? offers.push(offer) : '');
+          offersFilterCategory.filter((offer) => (offer.type === ParamFilterRu.Collection) ? offers.push(offer) : '');
+
           break;
         }
       }
     }
 
-    return offers.length === 0 ? offersFilterCategory : offers;
+    return offers.length === DEFAULT_NULL ? offersFilterCategory : offers;
   }
 
   function getOffersLevelFilter () {
     const offerType = getOffersTypeFilter();
     const offers: OfferCard[] = [];
-    const isFilterZero = urlParam.get('zero');
-    const filterNonProfessional = urlParam.get('non-professional');
-    const filterProfessional = urlParam.get('professional');
+    const isFilterZero = urlParam.get(ParamFilter.Zero);
+    const filterNonProfessional = urlParam.get(ParamFilter.NonProfessional);
+    const filterProfessional = urlParam.get(ParamFilter.Professional);
     const isFiltersValid = isFilterZero !== null || filterNonProfessional !== null || filterProfessional !== null;
 
-    for (let i = 0; i <= arrayFilters.length - 1; i++) {
+    for (let i = DEFAULT_NULL; i <= arrayFilters.length - DEFAULT_UNIT; i++) {
       switch (arrayFilters[i]) {
         case (ParamFilter.Zero): {
-          offerType.filter((offer) => (offer.level === 'Нулевой') ? offers.push(offer) : '');
+          offerType.filter((offer) => (offer.level === ParamFilterRu.Zero) ? offers.push(offer) : '');
+
           break;
         }
         case (ParamFilter.NonProfessional): {
-          offerType.filter((offer) => (offer.level === 'Любительский') ? offers.push(offer) : '');
+          offerType.filter((offer) => (offer.level === ParamFilterRu.NonProfessional) ? offers.push(offer) : '');
+
           break;
         }
         case (ParamFilter.Professional): {
-          offerType.filter((offer) => (offer.level === 'Профессиональный') ? offers.push(offer) : '');
+          offerType.filter((offer) => (offer.level === ParamFilterRu.Professional) ? offers.push(offer) : '');
+
           break;
         }
       }
@@ -158,8 +167,8 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const filteredAndSortedOffers = getSortOffers(sortType, sortMaxMin);
 
   function getFilterOffersPrice () {
-    const minObjectPrice = filteredAndSortedOffers.reduce((min, offer) => offer.price < min.price ? offer : min, filteredAndSortedOffers[0]);
-    const maxObjectPrice = filteredAndSortedOffers.reduce((min, offer) => offer.price > min.price ? offer : min, filteredAndSortedOffers[0]);
+    const minObjectPrice = filteredAndSortedOffers.reduce((min, offer) => offer.price < min.price ? offer : min, filteredAndSortedOffers[DEFAULT_NULL]);
+    const maxObjectPrice = filteredAndSortedOffers.reduce((min, offer) => offer.price > min.price ? offer : min, filteredAndSortedOffers[DEFAULT_NULL]);
 
     if(isPriceMin !== null && isPriceMax !== null) {
 
@@ -206,7 +215,6 @@ function MainPage ({title}: MainPageProps): JSX.Element {
   const lengthOffers = offersSortAndFilter.length;
 
   useDocumentTitle(title);
-
 
   return (
     <div className="wrapper" >
