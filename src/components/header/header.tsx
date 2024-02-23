@@ -33,9 +33,7 @@ function HeaderComponent () {
             </li>
           </ul>
         </nav>
-
         <SearchComponent/>
-
         <ButtonBasketComponent/>
       </div>
     </header>

@@ -9,6 +9,7 @@ const START_NUMBER_REVIEWS = 3;
 const DELAY_FOCUS = 300;
 const SLIDE_COUNT = 3;
 const CHANGE_PAGE = 'POP';
+const COUNT_SEARCH = 3;
 
 const OPTIONS = [
   {label: 'Отлично', value: 5},
@@ -123,6 +124,7 @@ export{
   DELAY_FOCUS,
   SLIDE_COUNT,
   CHANGE_PAGE,
+  COUNT_SEARCH,
   AppRoute,
   ApiRoute,
   TitleDescription,
