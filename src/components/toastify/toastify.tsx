@@ -2,7 +2,7 @@ import { ToastContainer } from 'react-toastify';
 import { useAppSelector } from '../../hooks/hook-use-store';
 import { useEffect } from 'react';
 import { notify } from '../../utils/utils-toastify';
-import { AppRoute, DEFAULT_UNIT } from '../../src-const';
+import { AppRoute, DEFAULT_UNIT, DELAY_NOTIFY } from '../../src-const';
 import { useLocation} from 'react-router-dom';
 
 function ToastifyComponent () {
@@ -22,7 +22,7 @@ function ToastifyComponent () {
     if (isErrorMainPage && false === pageLocation.includes(AppRoute.Product)) {
       timeoutId = setTimeout(() => {
         notify();
-      }, 400);
+      }, DELAY_NOTIFY);
     }
 
     return () => clearTimeout(timeoutId);
@@ -34,14 +34,16 @@ function ToastifyComponent () {
     if (isErrorProductPage && pageLocation.includes(AppRoute.Product)) {
       timeoutId = setTimeout(() => {
         notify();
-      }, 400);
+      }, DELAY_NOTIFY);
     }
 
     return () => clearTimeout(timeoutId);
   }, [isErrorProductPage]);
 
   return (
-    <ToastContainer limit={DEFAULT_UNIT}/>
+    <div data-testid='toastify-component'>
+      <ToastContainer limit={DEFAULT_UNIT}/>
+    </div>
   );
 }
 
