@@ -304,6 +304,19 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
     }
   }
 
+  function checkButtonResetDisabled () {
+    const values = Object.values(ParamFilter);
+    let isDisabled = true;
+
+    values.forEach((value: string) => {
+      if (urlParam.get(value) !== null) {
+        isDisabled = false;
+      }
+    });
+
+    return isDisabled;
+  }
+
   return (
     <div className="catalog__aside">
       <div className="catalog-filter">
@@ -484,6 +497,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
             className="btn catalog-filter__reset-btn"
             type="button"
             onClick={handleClickResetFilter}
+            disabled={checkButtonResetDisabled()}
           >
             Сбросить фильтры
           </button>
