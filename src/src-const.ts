@@ -25,7 +25,8 @@ enum AppRoute {
   Error = '/error',
   Characteristic = '/characteristic',
   Description = '/description',
-  Page = '/?page='
+  Page = 'page'
+
 }
 
 enum ApiRoute {
@@ -73,7 +74,6 @@ const ServerAnswer = {
 const SortName = {
   PriceRating: 'sort',
   UpDown: 'sort-icon'
-
 } as const;
 
 const SortId = {
@@ -92,12 +92,10 @@ const ParamFilter = {
   Collection: 'collection',
   Zero :'zero',
   NonProfessional :'non-professional',
-  Professional: 'professional'
+  Professional: 'professional',
+  PriceMin: 'priceMin',
+  PriceMax: 'priceMax'
 } as const;
-
-// const ParamFilterRu = {
-
-// } as const;
 
 const ParamSort = {
   Sort: 'sort',

@@ -1,9 +1,8 @@
 import { Link, createSearchParams, useSearchParams } from 'react-router-dom';
-import { ButtonName } from '../../src-const';
+import { AppRoute, ButtonName, DEFAULT_UNIT } from '../../src-const';
 import { getUrlParams } from '../../utils/utils-grt-url';
 
 type ButtonChangePageProps = {
-
   nameButton: string;
   lastPage:number;
 }
@@ -17,7 +16,7 @@ function ButtonChangePage ({nameButton, lastPage}: ButtonChangePageProps) {
         to={{
           search: createSearchParams({
             ...getUrlParams(urlParam),
-            ['page']: ((nameButton === ButtonName.NextEn) ? lastPage + 1 : lastPage - 1).toString(),
+            [AppRoute.Page]: ((nameButton === ButtonName.NextEn) ? lastPage + DEFAULT_UNIT : lastPage - DEFAULT_UNIT).toString(),
           }).toString(),
         }}
         className="pagination__link pagination__link--text"

@@ -15,7 +15,6 @@ function App () {
   dispatch(fetchPromoOffersAction());
 
   return (
-
     <Routes>
       <Route
         path={`${AppRoute.Main}/`}

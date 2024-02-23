@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getUrlParams } from '../../utils/utils-grt-url';
-import { ParamFilter } from '../../src-const';
+import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, ParamFilter } from '../../src-const';
 import { OfferCard } from '../../types/types-store';
 
 type FilterListCardsProps = {
@@ -15,34 +15,53 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
   const actualUrl = getUrlParams(urlParam);
   const refInputMin = useRef<HTMLInputElement>(null);
   const refInputMax = useRef<HTMLInputElement>(null);
-  const isMaxPrice = urlParam.get('priceMax') === null;
-  const isMinPrice = urlParam.get('priceMin') === null;
-  const urlMinPrice = urlParam.get('priceMin');
-  const urlMAxPrice = urlParam.get('priceMax');
-  const minPriceOffers = dataPriceMinMax.reduce((min, offer) => offer.price < min ? offer.price : min, dataPriceMinMax[0]?.price) || '';
-  const maxPriceOffers = dataPriceMinMax.reduce((max, offer) => offer.price > max ? offer.price : max, dataPriceMinMax[0]?.price) || '';
+  const isMaxPrice = urlParam.get(ParamFilter.PriceMax) === null;
+  const isMinPrice = urlParam.get(ParamFilter.PriceMin) === null;
+  const urlMinPrice = urlParam.get(ParamFilter.PriceMin);
+  const urlMaxPrice = urlParam.get(ParamFilter.PriceMax);
+  const minPriceOffers = dataPriceMinMax.reduce((min, offer) => offer.price < min ? offer.price : min, dataPriceMinMax[DEFAULT_NULL]?.price) || '';
+  const maxPriceOffers = dataPriceMinMax.reduce((max, offer) => offer.price > max ? offer.price : max, dataPriceMinMax[DEFAULT_NULL]?.price) || '';
   const [minPrice, setMinPrice] = useState(minPriceOffers);
   const [maxPrice, setMaxPrice] = useState(maxPriceOffers);
 
   useEffect(() => {
-    setMinPrice(minPriceOffers);
-    setMaxPrice(maxPriceOffers);
+    let isMounted = true;
+
+    if (isMounted) {
+      setMinPrice(minPriceOffers);
+      setMaxPrice(maxPriceOffers);
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [offers]);
 
   useEffect(() => {
-    if(refInputMin.current && refInputMax.current) {
+    let isMounted = true;
+
+    if(refInputMin.current && refInputMax.current && isMounted) {
       refInputMin.current.value = urlMinPrice || '';
-      refInputMax.current.value = urlMAxPrice || '';
+      refInputMax.current.value = urlMaxPrice || '';
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   useEffect(() => {
-    if(isMaxPrice && isMinPrice && refInputMin.current && refInputMax.current) {
+    let isMounted = true;
+
+    if(isMaxPrice && isMinPrice && refInputMin.current && refInputMax.current && isMounted) {
       refInputMin.current.value = '';
       refInputMax.current.value = '';
     }
-  },[isMaxPrice , isMinPrice]);
 
+    return () => {
+      isMounted = false;
+    };
+  },[isMaxPrice , isMinPrice]);
 
   function getValidFilter (filter: string) {
     const isValidFilter = urlParam.get(filter);
@@ -50,18 +69,18 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
     return isValidFilter !== null;
   }
 
-
   function setActualUrlAndCheckBox (nameFilter: string) {
-
     switch (nameFilter) {
       case(ParamFilter.PhotoCamera): {
         actualUrl[nameFilter] = ParamFilter.PhotoCamera;
+
         delete actualUrl[ParamFilter.VideoCamera];
 
         break;
       }
       case(ParamFilter.VideoCamera): {
         actualUrl[nameFilter] = ParamFilter.VideoCamera;
+
         delete actualUrl[ParamFilter.PhotoCamera];
         delete actualUrl[ParamFilter.SnapShot];
         delete actualUrl[ParamFilter.Film];
@@ -70,30 +89,37 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
       }
       case(ParamFilter.Digital): {
         actualUrl[nameFilter] = ParamFilter.Digital;
+
         break;
       }
       case(ParamFilter.Film): {
         actualUrl[nameFilter] = ParamFilter.Film;
+
         break;
       }
       case(ParamFilter.SnapShot): {
         actualUrl[nameFilter] = ParamFilter.SnapShot;
+
         break;
       }
       case(ParamFilter.Collection): {
         actualUrl[nameFilter] = ParamFilter.Collection;
+
         break;
       }
       case(ParamFilter.Zero): {
         actualUrl[nameFilter] = ParamFilter.Zero;
+
         break;
       }
       case(ParamFilter.NonProfessional): {
         actualUrl[nameFilter] = ParamFilter.NonProfessional;
+
         break;
       }
       case(ParamFilter.Professional): {
         actualUrl[nameFilter] = ParamFilter.Professional;
+
         break;
       }
     }
@@ -106,22 +132,18 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
       refInputMin.current.value = '';
       refInputMax.current.value = '';
 
-      delete actualUrl['priceMin'];
-      delete actualUrl['priceMax'];
+      delete actualUrl[ParamFilter.PriceMin];
+      delete actualUrl[ParamFilter.PriceMax];
     }
 
-    actualUrl['page'] = '1';
-
+    actualUrl[AppRoute.Page] = DEFAULT_UNIT.toString();
     setUrlParam(actualUrl);
-
-
   }
 
   function handleChangeCheckbox (event: ChangeEvent<HTMLInputElement>) {
     const nameFilter = event.target.name;
 
     setActualUrlAndCheckBox(nameFilter);
-
   }
 
   function handleClickResetFilter () {
@@ -134,29 +156,32 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
     delete actualUrl[ParamFilter.Professional];
     delete actualUrl[ParamFilter.Zero];
     delete actualUrl[ParamFilter.Collection];
-    delete actualUrl['priceMin'];
-    delete actualUrl['priceMax'];
+    delete actualUrl[ParamFilter.PriceMin];
+    delete actualUrl[ParamFilter.PriceMax];
 
     if(refInputMin.current && refInputMax.current){
       refInputMin.current.value = '';
       refInputMax.current.value = '';
     }
 
+    actualUrl[AppRoute.Page] = DEFAULT_UNIT.toString();
     setUrlParam(actualUrl);
   }
 
   function setMaxPriceValidation (name: string) {
     actualUrl[name] = maxPrice.toString();
-    if(refInputMin.current && refInputMax.current){
+
+    if(refInputMax.current){
       refInputMax.current.value = maxPrice.toString();
-      setUrlParam(actualUrl);
     }
+
+    setUrlParam(actualUrl);
   }
 
   function setMinPriceValidation (name: string) {
     actualUrl[name] = minPrice.toString();
 
-    if(refInputMin.current && refInputMax.current) {
+    if(refInputMin.current) {
       refInputMin.current.value = minPrice.toString();
     }
 
@@ -165,90 +190,92 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
 
   function setUrlAndInput (price: string, name: string) {
     if(refInputMin.current && refInputMax.current) {
-
-      if(name === 'priceMax' && +price < +refInputMin.current.value && refInputMax.current.value !== '') {
+      if(name === ParamFilter.PriceMax && +price < +refInputMin.current.value && refInputMax.current.value !== '') {
         setMaxPriceValidation(name);
 
         return;
       }
 
-      if(name === 'priceMin' && +price > +refInputMax.current.value && refInputMax.current.value !== '') {
+      if(name === ParamFilter.PriceMin && +price > +refInputMax.current.value && refInputMax.current.value !== '') {
         setMinPriceValidation(name);
 
         return;
       }
 
-      if(name === 'priceMin' && price === ''){
-        delete actualUrl['priceMin'];
+      if(name === ParamFilter.PriceMin && price === ''){
+        delete actualUrl[ParamFilter.PriceMin];
+
         setUrlParam(actualUrl);
 
         return;
       }
 
-      if(name === 'priceMin' && +price < 0) {
+      if(name === ParamFilter.PriceMin && +price < DEFAULT_NULL) {
         setMinPriceValidation(name);
 
         return;
       }
 
-      if(name === 'priceMin' && +price < +minPrice) {
+      if(name === ParamFilter.PriceMin && +price < +minPrice) {
         setMinPriceValidation(name);
 
         return;
       }
 
-      if(name === 'priceMin' && +price === 0) {
+      if(name === ParamFilter.PriceMin && +price === DEFAULT_NULL) {
         setMinPriceValidation(name);
 
         return;
       }
 
-      if(name === 'priceMin' && +price > +maxPrice) {
+      if(name === ParamFilter.PriceMin && +price > +maxPrice) {
         setMinPriceValidation(name);
 
         return;
       }
 
-      if(name === 'priceMin' && +price <= +maxPrice) {
+      if(name === ParamFilter.PriceMin && +price <= +maxPrice) {
         actualUrl[name] = refInputMin.current.value;
         setUrlParam(actualUrl);
 
         return;
       }
 
-      if(name === 'priceMax' && price === ''){
-        delete actualUrl['priceMax'];
+      if(name === ParamFilter.PriceMax && price === ''){
+        delete actualUrl[ParamFilter.PriceMax];
+
         setUrlParam(actualUrl);
 
         return;
       }
 
-      if(name === 'priceMax' && +price < 0) {
+      if(name === ParamFilter.PriceMax && +price < DEFAULT_NULL) {
         setMaxPriceValidation(name);
 
         return;
       }
 
-      if(name === 'priceMax' && +price > +maxPrice) {
+      if(name === ParamFilter.PriceMax && +price > +maxPrice) {
         setMaxPriceValidation(name);
 
         return;
       }
 
-      if(name === 'priceMax' && +price === 0) {
+      if(name === ParamFilter.PriceMax && +price === DEFAULT_NULL) {
         setMaxPriceValidation(name);
 
         return;
       }
 
-      if(name === 'priceMax' && +price < +minPrice) {
+      if(name === ParamFilter.PriceMax && +price < +minPrice) {
         setMaxPriceValidation(name);
 
         return;
       }
 
-      if(name === 'priceMax' && +price <= +maxPrice) {
+      if(name === ParamFilter.PriceMax && +price <= +maxPrice) {
         actualUrl[name] = refInputMax.current.value;
+
         setUrlParam(actualUrl);
       }
     }
@@ -263,8 +290,6 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
 
 
   function handleKeyDown (event: React.KeyboardEvent<HTMLInputElement>) {
-
-
     if(event.key === 'Enter') {
       event.preventDefault();
 
@@ -273,7 +298,6 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
 
       setUrlAndInput(valueInput, nameInput);
     }
-
 
     if(event.currentTarget.type === 'checkbox' && event.key === 'Enter'){
       setActualUrlAndCheckBox(event.currentTarget.name);
@@ -324,7 +348,6 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.PhotoCamera)}
                   onKeyDown={handleKeyDown}
-
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">

@@ -1,10 +1,10 @@
+import 'swiper/swiper-bundle.css';
+import './banner.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useAppSelector } from '../../hooks/hook-use-store';
 import { BannerOfferComponent } from '../banner-offer/banner-offer';
 import { Autoplay, Pagination } from 'swiper/modules';
 import SwiperCore from 'swiper';
-import 'swiper/swiper-bundle.css';
-import './banner.css';
 import { DEFAULT_NULL, DEFAULT_UNIT, DELAY_FOR_BANNER } from '../../src-const';
 
 function BannerComponent() {
