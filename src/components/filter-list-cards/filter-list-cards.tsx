@@ -1,8 +1,9 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getUrlParams } from '../../utils/utils-grt-url';
-import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, ParamFilter } from '../../src-const';
+import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, DELAY_FOCUS, ParamFilter } from '../../src-const';
 import { OfferCard } from '../../types/types-store';
+import { useAppSelector } from '../../hooks/hook-use-store';
 
 type FilterListCardsProps = {
   offers: OfferCard[] | [];
@@ -23,6 +24,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
   const maxPriceOffers = dataPriceMinMax.reduce((max, offer) => offer.price > max ? offer.price : max, dataPriceMinMax[DEFAULT_NULL]?.price) || '';
   const [minPrice, setMinPrice] = useState(minPriceOffers);
   const [maxPrice, setMaxPrice] = useState(maxPriceOffers);
+  const stateOffers = useAppSelector((state) => state.offers.offers);
 
   useEffect(() => {
     let isMounted = true;
@@ -36,6 +38,25 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
       isMounted = false;
     };
   }, [offers]);
+
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if(stateOffers.length && isMounted) {
+
+      setTimeout(() => {
+        refInputMin.current?.focus();
+        refInputMin.current?.blur();
+        refInputMax.current?.focus();
+        refInputMax.current?.blur();
+      },DELAY_FOCUS);
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [stateOffers]);
 
   useEffect(() => {
     let isMounted = true;
