@@ -1,10 +1,10 @@
 function getUrlParams (params: URLSearchParams) {
 
-  type TParamsUrl = {
+  type ParamsUrl = {
     [key: string]: string;
   }
 
-  const paramsUrl: TParamsUrl = {};
+  const paramsUrl: ParamsUrl = {};
 
   params.forEach((value: string, key: string) => {
     paramsUrl[key] = value;

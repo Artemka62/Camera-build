@@ -28,7 +28,6 @@ enum AppRoute {
   Characteristic = '/characteristic',
   Description = '/description',
   Page = 'page'
-
 }
 
 enum ApiRoute {
@@ -115,7 +114,6 @@ const ParamSort = {
   Sort: 'sort',
   Rotation: 'rotation'
 } as const;
-
 
 const ButtonName = {
   NextEn: 'next',

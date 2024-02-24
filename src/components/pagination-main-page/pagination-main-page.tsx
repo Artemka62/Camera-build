@@ -3,7 +3,7 @@ import { ButtonChangePage } from '../button-change-page/button-change-page';
 import { AppRoute, ButtonName, DEFAULT_UNIT, PAGES_PER_SET} from '../../src-const';
 import { getUrlParams } from '../../utils/utils-grt-url';
 import { useEffect } from 'react';
-import { useAppSelector } from '../../hooks/hook-use-store';
+import { useAppSelector } from '../../use-hooks/use-hook-store';
 
 type PaginationMainPageComponentProps = {
   offersPerPages: number;
@@ -21,7 +21,7 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, currentPage}:
   const [urlParam] = useSearchParams();
   const stateOffers = useAppSelector((state) => state.offers.offers);
   const [urlPam, setUrlParam] = useSearchParams();
-  const urlPage = urlPam.get('page');
+  const urlPage = urlPam.get(AppRoute.Page);
   const actualUrl = getUrlParams(urlParam);
 
   useEffect(() => {
@@ -38,7 +38,6 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, currentPage}:
     return () => {
       isMounted = false;
     };
-
   },[totalOffers]);
 
   return (

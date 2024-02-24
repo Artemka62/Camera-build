@@ -1,5 +1,5 @@
 import { useEffect, useRef} from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/hook-use-store';
+import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { DEFAULT_NULL, DELAY_FOCUS } from '../../src-const';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';

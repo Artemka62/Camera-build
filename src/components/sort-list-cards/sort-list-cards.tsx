@@ -12,7 +12,6 @@ function SortListCardsComponent () {
   const inputRefUp = useRef<HTMLInputElement>(null);
   const inputRefDown = useRef<HTMLInputElement>(null);
 
-
   function setUrlSort (name: string, id: string) {
     const actualUrl = getUrlParams(urlParam);
 
@@ -31,14 +30,12 @@ function SortListCardsComponent () {
     setUrlParam(actualUrl);
   }
 
-
   function handleClickSort (event: ChangeEvent<HTMLInputElement>) {
     const name = event.target.name;
     const id = event.target.id;
 
     setUrlSort(name, id);
   }
-
 
   function deleteFocusInput (id: string) {
     if(inputRefDown.current && inputRefPopular.current && inputRefPrice.current && inputRefUp.current){

@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { getUrlParams } from '../../utils/utils-grt-url';
 import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, DELAY_FOCUS, ParamFilter } from '../../src-const';
 import { OfferCard } from '../../types/types-store';
-import { useAppSelector } from '../../hooks/hook-use-store';
+import { useAppSelector } from '../../use-hooks/use-hook-store';
 
 type FilterListCardsProps = {
   offers: OfferCard[] | [];

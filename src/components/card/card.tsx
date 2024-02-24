@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/hook-use-store';
+import { useAppDispatch } from '../../use-hooks/use-hook-store';
 import { fetchOfferAction } from '../../services/thunk/thunk-fetch-offer';
 import { OfferCard } from '../../types/types-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';

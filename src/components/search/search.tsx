@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useAppSelector } from '../../hooks/hook-use-store';
+import { useAppSelector } from '../../use-hooks/use-hook-store';
 import { OfferCard } from '../../types/types-store';
 import { COUNT_SEARCH, DEFAULT_NULL, DEFAULT_UNIT } from '../../src-const';
 import { SearchListComponent } from '../search-list/search-list';
-import { useKeyPress } from '../../hooks/use-key-press';
-import { useClickOutside } from '../../hooks/use-click-outside';
+import { useKeyPress } from '../../use-hooks/use-hook-key-press';
+import { useClickOutside } from '../../use-hooks/use-hook-click-outside';
 
 function SearchComponent () {
   const stateOffersProduct = useAppSelector((state) => state.offers.offers);
@@ -19,25 +19,40 @@ function SearchComponent () {
   const arrowDownPressed = useKeyPress('ArrowDown');
   const refList = useClickOutside<HTMLUListElement>(() => setCursor(-DEFAULT_UNIT));
 
-  const onFocus = (index: number) => {
-    setCursor(index);
-  };
-
   useEffect(() => {
-    cursorRef.current = cursor;
+    let isMounted = true;
 
+    if(isMounted) {
+      cursorRef.current = cursor;
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [cursor]);
 
   useEffect(() => {
-    if (arrowUpPressed && cursorRef.current > DEFAULT_NULL) {
+    let isMounted = true;
+
+    if (isMounted && arrowUpPressed && cursorRef.current > DEFAULT_NULL) {
       setCursor(cursorRef.current - DEFAULT_UNIT);
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, [arrowUpPressed]);
 
   useEffect(() => {
-    if (arrowDownPressed && cursorRef.current < offerList.length - DEFAULT_UNIT) {
+    let isMounted = true;
+
+    if (isMounted && arrowDownPressed && cursorRef.current < offerList.length - DEFAULT_UNIT) {
       setCursor(cursorRef.current + DEFAULT_UNIT);
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, [arrowDownPressed, offerList.length]);
 
   function findProduct(searchText: string, listOffersProduct: OfferCard[]): OfferCard[] {
@@ -49,13 +64,22 @@ function SearchComponent () {
   }
 
   useEffect(() => {
-    const debounce = setTimeout(() => {
-      const filteredOffers = findProduct(searchTerm, stateOffersProduct);
-      setOfferList(filteredOffers);
-    }, DEFAULT_NULL);
+    let isMounted = true;
 
-    return () => clearTimeout(debounce);
+    if(isMounted) {
+      const filteredOffers = findProduct(searchTerm, stateOffersProduct);
+
+      setOfferList(filteredOffers);
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [searchTerm, stateOffersProduct]);
+
+  const onFocus = (index: number) => {
+    setCursor(index);
+  };
 
   function handleSearchProduct(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(event.target.value);
