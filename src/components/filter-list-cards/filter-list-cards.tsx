@@ -309,7 +309,6 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
     setUrlAndInput(valueInput, nameInput);
   }
 
-
   function handleKeyDown (event: React.KeyboardEvent<HTMLInputElement>) {
     if(event.key === 'Enter') {
       event.preventDefault();

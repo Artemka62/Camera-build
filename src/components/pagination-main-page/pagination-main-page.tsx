@@ -2,6 +2,8 @@ import { Link, createSearchParams, useSearchParams } from 'react-router-dom';
 import { ButtonChangePage } from '../button-change-page/button-change-page';
 import { AppRoute, ButtonName, DEFAULT_UNIT, PAGES_PER_SET} from '../../src-const';
 import { getUrlParams } from '../../utils/utils-grt-url';
+import { useEffect } from 'react';
+import { useAppSelector } from '../../hooks/hook-use-store';
 
 type PaginationMainPageComponentProps = {
   offersPerPages: number;
@@ -17,7 +19,27 @@ function PaginationMainPageComponent({offersPerPages, totalOffers, currentPage}:
   const startPage = (currentPageSet - DEFAULT_UNIT) * pagesPerSet + DEFAULT_UNIT;
   const endPage = Math.min(currentPageSet * pagesPerSet, quantityPages);
   const [urlParam] = useSearchParams();
+  const stateOffers = useAppSelector((state) => state.offers.offers);
+  const [urlPam, setUrlParam] = useSearchParams();
+  const urlPage = urlPam.get('page');
+  const actualUrl = getUrlParams(urlParam);
 
+  useEffect(() => {
+    let isMounted = true;
+
+    if(urlPage && isMounted) {
+      if(stateOffers.length && quantityPages < +urlPage) {
+        actualUrl[AppRoute.Page] = DEFAULT_UNIT.toString();
+
+        setUrlParam(actualUrl);
+      }
+    }
+
+    return () => {
+      isMounted = false;
+    };
+
+  },[totalOffers]);
 
   return (
     <div className="pagination" data-testid='pagination-main-page'>

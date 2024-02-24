@@ -1,6 +1,8 @@
+import './empty-message.css';
+
 function EmptyMessageComponent () {
   return (
-    <div>По вашему запросу ничего не найдено</div>
+    <div className="empty-message">По вашему запросу ничего не найдено</div>
   );
 }
 
