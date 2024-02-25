@@ -9,6 +9,7 @@ describe('component: PaginationMainPage', () => {
 
   it('should render correctly', () => {
     const expectedData = 'pagination-main-page';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <PaginationMainPageComponent

@@ -7,6 +7,7 @@ import { ModalWindowReviewProductComponent } from './modal-window-review-product
 describe('component: ModalWindowReviewProduct', () => {
   it('should render correctly', () => {
     const expectedText = 'Оставить отзыв';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <ModalWindowReviewProductComponent/>

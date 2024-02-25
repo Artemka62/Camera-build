@@ -7,6 +7,7 @@ import { ReviewListComponent } from './review-list';
 describe('component: ReviewList', () => {
   it('should render correctly', () => {
     const expectedText = 'Оставить свой отзыв';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <ReviewListComponent/>

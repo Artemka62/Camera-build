@@ -7,6 +7,7 @@ import { FooterComponent } from './footer';
 describe('component: Footer', () => {
   it('should render correctly', () => {
     const expectedText = 'Интернет-магазин фото- и видеотехники';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <FooterComponent />

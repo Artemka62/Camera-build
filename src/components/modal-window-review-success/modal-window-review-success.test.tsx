@@ -7,6 +7,7 @@ import { ModalWindowReviewSuccess } from './modal-window-review-success';
 describe('component: ModalWindowBasketSuccess', () => {
   it('should render correctly', () => {
     const expectedText = 'Спасибо за отзыв';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <ModalWindowReviewSuccess/>

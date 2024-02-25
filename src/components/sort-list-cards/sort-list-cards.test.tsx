@@ -7,6 +7,7 @@ import { SortListCardsComponent } from './sort-list-cards';
 describe('component: SortListCards', () => {
   it('should render correctly', () => {
     const expectedText = 'Сортировать:';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <SortListCardsComponent/>

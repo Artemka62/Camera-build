@@ -7,6 +7,7 @@ import { ToastifyComponent } from './toastify';
 describe('component: ToastifyComponent', () => {
   it('should render correctly', () => {
     const expectedData = 'toastify-component';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <ToastifyComponent/>

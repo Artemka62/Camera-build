@@ -8,6 +8,7 @@ import { DEFAULT_UNIT } from '../../src-const';
 describe('component: StarsRatingComponent', () => {
   it('should render correctly', () => {
     const expectedData = 'stars-rating';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <StarsRatingComponent rating={DEFAULT_UNIT} reviewCount={DEFAULT_UNIT}/>

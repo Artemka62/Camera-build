@@ -5,6 +5,7 @@ import { withHistory } from '../mock-component/mock-component';
 describe('component: Logotype', () => {
   it('should render correctly', () => {
     const expectedText = 'logotype';
+
     const preparedComponent = withHistory(<LogotypeComponent/>);
 
     render(preparedComponent);

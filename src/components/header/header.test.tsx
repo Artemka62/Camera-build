@@ -7,6 +7,7 @@ import { HeaderComponent } from './header';
 describe('component: Header', () => {
   it('should render correctly', () => {
     const expectedText = 'Каталог';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <HeaderComponent />

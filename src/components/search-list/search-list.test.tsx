@@ -15,6 +15,7 @@ describe('component: SearchListComponent', () => {
 
   it('should render correctly', () => {
     const expectedData = 'search-list-component';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <SearchListComponent offer={mockOffer} inFocus={false} onFocus={onFocus} index={DEFAULT_UNIT} id={DEFAULT_UNIT}/>

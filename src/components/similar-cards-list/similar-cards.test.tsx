@@ -8,6 +8,7 @@ import { mockOffer } from '../../mock-test/mock-offer/mock-offer';
 describe('component: SimilarCardsList', () => {
   it('should render correctly', () => {
     const expectedData = 'similar-cards';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <SimilarCardsListComponent offers={[mockOffer]}/>

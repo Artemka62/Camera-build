@@ -8,6 +8,7 @@ import { mockOffer } from '../../mock-test/mock-offer/mock-offer';
 describe('component: FilterListCards', () => {
   it('should render correctly', () => {
     const expectedText = 'Фильтр';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <FilterListCardsComponent offers={[mockOffer]} dataPriceMinMax={[mockOffer]}/>

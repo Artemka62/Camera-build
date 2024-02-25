@@ -7,6 +7,7 @@ import { ModalWindowCardProductComponent } from './modal-window-card-product';
 describe('component: ModalWindowCardProduct', () => {
   it('should render correctly', () => {
     const expectedText = 'Добавить товар в корзину';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <ModalWindowCardProductComponent/>

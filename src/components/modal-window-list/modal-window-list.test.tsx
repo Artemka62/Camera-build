@@ -7,6 +7,7 @@ import { ModalWindowComponent } from './modal-window-list';
 describe('component: ModalWindow', () => {
   it('should render correctly', () => {
     const expectedData = 'modal-window';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <ModalWindowComponent/>

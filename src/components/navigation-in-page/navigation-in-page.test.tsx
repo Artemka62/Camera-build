@@ -7,6 +7,7 @@ import { NavigationInPageComponent } from './navigation-in-page';
 describe('component: NavigationInPage', () => {
   it('should render correctly', () => {
     const expectedData = 'navigation-in-page';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <NavigationInPageComponent/>

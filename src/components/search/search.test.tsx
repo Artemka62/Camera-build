@@ -8,6 +8,7 @@ describe('component: SearchComponent', () => {
 
   it('should render correctly', () => {
     const expectedData = 'search-component';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <SearchComponent/>

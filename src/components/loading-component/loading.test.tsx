@@ -7,6 +7,7 @@ import { LoadingComponent } from './loading-component';
 describe('component: Loading', () => {
   it('should render correctly', () => {
     const expectedText = 'Loading...';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <LoadingComponent />

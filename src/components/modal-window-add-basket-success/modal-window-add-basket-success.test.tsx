@@ -7,6 +7,7 @@ import { ModalWindowAddBasketSuccessComponent } from './modal-window-add-basket-
 describe('component: ModalWindowAddBasketSuccess', () => {
   it('should render correctly', () => {
     const expectedText = 'Товар успешно добавлен в корзину';
+
     const preparedComponent = withHistory(
       <Provider store={store}>
         <ModalWindowAddBasketSuccessComponent/>
