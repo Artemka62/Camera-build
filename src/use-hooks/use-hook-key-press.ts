@@ -4,26 +4,31 @@ function useKeyPress(targetKey: string) {
   const [keyPressed, setKeyPressed] = useState(false);
 
   useEffect(() => {
-    const downHandler = (e: KeyboardEvent) => {
-      if (e.key === targetKey) {
-        e.preventDefault();
+    let isMounted = true;
+
+    const downHandler = (event: KeyboardEvent) => {
+      if (event.key === targetKey && isMounted) {
+        event.preventDefault();
         setKeyPressed(true);
       }
     };
 
-    const upHandler = (e: KeyboardEvent) => {
-      if (e.key === targetKey) {
-        e.preventDefault();
+    const upHandler = (event: KeyboardEvent) => {
+      if (event.key === targetKey && isMounted) {
+        event.preventDefault();
         setKeyPressed(false);
       }
     };
 
-    window.addEventListener('keydown', downHandler);
-    window.addEventListener('keyup', upHandler);
+    if(isMounted){
+      window.addEventListener('keydown', downHandler);
+      window.addEventListener('keyup', upHandler);
+    }
 
     return () => {
       window.removeEventListener('keydown', downHandler);
       window.removeEventListener('keyup', upHandler);
+      isMounted = false;
     };
   }, [targetKey]);
 
