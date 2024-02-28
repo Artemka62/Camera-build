@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { ChangeEvent, useRef } from 'react';
 import { ParamSort, SortId, SortName } from '../../src-const';
-import { getUrlParams } from '../../utils/utils-grt-url';
+import { getUrlParams } from '../../utils/utils-get-url';
 
 function SortListCardsComponent () {
   const [urlParam, setUrlParam] = useSearchParams();
@@ -59,13 +59,20 @@ function SortListCardsComponent () {
     }
   }
 
-  function handleKeyDownSort (event: React.KeyboardEvent<HTMLInputElement>) {
+  function handleKeyDownSort (event: React.KeyboardEvent<HTMLInputElement>, nextInputRef: React.RefObject<HTMLInputElement> | null) {
     const id = event.currentTarget.id;
+    const name = event.currentTarget.name;
 
     if(event.key === 'Enter') {
       event.preventDefault();
 
       deleteFocusInput(id);
+      setUrlSort(name, id);
+    }
+
+    if (event.key === 'Tab' && nextInputRef && nextInputRef.current) {
+      event.preventDefault();
+      nextInputRef.current.focus();
     }
   }
 
@@ -82,7 +89,7 @@ function SortListCardsComponent () {
                 name="sort"
                 checked={sortType === SortId.Price}
                 onChange={handleClickSort}
-                onKeyDown={handleKeyDownSort}
+                onKeyDown={(event) => handleKeyDownSort(event, inputRefPopular)}
                 ref={inputRefPrice}
               />
               <label htmlFor="sortPrice">по цене</label>
@@ -94,7 +101,7 @@ function SortListCardsComponent () {
                 checked={sortType === SortId.Popular}
                 name="sort"
                 onChange={handleClickSort}
-                onKeyDown={handleKeyDownSort}
+                onKeyDown={(event) => handleKeyDownSort(event, inputRefUp)}
                 ref={inputRefPopular}
               />
               <label htmlFor="sortPopular">по популярности</label>
@@ -109,8 +116,8 @@ function SortListCardsComponent () {
                 checked={sortIcoType === SortId.Up}
                 aria-label="По возрастанию"
                 onChange={handleClickSort}
-                onKeyDown={handleKeyDownSort}
-                ref={inputRefDown}
+                onKeyDown={(event) => handleKeyDownSort(event, inputRefDown)}
+                ref={ inputRefUp}
               />
               <label htmlFor="up">
                 <svg width={16} height={14} aria-hidden="true">
@@ -126,8 +133,8 @@ function SortListCardsComponent () {
                 aria-label="По убыванию"
                 checked={sortIcoType === SortId.Down}
                 onChange={handleClickSort}
-                onKeyDown={handleKeyDownSort}
-                ref={inputRefUp}
+                onKeyDown={(event) => handleKeyDownSort(event, inputRefPrice)}
+                ref={inputRefDown}
               />
               <label htmlFor="down">
                 <svg width={16} height={14} aria-hidden="true">

@@ -1,6 +1,6 @@
 import { Link, createSearchParams, useSearchParams } from 'react-router-dom';
 import { AppRoute, ButtonName, DEFAULT_UNIT } from '../../src-const';
-import { getUrlParams } from '../../utils/utils-grt-url';
+import { getUrlParams } from '../../utils/utils-get-url';
 
 type ButtonChangePageProps = {
   nameButton: string;

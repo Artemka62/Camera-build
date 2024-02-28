@@ -8,6 +8,7 @@ function ModalWindowReviewSuccess () {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const successBuyButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const stateOfferProduct = useAppSelector((state) => state.offer.offer);
 
   useEffect(() => {
@@ -20,6 +21,19 @@ function ModalWindowReviewSuccess () {
     }
 
     return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if(isMounted){
+      document.body.classList.add('scroll-lock');
+    }
+
+    return () => {
+      document.body.classList.remove('scroll-lock');
       isMounted = false;
     };
   }, []);
@@ -44,9 +58,14 @@ function ModalWindowReviewSuccess () {
     });
   }
 
-  function handlePressKeyCardsProduct (event:React.KeyboardEvent) {
+  function handlePressKeyCardsProduct (event:React.KeyboardEvent, nextInputRef: React.RefObject<HTMLButtonElement> | null) {
     if(event.key === ' '){
       event.preventDefault();
+    }
+
+    if (event.key === 'Tab' && nextInputRef && nextInputRef.current) {
+      event.preventDefault();
+      nextInputRef.current.focus();
     }
   }
 
@@ -60,14 +79,20 @@ function ModalWindowReviewSuccess () {
         <button
           ref={successBuyButtonRef}
           onClick={handleClickButtonCardProduct}
-          onKeyDown={handlePressKeyCardsProduct}
+          onKeyDown={(event) => handlePressKeyCardsProduct(event, closeButtonRef)}
           className="btn btn--purple modal__btn modal__btn--fit-width"
           type="button"
         >
           Вернуться к покупкам
         </button>
       </div>
-      <button onClick={handleClickButtonClose}className="cross-btn" type="button" aria-label="Закрыть попап">
+      <button
+        onClick={handleClickButtonClose}
+        className="cross-btn" type="button"
+        aria-label="Закрыть попап"
+        onKeyDown={(event) => handlePressKeyCardsProduct(event, successBuyButtonRef)}
+        ref={closeButtonRef}
+      >
         <svg width={10} height={10} aria-hidden="true">
           <use xlinkHref="#icon-close" />
         </svg>

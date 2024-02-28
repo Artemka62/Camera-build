@@ -13,7 +13,7 @@ import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, MAX_LENGTH_CARDS, ParamFilter, Pa
 import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
 import { useSearchParams } from 'react-router-dom';
-import { getUrlParams } from '../../utils/utils-grt-url';
+import { getUrlParams } from '../../utils/utils-get-url';
 import { OfferCard } from '../../types/types-store';
 import { ToastifyComponent } from '../../components/toastify/toastify';
 
