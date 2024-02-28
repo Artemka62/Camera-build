@@ -212,7 +212,9 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
   function setUrlAndInput (price: string, name: string) {
     if(refInputMin.current && refInputMax.current) {
       if(name === ParamFilter.PriceMax && +price < +refInputMin.current.value && refInputMax.current.value !== '') {
-        setMaxPriceValidation(name);
+        actualUrl[name] = refInputMin.current.value;
+        refInputMax.current.value = refInputMin.current.value ;
+        setUrlParam(actualUrl);
 
         return;
       }
@@ -224,9 +226,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
       }
 
       if(name === ParamFilter.PriceMin && price === ''){
-        delete actualUrl[ParamFilter.PriceMin];
-
-        setUrlParam(actualUrl);
+        setMinPriceValidation(name);
 
         return;
       }
@@ -263,9 +263,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
       }
 
       if(name === ParamFilter.PriceMax && price === ''){
-        delete actualUrl[ParamFilter.PriceMax];
-
-        setUrlParam(actualUrl);
+        setMaxPriceValidation(name);
 
         return;
       }
@@ -296,7 +294,6 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
 
       if(name === ParamFilter.PriceMax && +price <= +maxPrice) {
         actualUrl[name] = refInputMax.current.value;
-
         setUrlParam(actualUrl);
       }
     }
