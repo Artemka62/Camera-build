@@ -12,12 +12,12 @@ function SearchComponent () {
   const [offerList, setOfferList] = useState<OfferCard[]>([]);
   const isShowButtonReset = searchTerm.length > DEFAULT_NULL ? 'form-search list-opened' : 'form-search';
   const isShowListOffers = searchTerm.length >= COUNT_SEARCH && offerList.length > DEFAULT_NULL;
-  const formRef = useRef<HTMLFormElement>(null);
   const [cursor, setCursor] = useState(-DEFAULT_UNIT);
   const cursorRef = useRef(cursor);
   const arrowUpPressed = useKeyPress('ArrowUp');
   const arrowDownPressed = useKeyPress('ArrowDown');
   const refList = useClickOutside<HTMLUListElement>(() => setCursor(-DEFAULT_UNIT));
+  const refInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -89,14 +89,15 @@ function SearchComponent () {
     setSearchTerm('');
     setOfferList([]);
 
-    if (formRef.current) {
-      formRef.current.reset();
+    if (refInput.current) {
+      refInput.current.focus();
+      refInput.current.value = '';
     }
   }
 
   return (
     <div className={isShowButtonReset} data-testid='search-component'>
-      <form ref={formRef}>
+      <form>
         <label>
           <svg
             className="form-search__icon"
@@ -112,6 +113,7 @@ function SearchComponent () {
             autoComplete="off"
             placeholder="Поиск по сайту"
             onChange={handleSearchProduct}
+            ref={refInput}
           />
         </label>
         {isShowListOffers ?
