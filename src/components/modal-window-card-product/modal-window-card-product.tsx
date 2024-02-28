@@ -8,6 +8,7 @@ function ModalWindowCardProductComponent () {
   const stateCard = useAppSelector((state) => state.offer.offer);
   const dispatch = useAppDispatch();
   const addBasketButtonRef = useRef<HTMLButtonElement>(null);
+  const refCloseButton = useRef<HTMLButtonElement>(null);
 
   function handleClickButtonClose () {
     dispatch(windowsSlice.actions.windowProduct(false));
@@ -20,9 +21,14 @@ function ModalWindowCardProductComponent () {
     dispatch(windowsSlice.actions.windowAddBasketSuccess(true));
   }
 
-  function handlePressKeyAddBasket (event:React.KeyboardEvent) {
+  function handlePressKeyAddBasket (event:React.KeyboardEvent, nextInputRef: React.RefObject<HTMLButtonElement> | null) {
     if(event.key === ' '){
       event.preventDefault();
+    }
+
+    if (event.key === 'Tab' && nextInputRef && nextInputRef.current) {
+      event.preventDefault();
+      nextInputRef.current.focus();
     }
   }
 
@@ -82,7 +88,7 @@ function ModalWindowCardProductComponent () {
       <div className="modal__buttons">
         <button
           onClick={handleClickAddBasket}
-          onKeyDown={handlePressKeyAddBasket}
+          onKeyDown={(event) => handlePressKeyAddBasket(event, refCloseButton)}
           ref={addBasketButtonRef}
           className="btn btn--purple modal__btn modal__btn--fit-width"
           type="button"
@@ -93,7 +99,13 @@ function ModalWindowCardProductComponent () {
           Добавить в корзину
         </button>
       </div>
-      <button onClick={handleClickButtonClose} className="cross-btn" type="button" aria-label="Закрыть попап" >
+      <button
+        onClick={handleClickButtonClose}
+        className="cross-btn" type="button"
+        aria-label="Закрыть попап"
+        ref={refCloseButton}
+        onKeyDown={(event) => handlePressKeyAddBasket(event, addBasketButtonRef)}
+      >
         <svg width={10} height={10} aria-hidden="true">
           <use xlinkHref="#icon-close" />
         </svg>
