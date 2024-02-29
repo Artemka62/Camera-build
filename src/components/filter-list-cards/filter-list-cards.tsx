@@ -38,7 +38,6 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
     };
   }, [offers]);
 
-
   useEffect(() => {
     let isMounted = true;
 
