@@ -10,6 +10,25 @@ type BasketProps = {
 function BasketPage ({title}: BasketProps) {
   useDocumentTitle(title);
 
+
+  // let myArray = [
+  //   { id: 1, name: "John" },
+  //   { id: 2, name: "Jane" },
+  //   { id: 3, name: "Doe" }
+  // ];
+
+  // // Сериализуем массив в строку JSON и сохраняем в localStorage
+  // localStorage.setItem("myArray", JSON.stringify(myArray));
+
+
+  // let storedArray = JSON.parse(localStorage.getItem("myArray"));
+
+// // Удаляем, например, объект с id равным 2
+// storedArray = storedArray.filter(item => item.id !== 2);
+
+// Сохраняем обновленный массив обратно в localStorage
+// localStorage.removeItem("myArray");
+
   return (
     <div className="wrapper" data-testid ='basket-page'>
       <HeaderComponent/>

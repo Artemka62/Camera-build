@@ -78,6 +78,11 @@ type StateReviews = {
   loading: boolean;
 }
 
+type OfferLocalStorage = {
+  count: number;
+  id: number;
+  offer: OfferCard;
+}
 
 export type {
   State,
@@ -90,5 +95,6 @@ export type {
   StateOffersPromo,
   StateWindow,
   Review,
-  StateReviews
+  StateReviews,
+  OfferLocalStorage
 };

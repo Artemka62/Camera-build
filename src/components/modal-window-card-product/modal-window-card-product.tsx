@@ -1,8 +1,10 @@
 import { useEffect, useRef} from 'react';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
-import { DEFAULT_NULL, DELAY_FOCUS } from '../../src-const';
+import { DEFAULT_NULL, DELAY_FOCUS, KEY_LOCAL_STORAGE } from '../../src-const';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';
+import { getLocalStorage, setLocalStorage } from '../../utils/utils-local-storage';
+import { OfferCard, OfferLocalStorage } from '../../types/types-store';
 
 function ModalWindowCardProductComponent () {
   const stateCard = useAppSelector((state) => state.offer.offer);
@@ -16,9 +18,58 @@ function ModalWindowCardProductComponent () {
     dispatch(windowsSlice.actions.windowAddBasketSuccess(false));
   }
 
+  // function addProductToBasket () {
+  //   const myLocalStorage = getLocalStorage(KEY_LOCAL_STORAGE) as OfferLocalStorage[];
+
+  // if(stateCard){
+  //   myLocalStorage.push({
+  //     count: 1,
+  //     id: stateCard?.id,
+  //     offer: stateCard
+  //   });
+
+  // }
+
+  //console.log(myLocalStorage);
+
+
+  //localStorage.removeItem(KEY_LOCAL_STORAGE)
+  // }
+
+
+  function addProductToBasket (key: string, offerBasket?: OfferCard) {
+    const myLocalStorage = getLocalStorage(KEY_LOCAL_STORAGE) as OfferLocalStorage[];
+    //const array: OfferLocalStorage[] = [];
+
+
+    // if(myLocalStorage === undefined) {
+    //   localStorage.setItem(key, JSON.stringify(array));
+    //   console.log(myLocalStorage);
+    // }
+
+    if(myLocalStorage.length && offerBasket){
+      const offerProductBasket: OfferLocalStorage = {
+        count: 1,
+        id: offerBasket?.id,
+        offer: offerBasket
+      };
+
+
+      myLocalStorage.push(offerProductBasket);
+
+      setLocalStorage(KEY_LOCAL_STORAGE, myLocalStorage);
+    }
+  }
+
   function handleClickAddBasket () {
     dispatch(windowsSlice.actions.windowProduct(false));
     dispatch(windowsSlice.actions.windowAddBasketSuccess(true));
+
+    if(stateCard){
+      addProductToBasket(KEY_LOCAL_STORAGE, stateCard);
+    }
+
+    //addProductToBasket();
   }
 
   function handlePressKeyAddBasket (event:React.KeyboardEvent, nextInputRef: React.RefObject<HTMLButtonElement> | null) {
