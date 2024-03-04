@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute, TitleDescription } from '../../src-const';
+import { AppRoute, KEY_LOCAL_STORAGE, TitleDescription } from '../../src-const';
 import { MainPage } from '../../pages/page-main/page-main';
 import { ProductPage } from '../../pages/page-product/page-product';
 import { BasketPage } from '../../pages/page-basket/page-basket';
@@ -7,9 +7,18 @@ import { ErrorPage } from '../../pages/page-error/page-error';
 import { useAppDispatch } from '../../use-hooks/use-hook-store';
 import { fetchOffersAction } from '../../services/thunk/thunk-fetch-offers';
 import { fetchPromoOffersAction } from '../../services/thunk/thunk-fetch-promo-offers';
+import { OfferLocalStorage } from '../../types/types-store';
+import { getLocalStorage } from '../../utils/utils-local-storage';
 
 function App () {
   const dispatch = useAppDispatch();
+  const myLocalStorage = getLocalStorage(KEY_LOCAL_STORAGE) as OfferLocalStorage[];
+
+  if(myLocalStorage === undefined) {
+    const array: OfferLocalStorage[] = [];
+
+    localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(array));
+  }
 
   dispatch(fetchOffersAction());
   dispatch(fetchPromoOffersAction());

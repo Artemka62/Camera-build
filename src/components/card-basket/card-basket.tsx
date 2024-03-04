@@ -1,4 +1,10 @@
-function CardBasketComponent () {
+import { OfferCard } from '../../types/types-store';
+
+type CardBasketProps = {
+  offer: OfferCard;
+}
+
+function CardBasketComponent ({offer}: CardBasketProps) {
   return (
     <li className="basket-item">
       <div className="basket-item__img">
@@ -32,7 +38,7 @@ function CardBasketComponent () {
         </ul>
       </div>
       <p className="basket-item__price">
-        <span className="visually-hidden">Цена:</span>18 970 ₽
+        <span className="visually-hidden">Цена:</span>{offer?.price || ''} ₽
       </p>
       <div className="quantity">
         <button
@@ -62,7 +68,7 @@ function CardBasketComponent () {
         </button>
       </div>
       <div className="basket-item__total-price">
-        <span className="visually-hidden">Общая цена:</span>37 940 ₽
+        <span className="visually-hidden">Общая цена:</span>{555555} ₽
       </div>
       <button
         className="cross-btn"
