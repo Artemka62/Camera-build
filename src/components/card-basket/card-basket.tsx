@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useState } from 'react';
 import { KEY_LOCAL_STORAGE } from '../../src-const';
 import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
 import { OfferCard} from '../../types/types-store';
@@ -14,6 +14,9 @@ function CardBasketComponent ({offer}: CardBasketProps) {
   const stateBasketOffers = useAppSelector((state) => state.offersBasket.offers);
   const stateBasketOffer = stateBasketOffers.find((offerBasket) => offerBasket.id === offer.id);
   const dispatch = useAppDispatch();
+  const stateBasket = useAppSelector((state) => state.offersBasket.offers);
+  const [valueInput, setValueInput] = useState(stateBasketOffer ? stateBasketOffer.count : '');
+
 
   function handleDeleteOffer () {
     const deleteOffer = stateBasketOffers.filter((offerStorage) => +offerStorage.id !== +offer.id);
@@ -23,10 +26,98 @@ function CardBasketComponent ({offer}: CardBasketProps) {
   }
 
 
-  useEffect(() => {
-    setLocalStorage(KEY_LOCAL_STORAGE, stateBasketOffers);
-  },[stateBasketOffers]);
+  // useEffect(() => {
+  //   setLocalStorage(KEY_LOCAL_STORAGE, stateBasketOffers);
+  // },[stateBasketOffers]);
 
+  function handleClickCountBack () {
+    const isOfferInBasket = stateBasket.find((offerBasket) => offerBasket.id === offer.id);
+
+    if(isOfferInBasket && offer){
+      const changeOffer = {...isOfferInBasket};
+      const changeOffers = [...stateBasket];
+
+      changeOffer.count = changeOffer.count - 1;
+
+      changeOffers.map((offerState, index) => {
+        if (offerState.id === offer.id) {
+
+          changeOffers.splice(index, 1, changeOffer);
+        }
+      });
+
+      dispatch(offersBasketSlice.actions.offersBasket(changeOffers));
+      setLocalStorage(KEY_LOCAL_STORAGE, changeOffers);
+      setValueInput(changeOffer.count);
+
+      //return;
+    }
+
+
+    //console.log(321);
+  }
+
+
+  function handleClickCountNext () {
+    const isOfferInBasket = stateBasket.find((offerBasket) => offerBasket.id === offer.id);
+
+    if(isOfferInBasket && offer){
+      const changeOffer = {...isOfferInBasket};
+      const changeOffers = [...stateBasket];
+
+      changeOffer.count = changeOffer.count + 1;
+
+      changeOffers.map((offerState, index) => {
+        if (offerState.id === offer.id) {
+
+          changeOffers.splice(index, 1, changeOffer);
+        }
+      });
+
+      dispatch(offersBasketSlice.actions.offersBasket(changeOffers));
+      setLocalStorage(KEY_LOCAL_STORAGE, changeOffers);
+      setValueInput(changeOffer.count);
+
+      // return;
+    }
+
+
+    //console.log(123);
+  }
+
+  function handleChangeCount (event:React.ChangeEvent<HTMLInputElement>) {
+
+    setValueInput(event.currentTarget.value);
+    // console.log(555)
+  }
+
+
+  function handleKeyDownInput (event: React.KeyboardEvent) {
+    const isOfferInBasket = stateBasket.find((offerBasket) => offerBasket.id === offer.id);
+
+    if(event.key === '.' || event.key === '+' || event.key === '-'){
+      event.preventDefault();
+    }
+
+
+    if(isOfferInBasket && offer && event.key === 'Enter'){
+      const changeOffer = {...isOfferInBasket};
+      const changeOffers = [...stateBasket];
+
+      changeOffer.count = +valueInput;
+
+      changeOffers.map((offerState, index) => {
+        if (offerState.id === offer.id) {
+
+          changeOffers.splice(index, 1, changeOffer);
+        }
+      });
+
+      dispatch(offersBasketSlice.actions.offersBasket(changeOffers));
+      setLocalStorage(KEY_LOCAL_STORAGE, changeOffers);
+    }
+
+  }
 
   return (
     <li className="basket-item">
@@ -67,6 +158,8 @@ function CardBasketComponent ({offer}: CardBasketProps) {
         <button
           className="btn-icon btn-icon--prev"
           aria-label="уменьшить количество товара"
+          name='back'
+          onClick={handleClickCountBack}
         >
           <svg width={7} height={12} aria-hidden="true">
             <use xlinkHref="#icon-arrow" />
@@ -76,7 +169,9 @@ function CardBasketComponent ({offer}: CardBasketProps) {
         <input
           type="number"
           id="counter1"
-          defaultValue={stateBasketOffer ? stateBasketOffer.count : 1}
+          value={valueInput}
+          onChange={handleChangeCount}
+          onKeyDown={handleKeyDownInput}
           min={1}
           max={99}
           aria-label="количество товара"
@@ -84,6 +179,8 @@ function CardBasketComponent ({offer}: CardBasketProps) {
         <button
           className="btn-icon btn-icon--next"
           aria-label="увеличить количество товара"
+          name='next'
+          onClick={handleClickCountNext}
         >
           <svg width={7} height={12} aria-hidden="true">
             <use xlinkHref="#icon-arrow" />
