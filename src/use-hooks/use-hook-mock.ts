@@ -1,3 +1,4 @@
+import { mockBasket } from '../mock-test/mock-basket/mock-basket';
 import { mockOffer } from '../mock-test/mock-offer/mock-offer';
 import { mockPromo } from '../mock-test/mock-promo/mock-promo';
 import { mockReview } from '../mock-test/mock-review/mock-review';
@@ -32,11 +33,14 @@ const useMakeFakeStore = (initialState?: Partial<State>): State => ({
     error: false,
     loading: false
   },
-  reviews:{
+  reviews: {
     reviews:[mockReview],
     error: false,
     loading: false
-  } ,
+  },
+  offersBasket: {
+    offers: [mockBasket]
+  },
   ...(initialState ?? {}),
 });
 
