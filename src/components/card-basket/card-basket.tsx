@@ -1,4 +1,5 @@
 import { OfferCard } from '../../types/types-store';
+import { formatNumberWithSpaces } from '../../utils/utils-format-price';
 
 type CardBasketProps = {
   offer: OfferCard;
@@ -11,34 +12,34 @@ function CardBasketComponent ({offer}: CardBasketProps) {
         <picture>
           <source
             type="image/webp"
-            srcSet="img/content/orlenok.webp, img/content/orlenok@2x.webp 2x"
+            srcSet={`/${offer.previewImgWebp}, /${offer.previewImgWebp2x} 2x`}
           />
           <img
-            src="img/content/orlenok.jpg"
-            srcSet="img/content/orlenok@2x.jpg 2x"
+            src={`/${offer.previewImg}`}
+            srcSet={`/${offer.previewImg2x} 2x`}
             width={140}
             height={120}
-            alt="Фотоаппарат «Орлёнок»"
+            alt={offer.name}
           />
         </picture>
       </div>
       <div className="basket-item__description">
-        <p className="basket-item__title">Орлёнок</p>
+        <p className="basket-item__title">{offer.name}</p>
         <ul className="basket-item__list">
           <li className="basket-item__list-item">
             <span className="basket-item__article">Артикул:</span>{' '}
-            <span className="basket-item__number">O78DFGSD832</span>
+            <span className="basket-item__number">{offer.vendorCode}</span>
           </li>
           <li className="basket-item__list-item">
-            Плёночная фотокамера
+            {offer.type}
           </li>
           <li className="basket-item__list-item">
-            Любительский уровень
+            {offer.level}
           </li>
         </ul>
       </div>
       <p className="basket-item__price">
-        <span className="visually-hidden">Цена:</span>{offer?.price || ''} ₽
+        <span className="visually-hidden">Цена:</span>{formatNumberWithSpaces(offer.price)} ₽
       </p>
       <div className="quantity">
         <button
