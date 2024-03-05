@@ -12,6 +12,7 @@ type CardBasketProps = {
 
 function CardBasketComponent ({offer}: CardBasketProps) {
   const stateBasketOffers = useAppSelector((state) => state.offersBasket.offers);
+  const stateBasketOffer = stateBasketOffers.find((offerBasket) => offerBasket.id === offer.id);
   const dispatch = useAppDispatch();
 
   function handleDeleteOffer () {
@@ -75,7 +76,7 @@ function CardBasketComponent ({offer}: CardBasketProps) {
         <input
           type="number"
           id="counter1"
-          defaultValue={2}
+          defaultValue={stateBasketOffer ? stateBasketOffer.count : 1}
           min={1}
           max={99}
           aria-label="количество товара"

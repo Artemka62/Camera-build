@@ -23,8 +23,29 @@ function ModalWindowCardProductComponent () {
   }
 
   function handleClickAddBasket () {
+    const isOfferInBasket = stateBasket.find((offerBasket) => offerBasket.id === stateCard?.id);
+
     dispatch(windowsSlice.actions.windowProduct(false));
     dispatch(windowsSlice.actions.windowAddBasketSuccess(true));
+
+    if(isOfferInBasket && stateCard){
+      const changeOffer = {...isOfferInBasket};
+      const changeOffers = [...stateBasket];
+
+      changeOffer.count = changeOffer.count + 1;
+
+      changeOffers.map((offer, index) => {
+        if (offer.id === stateCard.id) {
+
+          changeOffers.splice(index, 1, changeOffer);
+        }
+      });
+
+      dispatch(offersBasketSlice.actions.offersBasket(changeOffers));
+      setLocalStorage(KEY_LOCAL_STORAGE, changeOffers);
+
+      return;
+    }
 
     if(stateCard){
       const updatedStateBasket: OfferLocalStorage[] = [...stateBasket];

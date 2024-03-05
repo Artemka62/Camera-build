@@ -1,10 +1,9 @@
-import { AppRoute, DEFAULT_NULL, KEY_LOCAL_STORAGE, SettingTab } from '../../src-const';
+import { AppRoute, DEFAULT_NULL, SettingTab } from '../../src-const';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { useNavigate, useParams } from 'react-router-dom';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';
-import { addProductToBasket } from '../../utils/utils-local-storage';
 
 function CardOfferProductComponent () {
   const dispatch = useAppDispatch();
@@ -24,11 +23,11 @@ function CardOfferProductComponent () {
 
   function handleClickAddBasket () {
     dispatch(windowsSlice.actions.isModalWindow(true));
-    dispatch(windowsSlice.actions.windowAddBasketSuccess(true));
+    dispatch(windowsSlice.actions.windowProduct(true));
 
-    if(stateOffer) {
-      addProductToBasket(KEY_LOCAL_STORAGE, stateOffer);
-    }
+    // if(stateOffer) {
+    //   //addProductToBasket(KEY_LOCAL_STORAGE, stateOffer);
+    // }
   }
 
   return (
