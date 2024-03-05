@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../src-const';
 import { useAppSelector } from '../../use-hooks/use-hook-store';
+import { OfferLocalStorage } from '../../types/types-store';
 
 function ButtonBasketComponent () {
-  const stateBasketOffer = useAppSelector((state) => state.offersBasket.offers);
-  const countOffers = stateBasketOffer.reduce((accumulator: number, offerCount: { count: number }) => accumulator + offerCount.count, 0) as number;
+  const stateBasketOffer: OfferLocalStorage[] = useAppSelector((state) => state.offersBasket.offers);
+  const countOffers = stateBasketOffer.reduce((accumulator: number, offerCount: OfferLocalStorage) => accumulator + offerCount.count, 0);
 
   return (
     <Link to={AppRoute.Basket} className="header__basket-link" data-testid='button-basket'>
