@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../use-hooks/use-hook-store';
+import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { fetchOfferAction } from '../../services/thunk/thunk-fetch-offer';
-import { OfferCard } from '../../types/types-store';
+import { OfferCard, OfferLocalStorage } from '../../types/types-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
-import { AppRoute, DEFAULT_NULL } from '../../src-const';
+import { AppRoute, DEFAULT_NULL, KEY_LOCAL_STORAGE } from '../../src-const';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';
+import { getLocalStorage } from '../../utils/utils-local-storage';
+import { ButtonInBasketComponent } from '../button-in-basket/button-in-basket';
+import { useEffect} from 'react';
 
 type CardComponentProps = {
   offer: OfferCard;
@@ -14,12 +17,29 @@ type CardComponentProps = {
 
 function CardComponent ({offer}: CardComponentProps) {
   const dispatch = useAppDispatch();
+  const stateLocalStorage: OfferLocalStorage[] | [] = getLocalStorage(KEY_LOCAL_STORAGE) || [];
+  const isModalWindowOpen = useAppSelector((state) => state.windows.isWindowProductOpen);
+
+  function changeButton (): boolean {
+    if(stateLocalStorage){
+
+      return stateLocalStorage.some((offerLocalStorage: OfferLocalStorage) => offerLocalStorage.id === offer.id);
+    }
+
+    return false;
+  }
+
+  const isButtonInBasket = changeButton();
 
   function handleClickButtonBuy () {
     dispatch(fetchOfferAction(offer.id));
     dispatch(windowsSlice.actions.windowProduct(true));
     dispatch(windowsSlice.actions.isModalWindow(true));
   }
+
+  useEffect(() => {
+    changeButton();
+  },[isModalWindowOpen]);
 
   function handleClickButtonDetails () {
     dispatch(fetchReviewsAction(offer.id));
@@ -57,13 +77,14 @@ function CardComponent ({offer}: CardComponentProps) {
         </p>
       </div>
       <div className="product-card__buttons">
-        <button
-          className="btn btn--purple product-card__btn"
-          type="button"
-          onClick={handleClickButtonBuy}
-        >
-          Купить
-        </button>
+        {isButtonInBasket ? <ButtonInBasketComponent/> :
+          <button
+            className="btn btn--purple product-card__btn"
+            type="button"
+            onClick={handleClickButtonBuy}
+          >
+            Купить
+          </button>}
         <Link to={`${AppRoute.Product}/${offer.id}${AppRoute.Description}`} className="btn btn--transparent" onClick={handleClickButtonDetails}>
           Подробнее
         </Link>
