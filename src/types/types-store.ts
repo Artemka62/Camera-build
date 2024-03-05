@@ -84,6 +84,10 @@ type OfferLocalStorage = {
   offer: OfferCard;
 }
 
+type StateBasket = {
+  offers: OfferLocalStorage[] | [];
+}
+
 export type {
   State,
   AppDispatch,
@@ -96,5 +100,6 @@ export type {
   StateWindow,
   Review,
   StateReviews,
-  OfferLocalStorage
+  OfferLocalStorage,
+  StateBasket
 };
