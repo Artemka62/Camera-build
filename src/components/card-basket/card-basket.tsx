@@ -91,7 +91,7 @@ function CardBasketComponent ({offer}: CardBasketProps) {
         </button>
       </div>
       <div className="basket-item__total-price">
-        <span className="visually-hidden">Общая цена:</span>{555555} ₽
+        <span className="visually-hidden">Общая цена:</span>{formatNumberWithSpaces(stateBasketOffer ? offer.price * stateBasketOffer.count : offer.price)} ₽
       </div>
       <button
         className="cross-btn"
