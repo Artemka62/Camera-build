@@ -57,6 +57,11 @@ function ModalWindowAddBasketSuccessComponent () {
   function handleClickGoToBuy () {
     dispatchStateWindows();
     navigate(AppRoute.Basket);
+
+    window.scrollTo({
+      top: DEFAULT_NULL,
+      behavior: 'smooth'
+    });
   }
 
   function handleClickCloseModal () {
