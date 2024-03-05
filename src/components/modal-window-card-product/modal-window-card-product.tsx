@@ -1,10 +1,12 @@
 import { useEffect, useRef} from 'react';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
-import { DEFAULT_NULL, DELAY_FOCUS, KEY_LOCAL_STORAGE } from '../../src-const';
+import { DEFAULT_NULL, DELAY_FOCUS, KEY_LOCAL_STORAGE} from '../../src-const';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';
-import { addProductToBasket} from '../../utils/utils-local-storage';
 import { LoadingComponent } from '../loading-component/loading-component';
+import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
+import { OfferLocalStorage } from '../../types/types-store';
+import { setLocalStorage } from '../../utils/utils-local-storage';
 
 function ModalWindowCardProductComponent () {
   const stateCard = useAppSelector((state) => state.offer.offer);
@@ -12,6 +14,7 @@ function ModalWindowCardProductComponent () {
   const addBasketButtonRef = useRef<HTMLButtonElement>(null);
   const refCloseButton = useRef<HTMLButtonElement>(null);
   const isLoadingOffer = useAppSelector((state) => state.offer.loading);
+  const stateBasket = useAppSelector((state) => state.offersBasket.offers);
 
   function handleClickButtonClose () {
     dispatch(windowsSlice.actions.windowProduct(false));
@@ -24,7 +27,16 @@ function ModalWindowCardProductComponent () {
     dispatch(windowsSlice.actions.windowAddBasketSuccess(true));
 
     if(stateCard){
-      addProductToBasket(KEY_LOCAL_STORAGE, stateCard);
+      const updatedStateBasket: OfferLocalStorage[] = [...stateBasket];
+
+      updatedStateBasket.push({
+        count: 1,
+        id: +stateCard.id,
+        offer: stateCard,
+      });
+
+      dispatch(offersBasketSlice.actions.offersBasket(updatedStateBasket));
+      setLocalStorage(KEY_LOCAL_STORAGE, updatedStateBasket);
     }
   }
 

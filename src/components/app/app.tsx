@@ -9,6 +9,7 @@ import { fetchOffersAction } from '../../services/thunk/thunk-fetch-offers';
 import { fetchPromoOffersAction } from '../../services/thunk/thunk-fetch-promo-offers';
 import { OfferLocalStorage } from '../../types/types-store';
 import { getLocalStorage } from '../../utils/utils-local-storage';
+import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
 
 function App () {
   const dispatch = useAppDispatch();
@@ -18,6 +19,10 @@ function App () {
     const array: OfferLocalStorage[] = [];
 
     localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(array));
+
+    dispatch(offersBasketSlice.actions.offersBasket(array));
+  } else {
+    dispatch(offersBasketSlice.actions.offersBasket(myLocalStorage));
   }
 
   dispatch(fetchOffersAction());

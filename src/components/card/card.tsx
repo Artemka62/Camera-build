@@ -18,12 +18,12 @@ type CardComponentProps = {
 function CardComponent ({offer}: CardComponentProps) {
   const dispatch = useAppDispatch();
   const stateLocalStorage: OfferLocalStorage[] | [] = getLocalStorage(KEY_LOCAL_STORAGE) || [];
-  const isModalWindowOpen = useAppSelector((state) => state.windows.isWindowProductOpen);
+  const stateBasketOffers = useAppSelector((state) => state.offersBasket.offers);
 
   function changeButton (): boolean {
     if(stateLocalStorage){
 
-      return stateLocalStorage.some((offerLocalStorage: OfferLocalStorage) => offerLocalStorage.id === offer.id);
+      return stateBasketOffers.some((offerStorage: OfferLocalStorage) => offerStorage.id === offer.id);
     }
 
     return false;
@@ -39,7 +39,8 @@ function CardComponent ({offer}: CardComponentProps) {
 
   useEffect(() => {
     changeButton();
-  },[isModalWindowOpen]);
+
+  },[stateBasketOffers]);
 
   function handleClickButtonDetails () {
     dispatch(fetchReviewsAction(offer.id));
