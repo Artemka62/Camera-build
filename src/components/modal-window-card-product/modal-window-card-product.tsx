@@ -32,7 +32,9 @@ function ModalWindowCardProductComponent () {
       const changeOffer = {...isOfferInBasket};
       const changeOffers = [...stateBasket];
 
-      changeOffer.count = changeOffer.count + 1;
+      if(isOfferInBasket.count < 99){
+        changeOffer.count = changeOffer.count + 1;
+      }
 
       changeOffers.map((offer, index) => {
         if (offer.id === stateCard.id) {

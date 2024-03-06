@@ -18,14 +18,12 @@ function CardBasketComponent ({offer}: CardBasketProps) {
   const [valueInput, setValueInput] = useState(stateBasketOffer ? stateBasketOffer.count : '');
   const inputRef = useRef<HTMLInputElement>(null);
 
-
   function handleDeleteOffer () {
     const deleteOffer = stateBasketOffers.filter((offerStorage) => +offerStorage.id !== +offer.id);
 
     dispatch(offersBasketSlice.actions.offersBasket(deleteOffer));
     setLocalStorage(KEY_LOCAL_STORAGE, deleteOffer);
   }
-
 
   function setValidationOffer (nameInput: string) {
     const isOfferInBasket = stateBasket.find((offerBasket) => offerBasket.id === offer.id);
@@ -44,6 +42,10 @@ function CardBasketComponent ({offer}: CardBasketProps) {
 
       if(nameInput === 'input') {
         changeOffer.count = +valueInput;
+      }
+
+      if(nameInput === 'input' && +valueInput === 0 || +valueInput > 99){
+        changeOffer.count = 1;
       }
 
       changeOffers.map((offerState, index) => {
@@ -74,7 +76,6 @@ function CardBasketComponent ({offer}: CardBasketProps) {
   function handleChangeCount (event:React.ChangeEvent<HTMLInputElement>) {
     setValueInput(event.currentTarget.value);
   }
-
 
   function handleKeyDownInput (event: React.KeyboardEvent) {
     const isOfferInBasket = stateBasket.find((offerBasket) => offerBasket.id === offer.id);
