@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { KEY_LOCAL_STORAGE } from '../../src-const';
 import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
 import { OfferCard} from '../../types/types-store';
@@ -16,6 +16,7 @@ function CardBasketComponent ({offer}: CardBasketProps) {
   const dispatch = useAppDispatch();
   const stateBasket = useAppSelector((state) => state.offersBasket.offers);
   const [valueInput, setValueInput] = useState(stateBasketOffer ? stateBasketOffer.count : '');
+  const inputRef = useRef<HTMLInputElement>(null);
 
 
   function handleDeleteOffer () {
@@ -54,16 +55,17 @@ function CardBasketComponent ({offer}: CardBasketProps) {
       dispatch(offersBasketSlice.actions.offersBasket(changeOffers));
       setLocalStorage(KEY_LOCAL_STORAGE, changeOffers);
       setValueInput(changeOffer.count);
-
-      //return;
     }
   }
 
+  function handleClickOnBlur () {
+    inputRef.current?.blur();
+    setValidationOffer('input');
+  }
 
   function handleClickCountBack () {
     setValidationOffer('back');
   }
-
 
   function handleClickCountNext () {
     setValidationOffer('next');
@@ -84,7 +86,6 @@ function CardBasketComponent ({offer}: CardBasketProps) {
     if(isOfferInBasket && offer && event.key === 'Enter'){
       setValidationOffer('input');
     }
-
   }
 
   return (
@@ -128,6 +129,7 @@ function CardBasketComponent ({offer}: CardBasketProps) {
           aria-label="уменьшить количество товара"
           name='back'
           onClick={handleClickCountBack}
+          disabled ={stateBasketOffer ? stateBasketOffer.count < 2 : true}
         >
           <svg width={7} height={12} aria-hidden="true">
             <use xlinkHref="#icon-arrow" />
@@ -140,6 +142,8 @@ function CardBasketComponent ({offer}: CardBasketProps) {
           value={valueInput}
           onChange={handleChangeCount}
           onKeyDown={handleKeyDownInput}
+          onBlur={handleClickOnBlur}
+          ref={inputRef}
           min={1}
           max={99}
           aria-label="количество товара"
@@ -149,6 +153,7 @@ function CardBasketComponent ({offer}: CardBasketProps) {
           aria-label="увеличить количество товара"
           name='next'
           onClick={handleClickCountNext}
+          disabled = {stateBasketOffer ? stateBasketOffer.count > 98 : true}
         >
           <svg width={7} height={12} aria-hidden="true">
             <use xlinkHref="#icon-arrow" />
