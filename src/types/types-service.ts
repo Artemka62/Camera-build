@@ -16,4 +16,8 @@ type PostReview = {
   rating: number;
 }
 
-export type {Thunk, PostReview};
+type PostCoupon = {
+  coupon: string;
+}
+
+export type {Thunk, PostReview, PostCoupon};

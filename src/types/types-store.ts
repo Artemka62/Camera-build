@@ -80,6 +80,12 @@ type StateReviews = {
   loading: boolean;
 }
 
+type StateCoupon = {
+  percent: number;
+  error: boolean;
+  loading: boolean;
+}
+
 type OfferLocalStorage = {
   count: number;
   id: number;
@@ -102,6 +108,7 @@ export type {
   StateWindow,
   Review,
   StateReviews,
+  StateCoupon,
   OfferLocalStorage,
   StateBasket
 };

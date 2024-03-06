@@ -1,19 +1,33 @@
+import React from 'react';
+import { postCoupon } from '../../services/thunk/thunk-post-coupon';
 import { OfferLocalStorage } from '../../types/types-store';
-import { useAppSelector } from '../../use-hooks/use-hook-store';
+import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';
 
 function OrderProductComponent () {
   const stateOfferBasket:OfferLocalStorage[] = useAppSelector((state) => state.offersBasket.offers);
   const priceAllOffers = stateOfferBasket.reduce((accumulator: number, offerPrice: OfferLocalStorage) => (offerPrice.offer.price * offerPrice.count) + accumulator, 0);
+  const dispatch = useAppDispatch();
+
+  const postCoupons = {
+    coupon: 'camera-555'
+  };
+
+  function handleClickCheckCoupon (event: React.MouseEvent) {
+    event.preventDefault();
+    dispatch(postCoupon(postCoupons));
+  }
 
   return (
-    <div className="basket__summary">
+    <div className="basket__summary" >
       <div className="basket__promo">
         <p className="title title--h4">
           Если у вас есть промокод на скидку, примените его в этом поле
         </p>
         <div className="basket-form">
-          <form action="#">
+          <form
+            action="#"
+          >
             <div className="custom-input ">
               <label>
                 <span className="custom-input__label">Промокод</span>
@@ -26,7 +40,11 @@ function OrderProductComponent () {
               <p className="custom-input__error">Промокод неверный</p>
               <p className="custom-input__success">Промокод принят!</p>
             </div>
-            <button className="btn" type="submit">
+            <button
+              className="btn"
+              type="submit"
+              onClick={handleClickCheckCoupon}
+            >
               Применить
             </button>
           </form>

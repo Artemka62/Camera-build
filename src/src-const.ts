@@ -35,7 +35,8 @@ enum ApiRoute {
   Offers = '/cameras',
   OffersPromo = '/promo',
   ReviewsProduct = '/reviews',
-  Similar = '/similar'
+  Similar = '/similar',
+  Coupon = 'coupons'
  }
 
 enum TitleDescription {

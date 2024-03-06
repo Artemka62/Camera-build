@@ -43,6 +43,11 @@ const useMakeFakeStore = (initialState?: Partial<State>): State => ({
   offersBasket: {
     offers: [mockBasket]
   },
+  coupon: {
+    percent: 1,
+    error: false,
+    loading: false,
+  },
   ...(initialState ?? {}),
 });
 
