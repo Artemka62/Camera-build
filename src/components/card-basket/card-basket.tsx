@@ -26,22 +26,27 @@ function CardBasketComponent ({offer}: CardBasketProps) {
   }
 
 
-  // useEffect(() => {
-  //   setLocalStorage(KEY_LOCAL_STORAGE, stateBasketOffers);
-  // },[stateBasketOffers]);
-
-  function handleClickCountBack () {
+  function setValidationOffer (nameInput: string) {
     const isOfferInBasket = stateBasket.find((offerBasket) => offerBasket.id === offer.id);
 
     if(isOfferInBasket && offer){
       const changeOffer = {...isOfferInBasket};
       const changeOffers = [...stateBasket];
 
-      changeOffer.count = changeOffer.count - 1;
+      if(nameInput === 'back') {
+        changeOffer.count = changeOffer.count - 1;
+      }
+
+      if(nameInput === 'next') {
+        changeOffer.count = changeOffer.count + 1;
+      }
+
+      if(nameInput === 'input') {
+        changeOffer.count = +valueInput;
+      }
 
       changeOffers.map((offerState, index) => {
         if (offerState.id === offer.id) {
-
           changeOffers.splice(index, 1, changeOffer);
         }
       });
@@ -52,43 +57,20 @@ function CardBasketComponent ({offer}: CardBasketProps) {
 
       //return;
     }
+  }
 
 
-    //console.log(321);
+  function handleClickCountBack () {
+    setValidationOffer('back');
   }
 
 
   function handleClickCountNext () {
-    const isOfferInBasket = stateBasket.find((offerBasket) => offerBasket.id === offer.id);
-
-    if(isOfferInBasket && offer){
-      const changeOffer = {...isOfferInBasket};
-      const changeOffers = [...stateBasket];
-
-      changeOffer.count = changeOffer.count + 1;
-
-      changeOffers.map((offerState, index) => {
-        if (offerState.id === offer.id) {
-
-          changeOffers.splice(index, 1, changeOffer);
-        }
-      });
-
-      dispatch(offersBasketSlice.actions.offersBasket(changeOffers));
-      setLocalStorage(KEY_LOCAL_STORAGE, changeOffers);
-      setValueInput(changeOffer.count);
-
-      // return;
-    }
-
-
-    //console.log(123);
+    setValidationOffer('next');
   }
 
   function handleChangeCount (event:React.ChangeEvent<HTMLInputElement>) {
-
     setValueInput(event.currentTarget.value);
-    // console.log(555)
   }
 
 
@@ -99,22 +81,8 @@ function CardBasketComponent ({offer}: CardBasketProps) {
       event.preventDefault();
     }
 
-
     if(isOfferInBasket && offer && event.key === 'Enter'){
-      const changeOffer = {...isOfferInBasket};
-      const changeOffers = [...stateBasket];
-
-      changeOffer.count = +valueInput;
-
-      changeOffers.map((offerState, index) => {
-        if (offerState.id === offer.id) {
-
-          changeOffers.splice(index, 1, changeOffer);
-        }
-      });
-
-      dispatch(offersBasketSlice.actions.offersBasket(changeOffers));
-      setLocalStorage(KEY_LOCAL_STORAGE, changeOffers);
+      setValidationOffer('input');
     }
 
   }
