@@ -1,8 +1,10 @@
-import { KEY_LOCAL_STORAGE } from '../../src-const';
+import { useEffect, useRef } from 'react';
+import { AppRoute, DEFAULT_NULL, DELAY_FOCUS, KEY_LOCAL_STORAGE } from '../../src-const';
 import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { setLocalStorage } from '../../utils/utils-local-storage';
+import { Link } from 'react-router-dom';
 
 function ModalWindowDeleteProductComponent () {
 
@@ -10,15 +12,73 @@ function ModalWindowDeleteProductComponent () {
   const stateBasketOffers = useAppSelector((state) => state.offersBasket.offers);
   const offer = stateBasketOffers.find((findOffer) => findOffer.id === idDeleteOffer);
   const dispatch = useAppDispatch();
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const deleteButtonRef = useRef<HTMLButtonElement>(null);
+  const buyButtonRef = useRef<HTMLAnchorElement>(null);
 
+  useEffect(() => {
+    let isMounted = true;
+
+    if (deleteButtonRef.current && isMounted) {
+      setTimeout(() => {
+        deleteButtonRef.current?.focus();
+      }, DELAY_FOCUS);
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if(isMounted){
+      document.body.classList.add('scroll-lock');
+    }
+
+    return () => {
+      document.body.classList.remove('scroll-lock');
+      isMounted = false;
+    };
+  }, []);
+
+
+  function pushDispatch () {
+    dispatch(windowsSlice.actions.isModalWindow(false));
+    dispatch(windowsSlice.actions.windowDeleteBasket(false));
+  }
 
   function handleDeleteOffer () {
     const deleteOffer = stateBasketOffers.filter((offerStorage) => +offerStorage.id !== +idDeleteOffer);
 
     dispatch(offersBasketSlice.actions.offersBasket(deleteOffer));
     setLocalStorage(KEY_LOCAL_STORAGE, deleteOffer);
-    dispatch(windowsSlice.actions.isModalWindow(false));
-    dispatch(windowsSlice.actions.windowDeleteBasket(false));
+    pushDispatch();
+  }
+
+  function handleClickReturnBuy () {
+    pushDispatch();
+
+    window.scrollTo({
+      top: DEFAULT_NULL,
+      behavior: 'smooth'
+    });
+  }
+
+  function handleClickButtonClose () {
+    pushDispatch();
+  }
+
+  function handlePressKeyCardsProduct (event:React.KeyboardEvent, nextInputRef: React.RefObject<HTMLButtonElement | HTMLAnchorElement> | null) {
+    if(event.key === ' '){
+      event.preventDefault();
+    }
+
+    if (event.key === 'Tab' && nextInputRef && nextInputRef.current) {
+      event.preventDefault();
+      nextInputRef.current.focus();
+    }
   }
 
   return (
@@ -57,17 +117,29 @@ function ModalWindowDeleteProductComponent () {
           className="btn btn--purple modal__btn modal__btn--half-width"
           type="button"
           onClick={handleDeleteOffer}
+          ref={deleteButtonRef}
+          onKeyDown={(event) => handlePressKeyCardsProduct(event, closeButtonRef)}
         >
           Удалить
         </button>
-        <a
+        <Link
+          to={`${AppRoute.Product}/${offer?.id || ''}${AppRoute.Description}`}
           className="btn btn--transparent modal__btn modal__btn--half-width"
-          href="#"
+          onClick={handleClickReturnBuy}
+          ref={buyButtonRef}
+          onKeyDown={(event) => handlePressKeyCardsProduct(event, deleteButtonRef)}
         >
           Продолжить покупки
-        </a>
+        </Link>
       </div>
-      <button className="cross-btn" type="button" aria-label="Закрыть попап">
+      <button
+        className="cross-btn"
+        type="button"
+        aria-label="Закрыть попап"
+        onClick={handleClickButtonClose}
+        onKeyDown={(event) => handlePressKeyCardsProduct(event, buyButtonRef)}
+        ref={closeButtonRef}
+      >
         <svg width={10} height={10} aria-hidden="true">
           <use xlinkHref="#icon-close" />
         </svg>

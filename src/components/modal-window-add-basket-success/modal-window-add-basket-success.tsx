@@ -77,7 +77,8 @@ function ModalWindowAddBasketSuccessComponent () {
       <div className="modal__buttons" >
         <Link
           to={`${AppRoute.Product}/${stateOfferProduct?.id || ''}${AppRoute.Description}`}
-          onClick={handleClickReturnBuy} className="btn btn--transparent modal__btn"
+          onClick={handleClickReturnBuy}
+          className="btn btn--transparent modal__btn"
           onKeyDown={(event) => handleKeyPressGoToBuy(event, refCloseButton)}
           ref={refGoToBuy}
         >
