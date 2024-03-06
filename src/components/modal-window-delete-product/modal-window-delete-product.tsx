@@ -8,7 +8,9 @@ function ModalWindowDeleteProductComponent () {
 
   const idDeleteOffer = useAppSelector((state) => state.windows.idDeleteOffer);
   const stateBasketOffers = useAppSelector((state) => state.offersBasket.offers);
+  const offer = stateBasketOffers.find((findOffer) => findOffer.id === idDeleteOffer);
   const dispatch = useAppDispatch();
+
 
   function handleDeleteOffer () {
     const deleteOffer = stateBasketOffers.filter((offerStorage) => +offerStorage.id !== +idDeleteOffer);
@@ -27,11 +29,11 @@ function ModalWindowDeleteProductComponent () {
           <picture>
             <source
               type="image/webp"
-              srcSet="img/content/orlenok.webp, img/content/orlenok@2x.webp 2x"
+              srcSet={`/${offer?.offer.previewImgWebp ?? ''}, /${offer?.offer.previewImgWebp2x ?? ''} 2x`}
             />
             <img
-              src="img/content/orlenok.jpg"
-              srcSet="img/content/orlenok@2x.jpg 2x"
+              src={`/${offer?.offer.previewImg ?? ''}`}
+              srcSet={`${offer?.offer.previewImg2x ?? ''} 2x`}
               width={140}
               height={120}
               alt="Фотоаппарат «Орлёнок»"
@@ -39,14 +41,14 @@ function ModalWindowDeleteProductComponent () {
           </picture>
         </div>
         <div className="basket-item__description">
-          <p className="basket-item__title">Орлёнок</p>
+          <p className="basket-item__title">{offer?.offer.name}</p>
           <ul className="basket-item__list">
             <li className="basket-item__list-item">
               <span className="basket-item__article">Артикул:</span>{' '}
-              <span className="basket-item__number">O78DFGSD832</span>
+              <span className="basket-item__number">{offer?.offer.vendorCode}</span>
             </li>
-            <li className="basket-item__list-item">Плёночная фотокамера</li>
-            <li className="basket-item__list-item">Любительский уровень</li>
+            <li className="basket-item__list-item">{offer?.offer.type}</li>
+            <li className="basket-item__list-item">{offer?.offer.level}</li>
           </ul>
         </div>
       </div>
