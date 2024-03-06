@@ -1,4 +1,11 @@
+import { OfferLocalStorage } from '../../types/types-store';
+import { useAppSelector } from '../../use-hooks/use-hook-store';
+import { formatNumberWithSpaces } from '../../utils/utils-format-price';
+
 function OrderProductComponent () {
+  const stateOfferBasket:OfferLocalStorage[] = useAppSelector((state) => state.offersBasket.offers);
+  const priceAllOffers = stateOfferBasket.reduce((accumulator: number, offerPrice: OfferLocalStorage) => (offerPrice.offer.price * offerPrice.count) + accumulator, 0);
+
   return (
     <div className="basket__summary">
       <div className="basket__promo">
@@ -7,7 +14,7 @@ function OrderProductComponent () {
         </p>
         <div className="basket-form">
           <form action="#">
-            <div className="custom-input">
+            <div className="custom-input ">
               <label>
                 <span className="custom-input__label">Промокод</span>
                 <input
@@ -28,7 +35,7 @@ function OrderProductComponent () {
       <div className="basket__summary-order">
         <p className="basket__summary-item">
           <span className="basket__summary-text">Всего:</span>
-          <span className="basket__summary-value">111 390 ₽</span>
+          <span className="basket__summary-value">{formatNumberWithSpaces(priceAllOffers)} ₽</span>
         </p>
         <p className="basket__summary-item">
           <span className="basket__summary-text">Скидка:</span>
