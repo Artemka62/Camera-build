@@ -27,7 +27,8 @@ const useMakeFakeStore = (initialState?: Partial<State>): State => ({
     isWindowReviewOpen: false,
     isWindowReviewSuccessOpen: false,
     isWindowAddBasketSuccessOpen: false,
-    isWindowDeleteBasketOpen: false
+    isWindowDeleteBasketOpen: false,
+    idDeleteOffer: false
   },
   similarOffers: {
     similarOffers:[mockSimilar],

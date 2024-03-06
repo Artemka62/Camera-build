@@ -5,6 +5,7 @@ import { OfferCard} from '../../types/types-store';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';
 import { setLocalStorage } from '../../utils/utils-local-storage';
+import { windowsSlice } from '../../store/slice/slice-modal-windows';
 
 type CardBasketProps = {
   offer: OfferCard;
@@ -18,11 +19,18 @@ function CardBasketComponent ({offer}: CardBasketProps) {
   const [valueInput, setValueInput] = useState(stateBasketOffer ? stateBasketOffer.count : '');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  function handleDeleteOffer () {
-    const deleteOffer = stateBasketOffers.filter((offerStorage) => +offerStorage.id !== +offer.id);
+  // function handleDeleteOffer () {
+  //   const deleteOffer = stateBasketOffers.filter((offerStorage) => +offerStorage.id !== +offer.id);
 
-    dispatch(offersBasketSlice.actions.offersBasket(deleteOffer));
-    setLocalStorage(KEY_LOCAL_STORAGE, deleteOffer);
+  //   dispatch(offersBasketSlice.actions.offersBasket(deleteOffer));
+  //   setLocalStorage(KEY_LOCAL_STORAGE, deleteOffer);
+  // }
+
+
+  function handleDeleteOffer () {
+    dispatch(windowsSlice.actions.isModalWindow(true));
+    dispatch(windowsSlice.actions.windowDeleteBasket(true));
+    dispatch(windowsSlice.actions.windowDeleteBasketId(offer.id));
   }
 
   function setValidationOffer (nameInput: string) {

@@ -9,7 +9,8 @@ describe('Modal windows slice', () => {
     isWindowReviewOpen: false,
     isWindowReviewSuccessOpen: false,
     isWindowAddBasketSuccessOpen: false,
-    isWindowDeleteBasketOpen: false
+    isWindowDeleteBasketOpen: false,
+    idDeleteOffer: false
   };
 
   it('should return initial state with empty action', () => {

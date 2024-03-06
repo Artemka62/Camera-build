@@ -1,4 +1,24 @@
+import { KEY_LOCAL_STORAGE } from '../../src-const';
+import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
+import { windowsSlice } from '../../store/slice/slice-modal-windows';
+import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
+import { setLocalStorage } from '../../utils/utils-local-storage';
+
 function ModalWindowDeleteProductComponent () {
+
+  const idDeleteOffer = useAppSelector((state) => state.windows.idDeleteOffer);
+  const stateBasketOffers = useAppSelector((state) => state.offersBasket.offers);
+  const dispatch = useAppDispatch();
+
+  function handleDeleteOffer () {
+    const deleteOffer = stateBasketOffers.filter((offerStorage) => +offerStorage.id !== +idDeleteOffer);
+
+    dispatch(offersBasketSlice.actions.offersBasket(deleteOffer));
+    setLocalStorage(KEY_LOCAL_STORAGE, deleteOffer);
+    dispatch(windowsSlice.actions.isModalWindow(false));
+    dispatch(windowsSlice.actions.windowDeleteBasket(false));
+  }
+
   return (
     <div className="modal__content">
       <p className="title title--h4">Удалить этот товар?</p>
@@ -34,6 +54,7 @@ function ModalWindowDeleteProductComponent () {
         <button
           className="btn btn--purple modal__btn modal__btn--half-width"
           type="button"
+          onClick={handleDeleteOffer}
         >
           Удалить
         </button>

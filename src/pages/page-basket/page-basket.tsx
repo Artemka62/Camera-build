@@ -1,6 +1,7 @@
 import { CardListBasketComponent } from '../../components/card-list-basket/card-list-basket';
 import { FooterComponent } from '../../components/footer/footer';
 import { HeaderComponent } from '../../components/header/header';
+import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
 import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
 import { useDocumentTitle } from '../../use-hooks/use-hook-document-title';
 
@@ -75,6 +76,7 @@ function BasketPage ({title}: BasketProps) {
           </section>
         </div>
       </main>
+      <ModalWindowComponent/>
       <FooterComponent/>
     </div>
 

@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useNavigationType } from 'react-router-dom';
 import { browserHistory } from '../../src-browser-history';
 import { CHANGE_PAGE } from '../../src-const';
+import { ModalWindowDeleteProductComponent } from '../modal-window-delete-product/modal-window-delete-product';
 
 function ModalWindowComponent () {
   const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowModalOpen);
@@ -15,6 +16,7 @@ function ModalWindowComponent () {
   const isFormReviewOpen = useAppSelector((state) => state.windows.isWindowReviewOpen);
   const isBasketSuccessOpen = useAppSelector((state) => state.windows.isWindowReviewSuccessOpen);
   const isBasketAddSuccessOpen = useAppSelector((state) => state.windows.isWindowAddBasketSuccessOpen);
+  const iDeleteProductOpen = useAppSelector((state) => state.windows.isWindowDeleteBasketOpen);
   const dispatch = useAppDispatch();
   const isActive = isWindowModalOpen ? 'modal is-active' : 'modal modal--narrow';
   const browserLocation = browserHistory.location.key;
@@ -26,6 +28,7 @@ function ModalWindowComponent () {
     dispatch(windowsSlice.actions.windowProduct(false));
     dispatch(windowsSlice.actions.windowReview(false));
     dispatch(windowsSlice.actions.windowAddBasketSuccess(false));
+    dispatch(windowsSlice.actions.windowDeleteBasket(false));
   }
 
   useEffect(() => {
@@ -58,6 +61,7 @@ function ModalWindowComponent () {
         {isFormReviewOpen ? <ModalWindowReviewProductComponent/> : ''}
         {isBasketSuccessOpen ? <ModalWindowReviewSuccess/> : ''}
         {isBasketAddSuccessOpen ? <ModalWindowAddBasketSuccessComponent/> : ''}
+        {iDeleteProductOpen ? <ModalWindowDeleteProductComponent/> : ''}
       </div>
     </div>
   );

@@ -9,7 +9,8 @@ const initialState: StateWindow = {
   isWindowReviewOpen: false,
   isWindowReviewSuccessOpen: false,
   isWindowAddBasketSuccessOpen: false,
-  isWindowDeleteBasketOpen : false
+  isWindowDeleteBasketOpen : false,
+  idDeleteOffer: false
 };
 
 const windowsSlice = createSlice({
@@ -18,6 +19,7 @@ const windowsSlice = createSlice({
   reducers: {
     isModalWindow(state, action: PayloadAction<boolean>) {
       state.isWindowModalOpen = action.payload;
+      state.idDeleteOffer = false;
     },
     windowProduct(state, action: PayloadAction<boolean>) {
       state.isWindowProductOpen = action.payload;
@@ -33,8 +35,10 @@ const windowsSlice = createSlice({
     },
     windowDeleteBasket(state, action: PayloadAction<boolean>) {
       state.isWindowDeleteBasketOpen = action.payload;
+    },
+    windowDeleteBasketId(state, action: PayloadAction<number>) {
+      state.idDeleteOffer = action.payload;
     }
-
   }
 });
 
