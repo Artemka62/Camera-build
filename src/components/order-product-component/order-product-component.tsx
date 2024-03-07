@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { postCoupon } from '../../services/thunk/thunk-post-coupon';
 import { OfferLocalStorage } from '../../types/types-store';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
@@ -9,30 +9,64 @@ function OrderProductComponent () {
   const priceAllOffers = stateOfferBasket.reduce((accumulator: number, offerPrice: OfferLocalStorage) => (offerPrice.offer.price * offerPrice.count) + accumulator, 0);
   const dispatch = useAppDispatch();
   const [valueInput, setValueInput] = useState('');
+  const [styleCouponIsValid, setStyleCouponIsValid] = useState('');
+  const isErrorCoupon = useAppSelector((state) => state.coupon.error);
+  const percentCoupon = useAppSelector((state) => state.coupon.percent);
+  const isValidCouponStyle = isErrorCoupon ? 'custom-input is-invalid' : 'custom-input is-valid';
+
+
 
   const postCoupons = {
     coupon: valueInput
   };
 
+
+  // useEffect(() => {
+
+  //   setStyleCouponIsValid(styleCouponIsValid);
+  // },[styleCouponIsValid]);
+
+
+  // function checkStyleValidCoupon () {
+  //   if(isErrorCoupon){
+  //     return setStyleCouponIsValid('custom-input is-invalid');
+  //   }
+
+  //   if(!isErrorCoupon){
+  //     return setStyleCouponIsValid('custom-input is-valid');
+  //   }
+
+  // }
+
   function handleClickCheckCoupon (event: React.MouseEvent) {
     event.preventDefault();
 
-    dispatch(postCoupon(postCoupons));
+    dispatch(postCoupon(postCoupons)).unwrap().then(() => {
+
+      setStyleCouponIsValid('custom-input is-valid');
+
+    }).catch (() => {
+      setStyleCouponIsValid('custom-input is-invalid');
+    }) ;
   }
 
-  function handleInputCoupon (event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChangeInputCoupon (event: React.ChangeEvent<HTMLInputElement>) {
     const valueInputHtml = event.target.value;
 
     if(valueInputHtml.includes(' ')) {
       setValueInput(valueInput);
       return;
     }
-
+    //setStyleCouponIsValid('custom-input');
     setValueInput(valueInputHtml);
 
 
     //console.log(event.target.value);
   }
+
+
+
+
 
   return (
     <div className="basket__summary" >
@@ -44,18 +78,18 @@ function OrderProductComponent () {
           <form
             action="#"
           >
-            <div className="custom-input ">
+            <div className={styleCouponIsValid}>
               <label>
                 <span className="custom-input__label">Промокод</span>
                 <input
                   type="text"
                   name="promo"
                   placeholder="Введите промокод"
-                  onChange={handleInputCoupon}
+                  onChange={handleChangeInputCoupon}
                   value={valueInput}
                 />
               </label>
-              <p className="custom-input__error">Промокод неверный</p>
+              {styleCouponIsValid === 'custom-input is-invalid' ? <p className="custom-input__error">Промокод неверный</p> : ''}
               <p className="custom-input__success">Промокод принят!</p>
             </div>
             <button
