@@ -20,4 +20,9 @@ type PostCoupon = {
   coupon: string;
 }
 
-export type {Thunk, PostReview, PostCoupon};
+type DataPostOrder = {
+  camerasIds: number[];
+  coupon: string | null;
+}
+
+export type {Thunk, PostReview, PostCoupon, DataPostOrder};

@@ -7,7 +7,7 @@ type DataPostCoupon = {
 }
 
 
-const postCoupon = createAsyncThunk<number, {coupon : string} , Thunk>(
+const postCoupon = createAsyncThunk<number, {coupon: string} , Thunk>(
   'coupon/post',
   async (coupon, {extra: api}) => {
     const {data}: DataPostCoupon = await api.post(`${ApiRoute.Coupon}`, coupon);

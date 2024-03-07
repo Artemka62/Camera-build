@@ -6,25 +6,26 @@ import { formatNumberWithSpaces } from '../../utils/utils-format-price';
 import { setLocalStorage } from '../../utils/utils-local-storage';
 import { KEY_LOCAL_STORAGE_COUPON,} from '../../src-const';
 import { couponSlice } from '../../store/slice/slice-coupon';
+import { postOrder } from '../../services/thunk/thunk-post-order';
 
 function OrderProductComponent () {
-  const stateOfferBasket:OfferLocalStorage[] = useAppSelector((state) => state.offersBasket.offers);
+  const stateOfferBasket: OfferLocalStorage[] = useAppSelector((state) => state.offersBasket.offers);
   const priceAllOffers = stateOfferBasket.reduce((accumulator: number, offerPrice: OfferLocalStorage) => (offerPrice.offer.price * offerPrice.count) + accumulator, 0);
   const dispatch = useAppDispatch();
   const stateCoupon = useAppSelector((state) => state.coupon.coupon);
   const [valueInput, setValueInput] = useState(stateCoupon);
   const [styleCouponIsValid, setStyleCouponIsValid] = useState('');
   const percentCoupon = useAppSelector((state) => state.coupon.percent);
-  const couponDiscount = (priceAllOffers * percentCoupon) / 100;
+  const couponDiscount = Math.round((priceAllOffers * percentCoupon) / 100);
   const priceAllOffersDiscount = priceAllOffers - couponDiscount;
   const styleDiscountPrice = percentCoupon === 0 ? 'basket__summary-value' : 'basket__summary-value basket__summary-value--bonus';
-
-  const postCoupons = {
-    coupon: valueInput
-  };
+  const idAllOffers = stateOfferBasket.map((offer) => offer.id);
 
   function handleClickCheckCoupon (event: React.MouseEvent) {
     event.preventDefault();
+    const postCoupons = {
+      coupon: valueInput
+    };
 
     dispatch(postCoupon(postCoupons)).unwrap().then((data) => {
       setStyleCouponIsValid('custom-input is-valid');
@@ -59,6 +60,15 @@ function OrderProductComponent () {
 
     setStyleCouponIsValid('custom-input');
     setValueInput(valueInputHtml);
+  }
+
+  function handleClickOnSubmit () {
+    const order = {
+      camerasIds: idAllOffers,
+      coupon: stateCoupon === '' ? null : stateCoupon
+    };
+
+    dispatch(postOrder(order));
   }
 
   return (
@@ -114,7 +124,11 @@ function OrderProductComponent () {
             {couponDiscount === 0 ? formatNumberWithSpaces(priceAllOffers) : formatNumberWithSpaces(priceAllOffersDiscount)} ₽
           </span>
         </p>
-        <button className="btn btn--purple" type="submit">
+        <button
+          className="btn btn--purple" type="submit"
+          onClick={handleClickOnSubmit}
+          disabled={stateOfferBasket.length === 0}
+        >
           Оформить заказ
         </button>
       </div>
