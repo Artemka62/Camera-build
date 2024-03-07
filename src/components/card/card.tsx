@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { fetchOfferAction } from '../../services/thunk/thunk-fetch-offer';
 import { OfferCard, OfferLocalStorage } from '../../types/types-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
-import { AppRoute, DEFAULT_NULL, KEY_LOCAL_STORAGE } from '../../src-const';
+import { AppRoute, DEFAULT_NULL, KEY_LOCAL_STORAGE_OFFERS } from '../../src-const';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';
@@ -17,7 +17,7 @@ type CardComponentProps = {
 
 function CardComponent ({offer}: CardComponentProps) {
   const dispatch = useAppDispatch();
-  const stateLocalStorage: OfferLocalStorage[] | [] = getLocalStorage(KEY_LOCAL_STORAGE) || [];
+  const stateLocalStorage: OfferLocalStorage[] | [] = getLocalStorage(KEY_LOCAL_STORAGE_OFFERS) || [];
   const stateBasketOffers = useAppSelector((state) => state.offersBasket.offers);
 
   function changeButton (): boolean {

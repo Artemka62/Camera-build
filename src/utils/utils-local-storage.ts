@@ -1,5 +1,6 @@
 //import { KEY_LOCAL_STORAGE } from '../src-const';
-import { OfferCard, OfferLocalStorage } from '../types/types-store';
+import { OfferCard, OfferLocalStorage, StateCouponLocalStorage } from '../types/types-store';
+
 
 function getLocalStorage <T>(key: string): T | undefined {
   const myStorage = localStorage.getItem(key);
@@ -12,7 +13,7 @@ function getLocalStorage <T>(key: string): T | undefined {
 }
 
 
-function setLocalStorage (key: string , data: OfferLocalStorage[]) {
+function setLocalStorage (key: string , data: OfferLocalStorage[] | StateCouponLocalStorage) {
   return localStorage.setItem(key, JSON.stringify(data));
 }
 

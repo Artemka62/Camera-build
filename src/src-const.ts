@@ -11,7 +11,8 @@ const SLIDE_COUNT = 3;
 const CHANGE_PAGE = 'POP';
 const COUNT_SEARCH = 3;
 const DELAY_NOTIFY = 400;
-const KEY_LOCAL_STORAGE = 'myBasketProduct';
+const KEY_LOCAL_STORAGE_OFFERS = 'myBasketProduct';
+const KEY_LOCAL_STORAGE_COUPON = 'myCoupon';
 
 const OPTIONS = [
   {label: 'Отлично', value: 5},
@@ -139,7 +140,8 @@ export{
   CHANGE_PAGE,
   COUNT_SEARCH,
   DELAY_NOTIFY,
-  KEY_LOCAL_STORAGE ,
+  KEY_LOCAL_STORAGE_OFFERS,
+  KEY_LOCAL_STORAGE_COUPON,
   AppRoute,
   ApiRoute,
   TitleDescription,

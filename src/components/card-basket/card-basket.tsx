@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { KEY_LOCAL_STORAGE } from '../../src-const';
+import { KEY_LOCAL_STORAGE_OFFERS } from '../../src-const';
 import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
 import { OfferCard} from '../../types/types-store';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
@@ -63,7 +63,7 @@ function CardBasketComponent ({offer}: CardBasketProps) {
       });
 
       dispatch(offersBasketSlice.actions.offersBasket(changeOffers));
-      setLocalStorage(KEY_LOCAL_STORAGE, changeOffers);
+      setLocalStorage(KEY_LOCAL_STORAGE_OFFERS, changeOffers);
       setValueInput(changeOffer.count);
     }
   }

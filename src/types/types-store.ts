@@ -84,12 +84,23 @@ type StateCoupon = {
   percent: number;
   error: boolean;
   loading: boolean;
+  coupon: string;
+}
+
+type StateCouponLocalStorage = {
+  coupon: null | string;
+  percent: number;
 }
 
 type OfferLocalStorage = {
   count: number;
   id: number;
   offer: OfferCard;
+}
+
+type CouponLocalStorage = {
+  coupon: string;
+  percent: number;
 }
 
 type StateBasket = {
@@ -109,6 +120,8 @@ export type {
   Review,
   StateReviews,
   StateCoupon,
+  StateCouponLocalStorage,
   OfferLocalStorage,
+  CouponLocalStorage,
   StateBasket
 };

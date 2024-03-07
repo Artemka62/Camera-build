@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { postCoupon } from '../../services/thunk/thunk-post-coupon';
 import { OfferLocalStorage } from '../../types/types-store';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';
+import { setLocalStorage } from '../../utils/utils-local-storage';
+import { KEY_LOCAL_STORAGE_COUPON,} from '../../src-const';
+import { couponSlice } from '../../store/slice/slice-coupon';
 
 function OrderProductComponent () {
   const stateOfferBasket:OfferLocalStorage[] = useAppSelector((state) => state.offersBasket.offers);
@@ -10,10 +13,13 @@ function OrderProductComponent () {
   const dispatch = useAppDispatch();
   const [valueInput, setValueInput] = useState('');
   const [styleCouponIsValid, setStyleCouponIsValid] = useState('');
-  const isErrorCoupon = useAppSelector((state) => state.coupon.error);
-  const percentCoupon = useAppSelector((state) => state.coupon.percent);
-  const isValidCouponStyle = isErrorCoupon ? 'custom-input is-invalid' : 'custom-input is-valid';
 
+  // const localStorageCoupon = getLocalStorage(KEY_LOCAL_STORAGE_OFFERS);
+  // const stateCoupon = useAppSelector((state) => state);
+  // console.log(stateCoupon.coupon)
+  // const isErrorCoupon = useAppSelector((state) => state.coupon.error);
+  //const percentCoupon = useAppSelector((state) => state.coupon.percent);
+  //const isValidCouponStyle = isErrorCoupon ? 'custom-input is-invalid' : 'custom-input is-valid';
 
 
   const postCoupons = {
@@ -21,32 +27,28 @@ function OrderProductComponent () {
   };
 
 
-  // useEffect(() => {
-
-  //   setStyleCouponIsValid(styleCouponIsValid);
-  // },[styleCouponIsValid]);
-
-
-  // function checkStyleValidCoupon () {
-  //   if(isErrorCoupon){
-  //     return setStyleCouponIsValid('custom-input is-invalid');
-  //   }
-
-  //   if(!isErrorCoupon){
-  //     return setStyleCouponIsValid('custom-input is-valid');
-  //   }
-
-  // }
-
   function handleClickCheckCoupon (event: React.MouseEvent) {
     event.preventDefault();
 
-    dispatch(postCoupon(postCoupons)).unwrap().then(() => {
+    dispatch(postCoupon(postCoupons)).unwrap().then((data) => {
 
       setStyleCouponIsValid('custom-input is-valid');
 
+      setLocalStorage(KEY_LOCAL_STORAGE_COUPON, {
+        coupon: valueInput,
+        percent: data
+      });
+      dispatch(couponSlice.actions.coupon(valueInput));
+
     }).catch (() => {
       setStyleCouponIsValid('custom-input is-invalid');
+
+      setLocalStorage(KEY_LOCAL_STORAGE_COUPON, {
+        coupon: '',
+        percent: 0
+      });
+      dispatch(couponSlice.actions.percent(0));
+      dispatch(couponSlice.actions.coupon(''));
     }) ;
   }
 
@@ -60,12 +62,7 @@ function OrderProductComponent () {
     //setStyleCouponIsValid('custom-input');
     setValueInput(valueInputHtml);
 
-
-    //console.log(event.target.value);
   }
-
-
-
 
 
   return (

@@ -47,6 +47,7 @@ const useMakeFakeStore = (initialState?: Partial<State>): State => ({
     percent: 1,
     error: false,
     loading: false,
+    coupon: ''
   },
   ...(initialState ?? {}),
 });

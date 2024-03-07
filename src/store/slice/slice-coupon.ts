@@ -8,15 +8,19 @@ import { postCoupon } from '../../services/thunk/thunk-post-coupon';
 const initialState: StateCoupon = {
   percent: 0,
   error: false,
-  loading: false
+  loading: false,
+  coupon: ''
 };
 
 const couponSlice = createSlice({
   name: 'coupon',
   initialState,
   reducers: {
-    reviewList(state, action: PayloadAction<number>) {
+    percent(state, action: PayloadAction<number>) {
       state.percent = action.payload;
+    },
+    coupon(state, action: PayloadAction<string>) {
+      state.coupon = action.payload;
     },
   },
   extraReducers(builder) {

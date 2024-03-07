@@ -1,7 +1,7 @@
 import { useEffect, useRef} from 'react';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
-import { DEFAULT_NULL, DELAY_FOCUS, KEY_LOCAL_STORAGE} from '../../src-const';
+import { DEFAULT_NULL, DELAY_FOCUS, KEY_LOCAL_STORAGE_OFFERS} from '../../src-const';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';
 import { LoadingComponent } from '../loading-component/loading-component';
 import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
@@ -44,7 +44,7 @@ function ModalWindowCardProductComponent () {
       });
 
       dispatch(offersBasketSlice.actions.offersBasket(changeOffers));
-      setLocalStorage(KEY_LOCAL_STORAGE, changeOffers);
+      setLocalStorage(KEY_LOCAL_STORAGE_OFFERS, changeOffers);
 
       return;
     }
@@ -59,7 +59,7 @@ function ModalWindowCardProductComponent () {
       });
 
       dispatch(offersBasketSlice.actions.offersBasket(updatedStateBasket));
-      setLocalStorage(KEY_LOCAL_STORAGE, updatedStateBasket);
+      setLocalStorage(KEY_LOCAL_STORAGE_OFFERS, updatedStateBasket);
     }
   }
 

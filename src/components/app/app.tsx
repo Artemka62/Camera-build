@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute, KEY_LOCAL_STORAGE, TitleDescription } from '../../src-const';
+import { AppRoute, KEY_LOCAL_STORAGE_COUPON, KEY_LOCAL_STORAGE_OFFERS, TitleDescription } from '../../src-const';
 import { MainPage } from '../../pages/page-main/page-main';
 import { ProductPage } from '../../pages/page-product/page-product';
 import { BasketPage } from '../../pages/page-basket/page-basket';
@@ -7,22 +7,34 @@ import { ErrorPage } from '../../pages/page-error/page-error';
 import { useAppDispatch } from '../../use-hooks/use-hook-store';
 import { fetchOffersAction } from '../../services/thunk/thunk-fetch-offers';
 import { fetchPromoOffersAction } from '../../services/thunk/thunk-fetch-promo-offers';
-import { OfferLocalStorage } from '../../types/types-store';
-import { getLocalStorage } from '../../utils/utils-local-storage';
+import { CouponLocalStorage, OfferLocalStorage } from '../../types/types-store';
+import { getLocalStorage, setLocalStorage } from '../../utils/utils-local-storage';
 import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
+import { couponSlice } from '../../store/slice/slice-coupon';
 
 function App () {
   const dispatch = useAppDispatch();
-  const myLocalStorage = getLocalStorage(KEY_LOCAL_STORAGE) as OfferLocalStorage[];
+  const myLocalStorageOffers = getLocalStorage(KEY_LOCAL_STORAGE_OFFERS) as OfferLocalStorage[];
+  const myLocalStorageCoupon = getLocalStorage(KEY_LOCAL_STORAGE_COUPON) as CouponLocalStorage;
 
-  if(myLocalStorage === undefined) {
+  if(myLocalStorageOffers === undefined) {
     const array: OfferLocalStorage[] = [];
 
-    localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(array));
-
+    localStorage.setItem(KEY_LOCAL_STORAGE_OFFERS, JSON.stringify(array));
     dispatch(offersBasketSlice.actions.offersBasket(array));
   } else {
-    dispatch(offersBasketSlice.actions.offersBasket(myLocalStorage));
+    dispatch(offersBasketSlice.actions.offersBasket(myLocalStorageOffers));
+  }
+
+
+  if(myLocalStorageCoupon === undefined) {
+    setLocalStorage(KEY_LOCAL_STORAGE_COUPON, {
+      coupon: '',
+      percent: 0
+    });
+  }else{
+    dispatch(couponSlice.actions.percent(myLocalStorageCoupon.percent));
+    dispatch(couponSlice.actions.coupon(myLocalStorageCoupon.coupon));
   }
 
   dispatch(fetchOffersAction());

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { AppRoute, DEFAULT_NULL, DELAY_FOCUS, KEY_LOCAL_STORAGE } from '../../src-const';
+import { AppRoute, DEFAULT_NULL, DELAY_FOCUS, KEY_LOCAL_STORAGE_OFFERS } from '../../src-const';
 import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
@@ -53,7 +53,7 @@ function ModalWindowDeleteProductComponent () {
     const deleteOffer = stateBasketOffers.filter((offerStorage) => +offerStorage.id !== +idDeleteOffer);
 
     dispatch(offersBasketSlice.actions.offersBasket(deleteOffer));
-    setLocalStorage(KEY_LOCAL_STORAGE, deleteOffer);
+    setLocalStorage(KEY_LOCAL_STORAGE_OFFERS, deleteOffer);
     pushDispatch();
   }
 
