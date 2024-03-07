@@ -14,12 +14,10 @@ function OrderProductComponent () {
   const stateCoupon = useAppSelector((state) => state.coupon.coupon);
   const [valueInput, setValueInput] = useState(stateCoupon);
   const [styleCouponIsValid, setStyleCouponIsValid] = useState('');
-
-  // const localStorageCoupon = getLocalStorage(KEY_LOCAL_STORAGE_OFFERS);
-  // console.log(stateCoupon.coupon)
-  // const isErrorCoupon = useAppSelector((state) => state.coupon.error);
-  //const percentCoupon = useAppSelector((state) => state.coupon.percent);
-  //const isValidCouponStyle = isErrorCoupon ? 'custom-input is-invalid' : 'custom-input is-valid';
+  const percentCoupon = useAppSelector((state) => state.coupon.percent);
+  const couponDiscount = (priceAllOffers * percentCoupon) / 100;
+  const priceAllOffersDiscount = priceAllOffers - couponDiscount;
+  const styleDiscountPrice = percentCoupon === 0 ? 'basket__summary-value' : 'basket__summary-value basket__summary-value--bonus';
 
   const postCoupons = {
     coupon: valueInput
@@ -29,7 +27,6 @@ function OrderProductComponent () {
     event.preventDefault();
 
     dispatch(postCoupon(postCoupons)).unwrap().then((data) => {
-
       setStyleCouponIsValid('custom-input is-valid');
 
       setLocalStorage(KEY_LOCAL_STORAGE_COUPON, {
@@ -56,11 +53,12 @@ function OrderProductComponent () {
 
     if(valueInputHtml.includes(' ')) {
       setValueInput(valueInput);
+
       return;
     }
+
     setStyleCouponIsValid('custom-input');
     setValueInput(valueInputHtml);
-
   }
 
   return (
@@ -104,8 +102,8 @@ function OrderProductComponent () {
         </p>
         <p className="basket__summary-item">
           <span className="basket__summary-text">Скидка:</span>
-          <span className="basket__summary-value basket__summary-value--bonus">
-            0 ₽
+          <span className={styleDiscountPrice}>
+            {formatNumberWithSpaces(couponDiscount)} ₽
           </span>
         </p>
         <p className="basket__summary-item">
@@ -113,7 +111,7 @@ function OrderProductComponent () {
             К оплате:
           </span>
           <span className="basket__summary-value basket__summary-value--total">
-            111 390 ₽
+            {couponDiscount === 0 ? formatNumberWithSpaces(priceAllOffers) : formatNumberWithSpaces(priceAllOffersDiscount)} ₽
           </span>
         </p>
         <button className="btn btn--purple" type="submit">
