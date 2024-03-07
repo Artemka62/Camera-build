@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { postCoupon } from '../../services/thunk/thunk-post-coupon';
 import { OfferLocalStorage } from '../../types/types-store';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
@@ -8,14 +8,30 @@ function OrderProductComponent () {
   const stateOfferBasket:OfferLocalStorage[] = useAppSelector((state) => state.offersBasket.offers);
   const priceAllOffers = stateOfferBasket.reduce((accumulator: number, offerPrice: OfferLocalStorage) => (offerPrice.offer.price * offerPrice.count) + accumulator, 0);
   const dispatch = useAppDispatch();
+  const [valueInput, setValueInput] = useState('');
 
   const postCoupons = {
-    coupon: 'camera-555'
+    coupon: valueInput
   };
 
   function handleClickCheckCoupon (event: React.MouseEvent) {
     event.preventDefault();
+
     dispatch(postCoupon(postCoupons));
+  }
+
+  function handleInputCoupon (event: React.ChangeEvent<HTMLInputElement>) {
+    const valueInputHtml = event.target.value;
+
+    if(valueInputHtml.includes(' ')) {
+      setValueInput(valueInput);
+      return;
+    }
+
+    setValueInput(valueInputHtml);
+
+
+    //console.log(event.target.value);
   }
 
   return (
@@ -35,6 +51,8 @@ function OrderProductComponent () {
                   type="text"
                   name="promo"
                   placeholder="Введите промокод"
+                  onChange={handleInputCoupon}
+                  value={valueInput}
                 />
               </label>
               <p className="custom-input__error">Промокод неверный</p>
