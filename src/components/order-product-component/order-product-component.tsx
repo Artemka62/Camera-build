@@ -11,21 +11,19 @@ function OrderProductComponent () {
   const stateOfferBasket:OfferLocalStorage[] = useAppSelector((state) => state.offersBasket.offers);
   const priceAllOffers = stateOfferBasket.reduce((accumulator: number, offerPrice: OfferLocalStorage) => (offerPrice.offer.price * offerPrice.count) + accumulator, 0);
   const dispatch = useAppDispatch();
-  const [valueInput, setValueInput] = useState('');
+  const stateCoupon = useAppSelector((state) => state.coupon.coupon);
+  const [valueInput, setValueInput] = useState(stateCoupon);
   const [styleCouponIsValid, setStyleCouponIsValid] = useState('');
 
   // const localStorageCoupon = getLocalStorage(KEY_LOCAL_STORAGE_OFFERS);
-  // const stateCoupon = useAppSelector((state) => state);
   // console.log(stateCoupon.coupon)
   // const isErrorCoupon = useAppSelector((state) => state.coupon.error);
   //const percentCoupon = useAppSelector((state) => state.coupon.percent);
   //const isValidCouponStyle = isErrorCoupon ? 'custom-input is-invalid' : 'custom-input is-valid';
 
-
   const postCoupons = {
     coupon: valueInput
   };
-
 
   function handleClickCheckCoupon (event: React.MouseEvent) {
     event.preventDefault();
@@ -47,6 +45,7 @@ function OrderProductComponent () {
         coupon: '',
         percent: 0
       });
+
       dispatch(couponSlice.actions.percent(0));
       dispatch(couponSlice.actions.coupon(''));
     }) ;
@@ -59,11 +58,10 @@ function OrderProductComponent () {
       setValueInput(valueInput);
       return;
     }
-    //setStyleCouponIsValid('custom-input');
+    setStyleCouponIsValid('custom-input');
     setValueInput(valueInputHtml);
 
   }
-
 
   return (
     <div className="basket__summary" >
