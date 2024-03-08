@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../use-hooks/use-hook-store';
 import { fetchOffersAction } from '../../services/thunk/thunk-fetch-offers';
 import { ToastifyComponent } from '../../components/toastify/toastify';
 import { fetchPromoOffersAction } from '../../services/thunk/thunk-fetch-promo-offers';
+import { offerSlice } from '../../store/slice/slice-offer';
 
 type ErrorPageProps = {
   title: string;
@@ -17,6 +18,7 @@ function ErrorPage ({title} : ErrorPageProps) {
   function handleClickButton () {
     dispatch(fetchOffersAction());
     dispatch(fetchPromoOffersAction());
+    dispatch(offerSlice.actions.error(false));
   }
 
   return(

@@ -17,6 +17,9 @@ const offerSlice = createSlice({
     questionList(state, action: PayloadAction<OfferCard>) {
       state.offer = action.payload;
     },
+    error(state, action: PayloadAction<boolean>) {
+      state.error = action.payload;
+    },
   },
   extraReducers(builder) {
     builder

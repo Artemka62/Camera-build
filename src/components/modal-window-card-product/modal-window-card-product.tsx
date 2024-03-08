@@ -16,6 +16,7 @@ function ModalWindowCardProductComponent () {
   const isLoadingOffer = useAppSelector((state) => state.offer.loading);
   const stateBasket = useAppSelector((state) => state.offersBasket.offers);
 
+
   function handleClickButtonClose () {
     dispatch(windowsSlice.actions.windowProduct(false));
     dispatch(windowsSlice.actions.isModalWindow(false));

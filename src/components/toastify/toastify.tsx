@@ -13,6 +13,7 @@ function ToastifyComponent () {
   const isErrorLoadingReviews = useAppSelector((state) => state.reviews.error);
   const isErrorMainPage = isErrorLoadingOffers || isErrorLoadingPromoOffers;
   const isErrorProductPage = isErrorLoadingReviews || isErrorLoadingOffersSimilar || isErrorLoadingOffer;
+  const isError = useAppSelector((state) => state.offer.error);
   const location = useLocation();
   const pageLocation = location.pathname;
 
@@ -39,6 +40,18 @@ function ToastifyComponent () {
 
     return () => clearTimeout(timeoutId);
   }, [isErrorProductPage]);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    if (isError) {
+      timeoutId = setTimeout(() => {
+        notify();
+      }, DELAY_NOTIFY);
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [isError]);
 
   return (
     <div data-testid='toastify-component'>
