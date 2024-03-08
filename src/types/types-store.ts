@@ -87,6 +87,11 @@ type StateCoupon = {
   coupon: string;
 }
 
+type StateOrder = {
+  error: boolean;
+  loading: boolean;
+}
+
 type StateCouponLocalStorage = {
   coupon: null | string;
   percent: number;
@@ -120,6 +125,7 @@ export type {
   Review,
   StateReviews,
   StateCoupon,
+  StateOrder,
   StateCouponLocalStorage,
   OfferLocalStorage,
   CouponLocalStorage,
