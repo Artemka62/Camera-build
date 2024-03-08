@@ -92,7 +92,7 @@ function ModalWindowCardProductComponent () {
       document.body.classList.remove('scroll-lock');
       isMounted = false;
     };
-  }, []);
+  }, [isLoadingOffer]);
 
   if(isLoadingOffer){
     return <LoadingComponent/>;

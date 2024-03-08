@@ -21,6 +21,7 @@ function ModalWindowOrderComponent () {
     }
 
     return () => {
+
       isMounted = false;
     };
   }, []);

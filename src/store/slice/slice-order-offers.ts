@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import { StateOrder } from '../../types/types-store';
 import { postOrder } from '../../services/thunk/thunk-post-order';
+import type {PayloadAction} from '@reduxjs/toolkit';
 
 const initialState: StateOrder = {
   error: false,
@@ -10,7 +11,11 @@ const initialState: StateOrder = {
 const orderSlice = createSlice({
   name: 'order',
   initialState,
-  reducers: {},
+  reducers: {
+    error(state, action: PayloadAction<boolean>) {
+      state.error = action.payload;
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(postOrder.fulfilled, (state) => {

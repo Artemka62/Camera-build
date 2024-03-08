@@ -10,6 +10,7 @@ import { browserHistory } from '../../src-browser-history';
 import { CHANGE_PAGE } from '../../src-const';
 import { ModalWindowDeleteProductComponent } from '../modal-window-delete-product/modal-window-delete-product';
 import { ModalWindowOrderComponent } from '../modal-window-order/modal-window-order';
+import { orderSlice } from '../../store/slice/slice-order-offers';
 
 function ModalWindowComponent () {
   const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowModalOpen);
@@ -31,6 +32,7 @@ function ModalWindowComponent () {
     dispatch(windowsSlice.actions.windowReview(false));
     dispatch(windowsSlice.actions.windowAddBasketSuccess(false));
     dispatch(windowsSlice.actions.windowDeleteBasket(false));
+    dispatch(windowsSlice.actions.windowOrderSuccess(false));
   }
 
   useEffect(() => {
@@ -41,6 +43,7 @@ function ModalWindowComponent () {
     }
 
     return () => {
+      dispatch(orderSlice.actions.error(false));
       isMounted = false;
     };
   }, [browserLocation]);

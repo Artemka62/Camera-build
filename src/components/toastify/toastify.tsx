@@ -13,7 +13,8 @@ function ToastifyComponent () {
   const isErrorLoadingReviews = useAppSelector((state) => state.reviews.error);
   const isErrorMainPage = isErrorLoadingOffers || isErrorLoadingPromoOffers;
   const isErrorProductPage = isErrorLoadingReviews || isErrorLoadingOffersSimilar || isErrorLoadingOffer;
-  const isError = useAppSelector((state) => state.offer.error);
+  const isErrorOffer = useAppSelector((state) => state.offer.error);
+  const isErrorOrder = useAppSelector((state) => state.order.error);
   const location = useLocation();
   const pageLocation = location.pathname;
 
@@ -44,14 +45,26 @@ function ToastifyComponent () {
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
-    if (isError) {
+    if (isErrorOffer) {
       timeoutId = setTimeout(() => {
         notify();
       }, DELAY_NOTIFY);
     }
 
     return () => clearTimeout(timeoutId);
-  }, [isError]);
+  }, [isErrorOffer]);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    if (isErrorOrder && pageLocation.includes(AppRoute.Basket)) {
+      timeoutId = setTimeout(() => {
+        notify();
+      }, DELAY_NOTIFY);
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [isErrorOrder]);
 
   return (
     <div data-testid='toastify-component'>
