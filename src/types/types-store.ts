@@ -61,6 +61,7 @@ type StateWindow = {
   isWindowAddBasketSuccessOpen: boolean;
   isWindowDeleteBasketOpen: boolean;
   idDeleteOffer: boolean | number;
+  isOrderSuccessOpen: boolean;
 };
 
 type Review = {

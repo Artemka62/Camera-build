@@ -7,6 +7,7 @@ import { setLocalStorage } from '../../utils/utils-local-storage';
 import { KEY_LOCAL_STORAGE_COUPON,} from '../../src-const';
 import { couponSlice } from '../../store/slice/slice-coupon';
 import { postOrder } from '../../services/thunk/thunk-post-order';
+import { windowsSlice } from '../../store/slice/slice-modal-windows';
 
 function OrderProductComponent () {
   const stateOfferBasket: OfferLocalStorage[] = useAppSelector((state) => state.offersBasket.offers);
@@ -68,7 +69,13 @@ function OrderProductComponent () {
       coupon: stateCoupon === '' ? null : stateCoupon
     };
 
-    dispatch(postOrder(order));
+    dispatch(postOrder(order)).unwrap().then(() => {
+      dispatch(windowsSlice.actions.windowOrderSuccess(true));
+      dispatch(windowsSlice.actions.isModalWindow(true));
+    }).catch(() => {
+      dispatch(windowsSlice.actions.windowOrderSuccess(true));
+      dispatch(windowsSlice.actions.isModalWindow(true));
+    });
   }
 
   return (

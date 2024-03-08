@@ -10,7 +10,8 @@ const initialState: StateWindow = {
   isWindowReviewSuccessOpen: false,
   isWindowAddBasketSuccessOpen: false,
   isWindowDeleteBasketOpen : false,
-  idDeleteOffer: false
+  idDeleteOffer: false,
+  isOrderSuccessOpen: false,
 };
 
 const windowsSlice = createSlice({
@@ -38,7 +39,10 @@ const windowsSlice = createSlice({
     },
     windowDeleteBasketId(state, action: PayloadAction<number>) {
       state.idDeleteOffer = action.payload;
-    }
+    },
+    windowOrderSuccess(state, action: PayloadAction<boolean>) {
+      state.isOrderSuccessOpen = action.payload;
+    },
   }
 });
 
