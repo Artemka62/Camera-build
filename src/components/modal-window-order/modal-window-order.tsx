@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { AppRoute, DEFAULT_NULL, DELAY_FOCUS } from '../../src-const';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 
-function ModalWindowOrderSuccessComponent () {
+function ModalWindowOrderComponent () {
   const isErrorLoading = useAppSelector((state) => state.order.error);
   const navigate = useNavigate();
   const returnToCatalogButtonRef = useRef<HTMLButtonElement>(null);
@@ -103,4 +103,4 @@ function ModalWindowOrderSuccessComponent () {
   );
 }
 
-export {ModalWindowOrderSuccessComponent};
+export {ModalWindowOrderComponent};

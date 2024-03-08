@@ -9,7 +9,7 @@ import { useNavigationType } from 'react-router-dom';
 import { browserHistory } from '../../src-browser-history';
 import { CHANGE_PAGE } from '../../src-const';
 import { ModalWindowDeleteProductComponent } from '../modal-window-delete-product/modal-window-delete-product';
-import { ModalWindowOrderSuccessComponent } from '../modal-window-order-success/modal-window-order-success';
+import { ModalWindowOrderComponent } from '../modal-window-order/modal-window-order';
 
 function ModalWindowComponent () {
   const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowModalOpen);
@@ -64,7 +64,7 @@ function ModalWindowComponent () {
         {isBasketSuccessOpen ? <ModalWindowReviewSuccess/> : ''}
         {isBasketAddSuccessOpen ? <ModalWindowAddBasketSuccessComponent/> : ''}
         {iDeleteProductOpen ? <ModalWindowDeleteProductComponent/> : ''}
-        {isOrderSuccessOpen ? <ModalWindowOrderSuccessComponent/> : ''}
+        {isOrderSuccessOpen ? <ModalWindowOrderComponent/> : ''}
       </div>
     </div>
   );
