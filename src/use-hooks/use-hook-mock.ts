@@ -11,16 +11,16 @@ const useMakeFakeStore = (initialState?: Partial<State>): State => ({
     error: false,
     loading: false
   },
-  offersPromo:{
+  offersPromo: {
     offers: [mockPromo],
     error: false,
     loading: false
-  } ,
+  },
   offer:{
     offer:mockOffer,
     error: false,
     loading: false,
-  } ,
+  },
   windows: {
     isWindowModalOpen: false,
     isWindowProductOpen: false,
@@ -28,7 +28,8 @@ const useMakeFakeStore = (initialState?: Partial<State>): State => ({
     isWindowReviewSuccessOpen: false,
     isWindowAddBasketSuccessOpen: false,
     isWindowDeleteBasketOpen: false,
-    idDeleteOffer: false
+    idDeleteOffer: false,
+    isOrderSuccessOpen: false
   },
   similarOffers: {
     similarOffers:[mockSimilar],
@@ -48,6 +49,10 @@ const useMakeFakeStore = (initialState?: Partial<State>): State => ({
     error: false,
     loading: false,
     coupon: ''
+  },
+  order: {
+    error: false,
+    loading: false,
   },
   ...(initialState ?? {}),
 });

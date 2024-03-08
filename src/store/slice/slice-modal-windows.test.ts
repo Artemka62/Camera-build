@@ -10,7 +10,8 @@ describe('Modal windows slice', () => {
     isWindowReviewSuccessOpen: false,
     isWindowAddBasketSuccessOpen: false,
     isWindowDeleteBasketOpen: false,
-    idDeleteOffer: false
+    idDeleteOffer: false,
+    isOrderSuccessOpen: false,
   };
 
   it('should return initial state with empty action', () => {
