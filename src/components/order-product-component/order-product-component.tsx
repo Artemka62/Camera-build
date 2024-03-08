@@ -4,10 +4,11 @@ import { OfferLocalStorage } from '../../types/types-store';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';
 import { setLocalStorage } from '../../utils/utils-local-storage';
-import { KEY_LOCAL_STORAGE_COUPON,} from '../../src-const';
+import { KEY_LOCAL_STORAGE_COUPON, KEY_LOCAL_STORAGE_OFFERS,} from '../../src-const';
 import { couponSlice } from '../../store/slice/slice-coupon';
 import { postOrder } from '../../services/thunk/thunk-post-order';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
+import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
 
 function OrderProductComponent () {
   const stateOfferBasket: OfferLocalStorage[] = useAppSelector((state) => state.offersBasket.offers);
@@ -72,6 +73,9 @@ function OrderProductComponent () {
     dispatch(postOrder(order)).unwrap().then(() => {
       dispatch(windowsSlice.actions.windowOrderSuccess(true));
       dispatch(windowsSlice.actions.isModalWindow(true));
+      setLocalStorage(KEY_LOCAL_STORAGE_OFFERS, []);
+      dispatch(offersBasketSlice.actions.offersBasket([]));
+
     }).catch(() => {
       dispatch(windowsSlice.actions.windowOrderSuccess(true));
       dispatch(windowsSlice.actions.isModalWindow(true));
