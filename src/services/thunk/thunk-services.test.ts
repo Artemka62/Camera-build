@@ -16,6 +16,10 @@ import { mockReview, mockReviewPost} from '../../mock-test/mock-review/mock-revi
 import { mockSimilar } from '../../mock-test/mock-similar/mock-similar';
 import { fetchSimilarOffersAction } from './thunk-fetch-similar-offers';
 import { postReview } from './thunk-post-review';
+import { postCoupon } from './thunk-post-coupon';
+import { mockDataCoupon } from '../../mock-test/mock-coupon/mock-coupon';
+import { postOrder } from './thunk-post-order';
+import { mockOrder } from '../../mock-test/mock-order/mock-order';
 
 type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createApi>, Action>
 
@@ -102,7 +106,6 @@ describe('Async actions', () => {
   });
 
   describe('fetchPromoOffersAction', () => {
-
     it('should dispatch "fetchPromoOffersAction.pending", when server response 200', async() => {
       const offersPromo = [mockPromo];
 
@@ -233,6 +236,68 @@ describe('Async actions', () => {
       expect(actions).toEqual([
         postReview.pending.type,
         postReview.rejected.type,
+      ]);
+    });
+  });
+
+  describe('postCouponAction', () => {
+    const dataCoupon = mockDataCoupon;
+
+    it('should dispatch "postCouponAction.pending", when server response 201', async() => {
+      mockAxiosAdapter.onPost(`${ApiRoute.Coupon}`, dataCoupon).reply(ServerAnswer.Created);
+
+      await store.dispatch(postCoupon(dataCoupon));
+
+      const emittedActions = store.getActions();
+      const extractedActionsTypes = extractActionsTypes(emittedActions);
+
+      expect(extractedActionsTypes).toEqual([
+        postCoupon.pending.type,
+        postCoupon.fulfilled.type
+      ]);
+    });
+
+    it('should dispatch "postCouponAction.pending", "postCouponAction.rejected" when server response 400', async () => {
+      mockAxiosAdapter.onPost(`${ApiRoute.Coupon}`, dataCoupon).reply(ServerAnswer.Error, []);
+
+      await store.dispatch(postCoupon(dataCoupon));
+
+      const actions = extractActionsTypes(store.getActions());
+
+      expect(actions).toEqual([
+        postCoupon.pending.type,
+        postCoupon.rejected.type,
+      ]);
+    });
+  });
+
+  describe('postOrderAction', () => {
+    const dataOrder = mockOrder;
+
+    it('should dispatch "postOrderAction.pending", when server response 201', async() => {
+      mockAxiosAdapter.onPost(`${ApiRoute.Order}`, dataOrder).reply(ServerAnswer.Created);
+
+      await store.dispatch(postOrder(dataOrder));
+
+      const emittedActions = store.getActions();
+      const extractedActionsTypes = extractActionsTypes(emittedActions);
+
+      expect(extractedActionsTypes).toEqual([
+        postOrder.pending.type,
+        postOrder.fulfilled.type
+      ]);
+    });
+
+    it('should dispatch "postOrderAction.pending", "postOrderAction.rejected" when server response 400', async () => {
+      mockAxiosAdapter.onPost(`${ApiRoute.Order}`, dataOrder).reply(ServerAnswer.Error, []);
+
+      await store.dispatch(postOrder(dataOrder));
+
+      const actions = extractActionsTypes(store.getActions());
+
+      expect(actions).toEqual([
+        postOrder.pending.type,
+        postOrder.rejected.type,
       ]);
     });
   });
