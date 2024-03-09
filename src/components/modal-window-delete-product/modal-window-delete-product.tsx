@@ -7,7 +7,6 @@ import { setLocalStorage } from '../../utils/utils-local-storage';
 import { Link } from 'react-router-dom';
 
 function ModalWindowDeleteProductComponent () {
-
   const idDeleteOffer = useAppSelector((state) => state.windows.idDeleteOffer);
   const stateBasketOffers = useAppSelector((state) => state.offersBasket.offers);
   const offer = stateBasketOffers.find((findOffer) => findOffer.id === idDeleteOffer);

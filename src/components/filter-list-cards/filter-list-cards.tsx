@@ -4,7 +4,6 @@ import { getUrlParams } from '../../utils/utils-get-url';
 import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, ParamFilter } from '../../src-const';
 import { OfferCard } from '../../types/types-store';
 
-
 type FilterListCardsProps = {
   offers: OfferCard[] | [];
   dataPriceMinMax: OfferCard[];
