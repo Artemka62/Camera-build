@@ -16,9 +16,15 @@ function SearchListComponent ({offer, inFocus, onFocus, index}: SearchListProps)
   const linkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    if (inFocus && linkRef.current) {
+    let isMounted = true;
+
+    if (inFocus && linkRef.current && isMounted) {
       linkRef.current.focus();
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, [inFocus]);
 
   return(

@@ -13,6 +13,8 @@ function useClickOutside<T extends HTMLElement>(
   });
 
   useEffect(() => {
+    let isMounted = true;
+
     const handler = (event: Event) => {
       const element = ref.current;
       if (element && !element.contains(event.target as HTMLElement)) {
@@ -20,14 +22,17 @@ function useClickOutside<T extends HTMLElement>(
       }
     };
 
-    document.addEventListener('mousedown', handler);
-    document.addEventListener('touchstart', handler);
-    document.addEventListener('focusin', handler);
+    if(isMounted) {
+      document.addEventListener('mousedown', handler);
+      document.addEventListener('touchstart', handler);
+      document.addEventListener('focusin', handler);
+    }
 
     return () => {
       document.removeEventListener('mousedown', handler);
       document.removeEventListener('touchstart', handler);
       document.addEventListener('focusin', handler);
+      isMounted = false;
     };
   }, []);
 
