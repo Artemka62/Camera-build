@@ -24,10 +24,6 @@ function CardOfferProductComponent () {
   function handleClickAddBasket () {
     dispatch(windowsSlice.actions.isModalWindow(true));
     dispatch(windowsSlice.actions.windowProduct(true));
-
-    // if(stateOffer) {
-    //   //addProductToBasket(KEY_LOCAL_STORAGE, stateOffer);
-    // }
   }
 
   return (

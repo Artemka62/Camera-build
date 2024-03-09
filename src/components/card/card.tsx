@@ -22,7 +22,6 @@ function CardComponent ({offer}: CardComponentProps) {
 
   function changeButton (): boolean {
     if(stateLocalStorage){
-
       return stateBasketOffers.some((offerStorage: OfferLocalStorage) => offerStorage.id === offer.id);
     }
 
@@ -38,8 +37,15 @@ function CardComponent ({offer}: CardComponentProps) {
   }
 
   useEffect(() => {
-    changeButton();
+    let isMounted = true;
 
+    if(isMounted){
+      changeButton();
+    }
+
+    return () => {
+      isMounted = false;
+    };
   },[stateBasketOffers]);
 
   function handleClickButtonDetails () {

@@ -19,14 +19,6 @@ function CardBasketComponent ({offer}: CardBasketProps) {
   const [valueInput, setValueInput] = useState(stateBasketOffer ? stateBasketOffer.count : '');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // function handleDeleteOffer () {
-  //   const deleteOffer = stateBasketOffers.filter((offerStorage) => +offerStorage.id !== +offer.id);
-
-  //   dispatch(offersBasketSlice.actions.offersBasket(deleteOffer));
-  //   setLocalStorage(KEY_LOCAL_STORAGE, deleteOffer);
-  // }
-
-
   function handleDeleteOffer () {
     dispatch(windowsSlice.actions.isModalWindow(true));
     dispatch(windowsSlice.actions.windowDeleteBasket(true));
@@ -98,7 +90,7 @@ function CardBasketComponent ({offer}: CardBasketProps) {
   }
 
   return (
-    <li className="basket-item">
+    <li className="basket-item" data-testid={'card-basket'}>
       <div className="basket-item__img">
         <picture>
           <source
