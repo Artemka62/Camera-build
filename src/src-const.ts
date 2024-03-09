@@ -13,6 +13,9 @@ const COUNT_SEARCH = 3;
 const DELAY_NOTIFY = 400;
 const KEY_LOCAL_STORAGE_OFFERS = 'myBasketProduct';
 const KEY_LOCAL_STORAGE_COUPON = 'myCoupon';
+const ONE_HUNDRED = 100;
+const EMPTY_STRING = '';
+const STRING_SPACE = ' ';
 
 const OPTIONS = [
   {label: 'Отлично', value: 5},
@@ -137,8 +140,14 @@ const SettingParamCardBasket = {
   KeyMinus: '-',
   KeyDot: '.',
   KeyEnter: 'Enter'
-
 } as const;
+
+const SettingCoupon = {
+  InputValid: 'custom-input is-valid',
+  InputInvalid: 'custom-input is-invalid',
+  Input: 'custom-input',
+} as const;
+
 export{
   URL_SERVER,
   REQUEST_TIMEOUT,
@@ -156,6 +165,9 @@ export{
   DELAY_NOTIFY,
   KEY_LOCAL_STORAGE_OFFERS,
   KEY_LOCAL_STORAGE_COUPON,
+  ONE_HUNDRED,
+  EMPTY_STRING,
+  STRING_SPACE,
   AppRoute,
   ApiRoute,
   TitleDescription,
@@ -168,5 +180,6 @@ export{
   ParamFilterRu,
   ParamSort,
   ButtonName,
-  SettingParamCardBasket
+  SettingParamCardBasket,
+  SettingCoupon
 };

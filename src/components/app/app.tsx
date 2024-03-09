@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute, DEFAULT_NULL, KEY_LOCAL_STORAGE_COUPON, KEY_LOCAL_STORAGE_OFFERS, TitleDescription } from '../../src-const';
+import { AppRoute, DEFAULT_NULL, EMPTY_STRING, KEY_LOCAL_STORAGE_COUPON, KEY_LOCAL_STORAGE_OFFERS, TitleDescription } from '../../src-const';
 import { MainPage } from '../../pages/page-main/page-main';
 import { ProductPage } from '../../pages/page-product/page-product';
 import { BasketPage } from '../../pages/page-basket/page-basket';
@@ -29,7 +29,7 @@ function App () {
 
   if(myLocalStorageCoupon === undefined) {
     setLocalStorage(KEY_LOCAL_STORAGE_COUPON, {
-      coupon: '',
+      coupon: EMPTY_STRING,
       percent: DEFAULT_NULL
     });
   }else{

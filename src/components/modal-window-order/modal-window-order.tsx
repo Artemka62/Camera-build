@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { useEffect, useRef } from 'react';
-import { AppRoute, DEFAULT_NULL, DELAY_FOCUS } from '../../src-const';
+import { AppRoute, DEFAULT_NULL, DELAY_FOCUS, STRING_SPACE } from '../../src-const';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 
 function ModalWindowOrderComponent () {
@@ -59,7 +59,7 @@ function ModalWindowOrderComponent () {
   }
 
   function handlePressKeyReturnToCatalog (event:React.KeyboardEvent, nextInputRef: React.RefObject<HTMLButtonElement> | null) {
-    if(event.key === ' '){
+    if(event.key === STRING_SPACE){
       event.preventDefault();
     }
 
