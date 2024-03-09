@@ -6,8 +6,8 @@ function CardListBasketComponent () {
   const stateBasketOffers = useAppSelector((state) => state.offersBasket.offers);
 
   return (
-    <ul className="basket__list">
-      {stateBasketOffers.length !== DEFAULT_NULL ? stateBasketOffers.map((offer) => <CardBasketComponent key={offer.id} offer = {offer.offer}/>) : <div><strong>Корзина пута. Выберите товар для оформления заказа.</strong></div>}
+    <ul className="basket__list" data-testid='card-list-basket'>
+      {stateBasketOffers.length !== DEFAULT_NULL ? stateBasketOffers.map((offer) => <CardBasketComponent key={offer.id} offer = {offer.offer}/>) : <div><strong>Корзина пуcта. Выберите товар для оформления заказа.</strong></div>}
     </ul>
   );
 }
