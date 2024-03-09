@@ -278,14 +278,14 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
     }
   }
 
-  function handleInputBlur (event: React.ChangeEvent<HTMLInputElement>) {
+  function handleClickInputBlur (event: React.ChangeEvent<HTMLInputElement>) {
     const nameInput = event.target.name;
     const valueInput = event.target.value;
 
     setUrlAndInput(valueInput, nameInput);
   }
 
-  function handleKeyDown (event: React.KeyboardEvent<HTMLInputElement>) {
+  function handlePressKeyDown (event: React.KeyboardEvent<HTMLInputElement>) {
     if(event.key === 'Enter') {
       event.preventDefault();
 
@@ -328,8 +328,8 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                     type="number"
                     name="priceMin"
                     placeholder={`${minPrice}`}
-                    onBlur={handleInputBlur}
-                    onKeyDown={handleKeyDown}
+                    onBlur={handleClickInputBlur}
+                    onKeyDown={handlePressKeyDown}
                   />
                 </label>
               </div>
@@ -340,8 +340,8 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                     type="number"
                     name="priceMax"
                     placeholder={`${maxPrice}`}
-                    onBlur={handleInputBlur}
-                    onKeyDown={handleKeyDown}
+                    onBlur={handleClickInputBlur}
+                    onKeyDown={handlePressKeyDown}
                   />
                 </label>
               </div>
@@ -356,7 +356,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   name="photocamera"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.PhotoCamera)}
-                  onKeyDown={handleKeyDown}
+                  onKeyDown={handlePressKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -371,7 +371,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   name="videocamera"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.VideoCamera)}
-                  onKeyDown={handleKeyDown}
+                  onKeyDown={handlePressKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -389,7 +389,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   name="digital"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.Digital)}
-                  onKeyDown={handleKeyDown}
+                  onKeyDown={handlePressKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">Цифровая</span>
@@ -403,7 +403,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.Film)}
                   disabled={isDisabledFilter}
-                  onKeyDown={handleKeyDown}
+                  onKeyDown={handlePressKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -419,7 +419,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.SnapShot)}
                   disabled={isDisabledFilter}
-                  onKeyDown={handleKeyDown}
+                  onKeyDown={handlePressKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -434,7 +434,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   name="collection"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.Collection)}
-                  onKeyDown={handleKeyDown}
+                  onKeyDown={handlePressKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -452,7 +452,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   name="zero"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.Zero)}
-                  onKeyDown={handleKeyDown}
+                  onKeyDown={handlePressKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">Нулевой</span>
@@ -465,7 +465,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   name="non-professional"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.NonProfessional)}
-                  onKeyDown={handleKeyDown}
+                  onKeyDown={handlePressKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">
@@ -480,7 +480,7 @@ function FilterListCardsComponent ({offers, dataPriceMinMax}: FilterListCardsPro
                   name="professional"
                   onChange={handleChangeCheckbox}
                   checked={getValidFilter(ParamFilter.Professional)}
-                  onKeyDown={handleKeyDown}
+                  onKeyDown={handlePressKeyDown}
                 />
                 <span className="custom-checkbox__icon" />
                 <span className="custom-checkbox__label">

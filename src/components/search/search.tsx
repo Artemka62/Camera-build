@@ -85,7 +85,7 @@ function SearchComponent () {
     setSearchTerm(event.target.value);
   }
 
-  function handleReset() {
+  function handleClickButtonReset() {
     setSearchTerm('');
     setOfferList([]);
 
@@ -131,7 +131,7 @@ function SearchComponent () {
           </ul>
           : ''}
       </form>
-      <button className="form-search__reset" type="reset" onClick={handleReset}>
+      <button className="form-search__reset" type="reset" onClick={handleClickButtonReset}>
         <svg width={10} height={10} aria-hidden="true">
           <use xlinkHref="#icon-close" />
         </svg>

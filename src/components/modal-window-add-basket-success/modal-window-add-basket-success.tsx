@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'react';
 function ModalWindowAddBasketSuccessComponent () {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const goToBasket = useRef<HTMLButtonElement>(null);
+  const refGoToBasket = useRef<HTMLButtonElement>(null);
   const refGoToBuy = useRef<HTMLAnchorElement>(null);
   const refCloseButton = useRef<HTMLButtonElement>(null);
   const stateOfferProduct = useAppSelector((state) => state.offer.offer);
@@ -15,11 +15,11 @@ function ModalWindowAddBasketSuccessComponent () {
   useEffect(() => {
     let isMounted = true;
 
-    if (goToBasket.current && isMounted) {
+    if (refGoToBasket.current && isMounted) {
       document.body.classList.add('scroll-lock');
 
       setTimeout(() => {
-        goToBasket.current?.focus();
+        refGoToBasket.current?.focus();
       }, DELAY_FOCUS);
 
       return () => {
@@ -86,7 +86,7 @@ function ModalWindowAddBasketSuccessComponent () {
         </Link>
         <button
           onClick={handleClickGoToBuy}
-          ref={goToBasket}
+          ref={refGoToBasket}
           onKeyDown={(event) => handleKeyPressGoToBuy(event, refGoToBuy)}
           className="btn btn--purple modal__btn modal__btn--fit-width"
         >
@@ -95,7 +95,7 @@ function ModalWindowAddBasketSuccessComponent () {
       </div>
       <button
         onClick={handleClickCloseModal}
-        onKeyDown={(event) => handleKeyPressGoToBuy(event, goToBasket)}
+        onKeyDown={(event) => handleKeyPressGoToBuy(event, refGoToBasket)}
         className="cross-btn" type="button"
         aria-label="Закрыть попап"
         ref={refCloseButton}
