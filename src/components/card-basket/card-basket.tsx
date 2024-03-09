@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { KEY_LOCAL_STORAGE_OFFERS } from '../../src-const';
+import { DEFAULT_NULL, DEFAULT_UNIT, KEY_LOCAL_STORAGE_OFFERS, SettingParamCardBasket } from '../../src-const';
 import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
 import { OfferCard} from '../../types/types-store';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
@@ -32,25 +32,25 @@ function CardBasketComponent ({offer}: CardBasketProps) {
       const changeOffer = {...isOfferInBasket};
       const changeOffers = [...stateBasket];
 
-      if(nameInput === 'back') {
-        changeOffer.count = changeOffer.count - 1;
+      if(nameInput === SettingParamCardBasket.ButtonBack) {
+        changeOffer.count = changeOffer.count - DEFAULT_UNIT;
       }
 
-      if(nameInput === 'next') {
-        changeOffer.count = changeOffer.count + 1;
+      if(nameInput === SettingParamCardBasket.ButtonNext) {
+        changeOffer.count = changeOffer.count + DEFAULT_UNIT;
       }
 
-      if(nameInput === 'input') {
+      if(nameInput === SettingParamCardBasket.Input) {
         changeOffer.count = +valueInput;
       }
 
-      if(nameInput === 'input' && +valueInput === 0 || +valueInput > 99){
-        changeOffer.count = 1;
+      if(nameInput === SettingParamCardBasket.Input && +valueInput === DEFAULT_NULL || +valueInput > SettingParamCardBasket.MaxCountCard){
+        changeOffer.count = DEFAULT_UNIT;
       }
 
       changeOffers.map((offerState, index) => {
         if (offerState.id === offer.id) {
-          changeOffers.splice(index, 1, changeOffer);
+          changeOffers.splice(index, DEFAULT_UNIT, changeOffer);
         }
       });
 
@@ -62,15 +62,15 @@ function CardBasketComponent ({offer}: CardBasketProps) {
 
   function handleClickOnBlur () {
     inputRef.current?.blur();
-    setValidationOffer('input');
+    setValidationOffer(SettingParamCardBasket.Input);
   }
 
   function handleClickCountBack () {
-    setValidationOffer('back');
+    setValidationOffer(SettingParamCardBasket.ButtonBack);
   }
 
   function handleClickCountNext () {
-    setValidationOffer('next');
+    setValidationOffer(SettingParamCardBasket.ButtonNext);
   }
 
   function handleChangeCount (event:React.ChangeEvent<HTMLInputElement>) {
@@ -80,12 +80,12 @@ function CardBasketComponent ({offer}: CardBasketProps) {
   function handleKeyDownInput (event: React.KeyboardEvent) {
     const isOfferInBasket = stateBasket.find((offerBasket) => offerBasket.id === offer.id);
 
-    if(event.key === '.' || event.key === '+' || event.key === '-'){
+    if(event.key === SettingParamCardBasket.KeyDot || event.key === SettingParamCardBasket.KeyPlus || event.key === SettingParamCardBasket.KeyMinus){
       event.preventDefault();
     }
 
-    if(isOfferInBasket && offer && event.key === 'Enter'){
-      setValidationOffer('input');
+    if(isOfferInBasket && offer && event.key === SettingParamCardBasket.KeyEnter){
+      setValidationOffer(SettingParamCardBasket.Input);
     }
   }
 
@@ -130,7 +130,7 @@ function CardBasketComponent ({offer}: CardBasketProps) {
           aria-label="уменьшить количество товара"
           name='back'
           onClick={handleClickCountBack}
-          disabled ={stateBasketOffer ? stateBasketOffer.count < 2 : true}
+          disabled ={stateBasketOffer ? stateBasketOffer.count < SettingParamCardBasket.MinCountButton : true}
         >
           <svg width={7} height={12} aria-hidden="true">
             <use xlinkHref="#icon-arrow" />
@@ -154,7 +154,7 @@ function CardBasketComponent ({offer}: CardBasketProps) {
           aria-label="увеличить количество товара"
           name='next'
           onClick={handleClickCountNext}
-          disabled = {stateBasketOffer ? stateBasketOffer.count > 98 : true}
+          disabled = {stateBasketOffer ? stateBasketOffer.count > SettingParamCardBasket.MaxCountButton : true}
         >
           <svg width={7} height={12} aria-hidden="true">
             <use xlinkHref="#icon-arrow" />

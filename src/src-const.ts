@@ -126,6 +126,19 @@ const ButtonName = {
   BackRu:'Назад'
 } as const;
 
+const SettingParamCardBasket = {
+  ButtonBack: 'back',
+  ButtonNext: 'next',
+  Input: 'input',
+  MaxCountCard: 99,
+  MaxCountButton: 98,
+  MinCountButton: 2,
+  KeyPlus: '+',
+  KeyMinus: '-',
+  KeyDot: '.',
+  KeyEnter: 'Enter'
+
+} as const;
 export{
   URL_SERVER,
   REQUEST_TIMEOUT,
@@ -154,5 +167,6 @@ export{
   ParamFilter,
   ParamFilterRu,
   ParamSort,
-  ButtonName
+  ButtonName,
+  SettingParamCardBasket
 };
