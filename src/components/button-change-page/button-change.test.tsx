@@ -1,4 +1,3 @@
-
 import { render, screen} from '@testing-library/react';
 import { withHistory } from '../mock-component/mock-component';
 import { ButtonChangePage } from './button-change-page';
