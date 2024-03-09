@@ -50,7 +50,6 @@ function ModalWindowOrderComponent () {
 
   function handleClickButtonReturnToCatalog () {
     pushDispatch();
-
     navigate(`${AppRoute.Main}`);
 
     window.scrollTo({
@@ -70,10 +69,9 @@ function ModalWindowOrderComponent () {
     }
   }
 
-
   return(
     <div className="modal__content">
-      <p className="title title--h4">{isErrorLoading ? <div>Заказ не оформлен <br/>попробуйте снова оформить заказ</div> : 'Спасибо за покупку'}</p>
+      <p className="title title--h4">{isErrorLoading ? <div>Заказ не оформлен<br/>попробуйте снова оформить заказ</div> : 'Спасибо за покупку'}</p>
       <svg className="modal__icon" width={80} height={78} aria-hidden="true">
         <use xlinkHref="#icon-review-success" />
       </svg>
