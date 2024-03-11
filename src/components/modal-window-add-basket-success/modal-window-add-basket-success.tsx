@@ -1,8 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { AppRoute, DEFAULT_NULL, DELAY_FOCUS } from '../../src-const';
-import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
+import { useAppDispatch } from '../../use-hooks/use-hook-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { useEffect, useRef } from 'react';
+import { getUrlParams } from '../../utils/utils-get-url';
 
 function ModalWindowAddBasketSuccessComponent () {
   const dispatch = useAppDispatch();
@@ -10,7 +11,7 @@ function ModalWindowAddBasketSuccessComponent () {
   const refGoToBasket = useRef<HTMLButtonElement>(null);
   const refGoToBuy = useRef<HTMLAnchorElement>(null);
   const refCloseButton = useRef<HTMLButtonElement>(null);
-  const stateOfferProduct = useAppSelector((state) => state.offer.offer);
+  const [urlParam] = useSearchParams();
 
   useEffect(() => {
     let isMounted = true;
@@ -36,11 +37,6 @@ function ModalWindowAddBasketSuccessComponent () {
 
   function handleClickReturnBuy () {
     dispatchStateWindows();
-
-    window.scrollTo({
-      top: DEFAULT_NULL,
-      behavior: 'smooth'
-    });
   }
 
   function handleKeyPressGoToBuy (event:React.KeyboardEvent, nextInputRef: React.RefObject<HTMLButtonElement | HTMLAnchorElement> | null) {
@@ -76,7 +72,11 @@ function ModalWindowAddBasketSuccessComponent () {
       </svg>
       <div className="modal__buttons" >
         <Link
-          to={`${AppRoute.Product}/${stateOfferProduct?.id || ''}${AppRoute.Description}`}
+          to={{
+            search: createSearchParams({
+              ...getUrlParams(urlParam),
+            }).toString(),
+          }}
           onClick={handleClickReturnBuy}
           className="btn btn--transparent modal__btn"
           onKeyDown={(event) => handleKeyPressGoToBuy(event, refCloseButton)}
