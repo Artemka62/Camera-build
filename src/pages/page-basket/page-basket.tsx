@@ -7,7 +7,6 @@ import { OrderProductComponent } from '../../components/order-product-component/
 import { ToastifyComponent } from '../../components/toastify/toastify';
 import { useDocumentTitle } from '../../use-hooks/use-hook-document-title';
 
-
 type BasketProps = {
   title: string;
 }

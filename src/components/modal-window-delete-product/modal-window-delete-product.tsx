@@ -92,7 +92,7 @@ function ModalWindowDeleteProductComponent () {
             />
             <img
               src={`/${offer?.offer.previewImg ?? ''}`}
-              srcSet={`${offer?.offer.previewImg2x ?? ''} 2x`}
+              srcSet={`/${offer?.offer.previewImg2x ?? ''} 2x`}
               width={140}
               height={120}
               alt="Фотоаппарат «Орлёнок»"

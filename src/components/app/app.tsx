@@ -26,7 +26,6 @@ function App () {
     dispatch(offersBasketSlice.actions.offersBasket(myLocalStorageOffers));
   }
 
-
   if(myLocalStorageCoupon === undefined) {
     setLocalStorage(KEY_LOCAL_STORAGE_COUPON, {
       coupon: EMPTY_STRING,

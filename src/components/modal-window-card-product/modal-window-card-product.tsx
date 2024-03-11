@@ -1,7 +1,7 @@
 import { useEffect, useRef} from 'react';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
-import { DEFAULT_NULL, DELAY_FOCUS, KEY_LOCAL_STORAGE_OFFERS} from '../../src-const';
+import { DEFAULT_NULL, DEFAULT_UNIT, DELAY_FOCUS, KEY_LOCAL_STORAGE_OFFERS, SettingParamCardBasket} from '../../src-const';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';
 import { LoadingComponent } from '../loading-component/loading-component';
 import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
@@ -33,14 +33,14 @@ function ModalWindowCardProductComponent () {
       const changeOffer = {...isOfferInBasket};
       const changeOffers = [...stateBasket];
 
-      if(isOfferInBasket.count < 99){
-        changeOffer.count = changeOffer.count + 1;
+      if(isOfferInBasket.count < SettingParamCardBasket.MaxCountCard){
+        changeOffer.count = changeOffer.count + DEFAULT_UNIT;
       }
 
       changeOffers.map((offer, index) => {
         if (offer.id === stateCard.id) {
 
-          changeOffers.splice(index, 1, changeOffer);
+          changeOffers.splice(index, DEFAULT_UNIT, changeOffer);
         }
       });
 
@@ -54,7 +54,7 @@ function ModalWindowCardProductComponent () {
       const updatedStateBasket: OfferLocalStorage[] = [...stateBasket];
 
       updatedStateBasket.push({
-        count: 1,
+        count: DEFAULT_UNIT,
         id: +stateCard.id,
         offer: stateCard,
       });

@@ -22,7 +22,7 @@ function ModalWindowReviewProductComponent () {
   const {id} = useParams();
   const focusSubmitButton = useRef<HTMLButtonElement>(null);
 
-  function banSubmitButton (event: React.KeyboardEvent) {
+  function handleBanSubmitButton (event: React.KeyboardEvent) {
     if(event.key === ' ') {
       event.preventDefault();
     }
@@ -264,7 +264,7 @@ function ModalWindowReviewProductComponent () {
               )}
             </div>
           </div>
-          <button className="btn btn--purple form-review__btn" type="submit" ref={focusSubmitButton} onKeyDown={banSubmitButton}>
+          <button className="btn btn--purple form-review__btn" type="submit" ref={focusSubmitButton} onKeyDown={handleBanSubmitButton}>
             Отправить отзыв
           </button>
         </form>

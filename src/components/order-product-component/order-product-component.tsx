@@ -50,7 +50,7 @@ function OrderProductComponent () {
 
       dispatch(couponSlice.actions.percent(DEFAULT_NULL));
       dispatch(couponSlice.actions.coupon(EMPTY_STRING));
-    }) ;
+    });
   }
 
   function handleChangeInputCoupon (event: React.ChangeEvent<HTMLInputElement>) {
