@@ -19,7 +19,7 @@ function CardBasketComponent ({offer}: CardBasketProps) {
   const [valueInput, setValueInput] = useState(stateBasketOffer ? stateBasketOffer.count : '');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  function handleDeleteOffer () {
+  function handleClickDeleteOffer () {
     dispatch(windowsSlice.actions.isModalWindow(true));
     dispatch(windowsSlice.actions.windowDeleteBasket(true));
     dispatch(windowsSlice.actions.windowDeleteBasketId(offer.id));
@@ -168,7 +168,7 @@ function CardBasketComponent ({offer}: CardBasketProps) {
         className="cross-btn"
         type="button"
         aria-label="Удалить товар"
-        onClick={handleDeleteOffer}
+        onClick={handleClickDeleteOffer}
       >
         <svg width={10} height={10} aria-hidden="true">
           <use xlinkHref="#icon-close" />
