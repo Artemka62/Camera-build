@@ -122,7 +122,7 @@ function ModalWindowDeleteProductComponent () {
           Удалить
         </button>
         <Link
-          to={`${AppRoute.Product}/${offer?.id || ''}${AppRoute.Description}`}
+          to={`${AppRoute.Main}`}
           className="btn btn--transparent modal__btn modal__btn--half-width"
           onClick={handleClickReturnBuy}
           ref={buyButtonRef}
