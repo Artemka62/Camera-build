@@ -2,10 +2,16 @@ import {useEffect} from 'react';
 
 function useDocumentTitle (title: string) {
   useEffect(() => {
-    const initialTitle = document.title;
+    let isMounted = true;
+    let initialTitle: string = document.title;
+
+    if(isMounted){
+      initialTitle = document.title;
+    }
 
     return () => {
       document.title = initialTitle;
+      isMounted = false;
     };
   }, []);
 
