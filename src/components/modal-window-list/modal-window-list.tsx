@@ -60,7 +60,7 @@ function ModalWindowComponent () {
 
   return (
     <div className={isActive} data-testid= 'modal-window' onKeyDown={handleKeyDownEscape}>
-      <div className="modal__wrapper " >
+      <div className="modal__wrapper ">
         <div className="modal__overlay" onClick={handleClickOverlay} />
         {isCardProductOpen ? <ModalWindowCardProductComponent/> : ''}
         {isFormReviewOpen ? <ModalWindowReviewProductComponent/> : ''}
