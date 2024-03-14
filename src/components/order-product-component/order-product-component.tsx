@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { postCoupon } from '../../services/thunks/index';
-import { OfferLocalStorage } from '../../type/type-store';
+import { OfferLocalStorage } from '../../type/index';
 import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
 import { formatNumberWithSpaces } from '../../utils/format-price';
 import { setLocalStorage } from '../../utils/local-storage';

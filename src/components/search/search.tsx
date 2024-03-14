@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useAppSelector } from '../../use-hook/use-hook-store';
-import { OfferCard } from '../../type/type-store';
+import { OfferCard } from '../../type/index';
 import { COUNT_SEARCH, DEFAULT_NULL, DEFAULT_UNIT } from '../../src-const';
 import { SearchListComponent } from '../search-list/search-list';
 import { useKeyPress } from '../../use-hook/use-hook-key-press';

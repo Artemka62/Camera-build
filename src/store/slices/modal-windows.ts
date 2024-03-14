@@ -1,7 +1,7 @@
 
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import { StateWindow } from '../../type/type-store';
+import { StateWindow } from '../../type/index';
 
 const initialState: StateWindow = {
   isWindowModalOpen: false,

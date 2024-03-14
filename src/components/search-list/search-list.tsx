@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { OfferCard } from '../../type/type-store';
+import { OfferCard } from '../../type/index';
 import { AppRoute } from '../../src-const';
 import { useEffect, useRef } from 'react';
 import './search-list.css';

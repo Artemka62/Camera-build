@@ -7,7 +7,7 @@ import { ErrorPage } from '../../pages/page-error/page-error';
 import { useAppDispatch } from '../../use-hook/use-hook-store';
 import { fetchOffersAction } from '../../services/thunks/index';
 import { fetchPromoOffersAction } from '../../services/thunks/index';
-import { CouponLocalStorage, OfferLocalStorage } from '../../type/type-store';
+import { CouponLocalStorage, OfferLocalStorage } from '../../type/index';
 import { getLocalStorage, setLocalStorage } from '../../utils';
 import { offersBasketSlice } from '../../store/slices/index';
 import { couponSlice } from '../../store/slices/index';

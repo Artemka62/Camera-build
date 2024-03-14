@@ -1,4 +1,4 @@
-import type {OfferPromo, StateOffersPromo} from '../../type/type-store';
+import type {OfferPromo, StateOffersPromo} from '../../type/index';
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import { fetchPromoOffersAction } from '../../services/thunks/index';

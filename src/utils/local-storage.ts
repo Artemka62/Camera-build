@@ -1,4 +1,4 @@
-import { OfferLocalStorage, StateCouponLocalStorage } from '../type/type-store';
+import { OfferLocalStorage, StateCouponLocalStorage } from '../type/index';
 
 function getLocalStorage <T>(key: string): T | undefined {
   const myStorage = localStorage.getItem(key);

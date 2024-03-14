@@ -3,7 +3,7 @@ import { mockOffer } from '../mock-test/mock-offer/mock-offer';
 import { mockPromo } from '../mock-test/mock-promo/mock-promo';
 import { mockReview } from '../mock-test/mock-review/mock-review';
 import { mockSimilar } from '../mock-test/mock-similar/mock-similar';
-import { State } from '../type/type-store';
+import { State } from '../type/store';
 
 const useMakeFakeStore = (initialState?: Partial<State>): State => ({
   offers: {

@@ -1,4 +1,4 @@
-import { OfferCard } from '../../type/type-store';
+import { OfferCard } from '../../type/index';
 import { CardComponent } from '../card/card';
 import { useAppSelector } from '../../use-hook/use-hook-store';
 import { EmptyMessageComponent } from '../empty-message/empty-message';

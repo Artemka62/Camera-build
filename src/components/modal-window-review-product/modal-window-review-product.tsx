@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Fragment, useEffect, useRef} from 'react';
 import { DEFAULT_NULL, DELAY_FOCUS, OPTIONS, SettingValidation } from '../../src-const';
 import { postReview } from '../../services/thunks/index';
-import { PostReview } from '../../type/type-service';
+import { PostReview } from '../../type/service';
 import { useParams } from 'react-router-dom';
 import './modal-window-review-product.css';
 import { fetchReviewsAction } from '../../services/thunks/index';
