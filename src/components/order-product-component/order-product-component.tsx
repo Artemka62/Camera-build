@@ -77,7 +77,10 @@ function OrderProductComponent () {
       dispatch(windowsSlice.actions.isModalWindow(true));
       setLocalStorage(KEY_LOCAL_STORAGE_OFFERS, array);
       dispatch(offersBasketSlice.actions.offersBasket(array));
-      setLocalStorage(KEY_LOCAL_STORAGE_COUPON, array);
+      setLocalStorage(KEY_LOCAL_STORAGE_COUPON, {
+        coupon: '',
+        percent: DEFAULT_NULL
+      });
       dispatch(couponSlice.actions.coupon(''));
       setValueInput('');
       dispatch(couponSlice.actions.percent(DEFAULT_NULL));
