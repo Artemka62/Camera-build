@@ -1,7 +1,7 @@
 
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import {OfferLocalStorage, StateBasket} from '../../types/types-store';
+import {OfferLocalStorage, StateBasket} from '../../type/type-store';
 
 const initialState: StateBasket = {
   offers: []

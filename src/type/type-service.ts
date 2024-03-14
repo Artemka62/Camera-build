@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { AppDispatch, State } from './types-store';
+import { AppDispatch, State } from './type-store';
 
 type Thunk = {
   dispatch: AppDispatch;

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../src-const';
-import { OfferPromo } from '../../types/types-store';
+import { OfferPromo } from '../../type/type-store';
 
 type BannerOfferProps = {
   offer: OfferPromo;

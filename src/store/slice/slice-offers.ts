@@ -1,4 +1,4 @@
-import type {OfferCard, StateOffers} from '../../types/types-store';
+import type {OfferCard, StateOffers} from '../../type/type-store';
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import { fetchOffersAction } from '../../services/thunk/thunk-fetch-offers';

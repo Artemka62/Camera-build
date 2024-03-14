@@ -1,11 +1,11 @@
 import { useEffect, useRef} from 'react';
-import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
+import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { DEFAULT_NULL, DEFAULT_UNIT, DELAY_FOCUS, KEY_LOCAL_STORAGE_OFFERS, SettingParamCardBasket} from '../../src-const';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';
 import { LoadingComponent } from '../loading-component/loading-component';
 import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
-import { OfferLocalStorage } from '../../types/types-store';
+import { OfferLocalStorage } from '../../type/type-store';
 import { setLocalStorage } from '../../utils/utils-local-storage';
 
 function ModalWindowCardProductComponent () {

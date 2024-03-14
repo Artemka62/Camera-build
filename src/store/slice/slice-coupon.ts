@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import { StateCoupon } from '../../types/types-store';
+import { StateCoupon } from '../../type/type-store';
 import { postCoupon } from '../../services/thunk/thunk-post-coupon';
 
 const initialState: StateCoupon = {

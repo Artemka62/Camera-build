@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ApiRoute } from '../../src-const';
-import { Thunk } from '../../types/types-service';
-import { Review } from '../../types/types-store';
+import { Thunk } from '../../type/type-service';
+import { Review } from '../../type/type-store';
 
 const fetchReviewsAction = createAsyncThunk<Review[], number, Thunk>(
   'reviews/fetch',

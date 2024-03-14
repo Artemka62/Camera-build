@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useAppSelector } from '../../use-hooks/use-hook-store';
-import { OfferCard } from '../../types/types-store';
+import { useAppSelector } from '../../use-hook/use-hook-store';
+import { OfferCard } from '../../type/type-store';
 import { COUNT_SEARCH, DEFAULT_NULL, DEFAULT_UNIT } from '../../src-const';
 import { SearchListComponent } from '../search-list/search-list';
-import { useKeyPress } from '../../use-hooks/use-hook-key-press';
-import { useClickOutside } from '../../use-hooks/use-hook-click-outside';
+import { useKeyPress } from '../../use-hook/use-hook-key-press';
+import { useClickOutside } from '../../use-hook/use-hook-click-outside';
 
 function SearchComponent () {
   const stateOffersProduct = useAppSelector((state) => state.offers.offers);

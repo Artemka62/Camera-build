@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getUrlParams } from '../../utils/utils-get-url';
 import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, ParamFilter } from '../../src-const';
-import { OfferCard } from '../../types/types-store';
+import { OfferCard } from '../../type/type-store';
 
 type FilterListCardsProps = {
   offers: OfferCard[] | [];

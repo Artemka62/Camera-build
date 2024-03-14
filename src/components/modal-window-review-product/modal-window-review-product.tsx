@@ -1,10 +1,10 @@
-import { useAppDispatch} from '../../use-hooks/use-hook-store';
+import { useAppDispatch} from '../../use-hook/use-hook-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Fragment, useEffect, useRef} from 'react';
 import { DEFAULT_NULL, DELAY_FOCUS, OPTIONS, SettingValidation } from '../../src-const';
 import { postReview } from '../../services/thunk/thunk-post-review';
-import { PostReview } from '../../types/types-service';
+import { PostReview } from '../../type/type-service';
 import { useParams } from 'react-router-dom';
 import './modal-window-review-product.css';
 import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';

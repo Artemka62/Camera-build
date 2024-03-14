@@ -1,6 +1,6 @@
 import { ModalWindowCardProductComponent } from '../modal-window-card-product/modal-window-card-product';
 import { ModalWindowReviewSuccess } from '../modal-window-review-success/modal-window-review-success';
-import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
+import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { ModalWindowAddBasketSuccessComponent } from '../modal-window-add-basket-success/modal-window-add-basket-success';
 import { ModalWindowReviewProductComponent } from '../modal-window-review-product/modal-window-review-product';

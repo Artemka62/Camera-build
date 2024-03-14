@@ -6,15 +6,15 @@ import { FooterComponent } from '../../components/footer/footer';
 import { HeaderComponent } from '../../components/header/header';
 import { PaginationMainPageComponent } from '../../components/pagination-main-page/pagination-main-page';
 import { SortListCardsComponent } from '../../components/sort-list-cards/sort-list-cards';
-import { useDocumentTitle } from '../../use-hooks/use-hook-document-title';
-import { useAppSelector } from '../../use-hooks/use-hook-store';
+import { useDocumentTitle } from '../../use-hook/use-hook-document-title';
+import { useAppSelector } from '../../use-hook/use-hook-store';
 import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
 import { AppRoute, DEFAULT_NULL, DEFAULT_UNIT, MAX_LENGTH_CARDS, ParamFilter, ParamFilterRu, ParamSort, SortId } from '../../src-const';
 import { ModalWindowComponent } from '../../components/modal-window-list/modal-window-list';
 import { LoadingComponent } from '../../components/loading-component/loading-component';
 import { useSearchParams } from 'react-router-dom';
 import { getUrlParams } from '../../utils/utils-get-url';
-import { OfferCard } from '../../types/types-store';
+import { OfferCard } from '../../type/type-store';
 import { ToastifyComponent } from '../../components/toastify/toastify';
 
 type MainPageProps = {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { postCoupon } from '../../services/thunk/thunk-post-coupon';
-import { OfferLocalStorage } from '../../types/types-store';
-import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
+import { OfferLocalStorage } from '../../type/type-store';
+import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
 import { formatNumberWithSpaces } from '../../utils/utils-format-price';
 import { setLocalStorage } from '../../utils/utils-local-storage';
 import { DEFAULT_NULL, EMPTY_STRING, KEY_LOCAL_STORAGE_COUPON, KEY_LOCAL_STORAGE_OFFERS, ONE_HUNDRED, SettingCoupon,} from '../../src-const';

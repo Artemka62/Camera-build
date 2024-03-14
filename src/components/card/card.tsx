@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../use-hooks/use-hook-store';
+import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
 import { fetchOfferAction } from '../../services/thunk/thunk-fetch-offer';
-import { OfferCard, OfferLocalStorage } from '../../types/types-store';
+import { OfferCard, OfferLocalStorage } from '../../type/type-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { AppRoute, DEFAULT_NULL, KEY_LOCAL_STORAGE_OFFERS } from '../../src-const';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';

@@ -3,7 +3,7 @@ import { MemoryHistory, createMemoryHistory } from 'history';
 import { AppRoute} from '../../src-const';
 import { App } from './app';
 import { withHistory, withStore } from '../mock-component/mock-component';
-import { useMakeFakeStore } from '../../use-hooks/use-hook-mock';
+import { useMakeFakeStore } from '../../use-hook/use-hook-mock';
 
 describe('Application Routing', () => {
   let mockHistory: MemoryHistory;

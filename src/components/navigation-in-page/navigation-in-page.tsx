@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useAppSelector } from '../../use-hooks/use-hook-store';
+import { useAppSelector } from '../../use-hook/use-hook-store';
 import { AppRoute, DEFAULT_UNIT } from '../../src-const';
 
 function NavigationInPageComponent () {

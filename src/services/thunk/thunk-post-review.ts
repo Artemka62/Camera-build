@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 
 import {ApiRoute} from '../../src-const';
-import { PostReview, Thunk } from '../../types/types-service';
+import { PostReview, Thunk } from '../../type/type-service';
 
 const postReview = createAsyncThunk<void, {dataForm: PostReview} , Thunk>(
   'review/post',

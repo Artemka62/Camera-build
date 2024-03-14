@@ -3,7 +3,7 @@ import { ButtonChangePage } from '../button-change-page/button-change-page';
 import { AppRoute, ButtonName, DEFAULT_UNIT, PAGES_PER_SET} from '../../src-const';
 import { getUrlParams } from '../../utils/utils-get-url';
 import { useEffect } from 'react';
-import { useAppSelector } from '../../use-hooks/use-hook-store';
+import { useAppSelector } from '../../use-hook/use-hook-store';
 
 type PaginationMainPageComponentProps = {
   offersPerPages: number;

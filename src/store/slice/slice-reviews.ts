@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import { Review, StateReviews } from '../../types/types-store';
+import { Review, StateReviews } from '../../type/type-store';
 import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';
 
 const initialState: StateReviews = {
