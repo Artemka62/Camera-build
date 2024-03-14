@@ -3,7 +3,7 @@ import { AppRoute, DEFAULT_NULL, DELAY_FOCUS, KEY_LOCAL_STORAGE_OFFERS } from '.
 import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
-import { setLocalStorage } from '../../utils/utils-local-storage';
+import { setLocalStorage } from '../../utils/local-storage';
 import { Link } from 'react-router-dom';
 
 function ModalWindowDeleteProductComponent () {

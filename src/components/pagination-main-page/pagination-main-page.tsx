@@ -1,7 +1,7 @@
 import { Link, createSearchParams, useSearchParams } from 'react-router-dom';
 import { ButtonChangePage } from '../button-change-page/button-change-page';
 import { AppRoute, ButtonName, DEFAULT_UNIT, PAGES_PER_SET} from '../../src-const';
-import { getUrlParams } from '../../utils/utils-get-url';
+import { getUrlParams } from '../../utils';
 import { useEffect } from 'react';
 import { useAppSelector } from '../../use-hook/use-hook-store';
 

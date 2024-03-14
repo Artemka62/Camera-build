@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { useNavigate, useParams } from 'react-router-dom';
-import { formatNumberWithSpaces } from '../../utils/utils-format-price';
+import { formatNumberWithSpaces } from '../../utils/format-price';
 
 function CardOfferProductComponent () {
   const dispatch = useAppDispatch();

@@ -8,7 +8,7 @@ import { useAppDispatch } from '../../use-hook/use-hook-store';
 import { fetchOffersAction } from '../../services/thunk/thunk-fetch-offers';
 import { fetchPromoOffersAction } from '../../services/thunk/thunk-fetch-promo-offers';
 import { CouponLocalStorage, OfferLocalStorage } from '../../type/type-store';
-import { getLocalStorage, setLocalStorage } from '../../utils/utils-local-storage';
+import { getLocalStorage, setLocalStorage } from '../../utils';
 import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
 import { couponSlice } from '../../store/slice/slice-coupon';
 

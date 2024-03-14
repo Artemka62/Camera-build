@@ -3,7 +3,7 @@ import { AppRoute, DEFAULT_NULL, DELAY_FOCUS } from '../../src-const';
 import { useAppDispatch } from '../../use-hook/use-hook-store';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { useEffect, useRef } from 'react';
-import { getUrlParams } from '../../utils/utils-get-url';
+import { getUrlParams } from '../../utils';
 
 function ModalWindowAddBasketSuccessComponent () {
   const dispatch = useAppDispatch();

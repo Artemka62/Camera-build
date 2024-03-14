@@ -3,8 +3,8 @@ import { DEFAULT_NULL, DEFAULT_UNIT, KEY_LOCAL_STORAGE_OFFERS, SettingParamCardB
 import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
 import { OfferCard} from '../../type/type-store';
 import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
-import { formatNumberWithSpaces } from '../../utils/utils-format-price';
-import { setLocalStorage } from '../../utils/utils-local-storage';
+import { formatNumberWithSpaces } from '../../utils/format-price';
+import { setLocalStorage } from '../../utils/local-storage';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 
 type CardBasketProps = {

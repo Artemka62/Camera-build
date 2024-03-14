@@ -10,7 +10,6 @@ function getLocalStorage <T>(key: string): T | undefined {
   return JSON.parse(myStorage) as T;
 }
 
-
 function setLocalStorage (key: string , data: OfferLocalStorage[] | StateCouponLocalStorage) {
   return localStorage.setItem(key, JSON.stringify(data));
 }

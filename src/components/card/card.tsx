@@ -6,8 +6,8 @@ import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { AppRoute, DEFAULT_NULL, KEY_LOCAL_STORAGE_OFFERS } from '../../src-const';
 import { windowsSlice } from '../../store/slice/slice-modal-windows';
 import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';
-import { formatNumberWithSpaces } from '../../utils/utils-format-price';
-import { getLocalStorage } from '../../utils/utils-local-storage';
+import { formatNumberWithSpaces } from '../../utils/format-price';
+import { getLocalStorage } from '../../utils';
 import { ButtonInBasketComponent } from '../button-in-basket/button-in-basket';
 import { useEffect} from 'react';
 

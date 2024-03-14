@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { ChangeEvent, useRef } from 'react';
 import { ParamSort, SortId, SortName } from '../../src-const';
-import { getUrlParams } from '../../utils/utils-get-url';
+import { getUrlParams } from '../../utils';
 
 function SortListCardsComponent () {
   const [urlParam, setUrlParam] = useSearchParams();
