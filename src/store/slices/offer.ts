@@ -2,7 +2,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import { OfferCard, StateOffer } from '../../type/type-store';
-import { fetchOfferAction } from '../../services/thunk/thunk-fetch-offer';
+import { fetchOfferAction } from '../../services/thunks/index';
 
 const initialState: StateOffer = {
   offer: null,

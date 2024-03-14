@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { postCoupon } from '../../services/thunk/thunk-post-coupon';
+import { postCoupon } from '../../services/thunks/index';
 import { OfferLocalStorage } from '../../type/type-store';
 import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
 import { formatNumberWithSpaces } from '../../utils/format-price';
 import { setLocalStorage } from '../../utils/local-storage';
 import { DEFAULT_NULL, EMPTY_STRING, KEY_LOCAL_STORAGE_COUPON, KEY_LOCAL_STORAGE_OFFERS, ONE_HUNDRED, SettingCoupon,} from '../../src-const';
 import { couponSlice } from '../../store/slices/index';
-import { postOrder } from '../../services/thunk/thunk-post-order';
+import { postOrder } from '../../services/thunks/index';
 import { windowsSlice } from '../../store/slices/index';
 import { offersBasketSlice } from '../../store/slices/index';
 

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import { StateCoupon } from '../../type/type-store';
-import { postCoupon } from '../../services/thunk/thunk-post-coupon';
+import { postCoupon } from '../../services/thunks/index';
 
 const initialState: StateCoupon = {
   percent: 0,

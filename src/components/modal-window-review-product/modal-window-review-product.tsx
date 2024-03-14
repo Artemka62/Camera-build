@@ -3,11 +3,11 @@ import { windowsSlice } from '../../store/slices/index';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Fragment, useEffect, useRef} from 'react';
 import { DEFAULT_NULL, DELAY_FOCUS, OPTIONS, SettingValidation } from '../../src-const';
-import { postReview } from '../../services/thunk/thunk-post-review';
+import { postReview } from '../../services/thunks/index';
 import { PostReview } from '../../type/type-service';
 import { useParams } from 'react-router-dom';
 import './modal-window-review-product.css';
-import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';
+import { fetchReviewsAction } from '../../services/thunks/index';
 
 type FormInputs = {
   userName: string;

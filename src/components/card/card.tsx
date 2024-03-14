@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
-import { fetchOfferAction } from '../../services/thunk/thunk-fetch-offer';
+import { fetchOfferAction } from '../../services/thunks/index';
 import { OfferCard, OfferLocalStorage } from '../../type/type-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { AppRoute, DEFAULT_NULL, KEY_LOCAL_STORAGE_OFFERS } from '../../src-const';
 import { windowsSlice } from '../../store/slices/index';
-import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';
+import { fetchReviewsAction } from '../../services/thunks/index';
 import { formatNumberWithSpaces } from '../../utils/format-price';
 import { getLocalStorage } from '../../utils';
 import { ButtonInBasketComponent } from '../button-in-basket/button-in-basket';

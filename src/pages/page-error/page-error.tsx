@@ -2,9 +2,9 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '../../src-const';
 import {useDocumentTitle} from '../../use-hook/use-hook-document-title';
 import { useAppDispatch } from '../../use-hook/use-hook-store';
-import { fetchOffersAction } from '../../services/thunk/thunk-fetch-offers';
+import { fetchOffersAction } from '../../services/thunks/index';
 import { ToastifyComponent } from '../../components/toastify/toastify';
-import { fetchPromoOffersAction } from '../../services/thunk/thunk-fetch-promo-offers';
+import { fetchPromoOffersAction } from '../../services/thunks/index';
 import { offerSlice } from '../../store/slices/index';
 
 type ErrorPageProps = {

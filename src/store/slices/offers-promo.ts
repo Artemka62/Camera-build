@@ -1,7 +1,7 @@
 import type {OfferPromo, StateOffersPromo} from '../../type/type-store';
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import { fetchPromoOffersAction } from '../../services/thunk/thunk-fetch-promo-offers';
+import { fetchPromoOffersAction } from '../../services/thunks/index';
 
 const initialState: StateOffersPromo = {
   offers: [],

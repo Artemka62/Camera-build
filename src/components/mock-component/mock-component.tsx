@@ -4,7 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { MockStore, configureMockStore } from '@jedmao/redux-mock-store';
 import MockAdapter from 'axios-mock-adapter';
 import { State } from '../../type/type-store';
-import { createApi } from '../../services/services-api';
+import { createApi } from '../../services/index';
 import thunk from 'redux-thunk';
 import { Action } from '@reduxjs/toolkit';
 import { AppThunkDispatch } from '../../type/type-mock';

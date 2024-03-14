@@ -1,5 +1,5 @@
 import { Action, ThunkDispatch } from '@reduxjs/toolkit';
-import { createApi } from '../services/services-api';
+import { createApi } from '../services/index';
 import { State } from './type-store';
 
  type AppThunkDispatch = ThunkDispatch<

@@ -6,7 +6,6 @@ type DataPostCoupon = {
   data: number;
 }
 
-
 const postCoupon = createAsyncThunk<number, {coupon: string} , Thunk>(
   'coupon/post',
   async (coupon, {extra: api}) => {
