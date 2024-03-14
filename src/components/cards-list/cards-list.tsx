@@ -1,6 +1,6 @@
 import { OfferCard } from '../../type/index';
 import { CardComponent } from '../card/card';
-import { useAppSelector } from '../../use-hook/use-hook-store';
+import { useAppSelector } from '../../use-hooks/index';
 import { EmptyMessageComponent } from '../empty-message/empty-message';
 import { DEFAULT_NULL } from '../../src-const';
 

@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
 function useDocumentTitle (title: string) {
   useEffect(() => {
@@ -28,4 +28,4 @@ function useDocumentTitle (title: string) {
   }, [title]);
 }
 
-export {useDocumentTitle};
+export { useDocumentTitle };

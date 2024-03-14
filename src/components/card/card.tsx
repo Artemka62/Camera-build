@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
+import { useAppDispatch, useAppSelector } from '../../use-hooks/index';
 import { fetchOfferAction } from '../../services/thunks/index';
 import { OfferCard, OfferLocalStorage } from '../../type/index';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';

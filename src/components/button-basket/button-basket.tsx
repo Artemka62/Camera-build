@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, DEFAULT_NULL } from '../../src-const';
-import { useAppSelector } from '../../use-hook/use-hook-store';
+import { useAppSelector } from '../../use-hooks/index';
 import { OfferLocalStorage } from '../../type/index';
 
 function ButtonBasketComponent () {

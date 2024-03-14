@@ -1,5 +1,5 @@
 import { ToastContainer } from 'react-toastify';
-import { useAppSelector } from '../../use-hook/use-hook-store';
+import { useAppSelector } from '../../use-hooks/index';
 import { useEffect } from 'react';
 import{ notify } from '../../utils/toastify';
 import { AppRoute, DEFAULT_UNIT, DELAY_NOTIFY } from '../../src-const';

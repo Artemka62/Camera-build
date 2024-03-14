@@ -5,7 +5,7 @@ import { ModalWindowComponent } from '../../components/modal-window-list/modal-w
 import { NavigationInPageComponent } from '../../components/navigation-in-page/navigation-in-page';
 import { OrderProductComponent } from '../../components/order-product-component/order-product-component';
 import { ToastifyComponent } from '../../components/toastify/toastify';
-import { useDocumentTitle } from '../../use-hook/use-hook-document-title';
+import { useDocumentTitle } from '../../use-hooks/index';
 
 type BasketProps = {
   title: string;

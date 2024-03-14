@@ -1,7 +1,7 @@
 import 'swiper/swiper-bundle.css';
 import './banner.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useAppSelector } from '../../use-hook/use-hook-store';
+import { useAppSelector } from '../../use-hooks/index';
 import { BannerOfferComponent } from '../banner-offer/banner-offer';
 import { Autoplay, Pagination } from 'swiper/modules';
 import SwiperCore from 'swiper';

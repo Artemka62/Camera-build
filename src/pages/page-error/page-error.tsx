@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../src-const';
-import {useDocumentTitle} from '../../use-hook/use-hook-document-title';
-import { useAppDispatch } from '../../use-hook/use-hook-store';
+import { useDocumentTitle } from '../../use-hooks/index';
+import { useAppDispatch } from '../../use-hooks/index';
 import { fetchOffersAction } from '../../services/thunks/index';
 import { ToastifyComponent } from '../../components/toastify/toastify';
 import { fetchPromoOffersAction } from '../../services/thunks/index';

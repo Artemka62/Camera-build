@@ -4,7 +4,7 @@ import { MainPage } from '../../pages/page-main/page-main';
 import { ProductPage } from '../../pages/page-product/page-product';
 import { BasketPage } from '../../pages/page-basket/page-basket';
 import { ErrorPage } from '../../pages/page-error/page-error';
-import { useAppDispatch } from '../../use-hook/use-hook-store';
+import { useAppDispatch } from '../../use-hooks/index';
 import { fetchOffersAction } from '../../services/thunks/index';
 import { fetchPromoOffersAction } from '../../services/thunks/index';
 import { CouponLocalStorage, OfferLocalStorage } from '../../type/index';

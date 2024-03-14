@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { AppRoute, DEFAULT_NULL, DELAY_FOCUS, KEY_LOCAL_STORAGE_OFFERS } from '../../src-const';
 import { offersBasketSlice } from '../../store/slices/index';
 import { windowsSlice } from '../../store/slices/index';
-import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
+import { useAppDispatch, useAppSelector } from '../../use-hooks/index';
 import { setLocalStorage } from '../../utils/local-storage';
 import { Link } from 'react-router-dom';
 

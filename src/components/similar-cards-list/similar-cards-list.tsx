@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../use-hook/use-hook-store';
+import { useAppSelector } from '../../use-hooks/index';
 import { OfferCard } from '../../type/index';
 import { CardComponent } from '../card/card';
 import { Swiper, SwiperSlide } from 'swiper/react';

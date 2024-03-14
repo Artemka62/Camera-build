@@ -1,5 +1,5 @@
 import { DEFAULT_NULL } from '../../src-const';
-import { useAppSelector } from '../../use-hook/use-hook-store';
+import { useAppSelector } from '../../use-hooks/index';
 import { CardBasketComponent } from '../card-basket/card-basket';
 
 function CardListBasketComponent () {

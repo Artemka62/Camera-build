@@ -1,4 +1,4 @@
-import { useAppDispatch} from '../../use-hook/use-hook-store';
+import { useAppDispatch} from '../../use-hooks/index';
 import { windowsSlice } from '../../store/slices/index';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Fragment, useEffect, useRef} from 'react';

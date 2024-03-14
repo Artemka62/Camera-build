@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { FooterComponent } from '../../components/footer/footer';
 import { HeaderComponent } from '../../components/header/header';
-import { useDocumentTitle } from '../../use-hook/use-hook-document-title';
-import { useAppDispatch, useAppSelector} from '../../use-hook/use-hook-store';
+import { useDocumentTitle } from '../../use-hooks/index';
+import { useAppDispatch, useAppSelector} from '../../use-hooks/index';
 import { fetchOfferAction } from '../../services/thunks/index';
 import { useEffect } from 'react';
 import { CardOfferProductComponent } from '../../components/card-offer-product/card-offer-product';

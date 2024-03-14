@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
+import { useAppDispatch, useAppSelector } from '../../use-hooks/index';
 import { windowsSlice } from '../../store/slices/index';
 import { AppRoute, DEFAULT_NULL, DELAY_FOCUS } from '../../src-const';
 import { useEffect, useRef } from 'react';

@@ -1,5 +1,5 @@
 import { AppRoute, DEFAULT_NULL, SettingTab } from '../../src-const';
-import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
+import { useAppDispatch, useAppSelector } from '../../use-hooks/index';
 import { windowsSlice } from '../../store/slices/index';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { useNavigate, useParams } from 'react-router-dom';
