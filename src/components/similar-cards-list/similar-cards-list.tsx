@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../use-hooks/index';
-import { OfferCard } from '../../type/index';
+import { OfferCard } from '../../types/index';
 import { CardComponent } from '../card/card';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';

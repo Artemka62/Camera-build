@@ -7,7 +7,7 @@ import { configureMockStore } from '@jedmao/redux-mock-store';
 import { ApiRoute, DEFAULT_UNIT, ServerAnswer } from '../../src-const';
 import { fetchOffersAction } from './index';
 import { mockOffer } from '../../mock-test/mock-offer/mock-offer';
-import { State } from '../../type/index';
+import { State } from '../../types/index';
 import { fetchOfferAction } from './index';
 import { mockPromo } from '../../mock-test/mock-promo/mock-promo';
 import { fetchPromoOffersAction } from './index';

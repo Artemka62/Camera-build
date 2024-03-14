@@ -1,7 +1,7 @@
 
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import { OfferCard, StateOffer } from '../../type/index';
+import { OfferCard, StateOffer } from '../../types/index';
 import { fetchOfferAction } from '../../services/thunks/index';
 
 const initialState: StateOffer = {

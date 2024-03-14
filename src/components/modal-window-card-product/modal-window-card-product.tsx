@@ -5,7 +5,7 @@ import { DEFAULT_NULL, DEFAULT_UNIT, DELAY_FOCUS, KEY_LOCAL_STORAGE_OFFERS, Sett
 import { formatNumberWithSpaces } from '../../utils/format-price';
 import { LoadingComponent } from '../loading-component/loading-component';
 import { offersBasketSlice } from '../../store/slices/index';
-import { OfferLocalStorage } from '../../type/index';
+import { OfferLocalStorage } from '../../types/index';
 import { setLocalStorage } from '../../utils/local-storage';
 
 function ModalWindowCardProductComponent () {

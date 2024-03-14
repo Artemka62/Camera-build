@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { StateOrder } from '../../type/index';
+import { StateOrder } from '../../types/index';
 import { postOrder } from '../../services/thunks/index';
 import type {PayloadAction} from '@reduxjs/toolkit';
 

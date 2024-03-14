@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import { ApiRoute } from '../../src-const';
-import { DataPostOrder, Thunk } from '../../type/index';
+import { DataPostOrder, Thunk } from '../../types/index';
 
 const postOrder = createAsyncThunk<void, DataPostOrder , Thunk>(
   'order/post',

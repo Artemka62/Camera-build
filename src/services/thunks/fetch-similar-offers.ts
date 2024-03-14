@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import { ApiRoute } from '../../src-const';
-import { Thunk } from '../../type/index';
-import { OfferCard } from '../../type/index';
+import { Thunk } from '../../types/index';
+import { OfferCard } from '../../types/index';
 
 const fetchSimilarOffersAction = createAsyncThunk<OfferCard[], number, Thunk>(
   'similarOffers/fetch',

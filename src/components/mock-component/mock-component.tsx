@@ -3,11 +3,11 @@ import { HistoryRouter } from '../history-router/history-router';
 import { HelmetProvider } from 'react-helmet-async';
 import { MockStore, configureMockStore } from '@jedmao/redux-mock-store';
 import MockAdapter from 'axios-mock-adapter';
-import { State } from '../../type/index';
+import { State } from '../../types/index';
 import { createApi } from '../../services/index';
 import thunk from 'redux-thunk';
 import { Action } from '@reduxjs/toolkit';
-import { AppThunkDispatch } from '../../type/index';
+import { AppThunkDispatch } from '../../types/index';
 import { Provider } from 'react-redux';
 
 function withHistory (component: JSX.Element, history?: MemoryHistory) {

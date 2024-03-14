@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { postCoupon } from '../../services/thunks/index';
-import { OfferLocalStorage } from '../../type/index';
+import { OfferLocalStorage } from '../../types/index';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/index';
 import { formatNumberWithSpaces } from '../../utils/format-price';
 import { setLocalStorage } from '../../utils/local-storage';
@@ -77,6 +77,11 @@ function OrderProductComponent () {
       dispatch(windowsSlice.actions.isModalWindow(true));
       setLocalStorage(KEY_LOCAL_STORAGE_OFFERS, array);
       dispatch(offersBasketSlice.actions.offersBasket(array));
+      setLocalStorage(KEY_LOCAL_STORAGE_COUPON, array);
+      dispatch(couponSlice.actions.coupon(''));
+      setValueInput('');
+      dispatch(couponSlice.actions.percent(DEFAULT_NULL));
+      setStyleCouponIsValid('');
 
     }).catch(() => {
       dispatch(windowsSlice.actions.windowOrderSuccess(true));

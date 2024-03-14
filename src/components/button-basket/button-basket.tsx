@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, DEFAULT_NULL } from '../../src-const';
 import { useAppSelector } from '../../use-hooks/index';
-import { OfferLocalStorage } from '../../type/index';
+import { OfferLocalStorage } from '../../types/index';
 
 function ButtonBasketComponent () {
   const stateBasketOffer: OfferLocalStorage[] = useAppSelector((state) => state.offersBasket.offers);

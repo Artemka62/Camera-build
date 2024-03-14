@@ -1,4 +1,4 @@
-import { Review } from '../../type/index';
+import { Review } from '../../types/index';
 import { formatData } from '../../utils/format-data';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 

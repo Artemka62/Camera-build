@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import { ApiRoute } from '../../src-const';
-import { Thunk } from '../../type/index';
+import { Thunk } from '../../types/index';
 
 type DataPostCoupon = {
   data: number;

@@ -1,4 +1,4 @@
-import type {OfferCard, StateOffers} from '../../type/index';
+import type {OfferCard, StateOffers} from '../../types/index';
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import { fetchOffersAction } from '../../services/thunks/index';

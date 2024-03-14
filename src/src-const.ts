@@ -139,7 +139,8 @@ const SettingParamCardBasket = {
   KeyPlus: '+',
   KeyMinus: '-',
   KeyDot: '.',
-  KeyEnter: 'Enter'
+  KeyEnter: 'Enter',
+  KeyComma: ',',
 } as const;
 
 const SettingCoupon = {

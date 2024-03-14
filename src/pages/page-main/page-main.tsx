@@ -14,7 +14,7 @@ import { ModalWindowComponent } from '../../components/modal-window-list/modal-w
 import { LoadingComponent } from '../../components/loading-component/loading-component';
 import { useSearchParams } from 'react-router-dom';
 import { getUrlParams } from '../../utils';
-import { OfferCard } from '../../type/index';
+import { OfferCard } from '../../types/index';
 import { ToastifyComponent } from '../../components/toastify/toastify';
 
 type MainPageProps = {

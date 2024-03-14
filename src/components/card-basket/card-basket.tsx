@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { DEFAULT_NULL, DEFAULT_UNIT, KEY_LOCAL_STORAGE_OFFERS, SettingParamCardBasket } from '../../src-const';
 import { offersBasketSlice } from '../../store/slices/index';
-import { OfferCard} from '../../type/index';
+import { OfferCard} from '../../types/index';
 import { useAppDispatch, useAppSelector } from '../../use-hooks/index';
 import { formatNumberWithSpaces } from '../../utils/format-price';
 import { setLocalStorage } from '../../utils/local-storage';
@@ -80,7 +80,7 @@ function CardBasketComponent ({offer}: CardBasketProps) {
   function handleKeyDownInput (event: React.KeyboardEvent) {
     const isOfferInBasket = stateBasket.find((offerBasket) => offerBasket.id === offer.id);
 
-    if(event.key === SettingParamCardBasket.KeyDot || event.key === SettingParamCardBasket.KeyPlus || event.key === SettingParamCardBasket.KeyMinus){
+    if(event.key === SettingParamCardBasket.KeyDot || event.key === SettingParamCardBasket.KeyPlus || event.key === SettingParamCardBasket.KeyMinus || event.key === SettingParamCardBasket.KeyComma){
       event.preventDefault();
     }
 
