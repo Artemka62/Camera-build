@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import { store } from '../../store/store-index';
+import { store } from '../../store/index';
 import { render, screen } from '@testing-library/react';
 import { withHistory } from '../../components/mock-component/mock-component';
 import { MainPage } from './page-main';

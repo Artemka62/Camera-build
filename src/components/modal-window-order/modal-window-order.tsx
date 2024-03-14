@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
 import { useEffect, useRef } from 'react';
 import { AppRoute, DEFAULT_NULL, DELAY_FOCUS, STRING_SPACE } from '../../src-const';
-import { windowsSlice } from '../../store/slice/slice-modal-windows';
+import { windowsSlice } from '../../store/slices/index';
 
 function ModalWindowOrderComponent () {
   const isErrorLoading = useAppSelector((state) => state.order.error);

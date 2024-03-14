@@ -9,8 +9,8 @@ import { fetchOffersAction } from '../../services/thunk/thunk-fetch-offers';
 import { fetchPromoOffersAction } from '../../services/thunk/thunk-fetch-promo-offers';
 import { CouponLocalStorage, OfferLocalStorage } from '../../type/type-store';
 import { getLocalStorage, setLocalStorage } from '../../utils';
-import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
-import { couponSlice } from '../../store/slice/slice-coupon';
+import { offersBasketSlice } from '../../store/slices/index';
+import { couponSlice } from '../../store/slices/index';
 
 function App () {
   const dispatch = useAppDispatch();

@@ -1,7 +1,7 @@
 import { ModalWindowCardProductComponent } from '../modal-window-card-product/modal-window-card-product';
 import { ModalWindowReviewSuccess } from '../modal-window-review-success/modal-window-review-success';
 import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
-import { windowsSlice } from '../../store/slice/slice-modal-windows';
+import { windowsSlice } from '../../store/slices/index';
 import { ModalWindowAddBasketSuccessComponent } from '../modal-window-add-basket-success/modal-window-add-basket-success';
 import { ModalWindowReviewProductComponent } from '../modal-window-review-product/modal-window-review-product';
 import { useEffect } from 'react';
@@ -10,7 +10,7 @@ import { browserHistory } from '../../src-browser-history';
 import { CHANGE_PAGE } from '../../src-const';
 import { ModalWindowDeleteProductComponent } from '../modal-window-delete-product/modal-window-delete-product';
 import { ModalWindowOrderComponent } from '../modal-window-order/modal-window-order';
-import { orderSlice } from '../../store/slice/slice-order-offers';
+import { orderSlice } from '../../store/slices/index';
 
 function ModalWindowComponent () {
   const isWindowModalOpen = useAppSelector((state) => state.windows.isWindowModalOpen);

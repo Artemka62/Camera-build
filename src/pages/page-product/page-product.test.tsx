@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import { store } from '../../store/store-index';
+import { store } from '../../store/index';
 import { render, screen } from '@testing-library/react';
 import { ProductPage } from './page-product';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';

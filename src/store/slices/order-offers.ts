@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { StateOrder } from '../../type/type-store';
 import { postOrder } from '../../services/thunk/thunk-post-order';
 import type {PayloadAction} from '@reduxjs/toolkit';

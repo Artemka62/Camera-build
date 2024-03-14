@@ -1,22 +1,21 @@
-import { offersPromoSlice } from './slice-offers-promo';
+import { orderSlice } from './index';
 
-describe('Offers promo slice', () => {
+describe('Order offers slice', () => {
   const expectedState = {
-    offers: [],
     error: false,
-    loading: false
+    loading: false,
   };
 
   const emptyAction = { type: '' };
 
   it('should return initial state with empty action', () => {
-    const result = offersPromoSlice.reducer(expectedState, emptyAction);
+    const result = orderSlice.reducer(expectedState, emptyAction);
 
     expect(result).toEqual(expectedState);
   });
 
   it('should return initial state with empty action and undefined', () => {
-    const result = offersPromoSlice.reducer(undefined, emptyAction);
+    const result = orderSlice.reducer(undefined, emptyAction);
 
     expect(result).toEqual(expectedState);
   });

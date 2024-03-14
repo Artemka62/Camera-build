@@ -2,7 +2,7 @@ import { render, screen} from '@testing-library/react';
 import { BannerComponent } from './banner';
 import { withHistory } from '../mock-component/mock-component';
 import { Provider } from 'react-redux';
-import { store } from '../../store/store-index';
+import { store } from '../../store/index';
 
 describe('component: Banner', () => {
   it('should render correctly', () => {

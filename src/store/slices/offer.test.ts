@@ -1,23 +1,22 @@
-import { couponSlice } from './slice-coupon';
+import { offerSlice } from './index';
 
-describe('Coupon slice', () => {
+describe('Offer slice', () => {
   const emptyAction = { type: '' };
 
   const expectedState = {
-    percent: 0,
+    offer: null,
     error: false,
-    loading: false,
-    coupon: ''
+    loading : false
   };
 
   it('should return initial state with empty action', () => {
-    const result = couponSlice.reducer(expectedState, emptyAction);
+    const result = offerSlice.reducer(expectedState, emptyAction);
 
     expect(result).toEqual(expectedState);
   });
 
   it('should return initial state with empty action and undefined', () => {
-    const result = couponSlice.reducer(undefined, emptyAction);
+    const result = offerSlice.reducer(undefined, emptyAction);
 
     expect(result).toEqual(expectedState);
   });

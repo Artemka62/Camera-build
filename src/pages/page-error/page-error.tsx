@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../use-hook/use-hook-store';
 import { fetchOffersAction } from '../../services/thunk/thunk-fetch-offers';
 import { ToastifyComponent } from '../../components/toastify/toastify';
 import { fetchPromoOffersAction } from '../../services/thunk/thunk-fetch-promo-offers';
-import { offerSlice } from '../../store/slice/slice-offer';
+import { offerSlice } from '../../store/slices/index';
 
 type ErrorPageProps = {
   title: string;

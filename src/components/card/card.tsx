@@ -4,7 +4,7 @@ import { fetchOfferAction } from '../../services/thunk/thunk-fetch-offer';
 import { OfferCard, OfferLocalStorage } from '../../type/type-store';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { AppRoute, DEFAULT_NULL, KEY_LOCAL_STORAGE_OFFERS } from '../../src-const';
-import { windowsSlice } from '../../store/slice/slice-modal-windows';
+import { windowsSlice } from '../../store/slices/index';
 import { fetchReviewsAction } from '../../services/thunk/thunk-fetch-reviews';
 import { formatNumberWithSpaces } from '../../utils/format-price';
 import { getLocalStorage } from '../../utils';

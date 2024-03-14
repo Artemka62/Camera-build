@@ -3,7 +3,7 @@ import { withHistory } from '../mock-component/mock-component';
 import { CardComponent } from './card';
 import { mockOffer } from '../../mock-test/mock-offer/mock-offer';
 import { Provider } from 'react-redux';
-import { store } from '../../store/store-index';
+import { store } from '../../store/index';
 
 describe('component: Card', () => {
   const isTrue = true;

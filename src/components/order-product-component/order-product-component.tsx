@@ -5,10 +5,10 @@ import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
 import { formatNumberWithSpaces } from '../../utils/format-price';
 import { setLocalStorage } from '../../utils/local-storage';
 import { DEFAULT_NULL, EMPTY_STRING, KEY_LOCAL_STORAGE_COUPON, KEY_LOCAL_STORAGE_OFFERS, ONE_HUNDRED, SettingCoupon,} from '../../src-const';
-import { couponSlice } from '../../store/slice/slice-coupon';
+import { couponSlice } from '../../store/slices/index';
 import { postOrder } from '../../services/thunk/thunk-post-order';
-import { windowsSlice } from '../../store/slice/slice-modal-windows';
-import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
+import { windowsSlice } from '../../store/slices/index';
+import { offersBasketSlice } from '../../store/slices/index';
 
 function OrderProductComponent () {
   const stateOfferBasket: OfferLocalStorage[] = useAppSelector((state) => state.offersBasket.offers);

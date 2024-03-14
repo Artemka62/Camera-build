@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { DEFAULT_NULL, DEFAULT_UNIT, KEY_LOCAL_STORAGE_OFFERS, SettingParamCardBasket } from '../../src-const';
-import { offersBasketSlice } from '../../store/slice/slice-basket-offers';
+import { offersBasketSlice } from '../../store/slices/index';
 import { OfferCard} from '../../type/type-store';
 import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
 import { formatNumberWithSpaces } from '../../utils/format-price';
 import { setLocalStorage } from '../../utils/local-storage';
-import { windowsSlice } from '../../store/slice/slice-modal-windows';
+import { windowsSlice } from '../../store/slices/index';
 
 type CardBasketProps = {
   offer: OfferCard;

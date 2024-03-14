@@ -1,7 +1,7 @@
 import { render, screen} from '@testing-library/react';
 import { withHistory } from '../mock-component/mock-component';
 import { Provider } from 'react-redux';
-import { store } from '../../store/store-index';
+import { store } from '../../store/index';
 import { CardOfferProductComponent } from './card-offer-product';
 
 describe('component: CardOfferProduct', () => {

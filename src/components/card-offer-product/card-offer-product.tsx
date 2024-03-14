@@ -1,6 +1,6 @@
 import { AppRoute, DEFAULT_NULL, SettingTab } from '../../src-const';
 import { useAppDispatch, useAppSelector } from '../../use-hook/use-hook-store';
-import { windowsSlice } from '../../store/slice/slice-modal-windows';
+import { windowsSlice } from '../../store/slices/index';
 import { StarsRatingComponent } from '../stars-rating/stars-rating';
 import { useNavigate, useParams } from 'react-router-dom';
 import { formatNumberWithSpaces } from '../../utils/format-price';

@@ -1,6 +1,6 @@
-import { offersSlice } from './slice-offers';
+import { offersPromoSlice } from './index';
 
-describe('Offers slice', () => {
+describe('Offers promo slice', () => {
   const expectedState = {
     offers: [],
     error: false,
@@ -10,15 +10,14 @@ describe('Offers slice', () => {
   const emptyAction = { type: '' };
 
   it('should return initial state with empty action', () => {
-    const result = offersSlice.reducer(expectedState, emptyAction);
+    const result = offersPromoSlice.reducer(expectedState, emptyAction);
 
     expect(result).toEqual(expectedState);
   });
 
   it('should return initial state with empty action and undefined', () => {
-    const result = offersSlice.reducer(undefined, emptyAction);
+    const result = offersPromoSlice.reducer(undefined, emptyAction);
 
     expect(result).toEqual(expectedState);
   });
 });
-

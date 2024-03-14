@@ -2,7 +2,7 @@ import { render, screen} from '@testing-library/react';
 import { withHistory } from '../mock-component/mock-component';
 import { mockOffer } from '../../mock-test/mock-offer/mock-offer';
 import { Provider } from 'react-redux';
-import { store } from '../../store/store-index';
+import { store } from '../../store/index';
 import { CardBasketComponent } from './card-basket';
 
 describe('component: CardBasketComponent', () => {

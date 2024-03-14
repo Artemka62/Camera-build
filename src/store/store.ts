@@ -1,14 +1,14 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { offersSlice } from './slice/slice-offers';
+import { offersSlice } from './slices/index';
 import { createApi } from '../services/services-api';
-import { offersPromoSlice } from './slice/slice-offers-promo';
-import { offerSlice } from './slice/slice-offer';
-import { windowsSlice } from './slice/slice-modal-windows';
-import { similarOffersSlice } from './slice/slice-similar-offers';
-import { reviewsSlice } from './slice/slice-reviews';
-import { offersBasketSlice } from './slice/slice-basket-offers';
-import { couponSlice } from './slice/slice-coupon';
-import { orderSlice } from './slice/slice-order-offers';
+import { offersPromoSlice } from './slices/index';
+import { offerSlice } from './slices/index';
+import { windowsSlice } from './slices/index';
+import { similarOffersSlice } from './slices/index';
+import { reviewsSlice } from './slices/index';
+import { offersBasketSlice } from './slices/index';
+import { couponSlice } from './slices/index';
+import { orderSlice } from './slices/index';
 
 const reducer = combineReducers({
   [offersSlice.name]: offersSlice.reducer,

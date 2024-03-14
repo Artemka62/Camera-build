@@ -1,5 +1,5 @@
 import { useAppDispatch} from '../../use-hook/use-hook-store';
-import { windowsSlice } from '../../store/slice/slice-modal-windows';
+import { windowsSlice } from '../../store/slices/index';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Fragment, useEffect, useRef} from 'react';
 import { DEFAULT_NULL, DELAY_FOCUS, OPTIONS, SettingValidation } from '../../src-const';
